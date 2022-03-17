@@ -2,6 +2,8 @@
 /*                               Données de test                              */
 /* -------------------------------------------------------------------------- */
 
+USE daw;
+
 /* ------------------------------ Utilisateurs ------------------------------ */
 
 INSERT INTO Utilisateur VALUES (1, 'user', 'user@user.com', '', 'Jean', 'Dupont', NULL, DEFAULT, 'CLAIR', 0);
