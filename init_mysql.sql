@@ -13,12 +13,11 @@ CREATE TABLE Utilisateur (
   pseudo        VARCHAR(128) NOT NULL UNIQUE,
   email         VARCHAR(128) NOT NULL UNIQUE,
   passHash      VARCHAR(256) NOT NULL,
-  prenom        VARCHAR(128) NOT NULL,
-  nom           VARCHAR(128) NOT NULL,
   imageUrl      VARCHAR(1024),
   dateCreation  DATETIME DEFAULT CURRENT_TIMESTAMP,
   theme         ENUM('CLAIR', 'SOMBRE') NOT NULL DEFAULT 'CLAIR',
-  isAdmin       BOOLEAN NOT NULL DEFAULT 0
+  isAdmin       BOOLEAN NOT NULL DEFAULT 0,
+  isConnecte    BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE Cours (

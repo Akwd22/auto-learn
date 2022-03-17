@@ -6,8 +6,8 @@ USE daw;
 
 /* ------------------------------ Utilisateurs ------------------------------ */
 
-INSERT INTO Utilisateur VALUES (1, 'user', 'user@user.com', '', 'Jean', 'Dupont', NULL, DEFAULT, 'CLAIR', 0);
-INSERT INTO Utilisateur VALUES (2, 'admin', 'admin@admin.com', '', 'Fabrice', 'Pierre', '2.png', DEFAULT, 'SOMBRE', 1);
+INSERT INTO Utilisateur VALUES (1, 'user', 'user@user.com', '', NULL, DEFAULT, 'CLAIR', 0, 0);
+INSERT INTO Utilisateur VALUES (2, 'admin', 'admin@admin.com', '', '2.png', DEFAULT, 'SOMBRE', 1, 0);
 
 /* ---------------------------------- Cours --------------------------------- */
 
