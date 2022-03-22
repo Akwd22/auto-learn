@@ -1,27 +1,30 @@
 <?php
 
-include 'models/Utilisateur.php';
+if(!@include("models/Utilisateur.php")) include '/../../models/Utilisateur.php';
+include 'DatabaseManagement.php';
 
-class UtilisateurController {
+class UtilisateurCRUD {
 
-    public static function getDatabaseConnexion()
+    private $db;
+
+    public function __construct()
     {
-        try {
-            $user = "root";
-            $pass = "root";
-            $pdo = new PDO('mysql:host=localhost;dbname=daw', $user, $pass);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $pdo;
-        } catch (PDOException $e) {
-		    print "Erreur !: " . $e->getMessage() . "<br/>";
-		    die();
-		}
-	}
+        $this->db = new DatabaseManagement();
+    }
 
-    public static function readUser($id){
-        $con = self::getDatabaseConnexion();
-        $requete = "SELECT * FROM utilisateur where id = '$id'";
-        $stmt = $con->query($requete);
+    public function getDb()
+    {
+        return $this->db;
+    }
+
+    public function setDb($db)
+    {
+        $this->db=$db;
+    }
+
+    public function readUserByPseudo($pseudo){
+        $requete = "SELECT * FROM utilisateur where pseudo = '$pseudo'";
+        $stmt = $this->db->getPDO()->query($requete);
         $row = $stmt->fetchAll();
         if (!empty($row)){
 
@@ -39,8 +42,29 @@ class UtilisateurController {
         }
     }
 
-    public static function updateUser($user, $id) {
+    public function readUserByEmail($email){
+        $requete = "SELECT * FROM utilisateur where email = '$email'";
+        $stmt = $this->db->getPDO()->query($requete);
+        $row = $stmt->fetchAll();
+        if (!empty($row)){
+
+            $user = new Utilisateur();
+            $user->setId($row[0][0]);
+            $user->setPseudo($row[0][1]);
+            $user->setEmail($row[0][2]);
+            $user->setPassHash($row[0][3]);
+            $user->setImageUrl($row[0][4]);
+            $user->setDateCreation($row[0][5]);
+            $user->setTheme($row[0][6]);
+            $user->setIsAdmin($row[0][7]);
+            $user->setIsConnected($row[0][8]);
+            return $user;
+        }
+    }
+
+    public function updateUser($user, $id) {
 		try {
+            var_dump($user);
             $pseudo = $user->getPseudo();
             $email = $user->getEmail();
             $passHash = $user->getPassHash();
@@ -49,7 +73,6 @@ class UtilisateurController {
             $isAdmin = $user->getisAdmin();
             $isConnected = $user->getIsConnected();
 
-			$con = self::getDatabaseConnexion();
 			$requete = "UPDATE utilisateur set 
 						pseudo = '$pseudo',
 						email = '$email',
@@ -59,14 +82,14 @@ class UtilisateurController {
                         isAdmin = '$isAdmin',
                         isConnected = '$isConnected'
 						where id = '$id' ";
-			$stmt = $con->query($requete);
+			$stmt = $this->db->getPDO()->query($requete);
 		}
 	    catch(PDOException $e) {
 	    	echo $requete . "<br>" . $e->getMessage(). "<br>";
 	    }
 	}
 
-    public static function createUser($user) {
+    public function createUser($user) {
 		try {
             $pseudo = $user->getPseudo();
             $email = $user->getEmail();
@@ -76,8 +99,6 @@ class UtilisateurController {
             $theme = $user->getTheme();
             $isAdmin = $user->getisAdmin();
             $isConnected=$user->getIsConnected();
-
-            $con = self::getDatabaseConnexion();
 
             if($user->getId()==null)
             {
@@ -93,18 +114,17 @@ class UtilisateurController {
 
             }
 
-	    	$con->exec($requete);
+	    	$this->db->getPDO()->exec($requete);
 		}
 	    catch(PDOException $e) {
 	    	echo $requete . "<br>" . $e->getMessage(). "<br>";
 	    }
 	}
 
-    public static function deleteUser($id) {
+    public function deleteUser($id) {
 		try {
-			$con = self::getDatabaseConnexion();
 			$requete = "DELETE from utilisateur where id = '$id' ";
-			$stmt = $con->query($requete);
+			$stmt = $this->db->getPDO()->query($requete);
 		}
 	    catch(PDOException $e) {
 	    	echo $requete . "<br>" . $e->getMessage(). "<br>";

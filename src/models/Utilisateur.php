@@ -1,8 +1,8 @@
 <?php
 
 abstract class enumTheme{
-    const CLAIRE = 0;
-    const SOMBRE = 1;
+    const CLAIRE = 1;
+    const SOMBRE = 2;
 }
 
 class Utilisateur 
