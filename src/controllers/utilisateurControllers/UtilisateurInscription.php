@@ -1,7 +1,8 @@
 <?php
     include '../../databases/UtilisateurCRUD.php';
 
-    $userCRUD = new UtilisateurCRUD();
+    $conn = new DatabaseManagement();
+    $userCRUD = new UtilisateurCRUD($conn);
 
     if(isset($_POST['pseudo']) && isset($_POST['password']) && isset($_POST['email']))
     { 
@@ -21,15 +22,14 @@
             $createUser = new Utilisateur();
             $createUser->setPseudo($_POST['pseudo']);
             $createUser->setEmail($_POST['email']);
-            $createUser->setPassHash($_POST['password']);
+            $createUser->setPassHash(password_hash($_POST['password'], PASSWORD_DEFAULT));
             $createUser->setImageUrl("");
             date_default_timezone_set('UTC');
             $date = date('Y-m-d H:i:s');
             $createUser->setDateCreation($date);
-            $createUser->setTheme(2);
+            $createUser->setTheme(1);
             $createUser->setisAdmin(0);
             $createUser->setIsConnected(1); //On prend en compte que l'inscription connecte directement l'utilisateur
-            var_dump($createUser);
             $userCRUD->createUser($createUser);
             echo 'Inscription reussie';
         }
@@ -38,5 +38,6 @@
     {
         header('Location: ../../views/signin.php');
     }
+    $conn->close();
 
 ?>

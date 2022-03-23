@@ -1,7 +1,8 @@
 <?php
     include '../../databases/UtilisateurCRUD.php';
 
-    $userCRUD = new UtilisateurCRUD();
+    $conn = new DatabaseManagement();
+    $userCRUD = new UtilisateurCRUD($conn);
 
     if(isset($_POST['pseudo']) && isset($_POST['password']))
     {
@@ -9,7 +10,7 @@
 
         if($user!=null)
         {        
-            if($user->getPassHash() == $_POST['password'])
+            if(password_verify($_POST['password'],$user->getPassHash()))
             {
                 $user->setIsConnected(1);
                 $userCRUD->updateUser($user,$user->getId());
@@ -17,7 +18,7 @@
             }
             else
             {
-                header('Location: ../../views/login.php?erreur=1'); //mot de passe inconnu
+                header('Location: ../../views/login.php?erreur=1'); //mot de passe incorrect
             }
         }
         else
@@ -29,5 +30,6 @@
     {
         header('Location: ../../views/login.php');
     }
+    $conn->close();
 
 ?>

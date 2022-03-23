@@ -7,9 +7,9 @@ class UtilisateurCRUD {
 
     private $db;
 
-    public function __construct()
+    public function __construct($db)
     {
-        $this->db = new DatabaseManagement();
+        $this->db=$db;
     }
 
     public function getDb()
@@ -23,11 +23,13 @@ class UtilisateurCRUD {
     }
 
     public function readUserByPseudo($pseudo){
-        $requete = "SELECT * FROM utilisateur where pseudo = '$pseudo'";
-        $stmt = $this->db->getPDO()->query($requete);
-        $row = $stmt->fetchAll();
-        if (!empty($row)){
+        $sth = $this->db->getPDO()->prepare("
+        SELECT * FROM utilisateur where pseudo = :pseudo");
+        $sth->bindValue(':pseudo', $pseudo);
+        $sth->execute();
+        $row = $sth->fetchAll();
 
+        if (!empty($row)){
             $user = new Utilisateur();
             $user->setId($row[0][0]);
             $user->setPseudo($row[0][1]);
@@ -43,11 +45,13 @@ class UtilisateurCRUD {
     }
 
     public function readUserByEmail($email){
-        $requete = "SELECT * FROM utilisateur where email = '$email'";
-        $stmt = $this->db->getPDO()->query($requete);
-        $row = $stmt->fetchAll();
-        if (!empty($row)){
+        $sth = $this->db->getPDO()->prepare("
+        SELECT * FROM utilisateur where email = :email");
+        $sth->bindValue(':email', $email);
+        $sth->execute();
+        $row = $sth->fetchAll();
 
+        if (!empty($row)){
             $user = new Utilisateur();
             $user->setId($row[0][0]);
             $user->setPseudo($row[0][1]);
@@ -64,7 +68,6 @@ class UtilisateurCRUD {
 
     public function updateUser($user, $id) {
 		try {
-            var_dump($user);
             $pseudo = $user->getPseudo();
             $email = $user->getEmail();
             $passHash = $user->getPassHash();
@@ -73,16 +76,27 @@ class UtilisateurCRUD {
             $isAdmin = $user->getisAdmin();
             $isConnected = $user->getIsConnected();
 
-			$requete = "UPDATE utilisateur set 
-						pseudo = '$pseudo',
-						email = '$email',
-						passHash = '$passHash',
-						imageUrl = '$imageUrl',
-                        theme = '$theme',
-                        isAdmin = '$isAdmin',
-                        isConnected = '$isConnected'
-						where id = '$id' ";
-			$stmt = $this->db->getPDO()->query($requete);
+			$sth = $this->db->getPDO()->prepare("UPDATE utilisateur set 
+						pseudo = :pseudo,
+						email = :email,
+						passHash = :passHash,
+						imageUrl = :imageUrl,
+                        theme = :theme,
+                        isAdmin = :isAdmin,
+                        isConnected = :isConnected
+						where id = :id");
+
+            $sth->bindValue(':id', $id);           
+            $sth->bindValue(':pseudo', $pseudo);
+            $sth->bindValue(':email', $email);
+            $sth->bindValue(':passHash', $passHash);
+            $sth->bindValue(':imageUrl', $imageUrl);
+            $sth->bindValue(':dateCreation', $dateCreation);
+            $sth->bindValue(':theme', $theme);
+            $sth->bindValue(':isAdmin', $isAdmin);
+            $sth->bindValue(':isConnected', $isConnected);
+            $sth->execute();
+			
 		}
 	    catch(PDOException $e) {
 	    	echo $requete . "<br>" . $e->getMessage(). "<br>";
@@ -102,19 +116,27 @@ class UtilisateurCRUD {
 
             if($user->getId()==null)
             {
-
-                $requete = "INSERT INTO utilisateur (pseudo, email, passHash, imageUrl, dateCreation, theme, isAdmin, isConnected) 
-                        VALUES ('$pseudo', '$email', '$passHash' ,'$imageUrl', '$dateCreation', '$theme', '$isAdmin', '$isConnected')";
+                $sth = $this->db->getPDO()->prepare("
+                    INSERT INTO utilisateur (pseudo, email, passHash, imageUrl, dateCreation, theme, isAdmin, isConnected) 
+                    VALUES (:pseudo, :email, :passHash, :imageUrl, :dateCreation, :theme, :isAdmin, :isConnected)");
             }
             else
             {
                 $id = $user->getId();
-                $requete = "INSERT INTO utilisateur (id, pseudo, email, passHash, imageUrl, dateCreation, theme, isAdmin, isConnected) 
-                        VALUES ('$id', '$pseudo', '$email', '$passHash' ,'$imageUrl', '$dateCreation', '$theme', '$isAdmin', '$isConnected')";
-
+                $sth = $this->db->getPDO()->prepare("
+                INSERT INTO utilisateur (id, pseudo, email, passHash, imageUrl, dateCreation, theme, isAdmin, isConnected) 
+                VALUES (:id, :pseudo, :email, :passHash, :imageUrl, :dateCreation, :theme, :isAdmin, :isConnected)");
+                $sth->bindValue(':id', $id);                
             }
-
-	    	$this->db->getPDO()->exec($requete);
+            $sth->bindValue(':pseudo', $pseudo);
+            $sth->bindValue(':email', $email);
+            $sth->bindValue(':passHash', $passHash);
+            $sth->bindValue(':imageUrl', $imageUrl);
+            $sth->bindValue(':dateCreation', $dateCreation);
+            $sth->bindValue(':theme', $theme);
+            $sth->bindValue(':isAdmin', $isAdmin);
+            $sth->bindValue(':isConnected', $isConnected);
+            $sth->execute();
 		}
 	    catch(PDOException $e) {
 	    	echo $requete . "<br>" . $e->getMessage(). "<br>";
@@ -123,8 +145,10 @@ class UtilisateurCRUD {
 
     public function deleteUser($id) {
 		try {
-			$requete = "DELETE from utilisateur where id = '$id' ";
-			$stmt = $this->db->getPDO()->query($requete);
+			$sth = $this->db->getPDO()->prepare("
+            DELETE from utilisateur where id = :id ");
+            $sth->bindValue(':id', $id);                
+            $sth->execute();			
 		}
 	    catch(PDOException $e) {
 	    	echo $requete . "<br>" . $e->getMessage(). "<br>";
