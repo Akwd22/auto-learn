@@ -1,6 +1,8 @@
 <?php
     include '../../databases/UtilisateurCRUD.php';
 
+    session_start();
+
     $conn = new DatabaseManagement();
     $userCRUD = new UtilisateurCRUD($conn);
 
@@ -29,8 +31,16 @@
             $createUser->setDateCreation($date);
             $createUser->setTheme(1);
             $createUser->setisAdmin(0);
-            $createUser->setIsConnected(1); //On prend en compte que l'inscription connecte directement l'utilisateur
+            $createUser->setIsConnected(1); 
             $userCRUD->createUser($createUser);
+
+            $createUser = $userCRUD->readUserByPseudo(($createUser->getPseudo())); // Obtenir le nouveau ID de l'utilisateur.
+
+            // On prend en compte que l'inscription connecte directement l'utilisateur.
+            $_SESSION["isAdmin"] = $createUser->getIsAdmin();
+            $_SESSION["isConnected"] = $createUser->getIsConnected();
+            $_SESSION["utilisateurId"] = $createUser->getId();
+
             echo 'Inscription reussie';
         }
     }
@@ -39,5 +49,3 @@
         header('Location: ../../views/signin.php');
     }
     $conn->close();
-
-?>

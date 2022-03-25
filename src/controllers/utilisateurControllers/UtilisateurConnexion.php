@@ -1,6 +1,8 @@
 <?php
     include '../../databases/UtilisateurCRUD.php';
 
+    session_start();
+
     $conn = new DatabaseManagement();
     $userCRUD = new UtilisateurCRUD($conn);
 
@@ -14,6 +16,11 @@
             {
                 $user->setIsConnected(1);
                 $userCRUD->updateUser($user,$user->getId());
+
+                $_SESSION["isAdmin"] = $user->getIsAdmin();
+                $_SESSION["isConnected"] = $user->getIsConnected();
+                $_SESSION["utilisateurId"] = $user->getId();
+
                 header('Location: ../../../index.php'); //renvoie au menu principal
             }
             else
@@ -31,5 +38,3 @@
         header('Location: ../../views/login.php');
     }
     $conn->close();
-
-?>
