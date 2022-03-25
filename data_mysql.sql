@@ -6,7 +6,9 @@ USE daw;
 
 /* ------------------------------ Utilisateurs ------------------------------ */
 
+-- Mot de passe : user
 INSERT INTO Utilisateur VALUES (1, 'user', 'user@user.com', '$2y$10$BCgBoDXrwNCxvszH8cBLJOoZSjH0g1j19fRaMeSwiSNY4c3psezOC', NULL, DEFAULT, 'CLAIR', 0, 0);
+-- Mot de passe : admin
 INSERT INTO Utilisateur VALUES (2, 'admin', 'admin@admin.com', '$2y$10$OjW6AfwmVhbp4azK7OOzcO6cafird2KuKYurMVbrvSeiUmndbsYW6', '2.png', DEFAULT, 'SOMBRE', 1, 0);
 
 /* ---------------------------------- Cours --------------------------------- */
