@@ -8,3 +8,17 @@ if (isset($_SESSION["isConnected"]) && $_SESSION["isConnected"]) {
 } else {
   echo "Vous êtes déconnecté.";
 }
+?>
+
+<html>
+  <head>
+     <meta charset="utf-8">
+  </head>
+  <body>
+      <div id="container">           
+          <form action="/controllers/utilisateurControllers/UtilisateurDeconnexion.php" method="POST">
+              <input type="submit" id='submit' value="SE DECONNECTER" >
+          </form>
+      </div>
+  </body>
+</html>

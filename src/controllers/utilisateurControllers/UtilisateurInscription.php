@@ -41,7 +41,7 @@
             $_SESSION["isConnected"] = $createUser->getIsConnected();
             $_SESSION["utilisateurId"] = $createUser->getId();
 
-            echo 'Inscription reussie';
+            header('Location: ../../../index.php');
         }
     }
     else

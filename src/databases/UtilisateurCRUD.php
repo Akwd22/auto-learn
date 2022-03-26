@@ -66,6 +66,28 @@ class UtilisateurCRUD {
         }
     }
 
+    public function readUserById($id){
+        $sth = $this->db->getPDO()->prepare("
+        SELECT * FROM utilisateur where id = :id");
+        $sth->bindValue(':id', $id);
+        $sth->execute();
+        $row = $sth->fetchAll();
+
+        if (!empty($row)){
+            $user = new Utilisateur();
+            $user->setId($row[0][0]);
+            $user->setPseudo($row[0][1]);
+            $user->setEmail($row[0][2]);
+            $user->setPassHash($row[0][3]);
+            $user->setImageUrl($row[0][4]);
+            $user->setDateCreation($row[0][5]);
+            $user->setTheme($row[0][6]);
+            $user->setIsAdmin($row[0][7]);
+            $user->setIsConnected($row[0][8]);
+            return $user;
+        }
+    }
+
     public function updateUser($user, $id) {
 		try {
             $pseudo = $user->getPseudo();
@@ -91,7 +113,6 @@ class UtilisateurCRUD {
             $sth->bindValue(':email', $email);
             $sth->bindValue(':passHash', $passHash);
             $sth->bindValue(':imageUrl', $imageUrl);
-            $sth->bindValue(':dateCreation', $dateCreation);
             $sth->bindValue(':theme', $theme);
             $sth->bindValue(':isAdmin', $isAdmin);
             $sth->bindValue(':isConnected', $isConnected);
