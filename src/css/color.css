@@ -1,0 +1,47 @@
+:root{
+    /*background*/
+    --first_clear_background: #EDF2F7;
+    --second_clear_background: #FFFFFF;
+
+    --first_dark_background: #1A202C;
+    --second_dark_background: #171923;
+
+    /*error div*/
+    --customize_red: #E53E3E;
+    
+    /*text*/
+    --dark_text: #2D3748;
+    --medium1_text: #4A5568;
+    --medium2_text: #718096;
+    --clear1_text: #CBD5E0;
+    --clear2_text: #E2E8F0;
+
+    --link: #3182CE;
+
+    --placeholder: rgba(0, 0, 0, 0.36);
+    --placeholder_error:#2D3748;
+
+    /*button*/
+    --button: #3182CE;
+
+    /*input*/
+    --input: #FFFFFF;
+
+    --input_border_default: #CBD5E0;
+    --input_border_hover: #A0AEC0;
+    --input_border_error: #E53E3E;
+
+    /*checkbox and radio button*/
+    --checkboxRadio: #FFFFFF;
+    --checkbox_selected: #3182CE;
+    --checkbox_selectedHover: #3182CE;
+    --checkbox_disabled: #CBD5E0;
+    --radio_disabled: #718096;
+
+    --checkboxRadio_border_default:#CBD5E0;
+    --checkboxRadio_border_hover:#A0AEC0;
+    --checkboxRadio_border_selected:#3182CE;
+    --checkboxRadio_border_selectedHover:#2B6CB0;
+    --checkboxRadio_border_disabled: #CBD5E0;
+    --checkboxRadio_border_error: #E53E3E;
+}
