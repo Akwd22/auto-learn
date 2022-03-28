@@ -1,4 +1,4 @@
-
+<?php require '/components/button/button.php'; ?>
 <?php
 include 'databases/UtilisateurCRUD.php';
 
