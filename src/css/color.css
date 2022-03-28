@@ -1,47 +1,47 @@
-:root{
-    /*background*/
-    --first_clear_background: #EDF2F7;
-    --second_clear_background: #FFFFFF;
+:root {
+  /*background*/
+  --first_clear_background: #edf2f7;
+  --second_clear_background: #ffffff;
 
-    --first_dark_background: #1A202C;
-    --second_dark_background: #171923;
+  --first_dark_background: #1a202c;
+  --second_dark_background: #171923;
 
-    /*error div*/
-    --customize_red: #E53E3E;
-    
-    /*text*/
-    --dark_text: #2D3748;
-    --medium1_text: #4A5568;
-    --medium2_text: #718096;
-    --clear1_text: #CBD5E0;
-    --clear2_text: #E2E8F0;
+  /*error div*/
+  --customize_red: #e53e3e;
 
-    --link: #3182CE;
+  /*text*/
+  --dark_text: #2d3748;
+  --medium1_text: #4a5568;
+  --medium2_text: #718096;
+  --clear1_text: #cbd5e0;
+  --clear2_text: #e2e8f0;
 
-    --placeholder: rgba(0, 0, 0, 0.36);
-    --placeholder_error:#2D3748;
+  --link: #3182ce;
 
-    /*button*/
-    --button: #3182CE;
+  --placeholder: rgba(0, 0, 0, 0.36);
+  --placeholder_error: #2d3748;
 
-    /*input*/
-    --input: #FFFFFF;
+  /*button*/
+  --button: #3182ce;
 
-    --input_border_default: #CBD5E0;
-    --input_border_hover: #A0AEC0;
-    --input_border_error: #E53E3E;
+  /*input*/
+  --input: #ffffff;
 
-    /*checkbox and radio button*/
-    --checkboxRadio: #FFFFFF;
-    --checkbox_selected: #3182CE;
-    --checkbox_selectedHover: #3182CE;
-    --checkbox_disabled: #CBD5E0;
-    --radio_disabled: #718096;
+  --input_border_default: #cbd5e0;
+  --input_border_hover: #a0aec0;
+  --input_border_error: #e53e3e;
 
-    --checkboxRadio_border_default:#CBD5E0;
-    --checkboxRadio_border_hover:#A0AEC0;
-    --checkboxRadio_border_selected:#3182CE;
-    --checkboxRadio_border_selectedHover:#2B6CB0;
-    --checkboxRadio_border_disabled: #CBD5E0;
-    --checkboxRadio_border_error: #E53E3E;
+  /*checkbox and radio button*/
+  --checkboxRadio: #ffffff;
+  --checkbox_selected: #3182ce;
+  --checkbox_selectedHover: #3182ce;
+  --checkbox_disabled: #cbd5e0;
+  --radio_disabled: #718096;
+
+  --checkboxRadio_border_default: #cbd5e0;
+  --checkboxRadio_border_hover: #a0aec0;
+  --checkboxRadio_border_selected: #3182ce;
+  --checkboxRadio_border_selectedHover: #2b6cb0;
+  --checkboxRadio_border_disabled: #cbd5e0;
+  --checkboxRadio_border_error: #e53e3e;
 }

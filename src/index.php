@@ -1,3 +1,4 @@
+<?php require '/components/button/button.php'; ?>
 <?php
 include 'databases/UtilisateurCRUD.php';
 
@@ -11,14 +12,24 @@ if (isset($_SESSION["isConnected"]) && $_SESSION["isConnected"]) {
 ?>
 
 <html>
-  <head>
-     <meta charset="utf-8">
-  </head>
-  <body>
-      <div id="container">           
-          <form action="/controllers/utilisateurControllers/UtilisateurDeconnexion.php" method="POST">
-              <input type="submit" id='submit' value="SE DECONNECTER" >
-          </form>
-      </div>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <div id="container">
+    <form action="/controllers/utilisateurControllers/UtilisateurDeconnexion.php" method="POST">
+      <input type="submit" id='submit' value="SE DECONNECTER">
+    </form>
+  </div>
+  <div>
+    <?php
+    $submitButton = new Button('m', 'outline', 'Sidentifier');
+    echo $submitButton->toHtml();
+    ?>
+    fefefe
+  </div>
+</body>
+
 </html>
