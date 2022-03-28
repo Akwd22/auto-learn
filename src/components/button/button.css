@@ -1,3 +1,6 @@
+@import url('./css/color.css');
+@import url('./css/fonts.css');
+
 .default {
   background-color: var(--button);
 
