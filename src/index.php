@@ -1,4 +1,4 @@
-<?php require '/components/button/button.php'; ?>
+
 <?php
 include 'databases/UtilisateurCRUD.php';
 
@@ -14,7 +14,7 @@ if (isset($_SESSION["isConnected"]) && $_SESSION["isConnected"]) {
 <html>
 
 <head>
-  <?php echo infoHead('Autolearn', 'page d\'accueil', ''); ?>
+  <meta charset=”utf-8″>
 </head>
 
 <body>
