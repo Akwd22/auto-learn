@@ -14,7 +14,7 @@ if (isset($_SESSION["isConnected"]) && $_SESSION["isConnected"]) {
 <html>
 
 <head>
-  <meta charset="utf-8">
+  <?php echo infoHead('Autolearn', 'page d\'accueil', ''); ?>
 </head>
 
 <body>
