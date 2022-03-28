@@ -9,8 +9,33 @@ function infoHead ($title, $description, $link_style)
         <meta name="description" content="$description"/>
         <meta name="author" content="DRUET Eddy, GILI Clément, AULOY Rémy, BARBIER Tom, SONVICO Guillaume, MANZANO Lilian" />
 HTML;
-return $html;
-} 
+echo $html;
+}
+
+function createLink($title, $className)
+{
+    $html = <<<HTML
+        <a class=$className href="#">
+            $title
+        </a>
+HTML;
+echo $html;
+}
+
+
+function createrNavbar()
+{
+    $html = <<<HTML
+    <div>
+        <nav>
+
+        </nav>
+    </div>
+
+HTML;
+echo $html;
+}
+
 ?>
 
 
