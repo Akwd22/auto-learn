@@ -3,7 +3,7 @@
 footer{
     width: 100%;
 
-    background-color: var(--second_dark_background) ;
+    background-color: var(--second_clear_background);
 
     flex-shrink: 0;
 }
@@ -47,6 +47,8 @@ footer p{
     float: right;   
 }
 
+
+/*gère si la page rétrécie en largeur*/
 @media screen and (max-width: 1600px) {
     #contentFooter{
         width: 90%;       
@@ -65,4 +67,9 @@ footer p{
     #linksFooter{
         float: none;
     }
+}
+
+/*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
+@media (prefers-color-scheme: dark) {
+    footer{background-color: var(--second_dark_background);}
 }

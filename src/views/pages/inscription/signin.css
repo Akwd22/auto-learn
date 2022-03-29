@@ -10,7 +10,7 @@ body{
     width: 392px;
     
     margin: 0 auto;
-    margin-top: 300px;
+    margin-top: 262px;
 
     text-align: left;
 }
@@ -55,7 +55,6 @@ body{
 }
 .labelsForm{
     color: var(--medium1_text);
-
     font-weight: 600;
     font-size: 18px; 
     line-height: 32px; 
@@ -67,7 +66,7 @@ body{
 
     box-sizing: border-box;
     width: 100%;
-    height: 48px;
+    height: 48px;   
     margin-top: 6px;
 
     padding-left:5%;
@@ -83,7 +82,34 @@ body{
     color:var(--placeholder);
 }
 
+/*checkbox*/
+#acceptConditions{
+    background: #FFF;
 
+    width: 20px;
+    height: 20px;
+    margin-top: 26px;
+
+    border: 2px solid var(--checkboxRadio_border_default);  
+    border-radius: 2px;
+    outline:none;
+}
+#labelAcceptConditions{
+    margin-top: 26px;
+
+    color:var(--dark_text);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+#divCheckbox{
+    float: left;
+}
+#divLabelCheckbox{
+    margin-top: 24px;
+
+    padding-left: 8px;
+}
 
 /*bouton*/
 #submit{
@@ -112,11 +138,6 @@ body{
     color: #3182CE;
     text-decoration: none;
 }
-/*lien aligné a droite*/
-#linkForgetPassword{
-    margin-top: 8px;
-    text-align: right;
-}
 /*ligne texte en bas*/
 #text{
     margin-top: 48px;
@@ -124,7 +145,7 @@ body{
     font-weight: 400;
     font-size: 16px;
     line-height: 24px; 
-    color: var(--medium1_text); 
+    color: var(--medium1_text);
     text-align: center;
 }
 
@@ -132,21 +153,25 @@ body{
 /*gère les différents état des inputs*/
 .input:focus{border: 2px solid var(--input_border_hover);}
 
+#acceptConditions:focus{border: 2px solid var(--checkboxRadio_border_hover);}
+
+#acceptConditions:checked{background:var(--checkboxRadio_border_selected);border: 2px solid var(--checkboxRadio_border_selected);}/*problème ne cache pas la coche par defaut, à revoir*/
+
 
 /*diminue la marge en haut de la div central si la fenetre diminue verticalement*/
-@media screen and (max-height: 850px) {
+@media screen and (max-height: 900px) {
     #centerDiv{
         margin-top: 200px;
     }   
 }
 
-@media screen and (max-height: 750px) {
+@media screen and (max-height: 840px) {
     #centerDiv{
         margin-top: 100px;
     }  
 }
 
-@media screen and (max-height: 600px) {
+@media screen and (max-height: 730px) {
     #centerDiv{
         margin-top: 20px;
     }
@@ -158,5 +183,6 @@ body{
     body{background-color: var(--first_dark_background);}
     #titleForm{color: #FFF;}
     .labelsForm{color: var(--clear2_text);}
+    #labelAcceptConditions{color:var(--clear2_text);}
     #text{color: var(--clear2_text);}
 }
