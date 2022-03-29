@@ -15,7 +15,6 @@ if (isset($_SESSION["isConnected"]) && $_SESSION["isConnected"]) {
 <head>
   <meta charset=”utf-8″>
 </head>
-
 <body>
   <div id="container">
     <form action="/controllers/utilisateurControllers/UtilisateurDeconnexion.php" method="POST">

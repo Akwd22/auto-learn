@@ -1,0 +1,140 @@
+@import url('../../../assets/css/init.css');
+
+body{
+    background-color: var(--first_dark_background);
+}
+
+
+/*division centrale*/
+#centerDiv{
+    width: 392px;
+    
+    margin: 0 auto;
+    margin-top: 300px;
+
+    text-align: left;
+}
+
+/*titre 'S'identifier'*/
+#titleForm{
+    margin-bottom: 30px;
+
+    color: #FFF;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+    text-align: center;
+}
+
+/*message d'erreur*/
+#errorField{
+    background-color: var(--customize_red);
+
+    height: 40px;
+    margin-top: 32px;
+
+    border-radius: 3px;
+   
+    color: #FFF;
+    font-weight: 500;
+    font-size: 16px;
+
+     display: none;/*argument à modifier pour faire apparaitre le message d'erreur (none ou block)*/
+}
+#textError{
+    margin-left: 5%;
+
+    line-height: 24px;
+
+    padding-top: 8px;
+}
+
+/*labels des input*/
+.labelsDiv{
+    margin-top: 14px;
+}
+.labelsForm{
+    color: var(--clear2_text);
+
+    font-weight: 600;
+    font-size: 18px; 
+    line-height: 32px; 
+}
+
+/*inputs*/
+.input{
+    background-color: var(--input);;
+
+    box-sizing: border-box;
+    width: 100%;
+    height: 48px;
+    margin-top: 6px;
+
+    border-radius: 3px;
+    border:2px solid var(--input_border_default);
+}
+
+
+
+
+/*bouton*/
+#submit{
+    background-color: var(--button);
+
+    width: 100%;
+    height: 48px;
+    margin-top: 16px;
+
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 32px;
+    color: #FFF;
+
+    border:0px;
+    border-radius: 3px;
+}
+
+
+/*tout les liens*/
+.links{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #3182CE;
+    text-decoration: none;
+}
+/*lien aligné a droite*/
+#linkForgetPassword{
+    margin-top: 8px;
+    text-align: right;
+}
+/*ligne texte en bas*/
+#text{
+    margin-top: 48px;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px; 
+    color: var(--clear2_text); 
+    text-align: center;
+}
+
+
+/*diminue la marge en haut de la div central si la fenetre diminue verticalement*/
+@media screen and (max-height: 850px) {
+    #centerDiv{
+        margin-top: 200px;
+    }   
+}
+
+@media screen and (max-height: 750px) {
+    #centerDiv{
+        margin-top: 100px;
+    }  
+}
+
+@media screen and (max-height: 600px) {
+    #centerDiv{
+        margin-top: 20px;
+    }
+}
