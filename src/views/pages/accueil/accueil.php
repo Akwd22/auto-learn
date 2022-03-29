@@ -1,5 +1,6 @@
 <?php
 include '../../components/header/header.php';
+include '../../components/footer/footer.php';
 ?>
 
 <!DOCTYPE html>
@@ -7,6 +8,7 @@ include '../../components/header/header.php';
 <head>
     <?php infoHead('Accueil','Page d"accueil', '../accueil/accueil.css');?>
     <link rel="stylesheet" type="text/css" href="../../components/header/header.css">
+    <link rel="stylesheet" type="text/css" href="../../components/footer/footer.css">
 </head>
 <body>
     <header>
@@ -30,5 +32,12 @@ include '../../components/header/header.php';
     </nav>
 
     </header>
+    <div class="content">
+        
+    </div>
+
+    <?php createFooter(); ?>
+
+
 </body>
 </html>

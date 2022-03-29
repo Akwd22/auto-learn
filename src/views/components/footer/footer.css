@@ -1,0 +1,68 @@
+@import url('../../../assets/css/init.css');
+
+footer{
+    width: 100%;
+
+    background-color: var(--second_dark_background) ;
+
+    flex-shrink: 0;
+}
+
+footer a{
+    color: var(--medium2_text) ;
+
+    font-weight: 700;
+    text-decoration: none;
+}
+
+footer p{
+    margin-right: 16px;
+
+    color: var(--medium2_text) ;
+
+    font-size: 16px;
+    line-height: 24px; 
+
+    display: inline-block;
+}
+
+#contentFooter{ 
+    width:1520px;
+    margin: 38px auto;
+}
+
+#linksFooter{
+    float: left;
+}
+
+#divCopyright{
+    margin-right: 0px;
+    
+    float: right;   
+}
+
+#copyright{
+    font-weight: 400;
+
+    float: right;   
+}
+
+@media screen and (max-width: 1600px) {
+    #contentFooter{
+        width: 90%;       
+    }  
+}
+
+@media screen and (max-width: 925px) {
+    #divCopyright{
+        margin-top: 20px;
+
+        float: none;        
+    }  
+    #copyright{
+        float: none;
+    }
+    #linksFooter{
+        float: none;
+    }
+}

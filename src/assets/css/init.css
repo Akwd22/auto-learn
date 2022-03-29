@@ -8,3 +8,9 @@
     overflow-x: hidden;
     font-family: 'Inter';
   }
+
+body{
+  height: 100vh;
+  display:flex;
+  flex-direction: column;
+}
