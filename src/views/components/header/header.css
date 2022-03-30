@@ -1,34 +1,36 @@
 @import url('../../../assets/css/init.css');
 
 .navbar{
-    background-color: var(--second_dark_background);
+    background-color: #FFFFFF;
     display: flex;
     align-items: center;
+    padding: 24px 10.416%;
+    display: flex;
+    justify-content: space-between;
     width: 100%;
+    /* height: 112px; */
+    flex-wrap: wrap;
 }
 
 .navbar-logo{
-    width: 60px;
-    height: 44px;
-
+    width: 64px;
+    height: 64px;
 }
+
 
 .navbar-titre{
-    color: #ffff;
-    font-weight: 700;
+    color: var(--dark_text);
     font-size: 36px;
-    font-style: normal;
-    line-height: 43.2px;
-    font-weight: bold;
-
+    line-height: 120%;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
 }
 
-/* .navbar-logo-container{
-
+ .navbar-logo-container{
+     display: flex;
+     column-gap: 16px; 
 }
-
-.navbar-links-container{
-} */
 
 .navbar-logo-container{
     display: flex;
@@ -36,6 +38,8 @@
 
 .navbar-links-container{
     display: flex;
+    column-gap: 44px;
+    flex-wrap: wrap;
 }
 
 .links-container-onglets{
@@ -45,32 +49,19 @@
 .links-container-onglets-list{
     display: flex;
     align-items: center;
+    column-gap: 23px;
 }
 
 .container-onglets-links{
-    color: var(--clear1_text);
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 32px;
-}
-
-.container-onglets-links{
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 32px;
+    color: var(--dark_text);
     list-style: none;
     text-decoration: none;
+    font-size: 20px;
 }
-
-
-/* .container-onglets-links:last-child{
-
-} */
 
 .links-container-button{
     display: flex;
+    column-gap: 32px;
 }
 
 .btn1{
@@ -79,18 +70,36 @@
     border-radius: 3px;
     background-color: transparent;
     color: var(--button);
-    font-style: normal;
-    font-weight: 600;
+    
     font-size: 18px;
+    line-height: 32px;
+    font-weight: 600;
+
 }
 
 .btn2{ 
     padding: 8px 48px; 
-    background: #3182CE;
     border-radius: 3px; 
     color: #ffff;
-    font-style: normal;
-    font-weight: 600;
+    background-color: var(--button);
+    border-style: none;
+    
     font-size: 18px;
     line-height: 32px;
+    font-weight: 600;
+
+}
+
+/*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
+@media (prefers-color-scheme: dark) {
+    .navbar{
+        color: var(--second_dark_background);
+    }
+    .navbar-titre{
+        color: #ffff;
+    }
+
+    .container-onglets-links{
+        color: var(--clear1_text);
+    }
 }
