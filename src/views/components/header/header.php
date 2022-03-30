@@ -29,7 +29,7 @@ function createrNavbar()
     <div>
     <nav class="navbar">
         <div class="navbar-logo-container">
-            <img src="../../../assets/uploads/logo/logo.svg" alt="Logo du site" class="navbar-logo">
+            <div class="logo"></div>
             <h2 class="navbar-titre">Autolearn</h2>
         </div>
         <div class="navbar-links-container">
@@ -40,8 +40,8 @@ function createrNavbar()
                 </ul>
             </div>
             <div class="links-container-button">
-                <button class="btn1" type="button" value="Se connecter">Se connecter</button>
-                <button class="btn2" type="button" value="S'inscrire">S'inscrire</button>
+                <a href="../../pages/connexion/login.php"><button class="btn1" type="button" value="Se connecter">Se connecter</button></a>
+                <a href="../../pages/inscription/signin.php"><button class="btn2" type="button" value="S'inscrire">S'inscrire</button></a>
             </div>
         </div>
     </nav>

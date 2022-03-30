@@ -74,7 +74,7 @@
     font-size: 18px;
     line-height: 32px;
     font-weight: 600;
-
+    cursor: pointer;
 }
 
 .btn2{ 
@@ -86,9 +86,23 @@
     
     font-size: 18px;
     line-height: 32px;
-    font-weight: 600;
+    font-weight: 600;   
+    cursor: pointer;
+}
+
+.logo{
+    background-image: url(../../../assets/uploads/logo/Logo_dark.svg);
+    background-repeat: no-repeat;
+    height: 64px;
+    width: 64px;
+    background-size: 100%;
+}
+
+a{
+    text-decoration: none;
 
 }
+
 
 /*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
 @media (prefers-color-scheme: dark) {
@@ -102,4 +116,9 @@
     .container-onglets-links{
         color: var(--clear1_text);
     }
+
+    .logo{
+        background-image: url(../../../assets/uploads/logo/logo.svg);
+    }
+    
 }
