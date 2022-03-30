@@ -89,8 +89,9 @@ class UtilisateurCRUD {
     }
 
     public function readUserForAdmin($search){
-        $sth = $this->db->getPDO()->query("
+        $sth = $this->db->getPDO()->prepare("
         SELECT * FROM utilisateur WHERE pseudo LIKE '%$search%' OR email LIKE '%$search%' ");
+        $sth->execute();
         $row = $sth->fetchAll();
 
         $users = array();

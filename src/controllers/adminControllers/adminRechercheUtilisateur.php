@@ -1,18 +1,24 @@
 <?php
     include 'databases/UtilisateurCRUD.php';
 
-    session_start();
+    require_once "databases/SessionManagement.php";
 
-   /* $isLogged = isset($_SESSION["isConnected"]);
-    $isAdmin = $_SESSION["isAdmin"] ? $_SESSION["isAdmin"] : false;
-
+    SessionManagement::session_start();
+    
+    $isLogged = SessionManagement::isLogged();
+    $isAdmin = SessionManagement::isAdmin();
+    
     if (!$isLogged || !$isAdmin) die("Vous devez être connecté et être admin.");
-*/
+    
     $conn = new DatabaseManagement();
     $userCRUD = new UtilisateurCRUD($conn);
 
     if(!empty($_POST['site-search']) && isset($_POST['sub'])){
         $users=$userCRUD->readUserForAdmin($_POST['site-search']);
+        foreach($users as $r){
+            print_r($r);
+            echo "<br/>";
+        }
     }
 
     else{
