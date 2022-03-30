@@ -18,9 +18,11 @@ class SessionManagement
 
       $user = $userCRUD->readUserById(self::getUserId());
 
-      // Si l'utilisateur n'existe plus, détruire la session.
       if (!$user) {
+        // Si l'utilisateur n'existe plus, détruire la session.
         self::session_destroy();
+      } else {
+        self::setUser($user->getId(), $user->getIsAdmin());
       }
     }
   }
