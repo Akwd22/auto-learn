@@ -1,5 +1,5 @@
 <?php
-    include '../../databases/UtilisateurCRUD.php';
+    include 'databases/UtilisateurCRUD.php';
 
     session_start();
 
