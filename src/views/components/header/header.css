@@ -93,7 +93,7 @@
 /*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
 @media (prefers-color-scheme: dark) {
     .navbar{
-        color: var(--second_dark_background);
+        background-color: var(--second_dark_background);
     }
     .navbar-titre{
         color: #ffff;
