@@ -1,20 +1,21 @@
 <?php
-    include '../../databases/UtilisateurCRUD.php';
+    require_once "databases/SessionManagement.php";
+    require_once 'databases/UtilisateurCRUD.php';
 
-    session_start();
+    SessionManagement::session_start();
 
     $conn = new DatabaseManagement();
     $userCRUD = new UtilisateurCRUD($conn);
 
-    if(isset($_SESSION["isConnected"]))
+    if(SessionManagement::isLogged())
     {
-        $user = $userCRUD->readUserById($_SESSION['utilisateurId']);
+        $user = $userCRUD->readUserById(SessionManagement::getUserId());
         $user->setIsConnected(0);
-        $userCRUD->updateUser($user, $_SESSION['utilisateurId']);
-        $_SESSION = array();
-        session_destroy();
+        $userCRUD->updateUser($user, SessionManagement::getUserId());
+
+        SessionManagement::session_destroy();
+
         header('Location: ../../../index.php');
     }
 
     $conn->close();
-?>

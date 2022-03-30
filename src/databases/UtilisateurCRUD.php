@@ -1,7 +1,6 @@
 <?php
-
-if(!@include("models/Utilisateur.php")) include '/../../models/Utilisateur.php';
-include 'DatabaseManagement.php';
+require_once "models/Utilisateur.php";
+require_once "DatabaseManagement.php";
 
 class UtilisateurCRUD {
 
@@ -120,7 +119,7 @@ class UtilisateurCRUD {
 			
 		}
 	    catch(PDOException $e) {
-	    	echo $requete . "<br>" . $e->getMessage(). "<br>";
+	    	echo $e->getMessage(). "<br>";
 	    }
 	}
 
@@ -160,7 +159,7 @@ class UtilisateurCRUD {
             $sth->execute();
 		}
 	    catch(PDOException $e) {
-	    	echo $requete . "<br>" . $e->getMessage(). "<br>";
+	    	echo $e->getMessage(). "<br>";
 	    }
 	}
 
@@ -172,7 +171,7 @@ class UtilisateurCRUD {
             $sth->execute();			
 		}
 	    catch(PDOException $e) {
-	    	echo $requete . "<br>" . $e->getMessage(). "<br>";
+	    	echo $e->getMessage(). "<br>";
 	    }
 	}
 
