@@ -21,6 +21,16 @@ if (isset($_SESSION["isConnected"]) && $_SESSION["isConnected"]) {
       <input type="submit" id='submit' value="SE DECONNECTER">
     </form>
   </div>
+
+  <div id="containerRecherche">
+    <form action="/controllers/adminControllers/adminRechercheUtilisateur.php" method="POST">
+      <label for="site-search" name="site-search">Rechercher un utilisateur sur le site:</label>
+      <input type="search" id="site-search" name="site-search">
+      <input type="submit" id='sub' name="sub" value="RECHERCHER">
+    </form>
+  </div>
+
+ 
 </body>
 
 </html>

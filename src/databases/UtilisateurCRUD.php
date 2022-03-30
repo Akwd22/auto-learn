@@ -1,7 +1,7 @@
 <?php
 
-if(!@include("models/Utilisateur.php")) include '/../../models/Utilisateur.php';
-include 'DatabaseManagement.php';
+if(!@include("models/Utilisateur.php")) include 'models/Utilisateur.php';
+include 'databases/DatabaseManagement.php';
 
 class UtilisateurCRUD {
 
@@ -88,6 +88,28 @@ class UtilisateurCRUD {
         }
     }
 
+    public function readUserForAdmin($search){
+        $sth = $this->db->getPDO()->query("
+        SELECT * FROM utilisateur WHERE pseudo LIKE '%$search%' OR email LIKE '%$search%' ");
+        $row = $sth->fetchAll();
+
+        $users = array();
+        foreach($row as $r){
+            $user = new Utilisateur();
+            $user->setId($row[0][0]);
+            $user->setPseudo($row[0][1]);
+            $user->setEmail($row[0][2]);
+            $user->setPassHash($row[0][3]);
+            $user->setImageUrl($row[0][4]);
+            $user->setDateCreation($row[0][5]);
+            $user->setTheme($row[0][6]);
+            $user->setIsAdmin($row[0][7]);
+            $user->setIsConnected($row[0][8]);
+            array_push($users,$user);
+        }
+        return $users;
+    }
+
     public function updateUser($user, $id) {
 		try {
             $pseudo = $user->getPseudo();
@@ -120,7 +142,7 @@ class UtilisateurCRUD {
 			
 		}
 	    catch(PDOException $e) {
-	    	echo $requete . "<br>" . $e->getMessage(). "<br>";
+	    	echo /*$requete .*/ "<br>" . $e->getMessage(). "<br>";
 	    }
 	}
 
@@ -160,7 +182,7 @@ class UtilisateurCRUD {
             $sth->execute();
 		}
 	    catch(PDOException $e) {
-	    	echo $requete . "<br>" . $e->getMessage(). "<br>";
+	    	echo /*$requete .*/ "<br>" . $e->getMessage(). "<br>";
 	    }
 	}
 
@@ -172,7 +194,7 @@ class UtilisateurCRUD {
             $sth->execute();			
 		}
 	    catch(PDOException $e) {
-	    	echo $requete . "<br>" . $e->getMessage(). "<br>";
+	    	echo /*$requete .*/ "<br>" . $e->getMessage(). "<br>";
 	    }
 	}
 
