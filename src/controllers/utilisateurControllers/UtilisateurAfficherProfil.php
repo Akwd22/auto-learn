@@ -1,5 +1,6 @@
 <?php
-require_once "databases/SessionManagement.php";
+require_once("databases/SessionManagement.php");
+require_once("databases/UtilisateurCRUD.php");
 
 SessionManagement::session_start();
 
@@ -14,12 +15,14 @@ if (!$userId) die("ID de l'utilisateur non spécifié.");
 
 // Vérification des permissions.
 if (!$isLogged) die("Vous n'êtes pas connecté.");
-if (!$isAdmin && !$isOwner) die("Vous ne pouvez pas supprimer un autre utilisateur.");
 
-// Suppression de l'utilisateur.
+// Récupération des données.
 $conn = new DatabaseManagement();
 $userCRUD = new UtilisateurCRUD($conn);
 
-$userCRUD->deleteUser($userId);
+$user = $userCRUD->readUserById($userId);
+if (!$user) die("Utilisateur inconnu.");
 
-echo "Suppression de l'utilisateur OK.";
+// Affichage de la vue.
+$user = $user;
+require("views/pages/profil/profil.php");
