@@ -17,6 +17,8 @@ if (isset($_SESSION["isConnected"]) && $_SESSION["isConnected"]) {
 </head>
 <body>
   <div id="container">
+    <a href="/views/pages/connexion/login.php">Se connecter</a>
+    <a href="/views/pages/inscription/signin.php">S'inscrire</a>
     <form action="/controllers/utilisateurControllers/UtilisateurDeconnexion.php" method="POST">
       <input type="submit" id='submit' value="SE DECONNECTER">
     </form>
