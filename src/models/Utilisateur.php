@@ -1,8 +1,13 @@
 <?php
 
-abstract class enumTheme{
-    const CLAIRE = 1;
+abstract class EnumTheme{
+    const CLAIR = 1;
     const SOMBRE = 2;
+
+    public static function get($name)
+    {
+        return constant(get_class() . "::". $name);
+    }
 }
 
 class Utilisateur 
@@ -19,7 +24,7 @@ class Utilisateur
 
     private $dateCreation;
 
-    private $theme = enumTheme::CLAIRE;
+    private $theme = EnumTheme::CLAIR;
 
     private $isAdmin;
 
@@ -95,7 +100,7 @@ class Utilisateur
 
     public function setTheme($theme)
     {
-        $this->theme=$theme;
+        $this->theme= gettype($theme) === "string" ? EnumTheme::get($theme) : $theme;
     }
 
     public function getTheme()
@@ -128,7 +133,3 @@ class Utilisateur
         return "$this->id. $this->pseudo. $this->email. $this->passHash. $this->imageUrl. $this->dateCreation. $this->theme. $this->isAdmin. $this->isConnected. <br>";
     }
 }
-
-
-
-?>
