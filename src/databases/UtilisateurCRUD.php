@@ -142,7 +142,7 @@ class UtilisateurCRUD {
 			
 		}
 	    catch(PDOException $e) {
-	    	echo /*$requete .*/ "<br>" . $e->getMessage(). "<br>";
+	    	echo $e->getMessage(). "<br>";
 	    }
 	}
 
@@ -182,7 +182,7 @@ class UtilisateurCRUD {
             $sth->execute();
 		}
 	    catch(PDOException $e) {
-	    	echo /*$requete .*/ "<br>" . $e->getMessage(). "<br>";
+	    	echo $e->getMessage(). "<br>";
 	    }
 	}
 
@@ -194,7 +194,7 @@ class UtilisateurCRUD {
             $sth->execute();			
 		}
 	    catch(PDOException $e) {
-	    	echo /*$requete .*/ "<br>" . $e->getMessage(). "<br>";
+	    	echo $e->getMessage(). "<br>";
 	    }
 	}
 
