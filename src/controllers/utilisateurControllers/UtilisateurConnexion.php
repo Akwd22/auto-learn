@@ -18,9 +18,7 @@
                 $user->setIsConnected(1);
                 $userCRUD->updateUser($user,$user->getId());
 
-                $_SESSION["isAdmin"] = $user->getIsAdmin();
-                $_SESSION["isConnected"] = $user->getIsConnected();
-                $_SESSION["utilisateurId"] = $user->getId();
+                SessionManagement::setUser($user);
 
                 header('Location: ../../../index.php'); //renvoie au menu principal
             }

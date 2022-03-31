@@ -2,8 +2,13 @@
 require_once "databases/DatabaseManagement.php";
 require_once "databases/UtilisateurCRUD.php";
 
+/**
+ * Classe de gestion de session PHP et de l'utilisateur connecté.
+ */
 class SessionManagement
 {
+  private static $user = null;
+
   /**
    * Démarrer une session PHP.
    * @return void
@@ -22,7 +27,7 @@ class SessionManagement
         // Si l'utilisateur n'existe plus, détruire la session.
         self::session_destroy();
       } else {
-        self::setUser($user->getId(), $user->getIsAdmin());
+        self::setUser($user);
       }
     }
   }
@@ -33,6 +38,7 @@ class SessionManagement
    */
   public static function session_destroy()
   {
+    self::$user = null;
     $_SESSION = array();
   }
 
@@ -51,7 +57,7 @@ class SessionManagement
    */
   public static function isAdmin()
   {
-    return isset($_SESSION["isAdmin"]) ? $_SESSION["isAdmin"] : false;
+    return self::isLogged() ? boolval(self::$user->getIsAdmin()) : false;
   }
 
   /**
@@ -70,19 +76,31 @@ class SessionManagement
    */
   public static function getUserId()
   {
-    return isset($_SESSION["utilisateurId"]) ? $_SESSION["utilisateurId"] : null;
+    return isset($_SESSION["userId"]) ? $_SESSION["userId"] : null;
+  }
+
+  /**
+   * Retourner l'utilisateur connecté, ou `null` s'il n'est pas connecté.
+   * @return Utilisateur|null
+   */
+  public static function getUser()
+  {
+    return self::$user;
   }
 
   /**
    * Définir l'utilisateur connecté pour la session PHP.
-   *
-   * @param integer $userId Identifiant de l'utilisateur.
-   * @param boolean $isAdmin Est-il admin ?
+   * @param Utilisateur|null $user Instance de l'tilisateur, ou `null` pour aucun utilisateur.
    * @return void
    */
-  public static function setUser($userId, $isAdmin)
+  public static function setUser($user)
   {
-    $_SESSION["utilisateurId"] = intval($userId);
-    $_SESSION["isAdmin"] = boolval($isAdmin);
+    if (!$user) {
+      self::session_destroy();
+    } else {
+      self::$user = $user;
+      $_SESSION["isConnected"] = true;
+      $_SESSION["userId"] = intval($user->getId());
+    }
   }
 }

@@ -38,9 +38,7 @@
             $createUser = $userCRUD->readUserByPseudo(($createUser->getPseudo())); // Obtenir le nouveau ID de l'utilisateur.
 
             // On prend en compte que l'inscription connecte directement l'utilisateur.
-            $_SESSION["isAdmin"] = $createUser->getIsAdmin();
-            $_SESSION["isConnected"] = $createUser->getIsConnected();
-            $_SESSION["utilisateurId"] = $createUser->getId();
+            SessionManagement::setUser($createUser);
 
             header('Location: ../../../index.php');
         }

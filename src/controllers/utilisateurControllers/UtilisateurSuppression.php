@@ -1,5 +1,6 @@
 <?php
-require_once "databases/SessionManagement.php";
+require_once("config.php");
+require_once("databases/SessionManagement.php");
 
 SessionManagement::session_start();
 
@@ -27,7 +28,7 @@ if (!$user) die("Utilisateur n'existe pas.");
 $image = $user->getImageUrl();
 
 if ($image) {
-  $url = dirname(__DIR__) . "../../assets/uploads/profils/$image";
+  $url = UPLOADS_PROFIL_DIR . "$image";
   unlink($url);
 }
 
