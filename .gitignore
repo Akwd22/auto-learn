@@ -97,3 +97,6 @@ $RECYCLE.BIN/
 # Visual Paradigm
 *.vpp.bak_*
 *.vpp.lck
+
+# Project
+todo.txt
