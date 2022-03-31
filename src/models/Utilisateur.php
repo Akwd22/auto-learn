@@ -1,16 +1,13 @@
 <?php
+require_once("models/Enum.php");
 
-abstract class EnumTheme{
+abstract class EnumTheme extends Enum
+{
     const CLAIR = 1;
     const SOMBRE = 2;
-
-    public static function get($name)
-    {
-        return constant(get_class() . "::". $name);
-    }
 }
 
-class Utilisateur 
+class Utilisateur
 {
     private $id;
 
@@ -32,15 +29,14 @@ class Utilisateur
 
     public function __construct($id = NULL)
     {
-        if ($id!=NULL)
-        {
-            $this->id=$id;
+        if ($id != NULL) {
+            $this->id = $id;
         }
     }
 
     public function setId($id)
     {
-        $this->id=$id;
+        $this->id = $id;
     }
 
     public function getId()
@@ -50,7 +46,7 @@ class Utilisateur
 
     public function setPseudo($pseudo)
     {
-        $this->pseudo=$pseudo;
+        $this->pseudo = $pseudo;
     }
 
     public function getPseudo()
@@ -60,9 +56,9 @@ class Utilisateur
 
     public function setEmail($email)
     {
-        $this->email=$email;
+        $this->email = $email;
     }
-    
+
     public function getEmail()
     {
         return $this->email;
@@ -70,7 +66,7 @@ class Utilisateur
 
     public function setPassHash($passHash)
     {
-        $this->passHash=$passHash;
+        $this->passHash = $passHash;
     }
 
     public function getPassHash()
@@ -80,7 +76,7 @@ class Utilisateur
 
     public function setImageUrl($imageUrl)
     {
-        $this->imageUrl=$imageUrl;
+        $this->imageUrl = $imageUrl;
     }
 
     public function getImageUrl()
@@ -90,7 +86,7 @@ class Utilisateur
 
     public function setdateCreation($dateCreation)
     {
-        $this->dateCreation=$dateCreation;
+        $this->dateCreation = $dateCreation;
     }
 
     public function getDateCreation()
@@ -100,7 +96,7 @@ class Utilisateur
 
     public function setTheme($theme)
     {
-        $this->theme= gettype($theme) === "string" ? EnumTheme::get($theme) : $theme;
+        $this->theme = gettype($theme) === "string" ? EnumTheme::get($theme) : $theme;
     }
 
     public function getTheme()
@@ -110,7 +106,7 @@ class Utilisateur
 
     public function setIsAdmin($isAdmin)
     {
-        $this->isAdmin=$isAdmin;
+        $this->isAdmin = $isAdmin;
     }
 
     public function getIsAdmin()
@@ -120,7 +116,7 @@ class Utilisateur
 
     public function setIsConnected($isConnected)
     {
-        $this->isConnected=$isConnected;
+        $this->isConnected = $isConnected;
     }
 
     public function getIsConnected()
