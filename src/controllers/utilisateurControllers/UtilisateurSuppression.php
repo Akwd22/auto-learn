@@ -1,6 +1,7 @@
 <?php
 require_once("config.php");
 require_once("databases/SessionManagement.php");
+require_once("controllers/classes/FileManager.php");
 
 SessionManagement::session_start();
 
@@ -28,8 +29,8 @@ if (!$user) die("Utilisateur n'existe pas.");
 $image = $user->getImageUrl();
 
 if ($image) {
-  $url = UPLOADS_PROFIL_DIR . "$image";
-  unlink($url);
+  $image = UPLOADS_PROFIL_DIR . "$image";
+  FileManager::delete($image);
 }
 
 // Supprimer l'utilisateur.

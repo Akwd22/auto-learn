@@ -3,6 +3,7 @@ require_once("config.php");
 require_once("databases/SessionManagement.php");
 require_once("databases/UtilisateurCRUD.php");
 require_once("controllers/utils.php");
+require_once("controllers/classes/UploadImageManager.php");
 require_once("views/pages/profil/profil.php");
 
 SessionManagement::session_start();
@@ -35,7 +36,7 @@ if (isset($_POST["submit"])) {
   $pass = $_POST["pass"] ?? null;
   $theme = $_POST["theme"] ?? null;
   $admin = $_POST["admin"] ?? null;
-  $image = $_FILES["image"]["size"] > 0;
+  $image = UploadFileManager::exists("image");
 
   // E-mail.
   if ($email) {
@@ -66,30 +67,26 @@ if (isset($_POST["submit"])) {
 
   // Admin.
   if ($isAdmin) {
-    $admin = $admin === "on" ? "1" : "0";
+    $admin = $admin === "on" ? true : false;
   }
 
   // Image de profil.
   if ($image) {
-    $fileExt = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
-    $filePath = UPLOADS_PROFIL_DIR;
-    $fileName = "$userId.$fileExt";
-    $fileSize = $_FILES["image"]["size"];
-    $tmpFile = $_FILES["image"]["tmp_name"];
+    $upload = new UploadImageManager("image");
 
-    if (!getimagesize($tmpFile))
+    if (!$upload->validateType())
       redirect($redirectUrl, "error", "Image importée doit être un fichier image.", array("id" => $userId));
 
-    if ($fileSize > 1 * 1000000)
+    if (!$upload->validateSize())
       redirect($redirectUrl, "error", "Image importée ne doit pas dépasser 1 Mo.", array("id" => $userId));
 
-    if (!in_array($fileExt, array("jpg", "jpeg", "png")))
-      redirect($redirectUrl, "error", "Image importée doit avoir le format jpg, png.", array("id" => $userId));
+    if (!$upload->validateExtension())
+      redirect($redirectUrl, "error", "Image importée doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $userId));
 
-    if (!move_uploaded_file($tmpFile, $filePath . $fileName))
+    if (!$upload->save(UPLOADS_PROFIL_DIR . "$userId." . $upload->getExtension()))
       redirect($redirectUrl, "error", "Erreur lors de l'importation de l'image.", array("id" => $userId));
 
-    $image = $fileName;
+    $image = $upload->getRealFileName();
   } else {
     $image = $user->getImageUrl();
   }
