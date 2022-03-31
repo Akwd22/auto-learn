@@ -137,8 +137,8 @@ class UtilisateurCRUD {
             $sth->bindValue(':passHash', $passHash);
             $sth->bindValue(':imageUrl', $imageUrl);
             $sth->bindValue(':theme', $theme);
-            $sth->bindValue(':isAdmin', $isAdmin);
-            $sth->bindValue(':isConnected', $isConnected);
+            $sth->bindValue(':isAdmin', +$isAdmin);
+            $sth->bindValue(':isConnected', +$isConnected);
             $sth->execute();
 			
 		}
@@ -176,14 +176,15 @@ class UtilisateurCRUD {
             $sth->bindValue(':email', $email);
             $sth->bindValue(':passHash', $passHash);
             $sth->bindValue(':imageUrl', $imageUrl);
-            $sth->bindValue(':dateCreation', $dateCreation);
+            $sth->bindValue(':dateCreation', $dateCreation->format("Y-m-d G:i:s"));
             $sth->bindValue(':theme', $theme);
-            $sth->bindValue(':isAdmin', $isAdmin);
-            $sth->bindValue(':isConnected', $isConnected);
+            $sth->bindValue(':isAdmin', +$isAdmin);
+            $sth->bindValue(':isConnected', +$isConnected);
             $sth->execute();
 		}
 	    catch(PDOException $e) {
 	    	echo $e->getMessage(). "<br>";
+            die();
 	    }
 	}
 
@@ -200,5 +201,3 @@ class UtilisateurCRUD {
 	}
 
 }
-
-?>

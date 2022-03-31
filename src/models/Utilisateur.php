@@ -30,13 +30,13 @@ class Utilisateur
     public function __construct($id = NULL)
     {
         if ($id != NULL) {
-            $this->id = $id;
+            $this->id = intval($id);
         }
     }
 
     public function setId($id)
     {
-        $this->id = $id;
+        $this->id = intval($id);
     }
 
     public function getId()
@@ -84,9 +84,9 @@ class Utilisateur
         return $this->imageUrl;
     }
 
-    public function setdateCreation($dateCreation)
+    public function setDateCreation($dateCreation)
     {
-        $this->dateCreation = $dateCreation;
+        $this->dateCreation = DateTime::createFromFormat("Y-m-d G:i:s", $dateCreation);
     }
 
     public function getDateCreation()
@@ -106,7 +106,7 @@ class Utilisateur
 
     public function setIsAdmin($isAdmin)
     {
-        $this->isAdmin = $isAdmin;
+        $this->isAdmin = boolval($isAdmin);
     }
 
     public function getIsAdmin()
@@ -116,7 +116,7 @@ class Utilisateur
 
     public function setIsConnected($isConnected)
     {
-        $this->isConnected = $isConnected;
+        $this->isConnected = boolval($isConnected);
     }
 
     public function getIsConnected()
