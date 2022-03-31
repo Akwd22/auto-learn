@@ -18,6 +18,7 @@ function afficherProfil(Utilisateur $user)
     <br>
     <label for="image">Nouvelle image</label>
     <input type="file" name="image" id="image">
+    <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
     <br>
     <input type="radio" name="theme" id="theme-light" value="light" <?php if ($user->getTheme() === EnumTheme::CLAIR) echo "checked" ?>>
     <label for="theme-light">Thème clair</label>
