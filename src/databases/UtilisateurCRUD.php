@@ -1,7 +1,7 @@
 <?php
 
-if(!@include("models/Utilisateur.php")) include 'models/Utilisateur.php';
-include 'databases/DatabaseManagement.php';
+require_once("models/Utilisateur.php");
+require_once("databases/DatabaseManagement.php");
 
 class UtilisateurCRUD {
 

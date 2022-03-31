@@ -1,4 +1,5 @@
 <?php
+require_once("config.php");
 require_once("databases/SessionManagement.php");
 require_once("databases/UtilisateurCRUD.php");
 require_once("views/pages/profil/profil.php");
@@ -74,7 +75,7 @@ if (isset($_POST["submit"])) {
   // Image de profil.
   if ($image) {
     $fileExt = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
-    $filePath = dirname(__DIR__) . "../../assets/uploads/profils/";
+    $filePath = UPLOADS_PROFIL_DIR;
     $fileName = "$userId.$fileExt";
     $fileSize = $_FILES["image"]["size"];
     $tmpFile = $_FILES["image"]["tmp_name"];
