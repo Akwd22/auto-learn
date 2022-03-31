@@ -1,6 +1,7 @@
 <?php
     require_once "databases/SessionManagement.php";
-    require_once 'databases/UtilisateurCRUD.php';
+    require_once "databases/UtilisateurCRUD.php";
+    require_once "controllers/utils.php";
 
     SessionManagement::session_start();
 
@@ -20,20 +21,21 @@
 
                 SessionManagement::setUser($user);
 
-                header('Location: ../../../index.php'); //renvoie au menu principal
+                redirect("/index.php");
             }
             else
             {
-                header('Location: ../../views/login.php?erreur=1'); //mot de passe incorrect
+                redirect("/views/pages/connexion/login.php", "error", "Nom d'utilisateur ou mot de passe incorrect.");
             }
         }
         else
         {
-            header('Location: ../../views/login.php?erreur=2'); //utilisateur inconnu
+            redirect("/views/pages/connexion/login.php", "error", "Nom d'utilisateur ou mot de passe incorrect.");
         }
     }
     else
     {
-        header('Location: ../../views/login.php');
+        redirect("/views/pages/connexion/login.php", "error", "Nom d'utilisateur ou mot de passe incorrect.");
     }
+
     $conn->close();

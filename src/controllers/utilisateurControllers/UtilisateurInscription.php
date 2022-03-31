@@ -1,6 +1,7 @@
 <?php
     require_once "databases/SessionManagement.php";
-    require_once 'databases/UtilisateurCRUD.php';
+    require_once "databases/UtilisateurCRUD.php";
+    require_once "controllers/utils.php";
 
     SessionManagement::session_start();
 
@@ -13,12 +14,12 @@
         $email=$userCRUD->readUserByEmail($_POST['email']);
 
         if($user!=null)
-        {       
-            header('Location: ../../views/signin.php?erreur=1'); //Utilisateur existant
+        {
+            redirect("/views/pages/inscription/signin.php", "error", "Nom d'utilisateur déjà existant.");
         }
         elseif($email!=null)
         {
-            header('Location: ../../views/signin.php?erreur=2'); //Email existant
+            redirect("/views/pages/inscription/signin.php", "error", "E-mail déjà existante.");
         }
         else
         {
@@ -40,11 +41,11 @@
             // On prend en compte que l'inscription connecte directement l'utilisateur.
             SessionManagement::setUser($createUser);
 
-            header('Location: ../../../index.php');
+            redirect("/index.php");
         }
     }
     else
     {
-        header('Location: ../../views/signin.php');
+        redirect("/views/pages/inscription/signin.php");
     }
     $conn->close();

@@ -1,21 +1,21 @@
 <?php
-    require_once "databases/SessionManagement.php";
-    require_once 'databases/UtilisateurCRUD.php';
+require_once "databases/SessionManagement.php";
+require_once "databases/UtilisateurCRUD.php";
+require_once "controllers/utils.php";
 
-    SessionManagement::session_start();
+SessionManagement::session_start();
 
-    $conn = new DatabaseManagement();
-    $userCRUD = new UtilisateurCRUD($conn);
+$conn = new DatabaseManagement();
+$userCRUD = new UtilisateurCRUD($conn);
 
-    if(SessionManagement::isLogged())
-    {
-        $user = $userCRUD->readUserById(SessionManagement::getUserId());
-        $user->setIsConnected(0);
-        $userCRUD->updateUser($user, SessionManagement::getUserId());
+if (SessionManagement::isLogged()) {
+    $user = $userCRUD->readUserById(SessionManagement::getUserId());
+    $user->setIsConnected(0);
+    $userCRUD->updateUser($user, SessionManagement::getUserId());
 
-        SessionManagement::session_destroy();
+    SessionManagement::session_destroy();
+}
 
-        header('Location: ../../../index.php');
-    }
+redirect("/index.php");
 
-    $conn->close();
+$conn->close();

@@ -2,6 +2,7 @@
 require_once("config.php");
 require_once("databases/SessionManagement.php");
 require_once("databases/UtilisateurCRUD.php");
+require_once("controllers/utils.php");
 require_once("views/pages/profil/profil.php");
 
 SessionManagement::session_start();
@@ -27,11 +28,7 @@ $user = $userCRUD->readUserById($userId);
 if (!$user) die("Utilisateur n'existe pas.");
 
 // Traitement des données du formulaire.
-function redirectUrl($userId, $type, $msg)
-{
-  header("Location: /controllers/utilisateurControllers/UtilisateurAfficherProfil.php?id=$userId&$type=$msg");
-  exit();
-}
+$redirectUrl = "/controllers/utilisateurControllers/UtilisateurAfficherProfil.php";
 
 if (isset($_POST["submit"])) {
   $email = $_POST["email"] ?? null;
@@ -43,14 +40,14 @@ if (isset($_POST["submit"])) {
   // E-mail.
   if ($email) {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-      redirectUrl($userId, "error", "E-mail invalide.");
+      redirect($redirectUrl, "error", "E-mail invalide.", array("id" => $userId));
 
     if ($email != $user->getEmail() && $userCRUD->readUserByEmail($email))
-      redirectUrl($userId, "error", "E-mail déjà existant.");
+      redirect($redirectUrl, "error", "E-mail déjà existante.", array("id" => $userId));
 
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
   } else {
-    redirectUrl($userId, "error", "E-mail obligatoire.");
+    redirect($redirectUrl, "error", "E-mail obligatoire.", array("id" => $userId));
   }
 
   // Mot de passe.
@@ -64,7 +61,7 @@ if (isset($_POST["submit"])) {
   if ($theme) {
     $theme = $theme === "light" ? EnumTheme::CLAIR : EnumTheme::SOMBRE;
   } else {
-    redirectUrl($userId,  "error", "Thème obligatoire.");
+    redirect($redirectUrl, "error", "Thème obligatoire.", array("id" => $userId));
   }
 
   // Admin.
@@ -81,16 +78,16 @@ if (isset($_POST["submit"])) {
     $tmpFile = $_FILES["image"]["tmp_name"];
 
     if (!getimagesize($tmpFile))
-      redirectUrl($userId,  "error", "Image importée doit être un fichier image.");
+      redirect($redirectUrl, "error", "Image importée doit être un fichier image.", array("id" => $userId));
 
     if ($fileSize > 1 * 1000000)
-      redirectUrl($userId,  "error", "Image importée ne doit pas dépasser 1 Mo.");
+      redirect($redirectUrl, "error", "Image importée ne doit pas dépasser 1 Mo.", array("id" => $userId));
 
     if (!in_array($fileExt, array("jpg", "jpeg", "png")))
-      redirectUrl($userId,  "error", "Image importée doit avoir le format jpg, png.");
+      redirect($redirectUrl, "error", "Image importée doit avoir le format jpg, png.", array("id" => $userId));
 
     if (!move_uploaded_file($tmpFile, $filePath . $fileName))
-      redirectUrl($userId,  "error", "Erreur lors de l'importation de l'image.");
+      redirect($redirectUrl, "error", "Erreur lors de l'importation de l'image.", array("id" => $userId));
 
     $image = $fileName;
   } else {
@@ -106,5 +103,5 @@ if (isset($_POST["submit"])) {
 
   $userCRUD->updateUser($user, $userId);
 
-  redirectUrl($userId, "success", "Profil modifié avec succès.");
+  redirect($redirectUrl, "success", "Profil modifié avec succès.", array("id" => $userId));
 }
