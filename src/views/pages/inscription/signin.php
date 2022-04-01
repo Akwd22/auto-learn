@@ -1,9 +1,9 @@
-<?php require 'views/components/header/header.php'; ?>
+<?php require '../../components/header/header.php'; ?>
 
 
 <html>
     <head>
-        <?php infoHead('S\'inscrire','Inscris toi pour une meilleur expérience', 'views/pages/inscription/signin.css');?>
+        <?php infoHead('S\'inscrire','Inscris toi pour une meilleur expérience', '../inscription/signin.css');?>
     </head>
     <body>
         <div id="container">

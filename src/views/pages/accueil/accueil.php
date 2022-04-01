@@ -1,15 +1,15 @@
 <?php
-include 'views/components/header/header.php';
-include 'views/components/footer/footer.php';
+include '../../components/header/header.php';
+include '../../components/footer/footer.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <?php infoHead('Accueil', 'Page d"accueil', 'views/pages/accueil/accueil.css'); ?>
-    <link rel="stylesheet" type="text/css" href="views/components/header/header.css">
-    <link rel="stylesheet" type="text/css" href="views/components/footer/footer.css">
+    <?php infoHead('Accueil', 'Page d"accueil', '../accueil/accueil.css'); ?>
+    <link rel="stylesheet" type="text/css" href="../../components/header/header.css">
+    <link rel="stylesheet" type="text/css" href="../../components/footer/footer.css">
 </head>
 
 <body>

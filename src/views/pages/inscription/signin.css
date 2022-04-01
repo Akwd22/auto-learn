@@ -1,4 +1,4 @@
-@import url('assets/css/init.css');
+@import url('../../../assets/css/init.css');
 
 body{
     background-color: var(--first_clear_background);

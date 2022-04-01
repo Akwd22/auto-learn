@@ -1,9 +1,9 @@
-<?php require 'views/components/header/header.php'; ?>
+<?php require '../../components/header/header.php'; ?>
 
 
 <html>
     <head>
-        <?php infoHead('Se connecter','Connectes toi pour accèder à tes cours personnalisés', 'views/pages/connexion/login.css');?>
+        <?php infoHead('Se connecter','Connectes toi pour accèder à tes cours personnalisés', '../connexion/login.css');?>
     </head>
 
     <body>

@@ -3,7 +3,7 @@ function infoHead ($title, $description, $link_style)
 {
     $html = <<<HTML
         <title>$title</title>
-        <link rel="shortcut icon" href="assets/uploads/logo/logo.svg"/>
+        <link rel="shortcut icon" href="../images/logoNoir.png"/>
         <link rel="stylesheet" type="text/css" href="$link_style"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="$description"/>
@@ -40,8 +40,8 @@ function createrNavbar()
                 </ul>
             </div>
             <div class="links-container-button">
-                <a href="views/pages/connexion/login.php"><button class="btn1" type="button" value="Se connecter">Se connecter</button></a>
-                <a href="views/pages/inscription/signin.php"><button class="btn2" type="button" value="S'inscrire">S'inscrire</button></a>
+                <a href="../../pages/connexion/login.php"><button class="btn1" type="button" value="Se connecter">Se connecter</button></a>
+                <a href="../../pages/inscription/signin.php"><button class="btn2" type="button" value="S'inscrire">S'inscrire</button></a>
             </div>
         </div>
     </nav>

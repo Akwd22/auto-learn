@@ -1,4 +1,4 @@
-@import url('assets/css/init.css');
+@import url('../../../assets/css/init.css');
 
 .navbar{
     background-color: #FFFFFF;
@@ -91,7 +91,7 @@
 }
 
 .logo{
-    background-image: url(assets/uploads/logo/Logo_dark.svg);
+    background-image: url(../../../assets/uploads/logo/Logo_dark.svg);
     background-repeat: no-repeat;
     height: 64px;
     width: 64px;
@@ -118,7 +118,7 @@ a{
     }
 
     .logo{
-        background-image: url(assets/uploads/logo/logo.svg);
+        background-image: url(../../../assets/uploads/logo/logo.svg);
     }
     
 }
