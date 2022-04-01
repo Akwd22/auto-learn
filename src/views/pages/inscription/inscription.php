@@ -3,12 +3,12 @@
 
 <html>
     <head>
-        <?php infoHead('S\'inscrire','Inscris toi pour une meilleur expérience', '/views/pages/inscription/signin.css');?>
+        <?php infoHead('S\'inscrire','Inscris toi pour une meilleur expérience', '/views/pages/inscription/inscription.css');?>
     </head>
     <body>
         <div id="container">
             <div id="centerDiv">              
-                <form action="/controllers/utilisateurControllers/UtilisateurInscription.php" method="POST">
+                <form method="POST">
                     <h1 id="titleForm">Inscription</h1>
                     <div id="errorField"><p id="textError">Format du mail incorrect.</p></div>
                     
@@ -31,12 +31,9 @@
                     
                     <input type="submit" id='submit' value="S'INSCRIRE" >
                     <?php
-                    if(isset($_GET['erreur'])){
-                        $err = $_GET['erreur'];
-                        if($err==1)
-                            echo "<p style='color:red'>Utilisateur déjà existant</p>";
-                        if($err==2)
-                            echo  "<p style='color:red'>Email déjà existant</p>";
+                    if (isset($_GET["error"])) {
+                        $err = $_GET["error"];
+                        echo "<p style='color:red'>$err</p>";
                     }
                     ?>
                 </form>

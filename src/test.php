@@ -19,22 +19,14 @@ if (SessionManagement::isLogged()) {
 
 <body>
   <div id="container">
-    <a href="/views/pages/connexion/login.php">Se connecter</a>
-    <a href="/views/pages/inscription/signin.php">S'inscrire</a>
-    <a href="/controllers/utilisateurControllers/UtilisateurAfficherProfil.php?id=<?php echo SessionManagement::getUserId() ?>">Mon profil</a>
-    <form action="/controllers/utilisateurControllers/UtilisateurDeconnexion.php" method="POST">
-      <input type="submit" id='submit' value="SE DECONNECTER">
+    <a href="/connexion">Se connecter</a>
+    <a href="/inscription">S'inscrire</a>
+    <a href="/profil?id=<?php echo SessionManagement::getUserId() ?>">Mon profil</a>
+    <a href="/utilisateurs">Rechercher des utilisateurs</a>
+    <form action="/deconnexion" method="POST">
+      <input type="submit" id='submit' value="Se déconnecter">
     </form>
   </div>
-
-  <div id="containerRecherche">
-    <form action="/controllers/adminControllers/adminRechercheUtilisateur.php" method="POST">
-      <label for="site-search" name="site-search">Rechercher un utilisateur sur le site:</label>
-      <input type="search" id="site-search" name="site-search">
-      <input type="submit" id='sub' name="sub" value="RECHERCHER">
-    </form>
-  </div>
-
 
 </body>
 

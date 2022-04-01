@@ -4,7 +4,7 @@ require_once("databases/SessionManagement.php");
 require_once("databases/UtilisateurCRUD.php");
 require_once("controllers/utils.php");
 require_once("controllers/classes/files/UploadImageManager.php");
-require_once("views/pages/profil/profil.php");
+require_once("views/pages/profil/modifier/modifier.php");
 
 SessionManagement::session_start();
 
@@ -14,7 +14,7 @@ $isLogged = SessionManagement::isLogged();
 $isAdmin = SessionManagement::isAdmin();
 $isOwner = SessionManagement::isSame($userId);
 
-// Vérification des données.
+// Vérification des paramètres URL.
 if (!$userId) die("ID de l'utilisateur non spécifié.");
 
 // Vérification des permissions.
@@ -28,10 +28,31 @@ $userCRUD = new UtilisateurCRUD($conn);
 $user = $userCRUD->readUserById($userId);
 if (!$user) die("Utilisateur n'existe pas.");
 
-// Traitement des données du formulaire.
-$redirectUrl = "/controllers/utilisateurControllers/UtilisateurAfficherProfil.php";
+// Affichage de la vue ou traitement du formulaire.
+if (empty($_POST)) {
+  showView();
+} else {
+  handleForm();
+}
 
-if (isset($_POST["submit"])) {
+function showView()
+{
+  global $user;
+
+  afficherModifierProfil($user);
+  exit;
+}
+
+function handleForm()
+{
+  global $userId;
+  global $userCRUD;
+  global $user;
+
+  global $isAdmin;
+
+  $redirectUrl = "/profil/modifier";
+
   $email = $_POST["email"] ?? null;
   $pass = $_POST["pass"] ?? null;
   $theme = $_POST["theme"] ?? null;

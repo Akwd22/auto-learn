@@ -3,13 +3,13 @@
 
 <html>
     <head>
-        <?php infoHead('Se connecter','Connectes toi pour accèder à tes cours personnalisés', '/views/pages/connexion/login.css');?>
+        <?php infoHead('Se connecter','Connectes toi pour accèder à tes cours personnalisés', '/views/pages/connexion/connexion.css');?>
     </head>
 
     <body>
         <div id="container">
             <div id="centerDiv">           
-                <form action="/controllers/utilisateurControllers/UtilisateurConnexion.php" method="POST">
+                <form method="POST">
                     <h1 id="titleForm">S'identifier</h1>
 
                     <div id="errorField"><p id="textError">Identifiant ou mot de passe incorrect.</p></div>
@@ -24,10 +24,9 @@
 
                     <input type="submit" id='submit' value="S'identifier" >
                     <?php
-                    if(isset($_GET['erreur'])){
-                        $err = $_GET['erreur'];
-                        if($err==1 || $err==2)
-                            echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
+                    if (isset($_GET["error"])) {
+                        $err = $_GET["error"];
+                        echo "<p style='color:red'>$err</p>";
                     }
                     ?>
                 </form>

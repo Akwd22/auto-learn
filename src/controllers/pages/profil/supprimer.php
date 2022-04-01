@@ -11,7 +11,7 @@ $isLogged = SessionManagement::isLogged();
 $isAdmin = SessionManagement::isAdmin();
 $isOwner = SessionManagement::isSame($userId);
 
-// Vérification des données.
+// Vérification des paramètres URL.
 if (!$userId) die("ID de l'utilisateur non spécifié.");
 
 // Vérification des permissions.

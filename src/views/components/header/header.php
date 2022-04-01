@@ -40,8 +40,8 @@ function createrNavbar()
                 </ul>
             </div>
             <div class="links-container-button">
-                <a href="../../pages/connexion/login.php"><button class="btn1" type="button" value="Se connecter">Se connecter</button></a>
-                <a href="../../pages/inscription/signin.php"><button class="btn2" type="button" value="S'inscrire">S'inscrire</button></a>
+                <a href="/connexion"><button class="btn1" type="button" value="Se connecter">Se connecter</button></a>
+                <a href="/inscription"><button class="btn2" type="button" value="S'inscrire">S'inscrire</button></a>
             </div>
         </div>
     </nav>

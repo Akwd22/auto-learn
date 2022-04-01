@@ -9,7 +9,7 @@ $userId = $_GET["id"] ?? null;
 
 $isLogged = SessionManagement::isLogged();
 
-// Vérification des données.
+// Vérification des paramètres URL.
 if (!$userId) die("ID de l'utilisateur non spécifié.");
 
 // Vérification des permissions.

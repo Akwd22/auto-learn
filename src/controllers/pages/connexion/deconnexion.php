@@ -9,13 +9,11 @@ $conn = new DatabaseManagement();
 $userCRUD = new UtilisateurCRUD($conn);
 
 if (SessionManagement::isLogged()) {
-    $user = $userCRUD->readUserById(SessionManagement::getUserId());
-    $user->setIsConnected(0);
-    $userCRUD->updateUser($user, SessionManagement::getUserId());
+  $user = $userCRUD->readUserById(SessionManagement::getUserId());
+  $user->setIsConnected(0);
+  $userCRUD->updateUser($user, SessionManagement::getUserId());
 
-    SessionManagement::session_destroy();
+  SessionManagement::session_destroy();
 }
 
 redirect("/index.php");
-
-$conn->close();

@@ -1,2 +1,4 @@
 <?php
-include("views/pages/accueil/accueil.php");
+require_once("controllers/utils.php");
+
+redirect("/accueil");
