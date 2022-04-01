@@ -1,2 +1,2 @@
 <?php
-include("views/pages/inscription/signin.php");
+include("views/pages/accueil/accueil.php");
