@@ -1,5 +1,5 @@
-@import url('./color.css');
-@import url('./fonts.css');
+@import url('assets/css/color.css');
+@import url('assets/css/fonts.css');
 
 * {
     margin: 0;
