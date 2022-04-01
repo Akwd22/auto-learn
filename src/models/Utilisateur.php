@@ -21,16 +21,13 @@ class Utilisateur
 
     private $isConnected;
 
-    public function __construct($id = NULL)
+    public function __construct($id = null)
     {
-        if ($id != NULL) {
+        if ($id) {
             $this->id = intval($id);
+        } else {
+            $this->dateCreation = new DateTime();
         }
-    }
-
-    public function setId($id)
-    {
-        $this->id = intval($id);
     }
 
     public function getId()
@@ -40,6 +37,9 @@ class Utilisateur
 
     public function setPseudo($pseudo)
     {
+        if (!$pseudo)
+            throw new Error("\$pseudo est obligatoire");
+
         $this->pseudo = $pseudo;
     }
 
@@ -50,6 +50,9 @@ class Utilisateur
 
     public function setEmail($email)
     {
+        if (!$email)
+            throw new Error("\$email est obligatoire");
+
         $this->email = $email;
     }
 
@@ -60,6 +63,9 @@ class Utilisateur
 
     public function setPassHash($passHash)
     {
+        if (!$passHash)
+            throw new Error("\$passHash est obligatoire");
+
         $this->passHash = $passHash;
     }
 
@@ -80,7 +86,10 @@ class Utilisateur
 
     public function setDateCreation($dateCreation)
     {
-        $this->dateCreation = DateTime::createFromFormat("Y-m-d G:i:s", $dateCreation);
+        if (!is_a($dateCreation, "DateTime"))
+            throw new Error("\$dateCreation doit être une instance de DateTime");
+
+        $this->dateCreation = $dateCreation;
     }
 
     public function getDateCreation()

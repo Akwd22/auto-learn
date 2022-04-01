@@ -28,9 +28,6 @@
             $createUser->setEmail($_POST['email']);
             $createUser->setPassHash(password_hash($_POST['password'], PASSWORD_DEFAULT));
             $createUser->setImageUrl("");
-            date_default_timezone_set('UTC');
-            $date = date('Y-m-d H:i:s');
-            $createUser->setDateCreation($date);
             $createUser->setTheme(1);
             $createUser->setisAdmin(0);
             $createUser->setIsConnected(1); 

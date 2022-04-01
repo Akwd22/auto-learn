@@ -1,5 +1,4 @@
 <?php
-
 require_once("models/Utilisateur.php");
 require_once("databases/DatabaseManagement.php");
 
@@ -30,13 +29,12 @@ class UtilisateurCRUD {
         $row = $sth->fetchAll();
 
         if (!empty($row)){
-            $user = new Utilisateur();
-            $user->setId($row[0][0]);
+            $user = new Utilisateur($row[0][0]);
             $user->setPseudo($row[0][1]);
             $user->setEmail($row[0][2]);
             $user->setPassHash($row[0][3]);
             $user->setImageUrl($row[0][4]);
-            $user->setDateCreation($row[0][5]);
+            $user->setDateCreation(DateTime::createFromFormat("Y-m-d G:i:s", $row[0][5]));
             $user->setTheme($row[0][6]);
             $user->setIsAdmin($row[0][7]);
             $user->setIsConnected($row[0][8]);
@@ -52,13 +50,12 @@ class UtilisateurCRUD {
         $row = $sth->fetchAll();
 
         if (!empty($row)){
-            $user = new Utilisateur();
-            $user->setId($row[0][0]);
+            $user = new Utilisateur($row[0][0]);
             $user->setPseudo($row[0][1]);
             $user->setEmail($row[0][2]);
             $user->setPassHash($row[0][3]);
             $user->setImageUrl($row[0][4]);
-            $user->setDateCreation($row[0][5]);
+            $user->setDateCreation(DateTime::createFromFormat("Y-m-d G:i:s", $row[0][5]));
             $user->setTheme($row[0][6]);
             $user->setIsAdmin($row[0][7]);
             $user->setIsConnected($row[0][8]);
@@ -74,13 +71,12 @@ class UtilisateurCRUD {
         $row = $sth->fetchAll();
 
         if (!empty($row)){
-            $user = new Utilisateur();
-            $user->setId($row[0][0]);
+            $user = new Utilisateur($row[0][0]);
             $user->setPseudo($row[0][1]);
             $user->setEmail($row[0][2]);
             $user->setPassHash($row[0][3]);
             $user->setImageUrl($row[0][4]);
-            $user->setDateCreation($row[0][5]);
+            $user->setDateCreation(DateTime::createFromFormat("Y-m-d G:i:s", $row[0][5]));
             $user->setTheme($row[0][6]);
             $user->setIsAdmin($row[0][7]);
             $user->setIsConnected($row[0][8]);
@@ -96,13 +92,12 @@ class UtilisateurCRUD {
 
         $users = array();
         foreach($row as $r){
-            $user = new Utilisateur();
-            $user->setId($row[0][0]);
+            $user = new Utilisateur($row[0][0]);
             $user->setPseudo($row[0][1]);
             $user->setEmail($row[0][2]);
             $user->setPassHash($row[0][3]);
             $user->setImageUrl($row[0][4]);
-            $user->setDateCreation($row[0][5]);
+            $user->setDateCreation(DateTime::createFromFormat("Y-m-d G:i:s", $row[0][5]));
             $user->setTheme($row[0][6]);
             $user->setIsAdmin($row[0][7]);
             $user->setIsConnected($row[0][8]);
