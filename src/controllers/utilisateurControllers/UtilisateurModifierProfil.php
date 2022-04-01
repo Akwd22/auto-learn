@@ -3,7 +3,7 @@ require_once("config.php");
 require_once("databases/SessionManagement.php");
 require_once("databases/UtilisateurCRUD.php");
 require_once("controllers/utils.php");
-require_once("controllers/classes/UploadImageManager.php");
+require_once("controllers/classes/files/UploadImageManager.php");
 require_once("views/pages/profil/profil.php");
 
 SessionManagement::session_start();

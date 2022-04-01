@@ -1,7 +1,7 @@
 <?php
 require_once("config.php");
 require_once("databases/SessionManagement.php");
-require_once("controllers/classes/FileManager.php");
+require_once("controllers/classes/files/FileManager.php");
 
 SessionManagement::session_start();
 
