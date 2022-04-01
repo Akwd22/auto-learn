@@ -1,11 +1,5 @@
 <?php
-require_once("models/Enum.php");
-
-abstract class EnumTheme extends Enum
-{
-    const CLAIR = 1;
-    const SOMBRE = 2;
-}
+require_once("models/EnumTheme.php");
 
 class Utilisateur
 {

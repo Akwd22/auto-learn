@@ -16,4 +16,10 @@ abstract class Enum
   {
     return constant(get_called_class() . "::" . $name);
   }
+
+  /**
+   * Retourner le nom d'affichage de chaque énumération.
+   * @return string[]
+   */
+  public abstract static function getFriendlyNames();
 }
