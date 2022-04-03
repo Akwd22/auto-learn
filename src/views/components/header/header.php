@@ -1,5 +1,6 @@
 <?php
-function infoHead ($title, $description, $link_style)
+
+function infoHead($title, $description, $link_style)
 {
     $html = <<<HTML
         <title>$title</title>
@@ -9,7 +10,7 @@ function infoHead ($title, $description, $link_style)
         <meta name="description" content="$description"/>
         <meta name="author" content="DRUET Eddy, GILI Clément, AULOY Rémy, BARBIER Tom, SONVICO Guillaume, MANZANO Lilian" />
 HTML;
-echo $html;
+    echo $html;
 }
 
 function createLink($title, $className)
@@ -19,12 +20,33 @@ function createLink($title, $className)
             $title
         </a>
 HTML;
-echo $html;
+    echo $html;
 }
 
 
 function createrNavbar()
 {
+
+
+    $isLogin = function () { {
+            if (SessionManagement::isLogged()) {
+                $user = SessionManagement::getUser();
+                $url_profilImage = UPLOADS_PROFIL_DIR . $user->getImageUrl();
+            }
+
+            if (!SessionManagement::isLogged()) {
+                return <<<HTML
+                <a href="/connexion"><button class="btn1" type="button" value="Se connecter">Se connecter</button></a>
+                <a href="/inscription"><button class="btn2" type="button" value="S'inscrire">S'inscrire</button></a>
+HTML;
+            } else {
+                return <<<HTML
+                <a href="/profil"><img src={$url_profilImage}></a>
+HTML;
+            }
+        }
+    };
+
     $html = <<<HTML
     <div>
     <nav class="navbar">
@@ -40,19 +62,12 @@ function createrNavbar()
                 </ul>
             </div>
             <div class="links-container-button">
-                <a href="/connexion"><button class="btn1" type="button" value="Se connecter">Se connecter</button></a>
-                <a href="/inscription"><button class="btn2" type="button" value="S'inscrire">S'inscrire</button></a>
+               {$isLogin()}
             </div>
         </div>
     </nav>
     </div>
-
 HTML;
-echo $html;
-}
 
-?>
-
-
-
-
+    echo $html;
+};
