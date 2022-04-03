@@ -31,7 +31,7 @@ function createrNavbar()
     $isLogin = function () { {
             if (SessionManagement::isLogged()) {
                 $user = SessionManagement::getUser();
-                $url_profilImage = UPLOADS_PROFIL_DIR . $user->getImageUrl();
+                $url_profilImage = UPLOADS_PROFIL_URL. $user->getImageUrl();
             }
 
             if (!SessionManagement::isLogged()) {
