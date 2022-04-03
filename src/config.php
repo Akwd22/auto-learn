@@ -18,3 +18,8 @@ define("UPLOADS_COURS_IMGS_DIR", dirname(__FILE__) . "/assets/uploads/cours/imgs
 define("UPLOADS_COURS_DOCS_DIR", dirname(__FILE__) . "/assets/uploads/cours/docs/");
 define("UPLOADS_PROFIL_DIR", dirname(__FILE__) . "/assets/uploads/profils/");
 define("UPLOADS_QCM_DIR", dirname(__FILE__) . "/assets/uploads/qcm/");
+
+define("UPLOADS_COURS_IMGS_URL", "/assets/uploads/cours/imgs/");
+define("UPLOADS_COURS_DOCS_URL", "/assets/uploads/cours/docs/");
+define("UPLOADS_PROFIL_URL", "/assets/uploads/profils/");
+define("UPLOADS_QCM_URL", "/assets/uploads/qcm/");
