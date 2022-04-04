@@ -1,6 +1,6 @@
 <?php
-include 'views/components/header/header.php';
-include 'views/components/footer/footer.php';
+require 'views/components/header/header.php';
+require 'views/components/footer/footer.php';   
 ?>
 
 <!DOCTYPE html>

@@ -1,5 +1,6 @@
 @import url('./color.css');
 @import url('./fonts.css');
+@import url('../../views/components/button/button.css');
 
 * {
     margin: 0;
