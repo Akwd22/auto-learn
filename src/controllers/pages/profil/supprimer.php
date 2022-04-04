@@ -1,6 +1,7 @@
 <?php
 require_once("config.php");
 require_once("databases/SessionManagement.php");
+require_once("controllers/utils.php");
 require_once("controllers/classes/files/FileManager.php");
 
 SessionManagement::session_start();
@@ -36,4 +37,4 @@ if ($image) {
 // Supprimer l'utilisateur.
 $userCRUD->deleteUser($userId);
 
-echo "Suppression de l'utilisateur OK.";
+redirect("/accueil", "success", "Suppression de l'utilisateur avec succès.");
