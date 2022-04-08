@@ -1,5 +1,6 @@
 <?php
 require_once("models/EnumTheme.php");
+require_once("models/TentativeCours.php");
 
 class Utilisateur
 {
@@ -21,8 +22,12 @@ class Utilisateur
 
     private $isConnected;
 
+    private $coursTentes;
+
     public function __construct($id = null)
     {
+        $this->coursTentes = array();
+        
         if ($id) {
             $this->id = intval($id);
         } else {
@@ -125,6 +130,31 @@ class Utilisateur
     public function getIsConnected()
     {
         return $this->isConnected;
+    }
+
+    public function getCoursTentes($id)
+    {
+        foreach($this->coursTentes as $value)
+        {
+            if($value->getId()==$id)
+                return $value;
+        }
+    }
+
+    public function addCoursTentes($coursTentes)
+    {
+        array_push($this->coursTentes,$coursTentes);
+    }
+
+    public function removeCoursTentes($id)
+    {
+        for ($i=0; $i<=count($this->coursTentes)-1;$i++)
+        {
+            if($this->coursTentes[$i]->getId()==$id)
+            {
+                unset($this->coursTentes[$i]);
+            }      
+        }
     }
 
     public function toString()
