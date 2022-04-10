@@ -1,0 +1,93 @@
+.page{
+    width: 100%;
+    background-color: var(--first_dark_background);
+    flex: auto;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+    align-items: center;
+}
+
+.profil-container-structure{
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+}
+
+.profil-container{
+    background-color: var(--background_color_profil_container);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profil-parametre-container{
+    width: 280px;
+    height: 112px;
+    display: flex;
+}
+
+.profil-container-block-top{
+    display: flex;
+    column-gap: 16px;
+    padding: 16px 64px 16px 16px;
+}
+
+#img-profil-parametres{
+    width: 80px;
+    height: 80px;
+}
+
+
+.block-top-content{
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.top-content-pseudo{
+    padding: 0px !important;
+}
+
+.title{
+    color: #ffff;
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: 700;
+    padding: 16px 0px 0px 16px;
+}
+
+#btn-parametres{
+    padding: 4px 18.5px;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+}   
+
+.dernier-cours-container{
+    width: 784px;
+    height: 128px;
+}
+
+.cours-container{
+    width: 376px;
+    height: 384px;
+}
+
+.test-connaissance-container{
+    width: 376px;
+    height: 384px;
+}
+
+
+.profil-container-bottom-part{
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+}
+
+.profil-container-bottom-part-col{
+    display: flex;
+    flex-direction: row;
+    column-gap: 32px;
+}

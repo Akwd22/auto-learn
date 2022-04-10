@@ -20,17 +20,18 @@ function createrNavbar()
     $isLogin = function () { {
             if (SessionManagement::isLogged()) {
                 $user = SessionManagement::getUser();
-                $url_profilImage = UPLOADS_PROFIL_URL. $user->getImageUrl();
+                $url_profilImage = UPLOADS_PROFIL_URL . $user->getImageUrl();
+                $user_id = SessionManagement::getUserId();
             }
 
             if (!SessionManagement::isLogged()) {
                 return <<<HTML
-                <a href="/connexion"><button class="btn1" type="button" value="Se connecter">Se connecter</button></a>
-                <a href="/inscription"><button class="btn2" type="button" value="S'inscrire">S'inscrire</button></a>
+                <a href="/connexion"><button id="btn-connexion" class="btn1" type="button" value="Se connecter">Se connecter</button></a>
+                <a href="/inscription"><button id="btn-inscription" class="btn2" type="button" value="S'inscrire">S'inscrire</button></a>
 HTML;
             } else {
                 return <<<HTML
-                <a href="/profil"><img class="img-profil" src={$url_profilImage}></a>
+                <a href="/profil?id={$user_id}"><img class="img-profil" src={$url_profilImage}></a>
 HTML;
             }
         }
@@ -41,7 +42,7 @@ HTML;
     <nav class="navbar">
         <div class="navbar-logo-container">
             <div class="logo"></div>
-            <h2 class="navbar-titre">Autolearn</h2>
+            <a href="/accueil"><h2 class="navbar-titre">Autolearn</h2></a>
         </div>
         <div class="navbar-links-container">
             <div class="links-container-onglets">

@@ -53,4 +53,19 @@
   line-height: 32px;
 }
 
+.btn1{
+  border: 2px solid #3182CE;
+  border-radius: 3px;
+  background-color: transparent;
+  color: var(--button);
+  cursor: pointer;
+}
+
+.btn2{ 
+  border-radius: 3px; 
+  color: #ffff;
+  background-color: var(--button);
+  border-style: none;   
+  cursor: pointer;
+}
 
