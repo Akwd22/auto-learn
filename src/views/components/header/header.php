@@ -13,17 +13,6 @@ HTML;
     echo $html;
 }
 
-function createLink($title, $className)
-{
-    $html = <<<HTML
-        <a class=$className href="#">
-            $title
-        </a>
-HTML;
-    echo $html;
-}
-
-
 function createrNavbar()
 {
 
@@ -41,7 +30,7 @@ function createrNavbar()
 HTML;
             } else {
                 return <<<HTML
-                <a href="/profil"><img src={$url_profilImage}></a>
+                <a href="/profil"><img class="img-profil" src={$url_profilImage}></a>
 HTML;
             }
         }

@@ -8,10 +8,23 @@
  */
 function afficherProfil(Utilisateur $user)
 {
-  echo "<h1>Page de profil</h1>";
-  var_dump($user);
+  $url_profilImage = UPLOADS_PROFIL_URL. $user->getImageUrl();
 
 ?>
-  <a href="/profil/modifier?id=<?php echo $user->getId() ?>">Aller sur la page de modification du profil</a>
+  <!-- <a href="/profil/modifier?id=<?php echo $user->getId() ?>">Aller sur la page de modification du profil</a> -->
+  <main class="page">
+    <div class="profil-container">
+      <div class="profil-container-block-top">
+        <div class="block-top-img">
+
+        </div>
+        <div class="block-top-content">
+          <img class="img-profil" src=<?php echo $url_profilImage ?>>
+        </div>
+      </div>
+    </div>
+  </main>
+
 <?php
 }
+

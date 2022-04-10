@@ -102,6 +102,11 @@ a{
     text-decoration: none;
 }
 
+.img-profil{
+    width: 48px;
+    height: 48px;
+}
+
 
 /*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
 @media (prefers-color-scheme: dark) {

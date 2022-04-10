@@ -1,6 +1,5 @@
 <?php require 'views/components/header/header.php'; ?>
 
-
 <html>
     <head>
         <?php infoHead('Se connecter','Connectes toi pour accèder à tes cours personnalisés', '/views/pages/connexion/connexion.css');?>
@@ -34,7 +33,7 @@
                 <div>
                 <p id="text">
                     Vous n'avez pas de compte ? 
-                    <a href="" class="links">Créer un compte</a>
+                    <a href="/inscription" class="links">Créer un compte</a>
                 </p>
                 </div>
             </div> 
