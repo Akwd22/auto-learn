@@ -1,5 +1,6 @@
 <?php require 'views/components/header/header.php'; ?>
 <?php require 'views/components/checkbox/checkbox.php'; ?>
+<?php require 'views/components/message/message.php'; ?>
 
 <html>
     <head>
@@ -12,6 +13,7 @@
                 <form method="POST">
                     <h1 id="titleForm">Inscription</h1>
                     
+                    <?php createMessage();?>
                     
                     <div class="labelsDiv"><label class="labelsForm" for="email">Email</label></div>
                     <input id="email" class="input" type="email" placeholder="Entrer l'email" name="email" required>
@@ -28,12 +30,6 @@
 
                     <input class="default m" type="submit" id="submit" value="S'INSCRIRE" >
                     
-                    <?php
-                    if (isset($_GET["error"])) {
-                        $err = $_GET["error"];
-                        echo "<p style='color:red'>$err</p>";
-                    }
-                    ?>
                     
                 </form>
                 <div>
