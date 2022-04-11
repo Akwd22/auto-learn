@@ -11,7 +11,7 @@
             <div id="centerDiv">              
                 <form method="POST">
                     <h1 id="titleForm">Inscription</h1>
-                    <div id="errorField"><p id="textError">Format du mail incorrect.</p></div>
+                    
                     
                     <div class="labelsDiv"><label class="labelsForm" for="email">Email</label></div>
                     <input id="email" class="input" type="email" placeholder="Entrer l'email" name="email" required>
