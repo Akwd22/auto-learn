@@ -12,7 +12,6 @@ require 'views/components/footer/footer.php';
 function afficherProfil(Utilisateur $user)
 {
   $url_profilImage = UPLOADS_PROFIL_URL . $user->getImageUrl();
-
 ?>
   <!-- <a href="/profil/modifier?id=<?php echo $user->getId() ?>">Aller sur la page de modification du profil</a> -->
 
@@ -28,7 +27,6 @@ function afficherProfil(Utilisateur $user)
     <header>
       <?php createrNavbar(); ?>
     </header>
-
     <main class="page">
       <div class="profil-container-structure">
         <div class="profil-container profil-parametre-container">
@@ -38,7 +36,7 @@ function afficherProfil(Utilisateur $user)
             </div>
             <div class="block-top-content">
               <h2 class="top-content-pseudo title"><?php echo $user->getPseudo() ?></h2>
-              <button id="btn-parametres" class="btn2" type="button" value="Paramètre">Paramètres</button>
+              <a href="/profil/modifier?id=<?php echo $user->getId() ?>"><button id="btn-parametres" class="btn2" type="button" value="Paramètre">Paramètres</button></a>
             </div>
           </div>
         </div>
