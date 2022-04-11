@@ -10,6 +10,7 @@
 
   /*error div*/
   --customize_red: #e53e3e;
+  --customize_green: #38A169;
 
   /*text*/
   --dark_text: #2d3748;
@@ -17,6 +18,8 @@
   --medium2_text: #718096;
   --clear1_text: #cbd5e0;
   --clear2_text: #e2e8f0;
+
+  --dark_disabled_text: #A0AEC0;
 
   --link: #3182ce;
 
@@ -36,7 +39,7 @@
   /*checkbox and radio button*/
   --checkboxRadio: #ffffff;
   --checkbox_selected: #3182ce;
-  --checkbox_selectedHover: #3182ce;
+  --checkbox_selectedHover: #2b6cb0;
   --checkbox_disabled: #cbd5e0;
   --radio_disabled: #718096;
 

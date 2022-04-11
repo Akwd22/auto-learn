@@ -1,4 +1,6 @@
 <?php require 'views/components/header/header.php'; ?>
+<?php require 'views/components/checkbox/checkbox.php'; ?>
+<?php require 'views/components/message/message.php'; ?>
 
 <html>
     <head>
@@ -11,7 +13,7 @@
                 <form method="POST">
                     <h1 id="titleForm">S'identifier</h1>
 
-                    <div id="errorField"><p id="textError">Identifiant ou mot de passe incorrect.</p></div>
+                    
 
                     <div class="labelsDiv"><label class="labelsForm" for="pseudo">Nom d'utilisateur</label></div>
                     <input id="pseudo" class="input" type="pseudo" placeholder="Entrer le nom d'utilisateur" name="pseudo" required>
@@ -21,13 +23,15 @@
 
                     <p id="linkForgetPassword"><a href=""  class="links">Mot de passe oublié ?</a><p>
 
-                    <input type="submit" id='submit' value="S'identifier" >
+                    <input class="default m" type="submit" id="submit" value="S'identifier" >
+                    
                     <?php
                     if (isset($_GET["error"])) {
                         $err = $_GET["error"];
                         echo "<p style='color:red'>$err</p>";
                     }
                     ?>
+
                 </form>
 
                 <div>

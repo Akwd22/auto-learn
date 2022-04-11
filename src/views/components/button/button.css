@@ -26,7 +26,7 @@
   width: 100%;
 }
 
-.s {
+[type="submit"].s,[type="button"].s {
   padding: 4px auto;
   height: 32px;
 
@@ -35,7 +35,7 @@
   line-height: 24px;
 }
 
-.m {
+[type="submit"].m,[type="button"].m {
   padding: 8px auto;
   height: 48px;
 
@@ -44,7 +44,7 @@
   line-height: 32px;
 }
 
-.l {
+[type="submit"].l,[type="button"].l {
   padding: 12px auto;
   height: 56px;
 

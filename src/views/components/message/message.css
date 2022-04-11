@@ -1,0 +1,21 @@
+/*message d'erreur*/
+.messageField{
+    height: 40px;
+    margin-top: 32px;
+
+    border-radius: 3px;
+   
+    color: #FFF;
+    font-weight: 500;
+    font-size: 16px;
+}
+.message{
+    margin-left: 5%;
+
+    line-height: 24px;
+
+    padding-top: 8px;
+}
+
+.error{background-color: var(--customize_red);}
+.success{background-color: var(--customize_green);}
