@@ -16,13 +16,13 @@
                     <?php createMessage();?>
                     
                     <div class="labelsDiv"><label class="labelsForm" for="email">Email</label></div>
-                    <input id="email" class="input" type="email" placeholder="Entrer l'email" name="email" required>
+                    <input id="email" class="input l" type="email" placeholder="Entrer l'email" name="email" required>
 
                     <div class="labelsDiv"><label class="labelsForm" for="pseudo">Nom d'utilisateur</label></div>
-                    <input id="pseudo" class="input" type="pseudo" placeholder="Entrer le nom d'utilisateur" name="pseudo" required>
+                    <input id="pseudo" class="input l" type="pseudo" placeholder="Entrer le nom d'utilisateur" name="pseudo" required>
 
                     <div class="labelsDiv"><label class="labelsForm" for="password">Mot de passe</label></div>
-                    <input id="password" class="input" type="password" placeholder="Entrer le mot de passe" name="password" required>
+                    <input id="password" class="input l" type="password" placeholder="Entrer le mot de passe" name="password" required>
 
                     <div id="divConditions">
                         <?php createCheckbox('acceptConditions','acceptConditions','J\'ai lu et j\'accepte les termes d\'utilisation ainsi que la politique de confidentialité.','l','enabled'); ?>

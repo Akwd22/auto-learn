@@ -1,0 +1,33 @@
+.input{
+    background-color: var(--input);;
+
+    box-sizing: border-box;
+    width: 100%;
+     
+    padding-left:5%;
+
+    border-radius: 3px;
+    border:2px solid var(--input_border_default);
+    outline:none;
+
+    font-weight: 400;
+}
+.input::placeholder{
+    color:var(--placeholder);
+}
+
+/*gere les différentes tailles des input*/
+.input.m{
+    height: 32px;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.input.l{
+    height: 48px;
+    font-size: 18px;
+    line-height: 32px;
+}
+
+/*gère les différents état des inputs*/
+.input:focus{border: 2px solid var(--input_border_hover);}

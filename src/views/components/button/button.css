@@ -26,6 +26,15 @@
   width: 100%;
 }
 
+[type="submit"].xs,[type="button"].xs {
+  padding: 4px auto;
+  height: 24px;
+
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+}
+
 [type="submit"].s,[type="button"].s {
   padding: 4px auto;
   height: 32px;

@@ -1,0 +1,125 @@
+
+
+
+#container{  width: 100%;box-sizing: border-box;
+    height: calc(100% - 112px );
+    display:flex;
+    flex-direction: column;}
+.content{
+    background-color: var(--first_clear_background);
+    
+   
+   flex: 1 0 auto;
+    
+    
+    justify-content: center;
+    align-items: center;
+  }
+
+#centerDiv{ 
+    background-color: var(--clear_background_container);
+
+    width: 784px;
+    height: 736px;
+
+    margin: 0 auto;
+    margin-top: 48px;margin-bottom: 48px;
+
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top:14px;
+    padding-bottom:14px;
+
+    border-radius: 4px;
+}
+
+
+#labelSearch{
+    width: 100%;
+    color: var(--dark_text);
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+}
+
+.input{
+    margin-top: 22px;
+}
+
+#invisibleButton{display: none;}/*je ne sais pas si c'est utile de garder le boutton je l'ai mis temporairement en invisible*/
+
+
+table{
+    
+
+    margin-top: 24px;
+    
+
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--dark_text);
+
+    width:100%;
+    border-collapse: collapse;
+}
+
+
+
+
+th,td{
+    padding-left: 24px;
+    height: 52px;
+    text-align: left;
+    font-weight: 700;
+font-size: 12px;
+line-height: 16px;
+color: var(--medium1_text);
+}
+
+th{
+    background-color: var(--clear_background_container);
+}
+
+.settingButtons{
+    width: 100px;float: right;padding-top: 14px;padding-right: 24px;
+}
+
+.profilButtons{
+    width: 65px; float: right;padding-top: 14px;padding-right: 16px;
+}
+
+
+
+
+table tr:nth-child(odd){
+    background-color:var(--clear_secondColor_table);
+  }
+
+.smallColumn{
+    width: 130px;
+  }
+
+  .divRow{height:100%;
+    display: inline-block;}
+
+    .mail{padding-top: 18px;
+    
+    }
+
+    /* Navbar qui fait chiée */
+@media screen and (max-width: 1078px) {
+    #container{  
+        height: calc(100% - 159px);
+    }
+}
+    @media screen and (max-width: 760px) {
+        #container{  
+            height: calc(100% - 180px);
+        }
+    }
+      @media screen and (max-width: 520px) {
+        #container{  
+            height: calc(100% - 219px);
+        }
+    }

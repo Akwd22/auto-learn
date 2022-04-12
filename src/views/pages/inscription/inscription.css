@@ -37,30 +37,9 @@ body{
     line-height: 32px; 
 }
 
-/*inputs*/
+/*input*/
 .input{
-    background-color: var(--input);;
-
-    box-sizing: border-box;
-    width: 100%;
-    height: 48px;   
     margin-top: 6px;
-
-    padding-left:5%;
-
-    border-radius: 3px;
-    border:2px solid var(--input_border_default);
-    outline:none;
-
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 32px;
-}
-.input::placeholder{
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 32px;
-    color:var(--placeholder);
 }
 
 /*checkbox*/

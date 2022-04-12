@@ -16,10 +16,10 @@
                     <?php createMessage(); ?>
 
                     <div class="labelsDiv"><label class="labelsForm" for="pseudo">Nom d'utilisateur</label></div>
-                    <input id="pseudo" class="input" type="pseudo" placeholder="Entrer le nom d'utilisateur" name="pseudo" required>
+                    <input id="pseudo" class="input l" type="pseudo" placeholder="Entrer le nom d'utilisateur" name="pseudo" required>
 
                     <div class="labelsDiv"><label class="labelsForm" for="password">Mot de passe</label></div>
-                    <input id="password" class="input" type="password" placeholder="Entrer le mot de passe" name="password" required>
+                    <input id="password" class="input l" type="password" placeholder="Entrer le mot de passe" name="password" required>
 
                     <p id="linkForgetPassword"><a href=""  class="links">Mot de passe oublié ?</a><p>
 

@@ -8,6 +8,9 @@
 
   --background_color_profil_container: #2D3748;
 
+  --clear_background_container: #E2E8F0;
+  --dark_background_container: #2D3748;
+
   /*error div*/
   --customize_red: #e53e3e;
   --customize_green: #38A169;
@@ -49,4 +52,8 @@
   --checkboxRadio_border_selectedHover: #2b6cb0;
   --checkboxRadio_border_disabled: #cbd5e0;
   --checkboxRadio_border_error: #e53e3e;
+
+  /*table*/
+  --clear_secondColor_table: #CBD5E0;
 }
+
