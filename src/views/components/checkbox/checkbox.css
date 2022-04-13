@@ -1,0 +1,92 @@
+
+/*div contenant la checkbox et son label*/
+.divCustomCheckbox{
+    position: relative;
+}
+/*checkbox rendu invisible pour créer la checkbox personnalisé*/
+.customCheckbox{
+    position: absolute;
+    opacity: 0;
+}
+/*label de la checkbox*/
+.labelCustomCheckbox{
+    font-size: 16px;
+    color: var(--dark_text);
+
+    display: grid;
+    grid-template-areas: "checkbox label";
+    gap: 15px;
+}
+
+/*checkbox personnalisé*/
+.labelCustomCheckbox::before{
+    width: 100%;
+   
+    background-color: var(--checkboxRadio);    
+    border-radius: 2px;
+    border: 2px solid var(--checkboxRadio_border_default);
+    
+    content:'';
+    grid-area: checkbox;
+    display: block;
+}
+
+
+/*modification de la taille de la checkbox en fonction de la taille choisi*/
+.divCustomCheckbox.m > .labelCustomCheckbox::before {height:16px;}
+.divCustomCheckbox.m > .labelCustomCheckbox {grid-template-columns: 16px 1fr;}
+
+.divCustomCheckbox.l > .labelCustomCheckbox::before{height:20px;}
+.divCustomCheckbox.l > .labelCustomCheckbox {grid-template-columns: 20px 1fr;}
+
+
+/*modification de la checkbox personnalisé quand survolé par la souris*/
+.divCustomCheckbox .customCheckbox:hover + .labelCustomCheckbox::before{
+    background-color: var(--checkboxRadio);
+    border: 2px solid var(--checkboxRadio_border_hover);
+} 
+
+/*modification de la checkbox personnalisé quand sélectionné*/
+.divCustomCheckbox .customCheckbox:checked + .labelCustomCheckbox::before{
+    background-color: var(--checkbox_selected);
+    border: 2px solid var(--checkboxRadio_border_selected);
+} 
+
+/*modification de la checkbox personnalisé quand survolé par la souris et sélectionné*/
+.divCustomCheckbox .customCheckbox:checked:hover + .labelCustomCheckbox::before{
+    background-color: var(--checkbox_selectedHover);
+    border: 2px solid var(--checkboxRadio_border_selectedHover);
+} 
+
+/*modification de la checkbox personnalisé quand désactivé*/
+.divCustomCheckbox .customCheckbox:disabled + .labelCustomCheckbox::before{
+    background-color: var(--checkbox_disabled);
+    border: 2px solid var(--checkboxRadio_border_disabled);
+} 
+/*modification du label quand désactivé*/
+.divCustomCheckbox .customCheckbox:disabled + .labelCustomCheckbox{
+    color: var(--medium2_text);
+} 
+
+
+/*modification de la checkbox personnalisé quand invalide-->à revoir car pb pour le moment*/
+/*
+.divCustomCheckbox .customCheckbox:invalid + .labelCustomCheckbox::before{
+    border: 2px solid var(--checkboxRadio_border_error);
+    background-color: var(--checkboxRadio);
+} 
+*/
+
+
+
+/*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
+@media (prefers-color-scheme: dark) {
+    /*change la couleur du label*/
+    .labelCustomCheckbox{
+       color: var(--clear2_text);
+    }
+    /*modification du label quand désactivé*/
+    .divCustomCheckbox .customCheckbox:disabled + .labelCustomCheckbox{
+        color: var(--dark_disabled_text);
+    } 
+}

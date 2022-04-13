@@ -26,7 +26,16 @@
   width: 100%;
 }
 
-.s {
+[type="submit"].xs,[type="button"].xs {
+  padding: 4px auto;
+  height: 24px;
+
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+[type="submit"].s,[type="button"].s {
   padding: 4px auto;
   height: 32px;
 
@@ -35,7 +44,7 @@
   line-height: 24px;
 }
 
-.m {
+[type="submit"].m,[type="button"].m {
   padding: 8px auto;
   height: 48px;
 
@@ -44,7 +53,7 @@
   line-height: 32px;
 }
 
-.l {
+[type="submit"].l,[type="button"].l {
   padding: 12px auto;
   height: 56px;
 
@@ -53,4 +62,19 @@
   line-height: 32px;
 }
 
+.btn1{
+  border: 2px solid #3182CE;
+  border-radius: 3px;
+  background-color: transparent;
+  color: var(--button);
+  cursor: pointer;
+}
+
+.btn2{ 
+  border-radius: 3px; 
+  color: #ffff;
+  background-color: var(--button);
+  border-style: none;   
+  cursor: pointer;
+}
 

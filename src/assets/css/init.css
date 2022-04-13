@@ -1,6 +1,9 @@
 @import url('./color.css');
 @import url('./fonts.css');
 @import url('../../views/components/button/button.css');
+@import url('../../views/components/checkbox/checkbox.css');
+@import url('../../views/components/message/message.css');
+@import url('../../views/components/input/input.css');
 
 * {
     margin: 0;

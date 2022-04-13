@@ -6,8 +6,14 @@
   --first_dark_background: #1a202c;
   --second_dark_background: #171923;
 
+  --background_color_profil_container: #2D3748;
+
+  --clear_background_container: #E2E8F0;
+  --dark_background_container: #2D3748;
+
   /*error div*/
   --customize_red: #e53e3e;
+  --customize_green: #38A169;
 
   /*text*/
   --dark_text: #2d3748;
@@ -15,6 +21,8 @@
   --medium2_text: #718096;
   --clear1_text: #cbd5e0;
   --clear2_text: #e2e8f0;
+
+  --dark_disabled_text: #A0AEC0;
 
   --link: #3182ce;
 
@@ -34,7 +42,7 @@
   /*checkbox and radio button*/
   --checkboxRadio: #ffffff;
   --checkbox_selected: #3182ce;
-  --checkbox_selectedHover: #3182ce;
+  --checkbox_selectedHover: #2b6cb0;
   --checkbox_disabled: #cbd5e0;
   --radio_disabled: #718096;
 
@@ -44,4 +52,8 @@
   --checkboxRadio_border_selectedHover: #2b6cb0;
   --checkboxRadio_border_disabled: #cbd5e0;
   --checkboxRadio_border_error: #e53e3e;
+
+  /*table*/
+  --clear_secondColor_table: #CBD5E0;
 }
+

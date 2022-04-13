@@ -26,29 +26,6 @@ body{
     text-align: center;
 }
 
-/*message d'erreur*/
-#errorField{
-    background-color: var(--customize_red);
-
-    height: 40px;
-    margin-top: 32px;
-
-    border-radius: 3px;
-   
-    color: #FFF;
-    font-weight: 500;
-    font-size: 16px;
-
-    display: none; /*argument à modifier pour faire apparaitre le message d'erreur (none ou block)*/
-}
-#textError{
-    margin-left: 5%;
-
-    line-height: 24px;
-
-    padding-top: 8px;
-}
-
 /*labels des input*/
 .labelsDiv{
     margin-top: 14px;
@@ -60,73 +37,19 @@ body{
     line-height: 32px; 
 }
 
-/*inputs*/
+/*input*/
 .input{
-    background-color: var(--input);;
-
-    box-sizing: border-box;
-    width: 100%;
-    height: 48px;   
     margin-top: 6px;
-
-    padding-left:5%;
-
-    border-radius: 3px;
-    border:2px solid var(--input_border_default);
-    outline:none;
-}
-.input::placeholder{
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 32px;
-    color:var(--placeholder);
 }
 
 /*checkbox*/
-#acceptConditions{
-    background: #FFF;
-
-    width: 20px;
-    height: 20px;
-    margin-top: 26px;
-
-    border: 2px solid var(--checkboxRadio_border_default);  
-    border-radius: 2px;
-    outline:none;
-}
-#labelAcceptConditions{
-    margin-top: 26px;
-
-    color:var(--dark_text);
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-}
-#divCheckbox{
-    float: left;
-}
-#divLabelCheckbox{
+#divConditions{
     margin-top: 24px;
-
-    padding-left: 8px;
 }
 
 /*bouton*/
 #submit{
-    background-color: var(--button);
-
-    width: 100%;
-    height: 48px;
     margin-top: 16px;
-
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 32px;
-    color: #FFF;
-
-    border:0px;
-    border-radius: 3px;
-    outline:none;
 }
 
 
@@ -152,10 +75,6 @@ body{
 
 /*gère les différents état des inputs*/
 .input:focus{border: 2px solid var(--input_border_hover);}
-
-#acceptConditions:focus{border: 2px solid var(--checkboxRadio_border_hover);}
-
-#acceptConditions:checked{background:var(--checkboxRadio_border_selected);border: 2px solid var(--checkboxRadio_border_selected);}/*problème ne cache pas la coche par defaut, à revoir*/
 
 
 /*diminue la marge en haut de la div central si la fenetre diminue verticalement*/

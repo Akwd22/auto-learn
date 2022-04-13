@@ -21,7 +21,7 @@
 .navbar-titre{
     color: var(--dark_text);
     font-size: 36px;
-    line-height: 120%;
+    line-height: 150%;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -64,30 +64,18 @@
     column-gap: 32px;
 }
 
-.btn1{
+#btn-connexion{
     padding: 8px 48px;
-    border: 2px solid #3182CE;
-    border-radius: 3px;
-    background-color: transparent;
-    color: var(--button);
-    
     font-size: 18px;
     line-height: 32px;
     font-weight: 600;
-    cursor: pointer;
 }
 
-.btn2{ 
-    padding: 8px 48px; 
-    border-radius: 3px; 
-    color: #ffff;
-    background-color: var(--button);
-    border-style: none;
-    
+#btn-inscription{ 
+    padding: 8px 48px;     
     font-size: 18px;
     line-height: 32px;
     font-weight: 600;   
-    cursor: pointer;
 }
 
 .logo{
@@ -100,6 +88,11 @@
 
 a{
     text-decoration: none;
+}
+
+.img-profil{
+    width: 48px;
+    height: 48px;
 }
 
 
