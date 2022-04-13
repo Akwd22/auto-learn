@@ -22,6 +22,13 @@ require 'views/components/footer/footer.php';
 
       <!--debut fonction -->
       <?php
+      /**
+       * Afficher la page de la liste des utilisateurs.
+       *
+       * @param Utilisateur[] $users Tableau des utilisateurs recherchés.
+       * @param string $lastSearch Dernière recherche du champ de recherche.
+       * @return void
+       */
       function afficherUtilisateurs(array $users, string $lastSearch)
         {
       ?>
