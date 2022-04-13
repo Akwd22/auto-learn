@@ -5,7 +5,6 @@
 
 .accueil-container {
   /* height: 100%; */
-  background-color: var(--first_clear_background);
   flex: auto;
   display: flex;
   flex-direction: column;
@@ -46,10 +45,6 @@
 
 /*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
 @media (prefers-color-scheme: dark) {
-  .accueil-container {
-    background-color: var(--first_dark_background);
-  }
-
   .slogan-titre {
     color: #ffffff;
   }

@@ -8,35 +8,36 @@
     </head>
 
     <body>
-        <div id="container">
-            <div id="centerDiv">           
-                <form method="POST">
-                    <h1 id="titleForm">S'identifier</h1>
+    <div id="mainContainer">
+            <main class="content">
 
-                    <?php createMessage(); ?>
+                <div id="centerDiv">           
+                    <form method="POST">
+                        <h1 id="titleForm">S'identifier</h1>
 
-                    <div class="labelsDiv"><label class="labelsForm" for="pseudo">Nom d'utilisateur</label></div>
-                    <input id="pseudo" class="input l" type="pseudo" placeholder="Entrer le nom d'utilisateur" name="pseudo" required>
+                        <?php createMessage(); ?>
 
-                    <div class="labelsDiv"><label class="labelsForm" for="password">Mot de passe</label></div>
-                    <input id="password" class="input l" type="password" placeholder="Entrer le mot de passe" name="password" required>
+                        <div class="labelsDiv"><label class="labelsForm" for="pseudo">Nom d'utilisateur</label></div>
+                        <input id="pseudo" class="input l" type="pseudo" placeholder="Entrer le nom d'utilisateur" name="pseudo" required>
 
-                    <p id="linkForgetPassword"><a href=""  class="links">Mot de passe oublié ?</a><p>
+                        <div class="labelsDiv"><label class="labelsForm" for="password">Mot de passe</label></div>
+                        <input id="password" class="input l" type="password" placeholder="Entrer le mot de passe" name="password" required>
 
-                    <input class="default m" type="submit" id="submit" value="S'identifier" >
+                        <p id="linkForgetPassword"><a href=""  class="links">Mot de passe oublié ?</a><p>
 
-                </form>
+                        <input class="default m" type="submit" id="submit" value="S'identifier" >
 
-                <div>
-                <p id="text">
-                    Vous n'avez pas de compte ? 
-                    <a href="/inscription" class="links">Créer un compte</a>
-                </p>
-                </div>
-            </div> 
+                    </form>
+
+                    <div>
+                    <p id="text">
+                        Vous n'avez pas de compte ? 
+                        <a href="/inscription" class="links">Créer un compte</a>
+                    </p>
+                    </div>
+                </div> 
+
+            <main>
         </div>
-
-
-        
     </body>
 </html>

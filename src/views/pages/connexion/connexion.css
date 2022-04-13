@@ -1,10 +1,5 @@
 @import url('../../../assets/css/init.css');
 
-body{
-    background-color: var(--first_clear_background);
-}
-
-
 /*division centrale*/
 #centerDiv{
     width: 392px;
@@ -98,7 +93,6 @@ body{
 
 /*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
 @media (prefers-color-scheme: dark) {
-    body{background-color: var(--first_dark_background);}
     #titleForm{color: #FFF;}
     .labelsForm{color: var(--clear2_text);}
     #text{color: var(--clear2_text);}

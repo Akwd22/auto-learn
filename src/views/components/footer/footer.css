@@ -2,7 +2,7 @@
 
 footer{
     width: 100%;
-
+    
     background-color: var(--second_clear_background);
 
     flex-shrink: 0;

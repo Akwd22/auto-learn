@@ -10,18 +10,24 @@ require 'views/components/footer/footer.php';
 </head>
 
 <body>
+  <div id="mainContainer">
     <header>
         <?php createrNavbar(); ?>
     </header>
 
-    <div id="container">
+    
     <main class="content">
       <div id="centerDiv">    
       
-      
 
-      <!--debut fonction -->
       <?php
+        /**
+        * Afficher la page de la liste des utilisateurs.
+        *
+        * @param Utilisateur[] $users Tableau des utilisateurs recherchés.
+        * @param string $lastSearch Dernière recherche du champ de recherche.
+        * @return void
+        */
       function afficherUtilisateurs(array $users, string $lastSearch)
         {
       ?>
@@ -48,45 +54,31 @@ require 'views/components/footer/footer.php';
             <tbody>
               
               <?php
-    
-                for ($i=0; $i<count($users); $i++) {
+                for ($i=0; $i<count($users); $i++) 
+                {
                   echo "<tr>";
                   echo "<td>".$users[$i]->getId()."</td>";
                   echo "<td>".$users[$i]->getPseudo()."</td>";
                   echo "<td><div class=\"mail divRow\">".$users[$i]->getEmail()."</div>";
-                  echo "<div class=\"divRow settingButtons\"><input class=\"outline xs\" type=\"button\" value=\"Paramètres\"></div>";
                   echo "<div class=\"divRow profilButtons\"><input class=\"default xs\" type=\"button\" value=\"Profil\"></div>";
-
-
-
-
+                  echo "<div class=\"divRow settingButtons\"><input class=\"outline xs\" type=\"button\" value=\"Paramètres\"></div>";
                   echo "</td></tr>";
                 }
               ?>
 
             </tbody>
-        </table>
-
-
-
-
-
+          </table>
+               
+          
+        </div>        
+      </main>
       </div>
-
-
-              
-              
-    </main>
-    <?php  createFooter(); ?>
-              </div>
+      <?php  createFooter(); ?>
+    
   </body>
   
-      
-      
-      <?php  
-       
-        }
-      ?>
+
+      <?php } ?>
 
     
 

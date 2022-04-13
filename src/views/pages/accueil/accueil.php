@@ -13,27 +13,25 @@ require 'views/components/footer/footer.php';
 </head>
 
 <body>
-    <header>
-        <?php createrNavbar(); ?>
-    </header>
-    <main class="accueil-container">
-        <div class="accueil-container-slogan">
-            <h1 class="slogan-titre">La meilleure façon d'apprendre à coder</h1>
-        </div>
-        <div class="slogan-suite">
-            <p class="slogan-text">Les cours sont conseillés suivants votre niveau déterminé par des tests de <br /> connaissance. C'est gratuit !</p>
-        </div>
-        <div class="accueil-container-bouton">
-            <button button id="btn-accueil" class="btn2 m" type="button" value="Commencez à apprendre">Commencez à apprendre</button>
-        </div>
-    </main>
-    <div class="content">
+    <div id="mainContainer">
+        <header>
+            <?php createrNavbar(); ?>
+        </header>
+        <main class="accueil-container content">
 
+            <div class="accueil-container-slogan">
+                <h1 class="slogan-titre">La meilleure façon d'apprendre à coder</h1>
+            </div>
+            <div class="slogan-suite">
+                <p class="slogan-text">Les cours sont conseillés suivants votre niveau déterminé par des tests de <br /> connaissance. C'est gratuit !</p>
+            </div>
+            <div class="accueil-container-bouton">
+                <button button id="btn-accueil" class="btn2 m" type="button" value="Commencez à apprendre">Commencez à apprendre</button>
+            </div>
+            
+      </main>
     </div>
-    <!-- Balise footer définit dans la fonction -->
-    <?php createFooter(); ?>
-
-
+    <?php  createFooter(); ?>
 </body>
 
 </html>

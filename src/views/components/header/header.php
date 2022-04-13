@@ -4,7 +4,7 @@ function infoHead($title, $description, $link_style)
 {
     $html = <<<HTML
         <title>$title</title>
-        <link rel="shortcut icon" href="../images/logoNoir.png"/>
+        <link rel="shortcut icon" href="assets/img/logo/logo_dark.svg"/>
         <link rel="stylesheet" type="text/css" href="$link_style"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="$description"/>

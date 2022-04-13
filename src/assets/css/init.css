@@ -18,3 +18,19 @@ body{
   display:flex;
   flex-direction: column;
 }
+
+#mainContainer{
+  flex:1 0 auto;
+  display:flex;
+  flex-direction: column; 
+}
+
+main{
+  flex:1 0 auto;
+  background-color: var(--first_clear_background);
+}
+
+
+@media (prefers-color-scheme: dark) {
+  main{background-color: var(--first_dark_background);}
+}

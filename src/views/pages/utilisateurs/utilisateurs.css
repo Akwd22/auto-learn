@@ -1,29 +1,12 @@
-
-
-
-#container{  width: 100%;box-sizing: border-box;
-    height: calc(100% - 112px );
-    display:flex;
-    flex-direction: column;}
-.content{
-    background-color: var(--first_clear_background);
-    
-   
-   flex: 1 0 auto;
-    
-    
-    justify-content: center;
-    align-items: center;
-  }
-
+/*div central*/
 #centerDiv{ 
     background-color: var(--clear_background_container);
 
     width: 784px;
-    height: 736px;
+    height: 700px;
 
     margin: 0 auto;
-    margin-top: 48px;margin-bottom: 48px;
+    margin-top: 48px;margin-bottom: 15px;
 
     padding-left: 16px;
     padding-right: 16px;
@@ -33,93 +16,111 @@
     border-radius: 4px;
 }
 
-
+/*label barre de recherche*/
 #labelSearch{
     width: 100%;
+
     color: var(--dark_text);
     font-weight: 700;
     font-size: 24px;
     line-height: 150%;
 }
 
+/*barre de recherche*/
 .input{
     margin-top: 22px;
 }
 
-#invisibleButton{display: none;}/*je ne sais pas si c'est utile de garder le boutton je l'ai mis temporairement en invisible*/
+/*boutton submit*/
+#invisibleButton{display: none;}/*je ne sais pas si il est indispensable, je l'ai mis temporairement en invisible*/
 
 
+/*tableau*/
 table{
-    
-
     margin-top: 24px;
+    width:100%;
     
-
     font-weight: 500;
     font-size: 14px;
     line-height: 24px;
-    color: var(--dark_text);
-
-    width:100%;
+   
     border-collapse: collapse;
 }
 
-
-
-
-th,td{
-    padding-left: 24px;
-    height: 52px;
-    text-align: left;
-    font-weight: 700;
-font-size: 12px;
-line-height: 16px;
-color: var(--medium1_text);
+/*colonnes "Identifiant" et "Pseudo"*/
+.smallColumn{
+    width: 130px;
 }
 
-th{
+/*lignes impairs du tableau*/
+table tr:nth-child(odd){
+    background-color:var(--clear_secondColor_table);
+}
+
+/*toutes les cases du tableau*/
+th,td{
+    height: 52px;
+
+    padding-left: 24px;
+    
+    text-align: left;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+/*cases titres du tableau*/
+th{    
+    color: var(--medium1_text);
     background-color: var(--clear_background_container);
 }
 
+/*autres cases du tableau*/
+td{
+    color: var(--dark_text);
+}
+
+/*divs présentent dans la ligne du tableau (3ème colonne permettent d'alligner le mail et les bouttons)*/
+.divRow{
+    height:100%;
+
+    display: inline-block;
+}
+
+/*mail des utilisateurs (pas le titre "Email")*/
+.mail{
+    padding-top: 18px;    
+}
+
+/*bouttons "paramètres" ajoutés dynamiquement*/
 .settingButtons{
-    width: 100px;float: right;padding-top: 14px;padding-right: 24px;
-}
-
-.profilButtons{
-    width: 65px; float: right;padding-top: 14px;padding-right: 16px;
-}
-
-
-
-
-table tr:nth-child(odd){
-    background-color:var(--clear_secondColor_table);
-  }
-
-.smallColumn{
-    width: 130px;
-  }
-
-  .divRow{height:100%;
-    display: inline-block;}
-
-    .mail{padding-top: 18px;
+    width: 100px;
     
-    }
+    float: right;
 
-    /* Navbar qui fait chiée */
-@media screen and (max-width: 1078px) {
-    #container{  
-        height: calc(100% - 159px);
-    }
+    padding-top: 14px;
+    padding-right: 24px;
 }
-    @media screen and (max-width: 760px) {
-        #container{  
-            height: calc(100% - 180px);
-        }
-    }
-      @media screen and (max-width: 520px) {
-        #container{  
-            height: calc(100% - 219px);
-        }
-    }
+
+/*bouttons "profil" ajoutés dynamiquement*/
+.profilButtons{
+    width: 65px; 
+    
+    float: right;
+    
+    padding-top: 14px;
+    padding-right: 16px;
+}
+
+
+
+/*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
+@media (prefers-color-scheme: dark) {
+    #centerDiv{background-color: var(--dark_background_container);}
+    #labelSearch{color: #fff;}
+    th{background-color: var(--dark_background_container);color: var(--clear2_text);}
+    td{color:#fff;}
+    table tr:nth-child(odd){background-color: var(--dark_secondColor_table);}
+}
+
+ 
