@@ -1,32 +1,65 @@
 <?php
 require_once "databases/SessionManagement.php";
 require_once "databases/UtilisateurCRUD.php";
-require_once "models/Utilisateur.php";
-require_once "models/CoursRecommandeQCM.php";
+require_once "databases/DatabaseManagement.php";
+require_once "databases/CoursCRUD.php";
+
 
 SessionManagement::session_start();
 
-if (SessionManagement::isLogged()) {
+/*if (SessionManagement::isLogged()) {
   echo "Vous êtes connecté (Utilisateur ID " . SessionManagement::getUserId() . " | Admin ? " . SessionManagement::isAdmin() . ")";
 } else {
   echo "Vous êtes déconnecté.";
-}
+}*/
+
+
+$db = new DatabaseManagement();
+
+$userCRUD = new UtilisateurCRUD($db);
+$coursCRUD = new CoursCRUD($db);
+$tentativeCoursCRUD = new TentativeCoursCRUD($db);
+
 
 $user = new Utilisateur();
-$c = new TentativeCours(1);
-$c2 = new TentativeCours(2);
+$user->setPseudo("tesaatraaaaaaaazezazeaaaaaa");
+$user->setEmail("testaa@taareaaaaazazeazezaeezaaaaasat");
+$user->setPassHash("ataestraahaaaaaaazezaeazeaaaaasah");
+/*
+$coursTexte = new CoursTexte("tertete",30);
+$coursTexte->setTitre("titreTexte");
+$coursTexte->setDescription("description");
+$coursTexte->setImageUrl("test");
+$coursTexte->setDateCreation(new DateTime());
+
+$coursCRUD->createCours($coursTexte);
+
+$tentativeCours = new TentativeCours();
+$tentativeCours->setCours($coursTexte);
+
+$user->addCoursTentes($tentativeCours);
+
+*/
+//$userCRUD->createUser($user);
+//var_dump($userCRUD->readAllUsers());
+
+$coursTente=$tentativeCoursCRUD->readTentativeCoursById(1);
+$coursTente->terminer(true);
+
+$tentativeCoursCRUD->updateTentativeCours($coursTente, 1);
 
 
-$user->addCoursTentes($c);
-$user->addCoursTentes($c2);
 
-var_dump($user->getCoursTentes(1));
-var_dump($user->getCoursTentes(2));
 
-$user->removeCoursTentes(2);
-$user->removeCoursTentes(7);
 
-var_dump($user->getCoursTentes(7));
+//$coursCRUD->createCours($coursTexte);
+//$coursCRUD->deleteCours(5); Works
+//var_dump($coursCRUD->readCoursById(15)); // Works
+//var_dump($coursCRUD->readAllCours());
+//$coursCRUD->updateCours(1,$coursTexte); trop dur flemme
+//$coursCRUD->createTentativeCours($coursTente);
+//var_dump( $coursCRUD->readTentativeCoursById(4));
+
 
 ?>
 

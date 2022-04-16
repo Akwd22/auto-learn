@@ -132,6 +132,11 @@ class Utilisateur
         return $this->isConnected;
     }
 
+    public function getAllCoursTentes()
+    {
+        return $this->coursTentes;
+    }
+
     public function getCoursTentes($id)
     {
         foreach($this->coursTentes as $value)
@@ -139,6 +144,11 @@ class Utilisateur
             if($value->getId()==$id)
                 return $value;
         }
+    }
+
+    public function setCoursTentes($coursTentes)
+    {
+        $this->coursTentes=$coursTentes;
     }
 
     public function addCoursTentes($coursTentes)

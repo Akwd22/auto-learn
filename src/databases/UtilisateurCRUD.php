@@ -1,15 +1,19 @@
 <?php
 require_once("models/Utilisateur.php");
 require_once("databases/DatabaseManagement.php");
+require_once("databases/TentativeCoursCRUD.php");
 
 class UtilisateurCRUD
 {
 
     private $db;
 
+    private $tentativeCoursCRUD;
+
     public function __construct($db)
     {
         $this->db = $db;
+        $this->tentativeCoursCRUD = new TentativeCoursCRUD($db);
     }
 
     public function getDb()
@@ -40,6 +44,7 @@ class UtilisateurCRUD
             $user->setTheme($r["theme"]);
             $user->setIsAdmin($r["isAdmin"]);
             $user->setIsConnected($r["isConnected"]);
+            $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($r["id"]));
 
             array_push($users, $user);
         }
@@ -64,8 +69,8 @@ class UtilisateurCRUD
             $user->setDateCreation(DateTime::createFromFormat("Y-m-d G:i:s", $row[0][5]));
             $user->setTheme($row[0][6]);
             $user->setIsAdmin($row[0][7]);
-            $user->setIsConnected($row[0][8]);
-            return $user;
+            $user->setIsConnected($row[0][8]); 
+            $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($row[0][0]));
         }
     }
 
@@ -87,6 +92,7 @@ class UtilisateurCRUD
             $user->setTheme($row[0][6]);
             $user->setIsAdmin($row[0][7]);
             $user->setIsConnected($row[0][8]);
+            $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($row[0][0]));
             return $user;
         }
     }
@@ -98,7 +104,7 @@ class UtilisateurCRUD
         $sth->bindValue(':id', $id);
         $sth->execute();
         $row = $sth->fetchAll();
-
+       
         if (!empty($row)) {
             $user = new Utilisateur($row[0][0]);
             $user->setPseudo($row[0][1]);
@@ -108,8 +114,25 @@ class UtilisateurCRUD
             $user->setDateCreation(DateTime::createFromFormat("Y-m-d G:i:s", $row[0][5]));
             $user->setTheme($row[0][6]);
             $user->setIsAdmin($row[0][7]);
-            $user->setIsConnected($row[0][8]);
+            $user->setIsConnected($row[0][8]);          
+            $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($row[0][0]));
             return $user;
+        }
+    }
+    
+    public function readMaxUserId()
+    {
+        try {
+            $sth = $this->db->getPDO()->prepare("
+            SELECT id FROM Utilisateur ORDER BY id DESC LIMIT 0,1;");
+            $sth->execute();
+            $row = $sth->fetchAll();
+
+            if (!empty($row))
+                return $row[0][0];
+            
+        } catch (PDOException $e) {
+            echo $e->getMessage() . "<br>";
         }
     }
 
@@ -132,6 +155,8 @@ class UtilisateurCRUD
             $user->setTheme($r["theme"]);
             $user->setIsAdmin($r["isAdmin"]);
             $user->setIsConnected($r["isConnected"]);
+            $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($row[0][0]));
+
 
             array_push($users, $user);
         }
@@ -149,6 +174,7 @@ class UtilisateurCRUD
             $theme = $user->getTheme();
             $isAdmin = $user->getisAdmin();
             $isConnected = $user->getIsConnected();
+            $coursTentes = $user->getAllCoursTentes();
 
             $sth = $this->db->getPDO()->prepare("UPDATE utilisateur set 
 						pseudo = :pseudo,
@@ -172,6 +198,12 @@ class UtilisateurCRUD
         } catch (PDOException $e) {
             echo $e->getMessage() . "<br>";
         }
+
+        foreach($coursTentes as $c)
+        {
+            $tentativeCoursCRUD->updateTentativeCours($c,$c->getId());
+        }
+
     }
 
     public function createUser($user)
@@ -185,6 +217,7 @@ class UtilisateurCRUD
             $theme = $user->getTheme();
             $isAdmin = $user->getisAdmin();
             $isConnected = $user->getIsConnected();
+            $coursTentes = $user->getAllCoursTentes();
 
             if ($user->getId() == null) {
                 $sth = $this->db->getPDO()->prepare("
@@ -201,7 +234,10 @@ class UtilisateurCRUD
             $sth->bindValue(':email', $email);
             $sth->bindValue(':passHash', $passHash);
             $sth->bindValue(':imageUrl', $imageUrl);
-            $sth->bindValue(':dateCreation', $dateCreation->format("Y-m-d G:i:s"));
+            if($dateCreation!=null)
+                $sth->bindValue(':dateCreation', $dateCreation->format("Y-m-d G:i:s"));
+            else
+                $sth->bindValue(':dateCreation', NULL);
             $sth->bindValue(':theme', $theme);
             $sth->bindValue(':isAdmin', +$isAdmin);
             $sth->bindValue(':isConnected', +$isConnected);
@@ -209,6 +245,29 @@ class UtilisateurCRUD
         } catch (PDOException $e) {
             echo $e->getMessage() . "<br>";
             die();
+        }
+        foreach ($coursTentes as $c)
+        {
+            $this->tentativeCoursCRUD->createTentativeCours($c);
+            try{
+                $sth = $this->db->getPDO()->prepare("
+                INSERT INTO utilisateurtentativescours (idTentativeCours, idUtilisateur)
+                VALUES (:idTentativeCours, :idUtilisateur);"); 
+                if($c->getId()!=null)
+                    $sth->bindValue(':idTentativeCours', $c->getId());
+                else
+                    $sth->bindValue(':idTentativeCours', $this->tentativeCoursCRUD->readMaxTentativeCoursId());
+
+                if ($user->getId() != null) 
+                    $sth->bindValue(':idUtilisateur', $user->getId());
+                else
+                    $sth->bindValue(':idUtilisateur', $this->readMaxUserId());
+
+                $sth->execute();
+            } catch (PDOException $e) {
+                echo $e->getMessage() . "<br>";
+                die();
+            }
         }
     }
 
