@@ -12,3 +12,6 @@ RewriteRule ^profil/supprimer$  /controllers/pages/profil/supprimer.php [L]
 RewriteRule ^profil/modifier$  /controllers/pages/profil/modifier.php [L]
 
 RewriteRule ^utilisateurs$  /controllers/pages/utilisateurs/rechercher.php [L]
+
+RewriteRule ^rechercher-cours$  /controllers/pages/cours/rechercher.php [L]
+RewriteRule ^cours$  /controllers/pages/cours/cours.php [L]

@@ -1,0 +1,153 @@
+#leftDiv{
+    width:25%;
+    height:100%;
+    
+    float: left;  
+}
+
+#rightDiv{
+    width: 75%;
+    height:100%;
+
+    float: right;
+
+    padding-right: 25%;
+    padding-left: 48px;
+}
+
+/*division du formulaire de gauche*/
+#divForm{
+    width: 264px;
+    height: 312px;
+    margin-top: 112px;
+    
+    float: right;
+
+    background-color: var(--clear_background_container);
+
+    border-radius: 4px;
+    
+    padding:16px;
+}
+
+/*titres du formulaires de gauche*/
+.titlesForm{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 32px;
+    color: var(--dark_text);
+}
+/*second titre du formulaire de gauche*/
+#titleFormCat{
+    margin-top: 24px;
+}
+
+
+/*divs pour placer les boutons radio et leur label*/
+.divRadios{
+    margin-top: 8px;
+}
+/*selectBox*/
+select{
+    margin-top: 6px;
+}
+
+/*boutons*/
+#reset{
+    margin-top: 18px;
+}
+#sub{
+    margin-top: 14px;
+}
+
+/*titre de droite*/
+#labelSearchDiv{
+    margin-top: 48px;
+    
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+    color: var(--dark_text);
+}
+/*barre de recherche*/
+#site-search{
+    margin-top: 32px;
+    margin-bottom: 48px;
+}
+
+
+/*div où sont affichés les cours*/
+#divDisplay{
+    display: flex;
+    flex-wrap: wrap;
+}
+/*div invisible où est affiché 1 cours (pour 1 bon placement)*/
+.containerFlexCours{
+    padding: 0 12px;
+    flex:1 1 auto;
+}
+
+/*div visible où est affiché 1 cours*/
+.containerCours{
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+    margin-bottom: 24px;
+    
+    background-color: var(--clear_background_container);
+    
+    border-radius: 4px;   
+}
+
+
+/*contenu présentation de chaque cours*/
+.imgCours{
+    width: 64px;
+    height: 64px;
+    margin-top: 16px;
+    margin-left: calc(50% - 32px);
+    
+    border-radius: 32px;
+}
+.titleCours{
+    margin-top: 3px;
+
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 32px;
+    color:var(--dark_text);
+    text-align: center;
+}
+.descriptionCours{
+    margin-top: 3px;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color:var(--medium2_text);
+    text-align: center;
+}
+
+/*gère le rétrécissement horizontal de la page*/
+@media screen and (max-width: 1440px){
+    #rightDiv{padding-right: 15%;}
+}
+@media screen and (max-width: 1056px){
+    #leftDiv{width: 264px;}
+    #rightDiv{width: calc(100% - 264px);padding-right: 5%;}
+}
+@media screen and (max-width: 580px){
+    #rightDiv{padding-right: 1%;}
+}
+
+
+/*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
+@media (prefers-color-scheme: dark) {
+    #divForm{background-color: var(--dark_background_container);}
+    .titlesForm{color:#fff;}
+    #labelSearchDiv{color: #fff;}
+    .containerCours{background-color: var(--dark_background_container);}
+    .titleCours{color: #fff;}
+    .descriptionCours{color: var(--clear1_text);}
+}

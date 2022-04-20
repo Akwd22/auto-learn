@@ -4,6 +4,8 @@
 @import url('../../views/components/checkbox/checkbox.css');
 @import url('../../views/components/message/message.css');
 @import url('../../views/components/input/input.css');
+@import url('../../views/components/radio/radio.css');
+@import url('../../views/components/select/select.css');
 
 * {
     margin: 0;

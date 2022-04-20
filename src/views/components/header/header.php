@@ -26,8 +26,8 @@ function createrNavbar()
 
             if (!SessionManagement::isLogged()) {
                 return <<<HTML
-                <a href="/connexion"><button id="btn-connexion" class="btn1" type="button" value="Se connecter">Se connecter</button></a>
-                <a href="/inscription"><button id="btn-inscription" class="btn2" type="button" value="S'inscrire">S'inscrire</button></a>
+                <a href="/connexion"><button id="btn-connexion" class="outline " type="button" value="Se connecter">Se connecter</button></a>
+                <a href="/inscription"><button id="btn-inscription" class="default" type="button" value="S'inscrire">S'inscrire</button></a>
 HTML;
             } else {
                 return <<<HTML

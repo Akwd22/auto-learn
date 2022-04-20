@@ -11,6 +11,7 @@
   border-radius: 3px;
 
   width: 100%;
+  cursor: pointer;
 }
 
 .outline {
@@ -24,9 +25,10 @@
 
   box-sizing: border-box;
   width: 100%;
+  cursor: pointer;
 }
 
-[type="submit"].xs,[type="button"].xs {
+[type="reset"].xs,[type="submit"].xs,[type="button"].xs {
   padding: 4px auto;
   height: 24px;
 
@@ -35,7 +37,7 @@
   line-height: 16px;
 }
 
-[type="submit"].s,[type="button"].s {
+[type="reset"].s,[type="submit"].s,[type="button"].s {
   padding: 4px auto;
   height: 32px;
 
@@ -44,7 +46,7 @@
   line-height: 24px;
 }
 
-[type="submit"].m,[type="button"].m {
+[type="reset"].m,[type="submit"].m,[type="button"].m {
   padding: 8px auto;
   height: 48px;
 
@@ -53,7 +55,7 @@
   line-height: 32px;
 }
 
-[type="submit"].l,[type="button"].l {
+[type="reset"].l,[type="submit"].l,[type="button"].l {
   padding: 12px auto;
   height: 56px;
 
@@ -78,3 +80,8 @@
   cursor: pointer;
 }
 
+
+
+/*animation boutons*/
+.default:hover{background-color: var(--button_hover);}
+.outline:hover{border: 2px solid var(--button_hover);}

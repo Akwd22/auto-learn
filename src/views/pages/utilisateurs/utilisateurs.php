@@ -1,6 +1,7 @@
 <?php
 require 'views/components/header/header.php';
-require 'views/components/footer/footer.php';   
+require 'views/components/footer/footer.php';  
+require 'views/components/message/message.php'; 
 ?>
 
 <head>
@@ -18,7 +19,6 @@ require 'views/components/footer/footer.php';
     
     <main class="content">
       <div id="centerDiv">    
-      
 
       <?php
         /**
@@ -60,8 +60,8 @@ require 'views/components/footer/footer.php';
                   echo "<td>".$users[$i]->getId()."</td>";
                   echo "<td>".$users[$i]->getPseudo()."</td>";
                   echo "<td><div class=\"mail divRow\">".$users[$i]->getEmail()."</div>";
-                  echo "<div class=\"divRow profilButtons\"><input class=\"default xs\" type=\"button\" value=\"Profil\"></div>";
-                  echo "<div class=\"divRow settingButtons\"><input class=\"outline xs\" type=\"button\" value=\"Paramètres\"></div>";
+                  echo "<div class=\"divRow profilButtons\"><input class=\"default xs\" type=\"button\" value=\"Profil\" onclick=\"window.location.href = '/profil?id=".$users[$i]->getId()."'\"></div>";
+                  echo "<div class=\"divRow settingButtons\"><input class=\"outline xs\" type=\"button\" value=\"Paramètres\" onclick=\"window.location.href = '/profil/modifier?id=".$users[$i]->getId()."'\"></div>";
                   echo "</td></tr>";
                 }
               ?>

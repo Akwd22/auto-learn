@@ -1,0 +1,34 @@
+.select{
+    background-color: var(--input);;
+
+    box-sizing: border-box;
+    width: 100%;
+     
+    padding-left:5%;
+
+    border-radius: 3px;
+    border:2px solid var(--input_border_default);
+    outline:none;
+
+    font-weight: 400;
+}
+.select::placeholder{
+    color:var(--placeholder);
+}
+
+/*gere les différentes tailles des select*/
+.select.m{
+    height: 32px;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.select.l{
+    height: 48px;
+    font-size: 18px;
+    line-height: 32px;
+}
+
+/*gère les différents état des select*/
+.select:focus{border: 2px solid var(--input_border_hover);}
+
