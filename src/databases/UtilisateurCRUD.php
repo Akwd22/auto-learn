@@ -72,6 +72,8 @@ class UtilisateurCRUD
             $user->setIsConnected($row[0][8]); 
             $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($row[0][0]));
         }
+
+        return $user;
     }
 
     public function readUserByEmail($email)
@@ -201,7 +203,7 @@ class UtilisateurCRUD
 
         foreach($coursTentes as $c)
         {
-            $tentativeCoursCRUD->updateTentativeCours($c,$c->getId());
+            $this->tentativeCoursCRUD->updateTentativeCours($c,$c->getId());
         }
 
     }
