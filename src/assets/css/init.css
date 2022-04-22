@@ -33,6 +33,7 @@ main {
 }
 
 
+
 @media (prefers-color-scheme: dark) {
   main {
     background-color: var(--first_dark_background);

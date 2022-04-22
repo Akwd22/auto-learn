@@ -1,4 +1,6 @@
+
 <?php
+
 // Affichage de la vue ou traitement du formulaire.
 if (empty($_POST)) {
   showView();

@@ -1,6 +1,5 @@
 .page {
   width: 100%;
-  background-color: var(--first_clear_background);
   flex: auto;
   justify-content: center;
   display: flex;

@@ -1,6 +1,8 @@
 <?php
 require 'views/components/header/header.php';
 require 'views/components/footer/footer.php';
+require 'views/components/checkbox/checkbox.php';
+
 
 /**
  * Afficher la page de modification d'un profil.
@@ -27,9 +29,62 @@ function afficherModifierProfil(Utilisateur $user)
       <header>
         <?php createrNavbar(); ?>
       </header>
-      <main class="page">
+      <main class="page parametre-page">
+        <div class="parametre-container">
+          <form class="parametre-container-form" action="/profil/modifier?id=<?php echo $user->getId() ?>" method="post" enctype="multipart/form-data">
+            <h2 class="parametre-container-title">Paramètres</h2>
+            <div class="parametre-container-form-content">
 
+              <!-- EMAIL -->
+              <div class="form-email-container form-log-item">
+                <label for="email">Nouveau e-mail</label>
+                <input class="input l" type="email" name="email" id="email" value="<?php echo $user->getEmail() ?>">
+              </div>
 
+              <!-- MOT DE PASSE -->
+              <div class="form-password-container form-log-item">
+                <label for="pass">Nouveau mot de passe</label>
+                <input class="input l" type="password" name="pass" id="pass">
+              </div>
+
+              <!-- IMAGE -->
+              <div class="form-image-container">
+                <label for="image" id='new-image'>Nouvelle image</label>
+                <input type="file" name="image" id="image">
+                <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+              </div>
+
+              <!-- THEME -->
+              <div class="form-theme-container">
+                <label for="theme">Thèmes</label>
+                <input type="radio" name="theme" id="theme-light" value="light" <?php if ($user->getTheme() === EnumTheme::CLAIR) echo "checked" ?>>Clair</input>
+                <input type="radio" name="theme" id="theme-dark" value="dark" <?php if ($user->getTheme() === EnumTheme::SOMBRE) echo "checked" ?>>Sombre</input>
+              </div>
+            </div>
+
+            <!-- IS ADMIN -->
+            <div class="form-admin-container">
+              <?php
+              if (SessionManagement::isAdmin()) {
+              ?>
+                <?php createCheckbox('form-admin-container-checkbox', 'admin', 'Admin ?', 'm', 'enabled', true) ?>
+              <?php
+              }
+              ?>
+            </div>
+
+            <!-- SUBMIT -->
+            <input class="default m" type="submit" id="submit" value="Modifier le profil">
+
+          </form>
+        </div>
+
+        <div class="delete-container">
+          <form class="delete-container-form" action="/profil/supprimer?id=<?php echo $user->getId() ?>" method="post">
+            <h2 class="delete-container-title">Supprimer le compte</h2>
+            <input class="default m" type="submit" id="delete-btn" value="Supprimer">
+          </form>
+        </div>
 
 
       </main>

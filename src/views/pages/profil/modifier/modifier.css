@@ -1,0 +1,130 @@
+.page {
+  width: 100%;
+  flex: auto;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.parametre-page {
+  flex-direction: column;
+  row-gap: 48px;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.parametre-container-form {
+  width: 456px;
+  height: 532px;
+  background-color: var(--clear_background_container);
+  padding: 32px;
+}
+
+.delete-container-form {
+  width: 456px;
+  height: 156px;
+  background-color: var(--clear_background_container);
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  justify-content: center;
+  align-items: center;
+  padding-left: 105px;
+  padding-right: 105px;
+}
+
+.parametre-container-title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 150%;
+  color: var(--dark_text);
+  text-align: center;
+  padding-bottom: 32px;
+}
+
+.form-log-item {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 16px;
+}
+
+.parametre-container-form label {
+  color: var(--medium1_text);
+  font-size: 18px;
+  line-height: 32px;
+  font-weight: 600;
+}
+
+#email,
+#pass {
+  color: rgba(0, 0, 0, 0.36);
+}
+
+#new-image {
+  font-size: 14px;
+}
+
+.form-image-container {
+  display: flex;
+  column-gap: 10px;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 16px;
+}
+
+.form-theme-container {
+  padding-bottom: 16px;
+}
+
+.form-theme-container label {
+  padding-right: 16px;
+}
+
+/* LES RADIOS BUTTONS */
+#theme-light,
+#theme-dark {
+  margin-right: 8px;
+}
+
+#theme-dark {
+  margin-left: 25px;
+}
+
+.form-admin-container {
+  padding-bottom: 32px;
+}
+
+.delete-container-title {
+  font-size: 24px;
+  text-align: center;
+  line-height: 150%;
+  font-weight: 700;
+  width: 246px;
+  color: var(--dark_text);
+}
+
+#delete-btn {
+  width: 110px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .parametre-container-form {
+    background-color: var(--dark_background_container);
+  }
+
+  .delete-container-form {
+    background-color: var(--dark_background_container);
+  }
+
+  .parametre-container-title {
+    color: #ffff;
+  }
+
+  .parametre-container-form label {
+    color: var(--clear2_text);
+  }
+
+  .delete-container-title {
+    color: #ffff;
+  }
+}
