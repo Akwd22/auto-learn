@@ -47,7 +47,7 @@ HTML;
         <div class="navbar-links-container">
             <div class="links-container-onglets">
                 <ul class="links-container-onglets-list">
-                    <li><a href="#" class="container-onglets-links">Cours</a></li>
+                    <li><a href="/rechercher-cours" class="container-onglets-links">Cours</a></li>
                     <li><a href="#" class="container-onglets-links">Tests</a></li>
                 </ul>
             </div>

@@ -2,6 +2,7 @@
 require_once("databases/SessionManagement.php");
 require_once("databases/UtilisateurCRUD.php");
 require_once("views/pages/profil/profil.php");
+require_once('config.php');
 
 SessionManagement::session_start();
 

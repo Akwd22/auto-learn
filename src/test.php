@@ -7,11 +7,11 @@ require_once "databases/CoursCRUD.php";
 
 SessionManagement::session_start();
 
-/*if (SessionManagement::isLogged()) {
+if (SessionManagement::isLogged()) {
   echo "Vous êtes connecté (Utilisateur ID " . SessionManagement::getUserId() . " | Admin ? " . SessionManagement::isAdmin() . ")";
 } else {
   echo "Vous êtes déconnecté.";
-}*/
+}
 
 
 $db = new DatabaseManagement();
@@ -43,7 +43,7 @@ $user->addCoursTentes($tentativeCours);
 //$userCRUD->createUser($user);
 //var_dump($userCRUD->readAllUsers());
 
-$coursTente=$tentativeCoursCRUD->readTentativeCoursById(1);
+$coursTente = $tentativeCoursCRUD->readTentativeCoursById(1);
 $coursTente->terminer(true);
 
 $tentativeCoursCRUD->updateTentativeCours($coursTente, 1);
