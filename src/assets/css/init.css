@@ -1,38 +1,40 @@
-@import url('./color.css');
-@import url('./fonts.css');
-@import url('../../views/components/button/button.css');
-@import url('../../views/components/checkbox/checkbox.css');
-@import url('../../views/components/message/message.css');
-@import url('../../views/components/input/input.css');
-@import url('../../views/components/radio/radio.css');
-@import url('../../views/components/select/select.css');
+@import url("./color.css");
+@import url("./fonts.css");
+@import url("../../views/components/button/button.css");
+@import url("../../views/components/checkbox/checkbox.css");
+@import url("../../views/components/message/message.css");
+@import url("../../views/components/input/input.css");
+@import url("../../views/components/radio/radio.css");
+@import url("../../views/components/select/select.css");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    font-family: 'Inter';
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  font-family: "Inter";
+}
 
-body{
+body {
   height: 100vh;
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 
-#mainContainer{
-  flex:1 0 auto;
-  display:flex;
-  flex-direction: column; 
+#mainContainer {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
-main{
-  flex:1 0 auto;
+main {
+  flex: 1 0 auto;
   background-color: var(--first_clear_background);
 }
 
 
 @media (prefers-color-scheme: dark) {
-  main{background-color: var(--first_dark_background);}
+  main {
+    background-color: var(--first_dark_background);
+  }
 }

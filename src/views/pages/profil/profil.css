@@ -1,10 +1,9 @@
 .page {
   width: 100%;
-  background-color: var(--first_dark_background);
+  background-color: var(--first_clear_background);
   flex: auto;
   justify-content: center;
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
@@ -15,7 +14,7 @@
 }
 
 .profil-container {
-  background-color: var(--background_color_profil_container);
+  background-color: var(--clear_background_container);
   flex-wrap: wrap;
   border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -54,7 +53,7 @@
 }
 
 .title {
-  color: #ffff;
+  color: var(--dark_text);
   font-size: 20px;
   line-height: 32px;
   font-weight: 700;
@@ -101,7 +100,7 @@
 
 .list-cours-container-component-title {
   font-size: 18px;
-  color: #ffff;
+  color: var(--dark_text);
   line-height: 32px;
   font-weight: 600;
 }
@@ -124,5 +123,23 @@
   .profil-container-structure {
     align-items: center;
     padding: 15px 0px 15px 0px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    background-color: var(--first_dark_background);
+  }
+
+  .profil-container {
+    background-color: var(--background_color_profil_container);
+  }
+
+  .title {
+    color: #ffff;
+  }
+
+  .list-cours-container-component-title {
+    color: #ffff;
   }
 }

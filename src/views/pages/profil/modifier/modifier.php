@@ -1,4 +1,6 @@
 <?php
+require 'views/components/header/header.php';
+require 'views/components/footer/footer.php';
 
 /**
  * Afficher la page de modification d'un profil.
@@ -8,15 +10,36 @@
  */
 function afficherModifierProfil(Utilisateur $user)
 {
-  echo "<h1>Page de modification du profil</h1>";
-
-  var_dump($user);
 
   if (isset($_GET["error"])) echo "<p style='color:red'>" . $_GET["error"] . "</p>";
   if (isset($_GET["success"])) echo "<p style='color:green'>" . $_GET["success"] . "</p>";
 
 ?>
-  <form action="/profil/modifier?id=<?php echo $user->getId() ?>" method="post" enctype="multipart/form-data">
+
+  <head>
+    <?php infoHead('Modifier son profil', 'Modifier son profil', '/views/pages/profil/modifier/modifier.css'); ?>
+    <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
+    <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
+  </head>
+
+  <body>
+    <div id="mainContainer">
+      <header>
+        <?php createrNavbar(); ?>
+      </header>
+      <main class="page">
+
+
+
+
+      </main>
+    </div>
+    <?php createFooter(); ?>
+
+  </body>
+
+
+  <!-- <form action="/profil/modifier?id=<?php echo $user->getId() ?>" method="post" enctype="multipart/form-data">
     <h2>Modifier le profil</h2>
     <label for="email">Nouveau e-mail</label>
     <input type="email" name="email" id="email" value="<?php echo $user->getEmail() ?>">
@@ -48,6 +71,6 @@ function afficherModifierProfil(Utilisateur $user)
   <form action="/profil/supprimer?id=<?php echo $user->getId() ?>" method="post">
     <h2>Supprimer le profil</h2>
     <input type="submit" name="submit" value="Supprimer" />
-  </form>
+  </form> -->
 <?php
 }
