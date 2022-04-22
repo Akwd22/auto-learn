@@ -4,7 +4,7 @@
 
 DROP DATABASE IF EXISTS daw;
 
-CREATE DATABASE daw;
+CREATE DATABASE daw CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 
 USE daw;
 
@@ -17,7 +17,7 @@ CREATE TABLE Utilisateur (
   dateCreation  DATETIME DEFAULT CURRENT_TIMESTAMP,
   theme         ENUM('CLAIR', 'SOMBRE') NOT NULL DEFAULT 'CLAIR',
   isAdmin       BOOLEAN NOT NULL DEFAULT 0,
-  isConnected    BOOLEAN NOT NULL DEFAULT 0
+  isConnected   BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE Cours (

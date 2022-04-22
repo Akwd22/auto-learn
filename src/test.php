@@ -75,6 +75,7 @@ $tentativeCoursCRUD->updateTentativeCours($coursTente, 1);
     <a href="/inscription">S'inscrire</a>
     <a href="/profil?id=<?php echo SessionManagement::getUserId() ?>">Mon profil</a>
     <a href="/utilisateurs">Rechercher des utilisateurs</a>
+    <a href="/rechercher-cours">Rechercher des cours</a>
     <form action="/deconnexion" method="POST">
       <input type="submit" id='submit' value="Se déconnecter">
     </form>
