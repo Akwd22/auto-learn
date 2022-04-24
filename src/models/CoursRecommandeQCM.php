@@ -1,21 +1,21 @@
 <?php
 
-class CoursRecommandeQCM
+class CoursRecommandeQCM extends Cours
 {
     private $moyMin;
 
     private $moyMax;
 
-
-    public function __construct()
-    {}
+    public function __construct($id = null)
+    {
+        parent::__construct($id);
+    }
 
     public function setMoyMin($moyMin){
         if ($moyMin >= 0 && $moyMin <= 20) 
             $this->moyMin = floatval($moyMin);
         else
         throw new Error("\$moyMin doit être compris entre 0 et 20");
-
     }
 
     public function getMoyMin()

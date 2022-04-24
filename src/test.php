@@ -3,6 +3,13 @@ require_once "databases/SessionManagement.php";
 require_once "databases/UtilisateurCRUD.php";
 require_once "databases/DatabaseManagement.php";
 require_once "databases/CoursCRUD.php";
+require_once "models/QuestionQCM.php";
+require_once "models/ReponseQCM.php";
+require_once "models/TentativeQCM.php";
+require_once "models/QCM.php";
+
+
+
 
 
 SessionManagement::session_start();
@@ -43,22 +50,34 @@ $user->addCoursTentes($tentativeCours);
 //$userCRUD->createUser($user);
 //var_dump($userCRUD->readAllUsers());
 
-$coursTente = $tentativeCoursCRUD->readTentativeCoursById(1);
+/*$coursTente = $tentativeCoursCRUD->readTentativeCoursById(1);
 $coursTente->terminer(true);
 
 $tentativeCoursCRUD->updateTentativeCours($coursTente, 1);
+*/
+
+$quest = new QuestionSaisie(1);
+$quest->setBonneReponse("test1");
+
+$quest2 = new QuestionSaisie(2);
+$quest2->setBonneReponse("test2");
 
 
 
+$rep = new ReponseSaisie("test1");
 
+//var_dump($quest->isCorrecte($rep));
 
-//$coursCRUD->createCours($coursTexte);
-//$coursCRUD->deleteCours(5); Works
-//var_dump($coursCRUD->readCoursById(15)); // Works
-//var_dump($coursCRUD->readAllCours());
-//$coursCRUD->updateCours(1,$coursTexte); trop dur flemme
-//$coursCRUD->createTentativeCours($coursTente);
-//var_dump( $coursCRUD->readTentativeCoursById(4));
+$tentativeQCM = new TentativeQCM();
+$qcm = new QCM();
+$qcm->addQuestion($quest);
+$qcm->addQuestion($quest2);
+
+$tentativeQCM->setQcm($qcm);
+
+$tentativeQCM->setNumQuestionCourante(0);
+$tentativeQCM->questionSuivante($rep);
+
 
 
 ?>

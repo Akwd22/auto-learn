@@ -24,6 +24,8 @@ class Utilisateur
 
     private $coursTentes;
 
+    private $qcmTentes;
+
     public function __construct($id = null)
     {
         $this->coursTentes = array();
@@ -163,6 +165,50 @@ class Utilisateur
             if($this->coursTentes[$i]->getId()==$id)
             {
                 unset($this->coursTentes[$i]);
+            }      
+        }
+    }
+
+    public function getAllQcmTentes()
+    {
+        return $this->qcmTentes;
+    }
+
+    public function getQcmTentesByTentativeId($id)
+    {
+        foreach($this->qcmTentes as $value)
+        {
+            if($value->getCoursRecommande()->getId()==$id)
+                return $value;
+        }
+    }
+
+    public function getQcmTentesByCoursId($id)
+    {
+        foreach($this->qcmTentes as $value)
+        {
+            if($value->getQCM()->getCoursRecommandeById($id)==$id)
+                return $value;
+        }        
+    }
+
+    public function setQcmTentes($qcmTentes)
+    {
+        $this->qcmTentes=$qcmTentes;
+    }
+
+    public function addQcmTentes($qcmTente)
+    {
+        array_push($this->qcmTentes,$qcmTente);
+    }
+
+    public function removeQcmTentes($id)
+    {
+        for ($i=0; $i<=count($this->qcmTentes)-1;$i++)
+        {
+            if($this->qcmTentes[$i]->getId()==$id)
+            {
+                unset($this->qcmTentes[$i]);
             }      
         }
     }
