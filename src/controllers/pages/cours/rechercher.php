@@ -5,10 +5,18 @@ require_once "views/pages/cours/rechercher/rechercher.php";
 
 SessionManagement::session_start();
 
+/* -------------------------------------------------------------------------- */
+/*                                Vérifications                               */
+/* -------------------------------------------------------------------------- */
+
 $isLogged = SessionManagement::isLogged();
 
-// Vérification des permissions.
+/* ---------------------- Vérification des permissions ---------------------- */
 if (!$isLogged) die("Vous devez être connecté.");
+
+/* -------------------------------------------------------------------------- */
+/*                            Rechercher les cours                            */
+/* -------------------------------------------------------------------------- */
 
 // Effectuer la recherche et afficher les cours.
 $conn = new DatabaseManagement();

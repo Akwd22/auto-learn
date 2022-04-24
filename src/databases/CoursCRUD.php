@@ -141,6 +141,7 @@ class CoursCRUD
                 array_push($cours, $this->readCoursById($r['id']));
             }
         }
+
         return $cours;
     }
 
@@ -212,6 +213,34 @@ class CoursCRUD
                     $cours->setCategorie($row[0][6]);
                     $cours->setDateCreation(DateTime::createFromFormat("Y-m-d G:i:s",$row[0][7]));               
                 }
+            }
+        }
+        
+        return $cours;
+    }
+
+    public function readCoursFiltres($titre = "", $format = null, $cat = null) {
+        $q = $this->db->getPDO()->prepare(
+        "SELECT id FROM Cours WHERE
+            titre LIKE :titre"
+            . ($format ? " AND format = :format" : "")
+            . ($cat    ? " AND categorie = :cat" : "")
+        );
+
+        $q->bindValue(":titre", "%$titre%");
+        if ($format) $q->bindValue(":format", $format, PDO::PARAM_INT);
+        if ($cat)    $q->bindValue(":cat", $cat, PDO::PARAM_INT);
+
+        $q->execute();
+        $rows = $q->fetchAll();      
+
+        $cours = [];
+
+        if(!empty($rows))
+        {
+            foreach($rows as $row)
+            {
+                array_push($cours, $this->readCoursById($row["id"]));
             }
         }
         

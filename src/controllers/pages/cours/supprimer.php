@@ -9,17 +9,24 @@ SessionManagement::session_start();
 
 $coursId = $_GET["id"] ?? null;
 
+/* -------------------------------------------------------------------------- */
+/*                                Vérifications                               */
+/* -------------------------------------------------------------------------- */
+
 $isLogged = SessionManagement::isLogged();
 $isAdmin = SessionManagement::isAdmin();
 
-// Vérification des paramètres URL.
+/* --------------------- Vérification des paramètres URL -------------------- */
 if (!$coursId) die("ID du cours non spécifié.");
 
-// Vérification des permissions.
+/* ---------------------- Vérification des permissions ---------------------- */
 if (!$isLogged) die("Vous n'êtes pas connecté.");
 if (!$isAdmin)  die("Vous n'êtes pas admin.");
 
-// Suppression du cours.
+/* -------------------------------------------------------------------------- */
+/*                             Supprimer le cours                             */
+/* -------------------------------------------------------------------------- */
+
 $conn = new DatabaseManagement();
 $coursCRUD = new CoursCRUD($conn);
 
