@@ -20,6 +20,10 @@ define("UPLOADS_COURS_DOCS_DIR", dirname(__FILE__) . "/assets/uploads/cours/docs
 define("UPLOADS_PROFIL_DIR", dirname(__FILE__) . "/assets/uploads/profils/");
 define("UPLOADS_QCM_DIR", dirname(__FILE__) . "/assets/uploads/qcm/");
 
+/* -------------------------------------------------------------------------- */
+/*                                     URL                                    */
+/* -------------------------------------------------------------------------- */
+
 define("UPLOADS_COURS_IMGS_URL", "/assets/uploads/cours/imgs/");
 define("UPLOADS_COURS_DOCS_URL", "/assets/uploads/cours/docs/");
 define("UPLOADS_PROFIL_URL", "/assets/uploads/profils/");

@@ -152,6 +152,8 @@ class CoursCRUD
         $sth->execute();
         $row = $sth->fetchAll();
 
+        $cours = null;
+
         if (!empty($row))        
         {
             $format = gettype($row[0][8]) === "string" ? EnumFormatCours::get($row[0][8]) : $row[0][8];
@@ -212,6 +214,7 @@ class CoursCRUD
                 }
             }
         }
+        
         return $cours;
     }
 

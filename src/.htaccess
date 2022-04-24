@@ -1,17 +1,18 @@
 Options +FollowSymlinks
 RewriteEngine on
 
-RewriteRule ^accueil$  /controllers/pages/accueil/accueil.php [L]
+RewriteRule ^accueil$             /controllers/pages/accueil/accueil.php [L]
 
-RewriteRule ^connexion$  /controllers/pages/connexion/connexion.php [L]
-RewriteRule ^deconnexion$  /controllers/pages/connexion/deconnexion.php [L]
-RewriteRule ^inscription$  /controllers/pages/inscription/inscription.php [L]
+RewriteRule ^connexion$           /controllers/pages/connexion/connexion.php [L]
+RewriteRule ^deconnexion$         /controllers/pages/connexion/deconnexion.php [L]
+RewriteRule ^inscription$         /controllers/pages/inscription/inscription.php [L]
 
-RewriteRule ^profil$  /controllers/pages/profil/profil.php [L]
-RewriteRule ^profil/supprimer$  /controllers/pages/profil/supprimer.php [L]
-RewriteRule ^profil/modifier$  /controllers/pages/profil/modifier.php [L]
+RewriteRule ^profil$              /controllers/pages/profil/profil.php [L]
+RewriteRule ^profil/supprimer$    /controllers/pages/profil/supprimer.php [L]
+RewriteRule ^profil/modifier$     /controllers/pages/profil/modifier.php [L]
 
-RewriteRule ^utilisateurs$  /controllers/pages/utilisateurs/rechercher.php [L]
+RewriteRule ^utilisateurs$        /controllers/pages/utilisateurs/rechercher.php [L]
 
-RewriteRule ^rechercher-cours$  /controllers/pages/cours/rechercher.php [L]
-RewriteRule ^cours$  /controllers/pages/cours/cours.php [L]
+RewriteRule ^cours$               /controllers/pages/cours/cours.php [L]
+RewriteRule ^rechercher-cours$    /controllers/pages/cours/rechercher.php [L]
+RewriteRule ^cours/supprimer$     /controllers/pages/cours/supprimer.php [L]
