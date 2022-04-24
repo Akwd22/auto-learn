@@ -16,3 +16,4 @@ RewriteRule ^utilisateurs$        /controllers/pages/utilisateurs/rechercher.php
 RewriteRule ^cours$               /controllers/pages/cours/cours.php [L]
 RewriteRule ^rechercher-cours$    /controllers/pages/cours/rechercher.php [L]
 RewriteRule ^cours/supprimer$     /controllers/pages/cours/supprimer.php [L]
+RewriteRule ^cours/marquer$       /controllers/pages/cours/marquer.php [L]

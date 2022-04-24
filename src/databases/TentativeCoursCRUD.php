@@ -49,7 +49,7 @@ class TentativeCoursCRUD
                 $sth->bindValue(':id', $id);
             }
             $sth->bindValue(':idCours', $idCours);
-            $sth->bindValue(':isTermine', $isTermine);
+            $sth->bindValue(':isTermine', +$isTermine);
             if($dateCommence!=null)
                 $sth->bindValue(':dateCommence', $dateCommence->format("Y-m-d G:i:s"));
             else
@@ -143,7 +143,7 @@ class TentativeCoursCRUD
 
             $sth->bindValue(':id', $id);
             $sth->bindValue(':idCours', $idCours);
-            $sth->bindValue(':isTermine', $isTermine);
+            $sth->bindValue(':isTermine', +$isTermine);
             $sth->bindValue(':dateCommence', $dateCommence->format("Y-m-d G:i:s"));
             $sth->bindValue(':dateTermine', $dateTermine ? $dateTermine->format("Y-m-d G:i:s") : null);
             $sth->execute();

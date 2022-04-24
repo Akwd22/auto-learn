@@ -32,7 +32,7 @@ class TentativeCours
 
     public function setIsTermine($isTermine)
     {
-        $this->isTermine=$isTermine;
+        $this->isTermine=boolval($isTermine);
     }
 
     public function getIsTermine()
@@ -78,7 +78,7 @@ class TentativeCours
 
     public function terminer($oui)
     {
-        if($oui==true)
+        if($oui)
         {
             $this->isTermine=true;
             $this->dateTermine = new DateTime();
