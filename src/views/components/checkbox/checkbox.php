@@ -6,10 +6,8 @@
 function createCheckbox($id, $name, $label, $size, $enabled, $checked)
 {
 
-    if ($checked == true) {
-        $user = SessionManagement::getUser();
-        if ($user->getIsAdmin())
-            $checked = "checked";
+    if ($checked != 'unchecked' && $checked != 'checked') {
+        $checked = 'checked';
     }
 
     if ($size != 'm' && $size != 'l') {

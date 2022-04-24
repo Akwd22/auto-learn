@@ -4,6 +4,21 @@ require 'views/components/footer/footer.php';
 require 'views/components/message/message.php'; 
 ?>
 
+      <?php
+        /**
+        * Afficher la page de la liste des utilisateurs.
+        *
+        * @param Utilisateur[] $users Tableau des utilisateurs recherchés.
+        * @param string $lastSearch Dernière recherche du champ de recherche.
+        * @return void
+        */
+      function afficherUtilisateurs(array $users, string $lastSearch)
+        {
+      ?>
+
+
+
+
 <head>
     <?php infoHead('Gestion utilisateur', 'gestion des utilisateurs', '/views/pages/utilisateurs/utilisateurs.css'); ?>
     <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
@@ -19,19 +34,6 @@ require 'views/components/message/message.php';
     
     <main class="content">
       <div id="centerDiv">    
-
-      <?php
-        /**
-        * Afficher la page de la liste des utilisateurs.
-        *
-        * @param Utilisateur[] $users Tableau des utilisateurs recherchés.
-        * @param string $lastSearch Dernière recherche du champ de recherche.
-        * @return void
-        */
-      function afficherUtilisateurs(array $users, string $lastSearch)
-        {
-      ?>
-      
 
 
         <form method="POST">

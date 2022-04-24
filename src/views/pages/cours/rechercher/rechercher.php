@@ -6,6 +6,11 @@
 
 <html>
 
+            <?php
+            function afficherCours(array $cours, $lastSearch, $selectedRadio, $selectedCat)
+            {
+            ?>
+
 <head>
     <?php infoHead('Cours', 'Liste des cours', '/views/pages/cours/rechercher/rechercher.css'); ?>
     <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
@@ -19,10 +24,7 @@
         </header>
 
         <main class="content">
-            <?php
-            function afficherCours(array $cours, string $lastSearch, string $selectedRadio, string $selectedCat)
-            {
-            ?>
+            
 
 
                 <form method="POST">
@@ -33,41 +35,34 @@
                             <div class="divRadios" id="radio1">
                                 <?php
                                 $textStatus = 'unchecked';
-                                if ($selectedRadio == 'Texte') {
+                                if ($selectedRadio == 'TEXTE') {
                                     $textStatus = 'checked';
                                 }
-                                createRadio('redioCoursText', 'radioCours', 'Texte', 'Texte', 'm', 'enabled', $textStatus);
+                                createRadio('redioCoursText', 'radioCours', 'Texte', 'TEXTE', 'm', 'enabled', $textStatus);
                                 ?>
                             </div>
                             <div class="divRadios" id="radio2">
                                 <?php
                                 $videoStatus = 'unchecked';
-                                if ($selectedRadio == 'Video') {
+                                if ($selectedRadio == 'VIDEO') {
                                     $videoStatus = 'checked';
                                 }
-                                createRadio('radioCoursVideo', 'radioCours', 'Video', 'Video', 'm', 'enabled', $videoStatus);
+                                createRadio('radioCoursVideo', 'radioCours', 'Video', 'VIDEO', 'm', 'enabled', $videoStatus);
                                 ?>
                             </div>
 
                             <p class="titlesForm" id="titleFormCat">Catégories</p>
                             <select class="select m" name="selectCat" id="selectCat">
                                 <?php
-                                $defaultStatus = '';
-                                if ($selectedCat == '') {
-                                    $defaultStatus = 'selected';
+                                
+                                $arr = EnumCategorie::getFriendlyNames();
+                                foreach ($arr as $cat => $nom) {
+                                    $status='';
+                                    if($cat==$selectedCat){$status='selected';}
+                                    echo "<option value='$cat' $status>$nom</option>"; 
                                 }
-                                $cppStatus = '';
-                                if ($selectedCat == 'cpp') {
-                                    $cppStatus = 'selected';
-                                }
-                                $javascriptStatus = '';
-                                if ($selectedCat == 'javascript') {
-                                    $javascriptStatus = 'selected';
-                                }
+
                                 ?>
-                                <option value="" <?php echo $defaultStatus; ?>>Aucune catégorie</option>
-                                <option value="cpp" <?php echo $cppStatus; ?>>C++</option>
-                                <option value="javascript" <?php echo $javascriptStatus; ?>>Javascript</option>
                             </select>
                             <input class="outline s" id="reset" type="submit" name="reset" value="Réinitialiser les filtres">
                             <input class="default s" id="sub" type="submit" name="sub" value="Appliquer les filtres">
@@ -93,10 +88,10 @@
                                 echo   "<a href=\"/cours?id=" . $cours[$i]->getId() . "\">";
 
                                 $urlImg = '';
-                                if ($cours[$i]->getImageUrl() != '') {
+                                if ($cours[$i]->getImageUrl() != '' && $cours[$i]->getImageUrl() !=null) {
                                     //à revoir
-                                    //$urlImg=UPLOADS_COURS_URL . $cours[$i]->getImageUrl();
-                                    $urlImg = 'assets\img\profil\profil.png';
+                                    $urlImg=UPLOADS_COURS_IMGS_URL . $cours[$i]->getImageUrl();
+                            
                                 } else {
                                     $urlImg = 'assets\img\profil\profil.png';
                                 }

@@ -25,20 +25,22 @@ $coursCRUD = new CoursCRUD($conn);
 //on recupère les valeurs (bouton submit)
 $search = isset($_POST["site-search"]) ? $_POST["site-search"] : "";
 $selectedRadio = isset($_POST['radioCours']) ? $_POST["radioCours"] : "";
-$selectedCat = isset($_POST['selectCat']) ? $_POST["selectCat"] : "";;
+$selectedCat = isset($_POST['selectCat']) ? $_POST["selectCat"] : "";
 $cours = null;
           
 //on réinitialise les valeurs (bouton reset)
 if(isset($_POST['reset'])){
     $search='';
-    $selectedRadio='';
-    $selectedCat='';
+    $selectedRadio=null;
+    $selectedCat=null;
 }
 
 
 
-if (isset($_POST['sub'])) {$cours = $coursCRUD->readAllCours();//en attente de la fonction
-    //$cours = $coursCRUD->readCoursFiltres(recherche : string, format : EnumFormatCours, cat : EnumCat) : Cours[]
+if (isset($_POST['sub'])) {
+    if($selectedCat==1)
+        {$selectedCat=null;}
+    $cours = $coursCRUD->readCoursFiltres($search, $selectedRadio, (int)$selectedCat);
 } 
 else{
     $cours = $coursCRUD->readAllCours();

@@ -11,6 +11,9 @@
 /*label de la checkbox*/
 .labelCustomCheckbox{
     font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+    
     color: var(--dark_text);
 
     display: grid;

@@ -65,11 +65,13 @@ function afficherModifierProfil(Utilisateur $user)
             <!-- IS ADMIN -->
             <div class="form-admin-container">
               <?php
-              if (SessionManagement::isAdmin()) {
-              ?>
-                <?php createCheckbox('form-admin-container-checkbox', 'admin', 'Admin ?', 'm', 'enabled', true) ?>
-              <?php
-              }
+              if (SessionManagement::isAdmin()) 
+                {
+                $checked='unchecked';
+                if($user->getIsAdmin())
+                  {$checked='checked';}
+                createCheckbox('form-admin-container-checkbox', 'admin', 'Admin ?', 'm', 'enabled', $checked); 
+                }
               ?>
             </div>
 

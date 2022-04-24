@@ -55,6 +55,12 @@
   font-weight: 600;
 }
 
+.parametre-container-form .labelCustomCheckbox{
+  line-height: 18px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
 #email,
 #pass {
   color: rgba(0, 0, 0, 0.36);
