@@ -145,7 +145,7 @@ class TentativeCoursCRUD
             $sth->bindValue(':idCours', $idCours);
             $sth->bindValue(':isTermine', $isTermine);
             $sth->bindValue(':dateCommence', $dateCommence->format("Y-m-d G:i:s"));
-            $sth->bindValue(':dateTermine', $dateTermine->format("Y-m-d G:i:s"));
+            $sth->bindValue(':dateTermine', $dateTermine ? $dateTermine->format("Y-m-d G:i:s") : null);
             $sth->execute();
         } catch (PDOException $e) {
             echo $e->getMessage() . "<br>";
