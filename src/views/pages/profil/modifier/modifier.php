@@ -2,7 +2,8 @@
 require 'views/components/header/header.php';
 require 'views/components/footer/footer.php';
 require 'views/components/checkbox/checkbox.php';
-
+require 'views/components/message/message.php';
+require 'views/components/radio/radio.php';
 
 /**
  * Afficher la page de modification d'un profil.
@@ -30,9 +31,14 @@ function afficherModifierProfil(Utilisateur $user)
         <?php createrNavbar(); ?>
       </header>
       <main class="page parametre-page">
+
         <div class="parametre-container">
+
           <form class="parametre-container-form" action="/profil/modifier?id=<?php echo $user->getId() ?>" method="post" enctype="multipart/form-data">
             <h2 class="parametre-container-title">Paramètres</h2>
+            <div class="parametre-message-container">
+              <?php createMessage(); ?>
+            </div>
             <div class="parametre-container-form-content">
 
               <!-- EMAIL -->
@@ -57,21 +63,21 @@ function afficherModifierProfil(Utilisateur $user)
               <!-- THEME -->
               <div class="form-theme-container">
                 <label for="theme">Thèmes</label>
-                <input type="radio" name="theme" id="theme-light" value="light" <?php if ($user->getTheme() === EnumTheme::CLAIR) echo "checked" ?>>Clair</input>
-                <input type="radio" name="theme" id="theme-dark" value="dark" <?php if ($user->getTheme() === EnumTheme::SOMBRE) echo "checked" ?>>Sombre</input>
+                <?php createRadio("theme-light", "theme", "Clair", "light", "l", "enabled", ($user->getTheme() === EnumTheme::CLAIR ?  "checked" :  "")); ?>
+                <?php createRadio("theme-dark", "theme", "Sombre", "dark", "l", "enabled", ($user->getTheme() === EnumTheme::SOMBRE ? "checked" : "")); ?>
               </div>
             </div>
 
             <!-- IS ADMIN -->
             <div class="form-admin-container">
               <?php
-              if (SessionManagement::isAdmin()) 
-                {
-                $checked='unchecked';
-                if($user->getIsAdmin())
-                  {$checked='checked';}
-                createCheckbox('form-admin-container-checkbox', 'admin', 'Admin ?', 'm', 'enabled', $checked); 
+              if (SessionManagement::isAdmin()) {
+                $checked = 'unchecked';
+                if ($user->getIsAdmin()) {
+                  $checked = 'checked';
                 }
+                createCheckbox('form-admin-container-checkbox', 'admin', 'Admin ?', 'm', 'enabled', $checked);
+              }
               ?>
             </div>
 
@@ -84,7 +90,7 @@ function afficherModifierProfil(Utilisateur $user)
         <div class="delete-container">
           <form class="delete-container-form" action="/profil/supprimer?id=<?php echo $user->getId() ?>" method="post">
             <h2 class="delete-container-title">Supprimer le compte</h2>
-            <input class="default m" type="submit" id="delete-btn" value="Supprimer">
+            <input class="default s" type="submit" id="delete-btn" value="Supprimer">
           </form>
         </div>
 

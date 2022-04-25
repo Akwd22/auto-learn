@@ -55,7 +55,7 @@
   font-weight: 600;
 }
 
-.parametre-container-form .labelCustomCheckbox{
+.parametre-container-form .labelCustomCheckbox {
   line-height: 18px;
   font-size: 16px;
   font-weight: 400;
@@ -80,20 +80,25 @@
 
 .form-theme-container {
   padding-bottom: 16px;
+  display: flex;
 }
 
 .form-theme-container label {
   padding-right: 16px;
 }
 
-/* LES RADIOS BUTTONS */
-#theme-light,
-#theme-dark {
-  margin-right: 8px;
+.parametre-message-container {
+  margin-top: -20px;
+  padding-bottom: 20px;
 }
 
+/* LES RADIOS BUTTONS */
 #theme-dark {
   margin-left: 25px;
+}
+
+.form-theme-container label {
+  line-height: initial;
 }
 
 .form-admin-container {
@@ -110,7 +115,12 @@
 }
 
 #delete-btn {
-  width: 110px;
+  width: 135px;
+  font-size: 14px;
+}
+
+.form-admin-container label {
+  overflow-y: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
