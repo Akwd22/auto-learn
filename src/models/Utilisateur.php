@@ -148,6 +148,17 @@ class Utilisateur
         }
     }
 
+    public function hasCoursTente($idCours)
+    {
+        foreach($this->coursTentes as $value)
+        {
+            if($value->getCours()->getId() == $idCours)
+                return true;
+        }
+
+        return false;
+    }
+
     public function setCoursTentes($coursTentes)
     {
         $this->coursTentes=$coursTentes;
