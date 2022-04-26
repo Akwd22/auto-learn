@@ -14,11 +14,11 @@ require_once "models/QCM.php";
 
 SessionManagement::session_start();
 
-if (SessionManagement::isLogged()) {
+/*if (SessionManagement::isLogged()) {
   echo "Vous êtes connecté (Utilisateur ID " . SessionManagement::getUserId() . " | Admin ? " . SessionManagement::isAdmin() . ")";
 } else {
   echo "Vous êtes déconnecté.";
-}
+}*/
 
 
 $db = new DatabaseManagement();
@@ -79,7 +79,11 @@ $tentativeQCM->setNumQuestionCourante(0);
 $tentativeQCM->questionSuivante($rep);
 
 
-
+$cours = new CoursTexte("tertete",30);
+$cours->setTitre("titreTexte");
+$cours->setDescription("description");
+$cours->setImageUrl("test");
+$cours->setDateCreation(new DateTime());
 ?>
 
 <html>
@@ -98,6 +102,44 @@ $tentativeQCM->questionSuivante($rep);
     <form action="/deconnexion" method="POST">
       <input type="submit" id='submit' value="Se déconnecter">
     </form>
+  </div>
+
+  <div>
+  <form action="/cours/editer" method="post" enctype="multipart/form-data">
+    <h1>Modifier le cours</h1>
+    <label for="titre">Nouveau titre</label>
+    <input type="text" name="titre" id="titre" value="<?php echo $cours->getTitre() ?>">
+    <br>
+    <label for="description">Nouvelle description</label>
+    <input type="text" name="description" id="description">
+    <br>
+    <label for="tempsMoyen">Temps</label>
+    <input type="text" name="tempsMoyen" id="tempsMoyen">
+    <br>
+    <select name="categorie">
+    <option value="1">Bureautique</option>
+    <option value="2">Langages</option>
+    </select>
+    <br>
+    <br>
+    <select name="niveauRecommande">
+    <option value="1">Debutant</option>
+    <option value="2">Avance</option>
+    </select>
+    <br>
+    <label for="image">Nouvelle image</label>
+    <input type="file" name="image" id="image">
+    <br>
+    <label for="fichPdf">Nouveau cours pdf</label>
+    <input type="file" name="fichPdf" id="fichPdf">
+    <br>
+    <input type="hidden" name="nbLiens" value="3">
+    <input type="text" name="lien1">
+    <input type="text" name="lien2">
+    <input type="text" name="lien3">
+    <br>
+    <input type="submit" name="submit" value="Modifier le cours">
+  </form>
   </div>
 
 </body>
