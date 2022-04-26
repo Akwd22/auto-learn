@@ -17,7 +17,7 @@
                     <h1 id="titleForm">Inscription</h1>
 
                     <?php createMessage(); ?>
-
+                    
                     <div class="labelsDiv"><label class="labelsForm" for="email">Email</label></div>
                     <input id="email" class="input l" type="email" placeholder="Entrer l'email" name="email" required>
 
