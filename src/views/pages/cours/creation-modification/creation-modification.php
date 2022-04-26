@@ -3,23 +3,21 @@ require 'views/components/footer/footer.php';
 require 'views/components/radio/radio.php';
 require 'views/components/message/message.php';
 
-
 function afficherVue(bool $isEditMode, Cours $cours = null)
 {
-
     // CONTAINER DE DROITE 
     //Il s'agit de la div qui contiens le lien des videos de formations si le cours est de format vidéo
-    $isVideo = function () {
-        global $cours; //On importe la variable $cours donnée en parametre dans le scope de la fonction
-        if ($cours::FORMAT === EnumFormatCours::VIDEO) {
-            return <<<HTML
-            <div class='lien-container'>
-                <form class="lien-container-form">
-                </form>
-            </div>
-HTML;
-        }
-    };
+//     $isVideo = function () {
+//         global $cours; //On importe la variable $cours donnée en parametre dans le scope de la fonction
+//         if ($cours::FORMAT === EnumFormatCours::VIDEO) {
+//             return <<<HTML
+//             <div class='lien-container'>
+//                 <form class="lien-container-form">
+//                 </form>
+//             </div>
+// HTML;
+//         }
+//     };
 
 ?>
 
@@ -54,7 +52,11 @@ HTML;
                 </div>
 
                 <!-- CONTAINER DES LIENS VERS LES VIDEOS -->
-                <?php echo $isVideo(); ?>
+                <div class='lien-container'>
+                    <form class="lien-container-form">
+                        video
+                    </form>
+                </div>
             </main>
         </div>
         <?php createFooter(); ?>
