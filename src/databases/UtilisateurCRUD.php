@@ -302,25 +302,25 @@ class UtilisateurCRUD
     }
 }
 
-$conn = new DatabaseManagement();
-$crud = new UtilisateurCRUD($conn);
+// $conn = new DatabaseManagement();
+// $crud = new UtilisateurCRUD($conn);
 
-$c = new TentativeCours();
-$c->setIsTermine(false);
-$c->setCours(new CoursTexte("x", 1));
+// $c = new TentativeCours();
+// $c->setIsTermine(false);
+// $c->setCours(new CoursTexte("x", 1));
 
-$t = new TentativeQCM();
-$t->setMoy(15.5);
-$t->setPointsActuels(30);
-$t->setIsTermine(true);
-$t->setNumQuestionCourante(5);
-$t->setQcm(new QCM(1));
+// $t = new TentativeQCM();
+// $t->setMoy(15.5);
+// $t->setPointsActuels(30);
+// $t->setIsTermine(true);
+// $t->setNumQuestionCourante(5);
+// $t->setQcm(new QCM(1));
 
-$u = new Utilisateur();
-$u->setEmail("test@test.com");
-$u->setPseudo("test");
-$u->setPassHash("test");
-$u->addCoursTentes($c);
-$u->addQcmTentes($t);
+// $u = new Utilisateur();
+// $u->setEmail("test@test.com");
+// $u->setPseudo("test");
+// $u->setPassHash("test");
+// $u->addCoursTentes($c);
+// $u->addQcmTentes($t);
 
-$crud->createUser($u);
+// $crud->createUser($u);
