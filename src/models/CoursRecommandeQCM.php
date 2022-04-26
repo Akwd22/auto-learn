@@ -1,15 +1,10 @@
 <?php
 
-class CoursRecommandeQCM extends Cours
+class CoursRecommandeQCM
 {
     private $moyMin;
-
     private $moyMax;
-
-    public function __construct($id = null)
-    {
-        parent::__construct($id);
-    }
+    private $cours;
 
     public function setMoyMin($moyMin){
         if ($moyMin >= 0 && $moyMin <= 20) 
@@ -35,6 +30,15 @@ class CoursRecommandeQCM extends Cours
     {
         return $this->moyMax;
     }
-}
 
+    public function setCours($cours)
+    {
+        $this->cours = $cours;
+    }
+
+    public function getCours()
+    {
+        return $this->cours;
+    }
+}
 ?>

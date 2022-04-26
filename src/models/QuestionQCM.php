@@ -1,5 +1,7 @@
 <?php
 
+use LDAP\Result;
+
 require_once("models/EnumTypeQuestion.php");
 require_once("models/ReponseQCM.php");
 require_once("models/ChoixQuestion.php");
@@ -10,7 +12,7 @@ abstract class QuestionQCM
 
     private $question;
 
-    const ETYPEQUESTION = EnumTypeQuestion::NONE;
+    const TYPE = EnumTypeQuestion::NONE;
 
     public function __construct($id = null)
     {
@@ -34,17 +36,23 @@ abstract class QuestionQCM
     }
 
     abstract public function isCorrecte($reponseQCM);
+    abstract public function getPoints();
 }
 
 class QuestionChoixUnique extends QuestionQCM
 {
-    const ETYPEQUESTION = EnumTypeQuestion::CHOIX_UNIQUE;
+    const TYPE = EnumTypeQuestion::CHOIX_UNIQUE;
 
     private $choix = array();
     
     public function __construct($id = null)
     {
         parent::__construct($id);
+    }
+
+    public function addChoix($choix)
+    {
+        array_push($this->choix, $choix);
     }
 
     public function getAllChoix()
@@ -69,35 +77,57 @@ class QuestionChoixUnique extends QuestionQCM
         {
             if($this->choix[$i]->getId()==$id)
             {
-                unset($this->choix[$i]);
+                array_splice($this->choix, $i, 1);
             }
         }
     }
 
     public function isCorrecte($reponseQCM) 
     {
-        $res=true;
+        $points = 0;
 
-        for($i=0;$i<count($this->choix);$i++)
+        foreach ($this->choix as $choixQuestion)
         {
-            if($this->getChoixById($i)->getIsValide()!=$reponseQCM->getChoixById($i)->getIsCoche())
+            $choixReponse = $reponseQCM->getChoixById($choixQuestion->getId());
+
+            if ($choixReponse->getIsCoche())
             {
-                $res=false;
+                $points += $choixQuestion->getPoints(); // Ajouter les points (ou retirer car dans le cas d'une réponse fausse, les points sont négatifs).
             }
         }
-        return $res;
+
+        return $points;
+    }
+
+    public function getPoints()
+    {
+        $points = 0;
+
+        foreach ($this->choix as $choix)
+        {
+            if ($choix->getIsValide()) {
+                $points += $choix->getPoints();
+            }
+        }
+
+        return $points;
     }
 }
 
 class QuestionChoixMultiples extends QuestionQCM
 {
-    const ETYPEQUESTION = EnumTypeQuestion::CHOIX_MULTIPLES;
+    const TYPE = EnumTypeQuestion::CHOIX_MULTIPLES;
 
     private $choix = array();
     
     public function __construct($id = null)
     {
         parent::__construct($id);
+    }
+
+    public function addChoix($choix)
+    {
+        array_push($this->choix, $choix);
     }
 
     public function getAllChoix()
@@ -119,25 +149,44 @@ class QuestionChoixMultiples extends QuestionQCM
         for($i=0;$i<count($this->choix);$i++)
         {
             if($this->choix[$i]->getId()==$id)
-                unset($this->choix[$i]);
+                array_splice($this->choix, $i, 1);
         }
     }
 
     public function isCorrecte($reponseQCM) 
     {
-        $res=true;
+        $points = 0;
 
-        for($i=0;$i<count($this->choix);$i++)
+        foreach ($this->choix as $choixQuestion)
         {
-            if($this->getChoixById($i)->getIsValide()!=$reponseQCM->getChoixById($i)->getIsCoche())
-                $res=false;
+            $choixReponse = $reponseQCM->getChoixById($choixQuestion->getId());
+
+            if ($choixReponse->getIsCoche())
+            {
+                $points += $choixReponse->getPoints(); // Ajouter les points (ou retirer car dans le cas d'une réponse fausse, les points sont négatifs).
+            }
         }
-        return $res;
+
+        return $points;
+    }
+
+    public function getPoints()
+    {
+        $points = 0;
+
+        foreach ($this->choix as $choix)
+        {
+            if ($choix->getIsValide()) {
+                $points += $choix->getPoints();
+            }
+        }
+
+        return $points;
     }
 }
 class QuestionSaisie extends QuestionQCM
 {
-    const ETYPEQUESTION = EnumTypeQuestion::SAISIE;
+    const TYPE = EnumTypeQuestion::SAISIE;
 
     private $placeHolder;
 
@@ -183,13 +232,14 @@ class QuestionSaisie extends QuestionQCM
 
     public function isCorrecte($reponseQCM)
     {
-        $res=false;
+        $points = 0;
 
         if($reponseQCM->getSaisie()==$this->bonneReponse)
-            $res=true;
+        {
+            $points = $this->points;
+        }
 
-        return $res;
+        return $points;
     }
 }
-
 ?>

@@ -108,8 +108,9 @@ class QCM
     {
         for($i=0;$i<count($this->coursRecommandes);$i++)
         {
-            if(($this->coursRecommandes[i]->getMoyMin()==$cours->getMoyMin()) && ($this->coursRecommandes[i]->getMoyMax()==$cours->getMoyMax()))
-                unset($this->coursRecommandes[$i]);
+            if ($this->coursRecommandes[$i] == $cours) {
+                array_splice($this->coursRecommandes, $i, 1);
+            }
         }
     }
 
@@ -142,9 +143,20 @@ class QCM
         for($i=0;$i<count($this->questions);$i++)
         {
             if($this->questions[$i]->getId()==$id)
-                unset($this->questions[$i]);
+                array_splice($this->questions, $i, 1);
         }    
     }
-}
 
+    public function getTotalPoints()
+    {
+        $points = 0;
+
+        foreach ($this->questions as $question)
+        {
+            $points += $question->getPoints();
+        }
+
+        return $points;
+    }
+}
 ?>

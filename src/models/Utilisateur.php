@@ -29,6 +29,7 @@ class Utilisateur
     public function __construct($id = null)
     {
         $this->coursTentes = array();
+        $this->qcmTentes = array();
         
         if ($id) {
             $this->id = intval($id);
@@ -189,16 +190,16 @@ class Utilisateur
     {
         foreach($this->qcmTentes as $value)
         {
-            if($value->getCoursRecommande()->getId()==$id)
+            if($value->getId()==$id)
                 return $value;
         }
     }
 
-    public function getQcmTentesByCoursId($id)
+    public function getQcmTentesByQcmId($id)
     {
         foreach($this->qcmTentes as $value)
         {
-            if($value->getQCM()->getCoursRecommandeById($id)==$id)
+            if($value->getQCM()->getId()==$id)
                 return $value;
         }        
     }
@@ -217,9 +218,9 @@ class Utilisateur
     {
         for ($i=0; $i<=count($this->qcmTentes)-1;$i++)
         {
-            if($this->qcmTentes[$i]->getId()==$id)
+            if($this->qcmTentes[$i]->getId() == $id)
             {
-                unset($this->qcmTentes[$i]);
+                array_splice($this->qcmTentes, $i, 1);
             }      
         }
     }

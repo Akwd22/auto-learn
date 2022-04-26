@@ -42,10 +42,11 @@ class TentativeQCM
 
     public function setMoy($moy)
     {
-        if ($moy != null && $moy >= 0 && $moy <= 20) 
-            $this->moy = floatval($moy);
-        else
+        if ($moy !== null && ($moy < 0 || $moy > 20)) 
             throw new Error("\$moy doit être compris entre 0 et 20");
+
+        $this->moy = $moy === null ? null : floatval($moy);
+            
     }
 
     public function getMoy()
@@ -121,22 +122,21 @@ class TentativeQCM
 
     public function nbQuestionRestante()
     {
-        return $this->qcm->nbQuestions();
+        return $this->qcm->nbQuestions() - $this->numQuestionCourante;
     }
 
     public function questionCourante()
     {
-        return $this->qcm->getQuestionsByIndex($this->numQuestionCourante);
+        return $this->qcm->getQuestionsByIndex($this->numQuestionCourante - 1);
     }
 
     public function questionSuivante($reponseQCM)
     {  
-        if($this->questionCourante()->isCorrecte($reponseQCM)==true)
-        {
-            $this->pointsActuels+=$this->questionCourante()->getPoints();
-            $this->numQuestionCourante++;
-        }
-        elseif($this->questionCourante()==null)
+
+        $this->pointsActuels += $this->questionCourante()->isCorrecte($reponseQCM);
+        $this->numQuestionCourante++;
+
+        if ($this->nbQuestionRestante() < 0)
         {
             $this->terminer();
         }
@@ -152,22 +152,30 @@ class TentativeQCM
         $this->numQuestionCourante = null;
     }
 
+    public function commencer()
+    {
+        $this->numQuestionCourante = 1;
+    }
+
     public function terminer()
     {
-        $this->moy = $this->pointsActuels / $this->numQuestionCourante;
+        $this->moy = ($this->pointsActuels / $this->qcm->getTotalPoints()) * 20;
+        if ($this->moy < 0) $this->moy = 0;
+        
         $this->isTermine = true;
         $this->dateTermine = new DateTime();
+        $this->numQuestionCourante = null;
     }
 
     public function getCoursRecommande()
     {
-        if($this->isTermine!=true)
+        if(!$this->isTermine)
         {
             return null;
         }
         else
         {
-            foreach($this->qcm->coursRecomandes as $value)
+            foreach($this->qcm->getAllCoursRecommandes() as $value)
             {
                 if($this->moy>=$value->getMoyMin() && $this->moy<=$value->getMoyMax())
                     return $value;
@@ -175,5 +183,4 @@ class TentativeQCM
         }
     }
 }
-
 ?>

@@ -5,7 +5,7 @@ require_once("models/ChoixReponse.php");
 
 abstract class ReponseQCM
 {
-    const ETYPEQUESTION = EnumTypeQuestion::NONE;
+    const TYPE = EnumTypeQuestion::NONE;
 
     public function __construct()
     {}
@@ -13,13 +13,18 @@ abstract class ReponseQCM
 
 class ReponseChoixUnique extends ReponseQCM
 {
-    const ETYPEQUESTION = EnumTypeQuestion::CHOIX_UNIQUE;
+    const TYPE = EnumTypeQuestion::CHOIX_UNIQUE;
     
     private $choix = array();
 
     public function __construct(){
         parent::__construct();
     }   
+
+    public function addChoix($choix)
+    {
+        array_push($this->choix, $choix);
+    }
 
     public function getAllChoix()
     {
@@ -30,7 +35,7 @@ class ReponseChoixUnique extends ReponseQCM
     {
         for($i=0;$i<count($this->choix);$i++)
         {
-            if($this->choix[$i]->getId()==$id)
+            if($this->choix[$i]->getIdChoix()==$id)
             {
                 return $this->choix[$i];
             }
@@ -41,7 +46,7 @@ class ReponseChoixUnique extends ReponseQCM
     {
         for($i=0;$i<count($this->choix);$i++)
         {
-            if($this->choix[$i]->getId()==$id)
+            if($this->choix[$i]->getIdChoix()==$id)
             {
                 unset($this->choix[$i]);
             }
@@ -51,13 +56,18 @@ class ReponseChoixUnique extends ReponseQCM
 
 class ReponseChoixMultiples extends ReponseQCM
 {
-    const ETYPEQUESTION = EnumTypeQuestion::CHOIX_MULTIPLES;
+    const TYPE = EnumTypeQuestion::CHOIX_MULTIPLES;
     
     private $choix = array();
 
     public function __construct(){
         parent::__construct();
     }   
+
+    public function addChoix($choix)
+    {
+        array_push($this->choix, $choix);
+    }
 
     public function getAllChoix()
     {
@@ -68,7 +78,7 @@ class ReponseChoixMultiples extends ReponseQCM
     {
         for($i=0;$i<count($this->choix);$i++)
         {
-            if($this->choix[$i]->getId()==$id)
+            if($this->choix[$i]->getIdChoix()==$id)
             {
                 return $this->choix[$i];
             }
@@ -79,7 +89,7 @@ class ReponseChoixMultiples extends ReponseQCM
     {
         for($i=0;$i<count($this->choix);$i++)
         {
-            if($this->choix[$i]->getId()==$id)
+            if($this->choix[$i]->getIdChoix()==$id)
             {
                 unset($this->choix[$i]);
             }
@@ -89,7 +99,7 @@ class ReponseChoixMultiples extends ReponseQCM
 
 class ReponseSaisie extends ReponseQCM
 {
-    const ETYPEQUESTION = EnumTypeQuestion::SAISIE;
+    const TYPE = EnumTypeQuestion::SAISIE;
 
     private $saisie;
 
@@ -109,5 +119,4 @@ class ReponseSaisie extends ReponseQCM
         return $this->saisie;
     }
 }
-
 ?>
