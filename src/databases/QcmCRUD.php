@@ -92,6 +92,13 @@ class QcmCRUD
     }
   }
 
+  public function deleteQcm($idQcm)
+  {
+    $q = $this->db->getPDO()->prepare("DELETE FROM QCM WHERE id = :idQcm");
+    $q->bindValue(":idQcm", $idQcm);
+    $q->execute();
+  }
+
   /* ---------------------------- Cours recommandés --------------------------- */
 
   public function readCoursRecommandesForQcm($idQcm)
@@ -122,10 +129,19 @@ class QcmCRUD
     $q->bindValue(":moyMax", $coursRecommande->getMoyMax());
     $q->execute();
   }
+
+  public function deleteAllCoursRecommandesForQcm($idQcm)
+  {
+    $q = $this->db->getPDO()->prepare("DELETE FROM CoursRecommandeQCM WHERE idQCM = :idQcm");
+    $q->bindValue(":idQcm", $idQcm);
+    $q->execute();
+  }
 }
 
 // $conn = new DatabaseManagement();
 // $crud = new QcmCRUD($conn);
+
+// $crud->deleteAllCoursRecommandes(1);
 
 // $c = new CoursRecommandeQCM();
 // $c->setCours(new CoursTexte("x", 1));

@@ -227,6 +227,7 @@ class UtilisateurCRUD
             $isAdmin = $user->getisAdmin();
             $isConnected = $user->getIsConnected();
             $coursTentes = $user->getAllCoursTentes();
+            $qcmTentes = $user->getAllQcmTentes();
 
             if ($user->getId() == null) {
                 $sth = $this->db->getPDO()->prepare("
@@ -255,6 +256,9 @@ class UtilisateurCRUD
             echo $e->getMessage() . "<br>";
             die();
         }
+
+        $newId = $this->db->lastInsertId();
+
         foreach ($coursTentes as $c)
         {
             $this->tentativeCoursCRUD->createTentativeCours($c);
@@ -278,6 +282,11 @@ class UtilisateurCRUD
                 die();
             }
         }
+
+        foreach ($qcmTentes as $t)
+        {
+            $this->tentativeQcmCRUD->createTentativeQcm($newId, $t);
+        }
     }
 
     public function deleteUser($id)
@@ -292,3 +301,26 @@ class UtilisateurCRUD
         }
     }
 }
+
+$conn = new DatabaseManagement();
+$crud = new UtilisateurCRUD($conn);
+
+$c = new TentativeCours();
+$c->setIsTermine(false);
+$c->setCours(new CoursTexte("x", 1));
+
+$t = new TentativeQCM();
+$t->setMoy(15.5);
+$t->setPointsActuels(30);
+$t->setIsTermine(true);
+$t->setNumQuestionCourante(5);
+$t->setQcm(new QCM(1));
+
+$u = new Utilisateur();
+$u->setEmail("test@test.com");
+$u->setPseudo("test");
+$u->setPassHash("test");
+$u->addCoursTentes($c);
+$u->addQcmTentes($t);
+
+$crud->createUser($u);

@@ -25,4 +25,9 @@ class DatabaseManagement
     {
         $this->pdo = null;
     }
+
+    public function lastInsertId()
+    {
+        return $this->pdo->lastInsertId();
+    }
 }

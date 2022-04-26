@@ -87,10 +87,19 @@ class TentativeQcmCRUD
     $q->bindValue(":idUtilisateur", $idUtilisateur);
     $q->execute();
   }
+
+  public function deleteTentativeQcm($idTentative)
+  {
+    $q = $this->db->getPDO()->prepare("DELETE FROM TentativeQCM WHERE id = :idTentative");
+    $q->bindValue(":idTentative", $idTentative);
+    $q->execute();
+  }
 }
 
 // $conn = new DatabaseManagement();
 // $crud = new TentativeQcmCRUD($conn);
+
+// $crud->deleteTentativeQcm(1);
 
 // $t = new TentativeQCM();
 // $t->setMoy(15.5);

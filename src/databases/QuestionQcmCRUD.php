@@ -118,6 +118,13 @@ class QuestionQcmCRUD
     }
   }
 
+  public function deleteAllQuestionsFromQcm($idQcm)
+  {
+    $q = $this->db->getPDO()->prepare("DELETE FROM QuestionQCM WHERE idQCM = :idQcm");
+    $q->bindValue(":idQcm", $idQcm);
+    $q->execute();
+  }
+
   /* ---------------------------------- Choix --------------------------------- */
 
   public function readChoixById($idChoix)
@@ -171,6 +178,8 @@ class QuestionQcmCRUD
 
 // $conn = new DatabaseManagement();
 // $crud = new QuestionQcmCRUD($conn);
+
+// $crud->deleteAllQuestionsFromQcm(1);
 
 // $c1 = new ChoixQuestion();
 // $c1->setIntitule("c1");
