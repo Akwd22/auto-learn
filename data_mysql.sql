@@ -36,7 +36,7 @@ INSERT INTO ChoixQuestion VALUES (2, 1, 'non', 0, 0);
 INSERT INTO QuestionQCM VALUES (2, 1, 'Question 2 : blabla... (bonne réponse : 1 et 3)', 'CHOIX');
 INSERT INTO QuestionChoix VALUES (2, 1);
 INSERT INTO ChoixQuestion VALUES (3, 2, '1', 1, 0.5);
-INSERT INTO ChoixQuestion VALUES (4, 2, '2', 0, 0);
+INSERT INTO ChoixQuestion VALUES (4, 2, '2', 0, -1);
 INSERT INTO ChoixQuestion VALUES (5, 2, '3', 1, 0.5);
 
 INSERT INTO QCM VALUES (2, 'QCM JS', 'WEB', 'Testez-vous sur le JS', DEFAULT, '2.xml');
