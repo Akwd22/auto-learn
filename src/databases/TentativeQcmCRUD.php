@@ -16,6 +16,19 @@ class TentativeQcmCRUD
 
   /* ----------------------------- Tentatives QCM ----------------------------- */
 
+  public function readMaxTentativeQcmId()
+  {
+    $q = $this->db->getPDO()->query("SELECT MAX(id) AS maxId FROM TentativeQCM");
+
+    $maxId = null;
+
+    if (($row = $q->fetch())) {
+      $maxId = $row["maxId"];
+    }
+
+    return $maxId;
+  }
+
   public function readTentativeQcmById($idTentative)
   {
     $q = $this->db->getPDO()->prepare("SELECT * FROM TentativeQCM WHERE id = :idTentative");
@@ -54,9 +67,37 @@ class TentativeQcmCRUD
 
     return $array;
   }
+
+  public function createTentativeQcm($idUtilisateur, $tentative)
+  {
+    $q = $this->db->getPDO()->prepare("INSERT INTO TentativeQCM (idQCM, moy, pointsActuels, isTermine, dateCommence, dateTermine, numQuestionCourante) VALUES (:idQCM, :moy, :pointsActuels, :isTermine, :dateCommence, :dateTermine, :numQuestionCourante)");
+    $q->bindValue(":idQCM", $tentative->getQcm()->getId());
+    $q->bindValue(":moy", $tentative->getMoy());
+    $q->bindValue(":pointsActuels", $tentative->getPointsActuels());
+    $q->bindValue(":isTermine", intval($tentative->getIsTermine()));
+    $q->bindValue(":dateCommence", $tentative->getDateCommence()->format("Y-m-d G:i:s"));
+    $q->bindValue(":dateTermine", $tentative->getDateTermine() ? $tentative->getDateTermine()->format("Y-m-d G:i:s") : null);
+    $q->bindValue(":numQuestionCourante", $tentative->getNumQuestionCourante());
+    $q->execute();
+
+    $newId = $this->readMaxTentativeQcmId();
+
+    $q = $this->db->getPDO()->prepare("INSERT INTO UtilisateurTentativesQCM (idTentativeQCM, idUtilisateur) VALUES (:idTentativeQCM, :idUtilisateur)");
+    $q->bindValue(":idTentativeQCM", $newId);
+    $q->bindValue(":idUtilisateur", $idUtilisateur);
+    $q->execute();
+  }
 }
 
 // $conn = new DatabaseManagement();
 // $crud = new TentativeQcmCRUD($conn);
 
-// var_dump($crud->readAllTentativesQcmFromUser(2));
+// $t = new TentativeQCM();
+// $t->setMoy(15.5);
+// $t->setPointsActuels(30);
+// $t->setIsTermine(true);
+// $t->setNumQuestionCourante(5);
+
+// $t->setQcm(new QCM(1));
+
+// $crud->createTentativeQcm(1, $t);

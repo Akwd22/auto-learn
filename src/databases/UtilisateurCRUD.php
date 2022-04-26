@@ -292,6 +292,3 @@ class UtilisateurCRUD
         }
     }
 }
-
-$conn = new DatabaseManagement();
-$crud = new UtilisateurCRUD($conn);
