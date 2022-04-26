@@ -55,7 +55,7 @@ abstract class Cours
 
   public function getImageUrl()
   {
-    return $this->imageUrl ? $this->imageUrl : "default.png";
+    return $this->imageUrl;
   }
 
   public function setImageUrl($imageUrl)

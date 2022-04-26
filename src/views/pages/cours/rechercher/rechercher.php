@@ -85,16 +85,16 @@
 
                                 echo "<div class=\"containerFlexCours\">";
                                 echo "<div class=\"containerCours\">";
-                                echo   "<a href=\"/cours?id=" . $cours[$i]->getId() . "\">";
+                                echo "<a href=\"/cours?id=" . $cours[$i]->getId() . "\">";
 
                                 $urlImg = '';
-                                if ($cours[$i]->getImageUrl() != '' && $cours[$i]->getImageUrl() !=null) {
-                                    //à revoir
-                                    $urlImg=UPLOADS_COURS_IMGS_URL . $cours[$i]->getImageUrl();
-                            
+
+                                if ($cours[$i]->getImageUrl()) {
+                                    $urlImg = UPLOADS_COURS_IMGS_URL . $cours[$i]->getImageUrl();
                                 } else {
-                                    $urlImg = 'assets\img\profil\profil.png';
+                                    $urlImg = DEFAULT_COURS_IMG;
                                 }
+
                                 echo "<img class=\"imgCours\" src=\"" . $urlImg . "\">";
 
                                 echo "<p class=\"titleCours\">" . $cours[$i]->getTitre() . "</p>";

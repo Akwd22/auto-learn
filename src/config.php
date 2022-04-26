@@ -28,3 +28,6 @@ define("UPLOADS_COURS_IMGS_URL", "/assets/uploads/cours/imgs/");
 define("UPLOADS_COURS_DOCS_URL", "/assets/uploads/cours/docs/");
 define("UPLOADS_PROFIL_URL", "/assets/uploads/profils/");
 define("UPLOADS_QCM_URL", "/assets/uploads/qcm/");
+
+define("DEFAULT_PROFIL_IMG", UPLOADS_PROFIL_URL . "default.png");
+define("DEFAULT_COURS_IMG", UPLOADS_COURS_IMGS_URL . "default.png");
