@@ -29,12 +29,12 @@ INSERT INTO CoursTexte VALUES (4, '4.pdf');
 /* ----------------------------------- QCM ---------------------------------- */
 
 INSERT INTO QCM VALUES (1, 'QCM C++', 'LANGAGES', 'Testez-vous sur le C++', DEFAULT, '1.xml');
-INSERT INTO QuestionQCM VALUES (1, 1, 'Question 1 : blabla... (bonne réponse : oui)', 'CHOIX_UNIQUE');
-INSERT INTO QuestionChoixUnique VALUES (1);
+INSERT INTO QuestionQCM VALUES (1, 1, 'Question 1 : blabla... (bonne réponse : oui)', 'CHOIX');
+INSERT INTO QuestionChoix VALUES (1, 0);
 INSERT INTO ChoixQuestion VALUES (1, 1, 'oui', 1, 1);
 INSERT INTO ChoixQuestion VALUES (2, 1, 'non', 0, 0);
-INSERT INTO QuestionQCM VALUES (2, 1, 'Question 2 : blabla... (bonne réponse : 1 et 3)', 'CHOIX_MULTIPLES');
-INSERT INTO QuestionChoixMultiples VALUES (2);
+INSERT INTO QuestionQCM VALUES (2, 1, 'Question 2 : blabla... (bonne réponse : 1 et 3)', 'CHOIX');
+INSERT INTO QuestionChoix VALUES (2, 1);
 INSERT INTO ChoixQuestion VALUES (3, 2, '1', 1, 0.5);
 INSERT INTO ChoixQuestion VALUES (4, 2, '2', 0, 0);
 INSERT INTO ChoixQuestion VALUES (5, 2, '3', 1, 0.5);
@@ -62,5 +62,5 @@ INSERT INTO UtilisateurTentativesCours VALUES (2, 1);
 
 INSERT INTO TentativeQCM VALUES (1, 2, NULL, 0, 0, DEFAULT, NULL, 0);
 INSERT INTO UtilisateurTentativesQCM VALUES (1, 2);
-INSERT INTO TentativeQCM VALUES (2, 1, 12, 2, 1, DEFAULT, '2023-01-01 00:00:00', 1);
+INSERT INTO TentativeQCM VALUES (2, 1, 12, 2, 1, DEFAULT, '2023-01-01 00:00:00', NULL);
 INSERT INTO UtilisateurTentativesQCM VALUES (2, 2);

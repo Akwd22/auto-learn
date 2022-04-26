@@ -2,6 +2,7 @@
 require_once("models/Utilisateur.php");
 require_once("databases/DatabaseManagement.php");
 require_once("databases/TentativeCoursCRUD.php");
+require_once("databases/TentativeQcmCRUD.php");
 
 class UtilisateurCRUD
 {
@@ -9,11 +10,13 @@ class UtilisateurCRUD
     private $db;
 
     private $tentativeCoursCRUD;
+    private $tentativeQcmCRUD;
 
     public function __construct($db)
     {
         $this->db = $db;
         $this->tentativeCoursCRUD = new TentativeCoursCRUD($db);
+        $this->tentativeQcmCRUD = new TentativeQcmCRUD($db);
     }
 
     public function getDb()
@@ -45,6 +48,7 @@ class UtilisateurCRUD
             $user->setIsAdmin($r["isAdmin"]);
             $user->setIsConnected($r["isConnected"]);
             $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($r["id"]));
+            $user->setQcmTentes($this->tentativeQcmCRUD->readAllTentativesQcmFromUser($user->getId()));
 
             array_push($users, $user);
         }
@@ -71,6 +75,7 @@ class UtilisateurCRUD
             $user->setIsAdmin($row[0][7]);
             $user->setIsConnected($row[0][8]); 
             $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($row[0][0]));
+            $user->setQcmTentes($this->tentativeQcmCRUD->readAllTentativesQcmFromUser($user->getId()));
         }
 
         return $user;
@@ -95,6 +100,7 @@ class UtilisateurCRUD
             $user->setIsAdmin($row[0][7]);
             $user->setIsConnected($row[0][8]);
             $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($row[0][0]));
+            $user->setQcmTentes($this->tentativeQcmCRUD->readAllTentativesQcmFromUser($user->getId()));
             return $user;
         }
     }
@@ -118,6 +124,7 @@ class UtilisateurCRUD
             $user->setIsAdmin($row[0][7]);
             $user->setIsConnected($row[0][8]);          
             $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($row[0][0]));
+            $user->setQcmTentes($this->tentativeQcmCRUD->readAllTentativesQcmFromUser($user->getId()));
             return $user;
         }
     }
@@ -158,7 +165,7 @@ class UtilisateurCRUD
             $user->setIsAdmin($r["isAdmin"]);
             $user->setIsConnected($r["isConnected"]);
             $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($row[0][0]));
-
+            $user->setQcmTentes($this->tentativeQcmCRUD->readAllTentativesQcmFromUser($user->getId()));
 
             array_push($users, $user);
         }
@@ -285,3 +292,6 @@ class UtilisateurCRUD
         }
     }
 }
+
+$conn = new DatabaseManagement();
+$crud = new UtilisateurCRUD($conn);

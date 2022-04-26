@@ -74,18 +74,14 @@ CREATE TABLE QuestionQCM (
   id        INT AUTO_INCREMENT PRIMARY KEY,
   idQCM     INT,
   question  TEXT NOT NULL,
-  `type` ENUM('CHOIX_UNIQUE', 'CHOIX_MULTIPLES', 'SAISIE') NOT NULL,
+  `type` ENUM('CHOIX', 'SAISIE') NOT NULL,
   CONSTRAINT FK_QuestionQCM_QCM FOREIGN KEY (idQCM) REFERENCES QCM(id) ON DELETE CASCADE
 );
 
-CREATE TABLE QuestionChoixUnique (
+CREATE TABLE QuestionChoix (
   idQuestionQCM INT PRIMARY KEY,
-  CONSTRAINT FK_QuestionChoixUnique_Parent FOREIGN KEY (idQuestionQCM) REFERENCES QuestionQCM(id) ON DELETE CASCADE
-);
-
-CREATE TABLE QuestionChoixMultiples (
-  idQuestionQCM INT PRIMARY KEY,
-  CONSTRAINT FK_QuestionChoixMultiples_Parent FOREIGN KEY (idQuestionQCM) REFERENCES QuestionQCM(id) ON DELETE CASCADE
+  isMultiple BOOLEAN NOT NULL DEFAULT 0,
+  CONSTRAINT FK_QuestionChoix_Parent FOREIGN KEY (idQuestionQCM) REFERENCES QuestionQCM(id) ON DELETE CASCADE
 );
 
 CREATE TABLE QuestionSaisie (
@@ -93,7 +89,7 @@ CREATE TABLE QuestionSaisie (
   placeholder   TEXT,
   bonneReponse  TEXT,
   points        FLOAT,
-  CONSTRAINT FK_QuestionSaisies_Parent FOREIGN KEY (idQuestionQCM) REFERENCES QuestionQCM(id) ON DELETE CASCADE
+  CONSTRAINT FK_QuestionSaisie_Parent FOREIGN KEY (idQuestionQCM) REFERENCES QuestionQCM(id) ON DELETE CASCADE
 );
 
 CREATE TABLE ChoixQuestion (
