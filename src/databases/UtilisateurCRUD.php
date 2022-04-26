@@ -184,6 +184,7 @@ class UtilisateurCRUD
             $isAdmin = $user->getisAdmin();
             $isConnected = $user->getIsConnected();
             $coursTentes = $user->getAllCoursTentes();
+            $qcmTentes = $user->getAllQcmTentes();
 
             $sth = $this->db->getPDO()->prepare("UPDATE utilisateur set 
 						pseudo = :pseudo,
@@ -213,6 +214,11 @@ class UtilisateurCRUD
             $this->tentativeCoursCRUD->updateTentativeCours($c,$c->getId());
         }
 
+
+        foreach($qcmTentes as $t)
+        {
+            $this->tentativeQcmCRUD->updateTentativeQcm($t);
+        }
     }
 
     public function createUser($user)
@@ -304,6 +310,13 @@ class UtilisateurCRUD
 
 // $conn = new DatabaseManagement();
 // $crud = new UtilisateurCRUD($conn);
+
+// $u = $crud->readUserById(2);
+// $t = $u->getQcmTentesByTentativeId(1);
+// $t->setNumQuestionCourante(666);
+// $t->setPointsActuels(555);
+
+// $crud->updateUser($u, $u->getId());
 
 // $c = new TentativeCours();
 // $c->setIsTermine(false);

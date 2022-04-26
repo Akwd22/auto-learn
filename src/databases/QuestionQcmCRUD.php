@@ -108,7 +108,7 @@ class QuestionQcmCRUD
     {
       $q = $this->db->getPDO()->prepare("INSERT INTO QuestionChoix (idQuestionQCM, isMultiple) VALUES (:idQuestionQCM, :isMultiple)");
       $q->bindValue(":idQuestionQCM", $newId);
-      $q->bindValue(":isMultiple", $question->getIsMultiple());
+      $q->bindValue(":isMultiple", intval($question->getIsMultiple()));
       $q->execute();
 
       foreach ($question->getAllChoix() as $choix)

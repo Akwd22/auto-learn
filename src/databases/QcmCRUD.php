@@ -69,6 +69,28 @@ class QcmCRUD
     return $array;
   }
 
+  public function readQcmFiltres($titre = "", $cat = null)
+  {
+    $q = $this->db->getPDO()->prepare(
+      "SELECT id FROM QCM WHERE
+          titre LIKE :titre"
+          . ($cat    ? " AND categorie = :cat" : "")
+      );
+
+      $q->bindValue(":titre", "%$titre%");
+      if ($cat) $q->bindValue(":cat", $cat, PDO::PARAM_INT);
+
+      $q->execute();   
+
+      $array = [];
+
+      foreach ($q->fetchAll() as $row) {
+        $array[] = $this->readQcmById($row["id"]);
+      }
+      
+      return $array;
+  }
+
   public function createQcm($qcm)
   {
     $q = $this->db->getPDO()->prepare("INSERT INTO QCM (titre, categorie, description, dateCreation, xmlUrl) VALUES (:titre, :categorie, :description, :dateCreation, :xmlUrl)");
@@ -89,6 +111,31 @@ class QcmCRUD
     foreach ($qcm->getAllCoursRecommandes() as $cours)
     {
       $this->createCoursRecommande($newId, $cours);
+    }
+  }
+
+  public function updateQcm($qcm)
+  {
+    $q = $this->db->getPDO()->prepare("UPDATE QCM SET titre = :titre, categorie = :categorie, description = :description, dateCreation = :dateCreation, xmlUrl = :xmlUrl WHERE id = :idQcm");
+    $q->bindValue(":idQcm", $qcm->getId());
+    $q->bindValue(":titre", $qcm->getTitre());
+    $q->bindValue(":categorie", $qcm->getCategorie());
+    $q->bindValue(":description", $qcm->getDescription());
+    $q->bindValue(":dateCreation", $qcm->getDateCreation()->format("Y-m-d G:i:s"));
+    $q->bindValue(":xmlUrl", $qcm->getXmlUrl());
+    $q->execute();
+
+    $this->questionCRUD->deleteAllQuestionsFromQcm($qcm->getId());
+    $this->deleteAllCoursRecommandesForQcm($qcm->getId());
+
+    foreach ($qcm->getAllQuestions() as $question)
+    {
+      $this->questionCRUD->createQuestion($qcm->getId(), $question);
+    }
+
+    foreach ($qcm->getAllCoursRecommandes() as $cours)
+    {
+      $this->createCoursRecommande($qcm->getId(), $cours);
     }
   }
 
@@ -141,37 +188,22 @@ class QcmCRUD
 // $conn = new DatabaseManagement();
 // $crud = new QcmCRUD($conn);
 
-// $crud->deleteAllCoursRecommandes(1);
+// $q = $crud->readQcmFiltres("", EnumCategorie::WEB);
+// var_dump($q);
 
 // $c = new CoursRecommandeQCM();
-// $c->setCours(new CoursTexte("x", 1));
-// $c->setMoyMin(1);
-// $c->setMoyMax(5);
+// $c->setCours(new CoursTexte("x", 4));
+// $c->setMoyMax(20);
+// $c->setMoyMin(19);
 
-// $c1 = new ChoixQuestion();
-// $c1->setIntitule("c1");
-// $c1->setIsValide(false);
-// $c1->setPoints(-5.1);
+// $q = new QuestionSaisie();
+// $q->setPoints(666);
+// $q->setBonneReponse("dans ton cul");
+// $q->setQuestion("cest quoi ?");
 
-// $c2 = new ChoixQuestion();
-// $c2->setIntitule("c2");
-// $c2->setIsValide(true);
-// $c2->setPoints(56);
-
-// $qu = new QuestionChoix(true);
-// $qu->setQuestion("question blabla");
-// $qu->setIsMultiple(true);
-// $qu->addChoix($c1);
-// $qu->addChoix($c2);
-
-// $qcm = new QCM();
-// $qcm->setTitre("test qcm");
-// $qcm->setCategorie(EnumCategorie::DESIGN);
-// $qcm->setDescription("blabla");
-// $qcm->setXmlUrl("coucou.xml");
-
+// $qcm = $crud->readQcmById(1);
+// $qcm->setTitre("autre title");
 // $qcm->addCoursRecommandes($c);
-// $qcm->addQuestion($qu);
+// $qcm->addQuestion($q);
 
-
-// $crud->createQcm($qcm);
+// $crud->updateQcm($qcm);

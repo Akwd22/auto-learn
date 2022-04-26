@@ -88,6 +88,19 @@ class TentativeQcmCRUD
     $q->execute();
   }
 
+  public function updateTentativeQcm($tentative)
+  {
+    $q = $this->db->getPDO()->prepare("UPDATE TentativeQCM SET moy = :moy, pointsActuels = :pointsActuels, isTermine = :isTermine, dateCommence = :dateCommence, dateTermine = :dateTermine, numQuestionCourante = :numQuestionCourante WHERE id = :idTentative");
+    $q->bindValue(":idTentative", $tentative->getId());
+    $q->bindValue(":moy", $tentative->getMoy());
+    $q->bindValue(":pointsActuels", $tentative->getPointsActuels());
+    $q->bindValue(":isTermine", intval($tentative->getIsTermine()));
+    $q->bindValue(":dateCommence", $tentative->getDateCommence()->format("Y-m-d G:i:s"));
+    $q->bindValue(":dateTermine", $tentative->getDateTermine() ? $tentative->getDateTermine()->format("Y-m-d G:i:s") : null);
+    $q->bindValue(":numQuestionCourante", $tentative->getNumQuestionCourante());
+    $q->execute();
+  }
+
   public function deleteTentativeQcm($idTentative)
   {
     $q = $this->db->getPDO()->prepare("DELETE FROM TentativeQCM WHERE id = :idTentative");
@@ -98,6 +111,12 @@ class TentativeQcmCRUD
 
 // $conn = new DatabaseManagement();
 // $crud = new TentativeQcmCRUD($conn);
+
+// $t = $crud->readTentativeQcmById(1);
+// $t->setNumQuestionCourante(666);
+// $t->setPointsActuels(555);
+
+// $crud->updateTentativeQcm($t);
 
 // $crud->deleteTentativeQcm(1);
 
