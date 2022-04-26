@@ -1,6 +1,6 @@
 <?php
 require 'views/components/header/header.php';
-require 'views/components/footer/footer.php';   
+require 'views/components/footer/footer.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,12 +26,12 @@ require 'views/components/footer/footer.php';
                 <p class="slogan-text">Les cours sont conseillés suivants votre niveau déterminé par des tests de <br /> connaissance. C'est gratuit !</p>
             </div>
             <div class="accueil-container-bouton">
-                <button button id="btn-accueil" class="default m" type="button" value="Commencez à apprendre">Commencez à apprendre</button>
+                <a href="/rechercher-cours"><button button id="btn-accueil" class="default m" type="button" value="Commencez à apprendre">Commencez à apprendre</button></a>
             </div>
-            
-      </main>
+
+        </main>
     </div>
-    <?php  createFooter(); ?>
+    <?php createFooter(); ?>
 </body>
 
 </html>
