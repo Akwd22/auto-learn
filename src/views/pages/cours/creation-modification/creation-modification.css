@@ -1,0 +1,139 @@
+/* MAIN */
+.creation-container{
+  display: flex;
+  column-gap: 32px;
+  row-gap: 32px;
+  flex-wrap: wrap;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: auto;
+
+}
+
+/* LABEL */
+.creation-container-form label {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--medium1_text);
+}
+
+.creation-container-format-container .labelCustomRadio {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/* CONTAINER */
+.creation-container-form-structure{
+  width: 456px;
+  height: 803px;
+  background-color: var(--clear_background_container);
+  padding: 0px 32px 32px 32px;
+  margin-top: 48px;
+  margin-bottom: 173px;
+}
+
+.lien-container-form {
+  width: 456px;
+  height: 803px;
+  background-color: var(--clear_background_container);
+  margin-top: 48px;
+  margin-bottom: 173px;
+}
+
+.lien-container {
+  display: none;
+}
+
+.lien-container-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container-input{
+  padding-bottom: 16px;
+}
+
+
+.form-container-input input{
+  margin-top: 6px;
+}
+
+
+/* TITRE */
+.creation-container-titre {
+  color: var(--dark_text);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 150%;
+  text-align: center;
+  padding-top: 32px;
+  padding-bottom: 29px;
+}
+
+/* FORMAT */
+.creation-container-format-container {
+  display: flex;
+  column-gap: 16px;
+  padding-bottom: 16px;
+}
+
+/* PDF */
+.creation-container-pdf-container {
+  display: flex;
+  padding-bottom: 16px;
+  column-gap: 48px;
+}
+
+/* IMAGE */
+.creation-container-image-container{
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  justify-content: space-around;
+}
+
+/* HR */
+hr{
+  border: 2px solid #CBD5E0;
+  margin: 24px 0px;
+}
+
+/* DELETE FORM */
+
+.delete-container-form{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-container-form label{
+
+}
+
+#btn-delete{
+  width: 110px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .creation-container-form-structure label {
+    color: var(--clear2_text);
+    font-size: 18px;
+  }
+
+  .creation-container-form-structure,
+  .lien-container-form {
+    background-color: var(--dark_background_container);
+  }
+
+  .creation-container-titre {
+    color: #ffff;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .creation-container-form-structure {
+    margin-bottom: 0px;
+  }
+}

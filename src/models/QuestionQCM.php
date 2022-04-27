@@ -65,6 +65,11 @@ class QuestionChoix extends QuestionQCM
         array_push($this->choix, $choix);
     }
 
+    public function setChoix($choix)
+    {
+        $this->choix = $choix;
+    }
+
     public function getAllChoix()
     {
         return $this->choix;

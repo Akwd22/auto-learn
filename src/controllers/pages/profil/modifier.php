@@ -94,6 +94,9 @@ function handleForm()
   // Image de profil.
   if ($image) {
     $upload = new UploadImageManager("image");
+    $savePath = UPLOADS_PROFIL_DIR . $upload->getFileHash() . "." . $upload->getExtension();
+
+    FileManager::delete(UPLOADS_PROFIL_DIR . $user->getImageUrl());
 
     if (!$upload->validateType())
       redirect($redirectUrl, "error", "Image importée doit être un fichier image.", array("id" => $userId));
@@ -104,7 +107,7 @@ function handleForm()
     if (!$upload->validateExtension())
       redirect($redirectUrl, "error", "Image importée doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $userId));
 
-    if (!$upload->save(UPLOADS_PROFIL_DIR . "$userId." . $upload->getExtension()))
+    if (!$upload->save($savePath))
       redirect($redirectUrl, "error", "Erreur lors de l'importation de l'image.", array("id" => $userId));
 
     $image = $upload->getRealFileName();

@@ -1,1 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<QCM>
+  <QuestionSaisie bonneReponse="test" points="1" question="Question 1 : blabla... (bonne réponse : 'test')" placeholder="Saisir la réponse..." />
+</QCM>

@@ -87,6 +87,7 @@ function afficherModifierProfil(Utilisateur $user)
           </form>
         </div>
 
+
         <div class="delete-container">
           <form class="delete-container-form" action="/profil/supprimer?id=<?php echo $user->getId() ?>" method="post">
             <h2 class="delete-container-title">Supprimer le compte</h2>

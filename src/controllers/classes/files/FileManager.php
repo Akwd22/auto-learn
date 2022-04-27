@@ -7,7 +7,7 @@ abstract class FileManager
 {
   /**
    * Supprimer un fichier.
-   * @param string $filePath Chemmin du fichier.
+   * @param string $filePath Chemin du fichier.
    * @return boolean `true` si réussite, sinon `false`.
    */
   public static function delete($filePath)
@@ -21,7 +21,7 @@ abstract class FileManager
 
   /**
    * Retourner si un fichier existe.
-   * @param string $filePath Chemmin du fichier.
+   * @param string $filePath Chemin du fichier.
    * @return boolean `true` s'il existe, sinon `false`.
    */
   public static function exists($filePath)
@@ -31,11 +31,21 @@ abstract class FileManager
 
   /**
    * Retourner l'extension d'un fichier.
-   * @param string $filePath Chemmin du fichier.
+   * @param string $filePath Chemin du fichier.
    * @return string Extension du fichier.
    */
   public static function getExtension($filePath)
   {
     return strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+  }
+
+  /**
+   * Retourner le hash d'un fichier.
+   * @param string $filePath Chemin du fichier.
+   * @return string Hash du fichier.
+   */
+  public static function getFileHash($filePath)
+  {
+    return hash_file("md5", $filePath);
   }
 }

@@ -112,6 +112,33 @@ abstract class UploadFileManager
   }
 
   /**
+   * Retourner le chemin et le nom du fichier où le fichier importé est temporairement stocké.
+   * @return string Chemin et nom du fichier.
+   */
+  public function getTmpFilePath()
+  {
+    return $this->file["tmp_name"];
+  }
+
+  /**
+   * Retourner le nom du fichier importé temporairement stocké.
+   * @return string|null Nom du fichier.
+   */
+  public function getTmpFileName()
+  {
+    return basename($this->file["tmp_name"]);
+  }
+
+  /**
+   * Retourner le hash du fichier importé.
+   * @return string Hash du fichier.
+   */
+  public function getFileHash()
+  {
+    return FileManager::getFileHash($this->getTmpFilePath());
+  }
+
+  /**
    * Retourner l'extension du fichier importé.
    * @return string Extension du fichier importé.
    */

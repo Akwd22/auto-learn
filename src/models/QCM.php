@@ -99,6 +99,11 @@ class QCM
         return $this->coursRecommandes;
     }
 
+    public function setCoursRecommandes($cours)
+    {
+        $this->coursRecommandes = $cours;
+    }
+
     public function addCoursRecommandes($cours)
     {
         array_push($this->coursRecommandes,$cours);
@@ -112,6 +117,11 @@ class QCM
                 array_splice($this->coursRecommandes, $i, 1);
             }
         }
+    }
+
+    public function setQuestions($questions)
+    {
+        $this->questions = $questions;
     }
 
     public function getAllQuestions()

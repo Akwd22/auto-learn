@@ -102,7 +102,7 @@ class TentativeQCM
 
     public function setNumQuestionCourante($numQuestionCourante)
     {
-        $this->numQuestionCourante = intval($numQuestionCourante);
+        $this->numQuestionCourante = $numQuestionCourante === null ? null : intval($numQuestionCourante);
     }
 
     public function getNumQuestionCourante()

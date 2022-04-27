@@ -10,7 +10,7 @@ require 'views/components/footer/footer.php';
 function afficherProfil(Utilisateur $user)
 {
   //VARIABLES PHP
-  $url_profilImage = UPLOADS_PROFIL_URL . $user->getImageUrl();
+  $url_profilImage = $user->getImageUrl() ? UPLOADS_PROFIL_URL . $user->getImageUrl() : DEFAULT_PROFIL_IMG;
   function EtatCours($user)
   {
   }
@@ -51,8 +51,10 @@ function afficherProfil(Utilisateur $user)
                 <?php
                 $cours_tente =  $user->getAllCoursTentes();
                 for ($i = 0; $i < count($cours_tente); $i++) {
+                  $cours = $cours_tente[$i]->getCours();
+
                   echo "<div class=\"list-cours-container-component\">";
-                  echo "<img class=\"list-cours-container-component-img\" src='" . UPLOADS_COURS_IMGS_URL . $cours_tente[$i]->getCours()->getImageUrl() . "'>";
+                  echo "<img class=\"list-cours-container-component-img\" src='" . ($cours->getImageUrl() ? UPLOADS_COURS_IMGS_URL . $cours->getImageUrl() : DEFAULT_COURS_IMG) . "'>";
                   echo "<p class=\"list-cours-container-component-title\">" . $cours_tente[$i]->getCours()->getTitre() . "</p>";
                   printf(
                     "<p class='list-cours-container-component-avancé %s'>%s</p>",

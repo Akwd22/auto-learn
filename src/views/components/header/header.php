@@ -15,13 +15,12 @@ HTML;
 
 function createrNavbar()
 {
-
-
     $isLogin = function () { {
             if (SessionManagement::isLogged()) {
                 $user = SessionManagement::getUser();
                 $url_profilImage = UPLOADS_PROFIL_URL . $user->getImageUrl();
                 $user_id = SessionManagement::getUserId();
+                $user_isAdmin = SessionManagement::isAdmin();
             }
 
             if (!SessionManagement::isLogged()) {
@@ -30,9 +29,40 @@ function createrNavbar()
                 <a href="/inscription"><button id="btn-inscription" class="default" type="button" value="S'inscrire">S'inscrire</button></a>
 HTML;
             } else {
-                return <<<HTML
-                <a href="/profil?id={$user_id}"><img class="img-profil" src={$url_profilImage}></a>
+                if (!$user_isAdmin) {
+                    return <<<HTML
+                    <img class="img-profil" src={$url_profilImage} />
+                    <ul class="burger-links">
+                        <li>
+                            <a href="/profil?id={$user_id}">Profil</a>
+                        </li>
+                        <li>
+                            <a href="profil/modifier?id={$user_id}">Paramètres</a>
+                        </li>
+                        <li>
+                            <a href="/deconnexion">Se déconnecter</a>
+                        </li>
+                    </ul>
 HTML;
+                } else {
+                    return <<<HTML
+                    <img class="img-profil" src={$url_profilImage} />
+                    <ul class="burger-links">
+                        <li>
+                            <a href="/utilisateurs">Utilisateurs</a>
+                        </li>
+                        <li>
+                            <a href="/rechercher-cours">Cours</a>
+                        </li>
+                        <li>
+                            <a href="/rechercher-qcm">Qcm</a>
+                        </li>
+                        <li>
+                            <a href="/deconnexion">Se déconnecter</a>
+                        </li>
+                    </ul>
+HTML;
+                }
             }
         }
     };
@@ -60,4 +90,36 @@ HTML;
 HTML;
 
     echo $html;
+    echo '<script>', 'navSlide();', '</script>';
 };
+?>
+
+<script type="text/JavaScript">
+    const navSlide = () => {
+        const burger = document.querySelector('.img-profil');
+        const nav = document.querySelector('.burger-links');
+        const navLinks = document.querySelectorAll('.burger-links li');
+
+        burger.addEventListener('click', () => {
+            // Calc right position
+            const rect = burger.getBoundingClientRect();
+            const domsize = document.documentElement.clientWidth;
+            const rightSpacing = domsize - (rect.x) - rect.width;
+            nav.style.right = `${rightSpacing}px`;
+
+            //Toggle Nav
+            nav.classList.toggle('nav-active');
+        });
+    }
+
+    window.onresize = () => {
+        const burger = document.querySelector('.img-profil');
+        const nav = document.querySelector('.burger-links');
+
+        const rect = burger.getBoundingClientRect();
+        const domsize = document.documentElement.clientWidth;
+        const rightSpacing = domsize - (rect.x) - rect.width;
+        nav.style.right = `${rightSpacing}px`;
+    }
+    
+</script>

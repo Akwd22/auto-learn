@@ -2,6 +2,7 @@
 require_once("models/Utilisateur.php");
 require_once("databases/DatabaseManagement.php");
 require_once("databases/TentativeCoursCRUD.php");
+require_once("databases/TentativeQcmCRUD.php");
 
 class UtilisateurCRUD
 {
@@ -9,11 +10,13 @@ class UtilisateurCRUD
     private $db;
 
     private $tentativeCoursCRUD;
+    private $tentativeQcmCRUD;
 
     public function __construct($db)
     {
         $this->db = $db;
         $this->tentativeCoursCRUD = new TentativeCoursCRUD($db);
+        $this->tentativeQcmCRUD = new TentativeQcmCRUD($db);
     }
 
     public function getDb()
@@ -45,6 +48,7 @@ class UtilisateurCRUD
             $user->setIsAdmin($r["isAdmin"]);
             $user->setIsConnected($r["isConnected"]);
             $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($r["id"]));
+            $user->setQcmTentes($this->tentativeQcmCRUD->readAllTentativesQcmFromUser($user->getId()));
 
             array_push($users, $user);
         }
@@ -71,6 +75,7 @@ class UtilisateurCRUD
             $user->setIsAdmin($row[0][7]);
             $user->setIsConnected($row[0][8]); 
             $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($row[0][0]));
+            $user->setQcmTentes($this->tentativeQcmCRUD->readAllTentativesQcmFromUser($user->getId()));
         }
 
         return $user;
@@ -95,6 +100,7 @@ class UtilisateurCRUD
             $user->setIsAdmin($row[0][7]);
             $user->setIsConnected($row[0][8]);
             $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($row[0][0]));
+            $user->setQcmTentes($this->tentativeQcmCRUD->readAllTentativesQcmFromUser($user->getId()));
             return $user;
         }
     }
@@ -118,6 +124,7 @@ class UtilisateurCRUD
             $user->setIsAdmin($row[0][7]);
             $user->setIsConnected($row[0][8]);          
             $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($row[0][0]));
+            $user->setQcmTentes($this->tentativeQcmCRUD->readAllTentativesQcmFromUser($user->getId()));
             return $user;
         }
     }
@@ -158,7 +165,7 @@ class UtilisateurCRUD
             $user->setIsAdmin($r["isAdmin"]);
             $user->setIsConnected($r["isConnected"]);
             $user->setCoursTentes($this->tentativeCoursCRUD->readAllTentativeCoursByUserId($row[0][0]));
-
+            $user->setQcmTentes($this->tentativeQcmCRUD->readAllTentativesQcmFromUser($user->getId()));
 
             array_push($users, $user);
         }
@@ -177,6 +184,7 @@ class UtilisateurCRUD
             $isAdmin = $user->getisAdmin();
             $isConnected = $user->getIsConnected();
             $coursTentes = $user->getAllCoursTentes();
+            $qcmTentes = $user->getAllQcmTentes();
 
             $sth = $this->db->getPDO()->prepare("UPDATE utilisateur set 
 						pseudo = :pseudo,
@@ -206,6 +214,11 @@ class UtilisateurCRUD
             $this->tentativeCoursCRUD->updateTentativeCours($c,$c->getId());
         }
 
+
+        foreach($qcmTentes as $t)
+        {
+            $this->tentativeQcmCRUD->updateTentativeQcm($t);
+        }
     }
 
     public function createUser($user)
@@ -220,6 +233,7 @@ class UtilisateurCRUD
             $isAdmin = $user->getisAdmin();
             $isConnected = $user->getIsConnected();
             $coursTentes = $user->getAllCoursTentes();
+            $qcmTentes = $user->getAllQcmTentes();
 
             if ($user->getId() == null) {
                 $sth = $this->db->getPDO()->prepare("
@@ -248,6 +262,9 @@ class UtilisateurCRUD
             echo $e->getMessage() . "<br>";
             die();
         }
+
+        $newId = $this->db->lastInsertId();
+
         foreach ($coursTentes as $c)
         {
             $this->tentativeCoursCRUD->createTentativeCours($c);
@@ -271,6 +288,11 @@ class UtilisateurCRUD
                 die();
             }
         }
+
+        foreach ($qcmTentes as $t)
+        {
+            $this->tentativeQcmCRUD->createTentativeQcm($newId, $t);
+        }
     }
 
     public function deleteUser($id)
@@ -285,3 +307,33 @@ class UtilisateurCRUD
         }
     }
 }
+
+// $conn = new DatabaseManagement();
+// $crud = new UtilisateurCRUD($conn);
+
+// $u = $crud->readUserById(2);
+// $t = $u->getQcmTentesByTentativeId(1);
+// $t->setNumQuestionCourante(666);
+// $t->setPointsActuels(555);
+
+// $crud->updateUser($u, $u->getId());
+
+// $c = new TentativeCours();
+// $c->setIsTermine(false);
+// $c->setCours(new CoursTexte("x", 1));
+
+// $t = new TentativeQCM();
+// $t->setMoy(15.5);
+// $t->setPointsActuels(30);
+// $t->setIsTermine(true);
+// $t->setNumQuestionCourante(5);
+// $t->setQcm(new QCM(1));
+
+// $u = new Utilisateur();
+// $u->setEmail("test@test.com");
+// $u->setPseudo("test");
+// $u->setPassHash("test");
+// $u->addCoursTentes($c);
+// $u->addQcmTentes($t);
+
+// $crud->createUser($u);
