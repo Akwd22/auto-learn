@@ -7,7 +7,7 @@
 <html>
 
             <?php
-            function afficherCours(array $cours, $lastSearch, $selectedRadio, $selectedCat)
+            function afficherCours($cours, $lastSearch, $selectedRadio, $selectedCat)
             {
             ?>
 

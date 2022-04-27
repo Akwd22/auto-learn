@@ -3,7 +3,7 @@ const navSlide = () => {
     const nav = document.querySelector('.burger-links');
     const navLinks = document.querySelectorAll('.burger-links li');
 
-    burger.addEventListener('click', () => {
+    burger.addEventListener('mouseover', () => {
         // Calc right position
         const rect = burger.getBoundingClientRect();
         const domsize = document.documentElement.clientWidth;
@@ -14,8 +14,6 @@ const navSlide = () => {
         nav.classList.toggle('nav-active');
     });
 }
-
-
 
 window.onresize = () => {
     const burger = document.querySelector('.img-profil');

@@ -44,6 +44,6 @@ if($user->hasCoursTente($coursId)==false){
 
 
 // Affichage de la vue.
-afficherCours($cours);
+afficherCours($cours, $lastSearch, $selectedRadio, $selectedCat);
 
 redirect("/cours/affichage", "success", "Affichage du cours");

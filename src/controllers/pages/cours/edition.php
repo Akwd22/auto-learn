@@ -40,7 +40,7 @@ if($coursId){
 if (empty($_POST)) {
   showView();
 } else {
-    if($isEditMode==true)
+    if($isEditMode===true)
       handleFormEdit();
     else 
       handleFormCreate();

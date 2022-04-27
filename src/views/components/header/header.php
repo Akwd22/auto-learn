@@ -31,7 +31,7 @@ HTML;
             } else {
                 if (!$user_isAdmin) {
                     return <<<HTML
-                    <img class="img-profil" src={$url_profilImage} />
+                    <a href="/profil?id={$user_id}"><img class="img-profil" src={$url_profilImage} /></a>
                     <ul class="burger-links">
                         <li>
                             <a href="/profil?id={$user_id}">Profil</a>
@@ -46,7 +46,7 @@ HTML;
 HTML;
                 } else {
                     return <<<HTML
-                    <img class="img-profil" src={$url_profilImage} />
+                    <a href="/profil?id={$user_id}"><img class="img-profil" src={$url_profilImage} /></a>
                     <ul class="burger-links">
                         <li>
                             <a href="/utilisateurs">Utilisateurs</a>
