@@ -41,6 +41,12 @@ if ($image) {
   FileManager::delete($image);
 }
 
+// Supprimer le fichier du cours (si format texte).
+if ($cours::FORMAT === EnumFormatCours::TEXTE) {
+  $fichier = UPLOADS_COURS_DOCS_DIR . $cours->getFichierUrl();
+  FileManager::delete($fichier);
+}
+
 // Supprimer le cours.
 $coursCRUD->deleteCours($coursId);
 
