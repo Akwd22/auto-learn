@@ -9,7 +9,7 @@ require_once("models/Enum.php");
 require_once("models/EnumCategorie.php");
 require_once("models/EnumFormatCours.php");
 require_once("models/EnumNiveauCours.php");
-require_once("views/pages/cours/creation-edition.php");
+require_once("views/pages/cours/creation-modification/creation-modification.php");
 
 SessionManagement::session_start();
 
@@ -70,9 +70,9 @@ function handleFormEdit()
   $image = UploadFileManager::exists("image");
   $format=$cours::FORMAT;
   
-  if($format==1)
+  if($format==EnumFormatCours::TEXTE)
     $fichPdf = UploadPdfManager::exists("fichPdf");
-  else if($format==2){
+  else if($format==EnumFormatCours::VIDEO){
     $nbLiens=$_POST["nbLiens"] ?? null;
     $fichUrl=array();
   }
@@ -106,6 +106,9 @@ function handleFormEdit()
   // Image .
   if ($image) {
     $upload = new UploadImageManager("image");
+    $savePath = UPLOADS_COURS_IMGS_DIR . $upload->getFileHash() . "." . $upload->getExtension();
+
+    if ($cours->getImageUrl()) FileManager::delete(UPLOADS_COURS_IMGS_DIR . $cours->getImageUrl());
 
     if (!$upload->validateType())
       redirect($redirectUrl, "error", "Image importée doit être un fichier image.", array("id" => $coursId));
@@ -116,7 +119,7 @@ function handleFormEdit()
     if (!$upload->validateExtension())
       redirect($redirectUrl, "error", "Image importée doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $coursId));
 
-    if (!$upload->save(UPLOADS_COURS_IMGS_DIR . "$coursId." . $upload->getExtension()))
+    if (!$upload->save($savePath))
       redirect($redirectUrl, "error", "Erreur lors de l'importation de l'image.", array("id" => $coursId));
 
     $image = $upload->getRealFileName();
@@ -125,9 +128,12 @@ function handleFormEdit()
   }
 
    //fichier 
-   if($format==1){
+   if($format==EnumFormatCours::TEXTE){
     if($fichPdf){
       $upload = new UploadPdfManager("fichPdf");
+      $savePath = UPLOADS_COURS_DOCS_DIR . $upload->getFileHash() . "." . $upload->getExtension();
+
+      if ($cours->getFichierUrl()) FileManager::delete(UPLOADS_COURS_DOCS_DIR . $cours->getFichierUrl());
 
     if (!$upload->validateType())
       redirect($redirectUrl, "error", "Fichier importée doit être un fichier pdf.", array("id" => $coursId));
@@ -138,7 +144,7 @@ function handleFormEdit()
     if (!$upload->validateExtension())
       redirect($redirectUrl, "error", "Fichier importée doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $coursId));
 
-    if (!$upload->save(UPLOADS_COURS_DOCS_DIR . "$coursId." . $upload->getExtension()))
+    if (!$upload->save($savePath))
       redirect($redirectUrl, "error", "Erreur lors de l'importation du fichier.", array("id" => $coursId));
 
     $fichPdf = $upload->getRealFileName();
@@ -147,15 +153,15 @@ function handleFormEdit()
       $fichPdf = $cours->getFichierUrl();
     }
   }
-  else if($format==2){
-      if($_POST["lien" . 1]){
-        for($i=1;$i<=$nbLiens;$i++){
-          array_push($fichUrl, $_POST["lien" . $i]);
-        }
+  else if($format==EnumFormatCours::VIDEO){
+      for($i = 1; $i <= $nbLiens; $i++)
+      {
+        $lien = trim($_POST["lien" . $i]);
+        if ($lien) array_push($fichUrl, $lien);
       }
-      else {
-        $fichUrl = $cours->getVideosUrl();
-      }
+
+      if (empty($fichUrl))
+        redirect($redirectUrl, "error", "Liens obligatoires", array("id" => $coursId));
     }
      
 
@@ -167,15 +173,15 @@ function handleFormEdit()
   $cours->setCategorie(+$categorie);
   $cours->setNiveauRecommande(+$niveauRecommande);
   $cours->setImageUrl($image);
-  if($format==1)
+
+  if($format==EnumFormatCours::TEXTE)
     $cours->setFichierUrl($fichPdf);
-  else 
+  else if (EnumFormatCours::VIDEO)
     $cours->setVideosUrl($fichUrl);
 
   $coursCRUD->updateCours($cours, $coursId);
 
   redirect($redirectUrl, "success", "Cours modifié avec succès.", array("id" => $coursId));
-
 }
 
 function handleFormCreate(){
@@ -194,9 +200,9 @@ function handleFormCreate(){
   $image = UploadFileManager::exists("image");
   $format=$_POST["format"] ?? null;
 
-  if($format==1)
+  if($format==EnumFormatCours::TEXTE)
     $fichPdf = UploadPdfManager::exists("fichPdf");
-  else if($format==2){
+  else if($format==EnumFormatCours::VIDEO){
     $fichUrl=array();
     $nbLiens=$_POST["nbLiens"] ?? null;
   }
@@ -229,6 +235,7 @@ function handleFormCreate(){
   // Image .
   if ($image) {
     $upload = new UploadImageManager("image");
+    $savePath = UPLOADS_COURS_IMGS_DIR . $upload->getFileHash() . "." . $upload->getExtension();
 
     if (!$upload->validateType())
       redirect($redirectUrl, "error", "Image importée doit être un fichier image.", array("id" => $coursId));
@@ -239,7 +246,7 @@ function handleFormCreate(){
     if (!$upload->validateExtension())
       redirect($redirectUrl, "error", "Image importée doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $coursId));
 
-    if (!$upload->save(UPLOADS_COURS_IMGS_DIR . "$coursId." . $upload->getExtension()))
+    if (!$upload->save($savePath))
       redirect($redirectUrl, "error", "Erreur lors de l'importation de l'image.", array("id" => $coursId));
 
     $image = $upload->getRealFileName();
@@ -254,9 +261,10 @@ function handleFormCreate(){
 
   
   //fichier 
-  if($format==1){
+  if($format==EnumFormatCours::TEXTE){
     if($fichPdf){
       $upload = new UploadPdfManager("fichPdf");
+      $savePath = UPLOADS_COURS_DOCS_DIR . $upload->getFileHash() . "." . $upload->getExtension();
 
     if (!$upload->validateType())
       redirect($redirectUrl, "error", "Fichier importée doit être un fichier pdf.", array("id" => $coursId));
@@ -267,7 +275,7 @@ function handleFormCreate(){
     if (!$upload->validateExtension())
       redirect($redirectUrl, "error", "Fichier importée doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $coursId));
 
-    if (!$upload->save(UPLOADS_COURS_DOCS_DIR . "$coursId." . $upload->getExtension()))
+    if (!$upload->save($savePath))
       redirect($redirectUrl, "error", "Erreur lors de l'importation du fichier.", array("id" => $coursId));
 
     $fichPdf = $upload->getRealFileName();
@@ -276,21 +284,22 @@ function handleFormCreate(){
       redirect($redirectUrl, "error", "Fichier obligatoire", array("id" => $coursId));
     }
   }
-  else if($format==2){
-      if($_POST["lien" . 1]){
-        for($i=1;$i<=$nbLiens;$i++){
-          array_push($fichUrl, $_POST["lien" . $i]);
-        }
-      }
+  else if ($format==EnumFormatCours::VIDEO)
+  {
+    for($i = 1; $i <= $nbLiens; $i++)
+    {
+      $lien = trim($_POST["lien" . $i]);
+      if ($lien) array_push($fichUrl, $lien);
     }
-     else {
+
+    if (empty($fichUrl))
       redirect($redirectUrl, "error", "Liens obligatoires", array("id" => $coursId));
-    }
+  }
   
   
-  if($format==1)
+  if($format==EnumFormatCours::TEXTE)
     $cours=new CoursTexte($fichPdf);
-  else if($format==2)
+  else if($format==EnumFormatCours::VIDEO)
     $cours=new CoursVideo($fichUrl);
   
   $cours->setTitre($titre);
@@ -303,6 +312,4 @@ function handleFormCreate(){
   $coursCRUD->createCours($cours);
   
   redirect($redirectUrl, "success", "Cours crée avec succès.", array("id" => $coursId));
-
-
 }

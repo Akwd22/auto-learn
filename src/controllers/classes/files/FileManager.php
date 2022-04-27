@@ -12,6 +12,10 @@ abstract class FileManager
    */
   public static function delete($filePath)
   {
+    if (!$filePath) {
+      return true;
+    }
+
     if (self::exists($filePath)) {
       return unlink($filePath);
     }
@@ -46,6 +50,6 @@ abstract class FileManager
    */
   public static function getFileHash($filePath)
   {
-    return hash_file("md5", $filePath);
+    return hash_file("md5", $filePath) . "_" . time();
   }
 }

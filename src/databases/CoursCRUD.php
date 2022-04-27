@@ -303,16 +303,6 @@ class CoursCRUD
 
         if($format===EnumFormatCours::VIDEO)
         {
-            try{ 
-                $sthVideo = $this->db->getPDO()->prepare("
-                    UPDATE CoursVideo SET id = :id WHERE id = :id;");                    
-                $sthVideo->bindValue(':idCours', $cours->getId());
-                $sthVideo->execute();
-            }catch (PDOException $e) {
-                echo $e->getMessage() . "<br>";
-                die();
-            }  
-
             try{
                 $sth = $this->db->getPDO()->prepare("
                 DELETE FROM CoursVideosUrl WHERE idCours = :id");
@@ -352,9 +342,9 @@ class CoursCRUD
             $sthTexte = $this->db->getPDO()->prepare("  
             UPDATE CoursTexte SET    
             fichierUrl = :fichierUrl
-            WHERE coursId = :id");
+            WHERE idCours = :id");
             $sthTexte->bindValue(':fichierUrl', $fichierUrl);
-            $sthTexte->bindValue(':coursId', $id);
+            $sthTexte->bindValue(':id', $id);
             $sthTexte->execute();
             }catch (PDOException $e) {
                 echo $e->getMessage() . "<br>";
