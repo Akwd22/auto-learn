@@ -129,6 +129,7 @@ a{
     z-index: 10;
     width: 48px;
     height: 48px;
+    cursor: pointer;
 }
 
 
