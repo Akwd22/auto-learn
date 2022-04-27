@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCM>
-  <QuestionSaisie bonneReponse="1996" points="1" question="Année de création de JS ?" placeholder="Année de création..." />
+  <QuestionSaisie bonneReponse="1996" points="1" question="Quelle est l'année de création de JS ?" placeholder="Saisir l'année de création..." />
 
-  <QuestionSaisie bonneReponse="console.log('Bonjour');" points="2" question="Donner la fonction pour afficher dans la console 'Bonjour'" placeholder="___.___('bonjour');" />
+  <QuestionSaisie bonneReponse="console.log('Bonjour');" points="2" question='Donner la fonction pour afficher dans la console "Bonjour"' placeholder='___.___("Bonjour");' />
 
   <QuestionChoix isMultiple="true" question="Quels sont tous les mots-clés pour déclarer une variable ?">
     <Choix isValide="true" points="0.5">var</Choix>

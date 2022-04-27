@@ -44,10 +44,10 @@ INSERT INTO QuestionQCM VALUES (3, 2, 'Question 1 : blabla... (bonne réponse : 
 INSERT INTO QuestionSaisie VALUES (3, 'Saisir la réponse...', 'test', 1);
 
 INSERT INTO QCM VALUES (3, 'QCM JS (RÉEL)', 'WEB', 'Un vrai QCM sur JS', DEFAULT, '3.xml');
-INSERT INTO QuestionQCM VALUES (4, 3, 'Année de création de JS ?', 'SAISIE');
-INSERT INTO QuestionSaisie VALUES (4, 'Année de création...', '1996', 1);
+INSERT INTO QuestionQCM VALUES (4, 3, 'Quelle est l''année de création de JS ?', 'SAISIE');
+INSERT INTO QuestionSaisie VALUES (4, 'Saisir l''année de création...', '1996', 1);
 INSERT INTO QuestionQCM VALUES (5, 3, 'Donner la fonction pour afficher dans la console "Bonjour"', 'SAISIE');
-INSERT INTO QuestionSaisie VALUES (5, '___.___("bonjour");', 'console.log("Bonjour");', 2);
+INSERT INTO QuestionSaisie VALUES (5, '___.___("Bonjour");', 'console.log("Bonjour");', 2);
 INSERT INTO QuestionQCM VALUES (6, 3, 'Quels sont tous les mots-clés pour déclarer une variable ?', 'CHOIX');
 INSERT INTO QuestionChoix VALUES (6, 1);
 INSERT INTO ChoixQuestion VALUES (6, 6, 'var', 1, 0.5);

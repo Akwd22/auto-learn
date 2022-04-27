@@ -10,18 +10,13 @@
 function afficherQcmQuestion(QCM $qcm, QuestionQCM $question, TentativeQCM $tentative)
 {
   $choix = function () use (&$question) {
-    foreach ($question->getAllChoix() as $choix)
-    {
+    foreach ($question->getAllChoix() as $choix) {
       $idChoix = $choix->getId();
 
-      if ($question->getIsMultiple())
-      {
+      if ($question->getIsMultiple()) {
         echo "<input type=checkbox name=choix-$idChoix id=choix-$idChoix>";
-      }
-      else
-      {
+      } else {
         echo "<input type=radio name=choix id=choix-$idChoix value=$idChoix>";
-        
       }
 
       echo "<label for=choix-$idChoix>" . $choix->getIntitule() . "</label>";
@@ -30,7 +25,7 @@ function afficherQcmQuestion(QCM $qcm, QuestionQCM $question, TentativeQCM $tent
   };
 
   $saisie = function () use (&$question) {
-    $placeholder = $question->getPlaceHolder();
+    $placeholder = htmlspecialchars($question->getPlaceHolder(), ENT_QUOTES);
     echo "<input type=text name=response placeholder='$placeholder'>";
   };
 

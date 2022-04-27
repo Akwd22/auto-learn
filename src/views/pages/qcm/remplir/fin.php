@@ -8,7 +8,7 @@
  */
 function afficherQcmFin(QCM $qcm, TentativeQCM $tentative)
 {
-  $coursRecommande = $tentative->getCoursRecommande()->getCours();
+  $coursRecommande = $tentative->getCoursRecommande() ? $tentative->getCoursRecommande()->getCours() : null;
 
 ?>
   <h1>Page de fin du QCM : Moyenne <?php echo $tentative->getMoy() ?> / 20</h1>
@@ -17,9 +17,13 @@ function afficherQcmFin(QCM $qcm, TentativeQCM $tentative)
     <input type="submit" name="restart" value="Recommencer le QCM">
   </form>
 
-  <div>
-    <h2>Cours recommandé : <a href="/cours?id=<?php echo $coursRecommande->getId() ?>"><?php echo $coursRecommande->getTitre() ?></a></h2>
-  </div>
+  <?php
+  if ($coursRecommande) {
+    $id    = $coursRecommande->getId();
+    $titre = $coursRecommande->getTitre();
+    echo "<h2>Cours recommandé : <a href='/cours?id=$id'>$titre</a></h2>";
+  }
+  ?>
 <?php
 
   var_dump($qcm);
