@@ -57,7 +57,7 @@ class QcmCRUD
 
   public function readAllQcm()
   {
-    $q = $this->db->getPDO()->prepare("SELECT id FROM QuestionQCM");
+    $q = $this->db->getPDO()->prepare("SELECT id FROM QCM");
     $q->execute();
 
     $array = [];

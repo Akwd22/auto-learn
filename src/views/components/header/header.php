@@ -55,7 +55,7 @@ HTML;
                             <a href="/rechercher-cours">Cours</a>
                         </li>
                         <li>
-                            <a href="/rechercher-qcm">Qcm</a>
+                            <a href="/qcm/rechercher">Qcm</a>
                         </li>
                         <li>
                             <a href="/deconnexion">Se déconnecter</a>
@@ -78,7 +78,7 @@ HTML;
             <div class="links-container-onglets">
                 <ul class="links-container-onglets-list">
                     <li><a href="/rechercher-cours" class="container-onglets-links">Cours</a></li>
-                    <li><a href="#" class="container-onglets-links">Tests</a></li>
+                    <li><a href="/qcm/rechercher" class="container-onglets-links">Tests</a></li>
                 </ul>
             </div>
             <div class="links-container-button">
