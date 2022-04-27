@@ -186,6 +186,17 @@ class Utilisateur
         return $this->qcmTentes;
     }
 
+    public function hasQcmTente($idQcm)
+    {
+        foreach($this->qcmTentes as $value)
+        {
+            if($value->getQcm()->getId() == $idQcm)
+                return true;
+        }
+
+        return false;
+    }
+
     public function getQcmTentesByTentativeId($id)
     {
         foreach($this->qcmTentes as $value)

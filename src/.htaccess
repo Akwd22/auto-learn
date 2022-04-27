@@ -19,3 +19,5 @@ RewriteRule ^cours/supprimer$     /controllers/pages/cours/supprimer.php [L]
 RewriteRule ^cours/marquer$       /controllers/pages/cours/marquer.php [L]
 RewriteRule ^cours/affichage$     /controllers/pages/cours/affichage.php [L]
 RewriteRule ^cours/editer$        /controllers/pages/cours/edition.php [L]
+
+RewriteRule ^qcm$                 /controllers/pages/qcm/remplir/remplir.php [L]

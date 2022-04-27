@@ -105,6 +105,11 @@ class TentativeQCM
         $this->numQuestionCourante = $numQuestionCourante === null ? null : intval($numQuestionCourante);
     }
 
+    public function getIsCommence()
+    {
+        return boolval($this->numQuestionCourante);
+    }
+
     public function getNumQuestionCourante()
     {
         return $this->numQuestionCourante;
@@ -127,7 +132,7 @@ class TentativeQCM
 
     public function questionCourante()
     {
-        return $this->qcm->getQuestionsByIndex($this->numQuestionCourante - 1);
+        return $this->numQuestionCourante ? $this->qcm->getQuestionsByIndex($this->numQuestionCourante - 1) : null;
     }
 
     public function questionSuivante($reponseQCM)
@@ -183,4 +188,3 @@ class TentativeQCM
         }
     }
 }
-?>
