@@ -22,4 +22,5 @@ RewriteRule ^cours/editer$        /controllers/pages/cours/edition.php [L]
 
 RewriteRule ^qcm$                 /controllers/pages/qcm/remplir/remplir.php [L]
 RewriteRule ^qcm/rechercher$      /controllers/pages/qcm/rechercher.php [L]
+RewriteRule ^qcm/supprimer$       /controllers/pages/qcm/supprimer.php [L]
 RewriteRule ^qcm/editer$          /controllers/pages/qcm/editer.php [L]

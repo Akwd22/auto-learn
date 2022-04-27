@@ -25,7 +25,7 @@ if (!$isLogged) die("Vous n'êtes pas connecté.");
 if (!$isAdmin)  die("Vous n'êtes pas admin.");
 
 /* -------------------------------------------------------------------------- */
-/*                             Supprimer le cours                             */
+/*                              Supprimer le QCM                              */
 /* -------------------------------------------------------------------------- */
 
 $conn = new DatabaseManagement();
@@ -35,13 +35,13 @@ $qcm = $qcmCRUD->readQcmById($qcmId);
 if (!$qcm) die("QCM n'existe pas.");
 
 //supprimer le fichier xml
-$xml=$qcm->getXmlUrl();
-if($xml){
-    $xml=UPLOADS_QCM_DIR . $qcm->getXmlUrl();
+$xml = $qcm->getXmlUrl();
+if ($xml) {
+    $xml = UPLOADS_QCM_DIR . $qcm->getXmlUrl();
     FileManager::delete($xml);
 }
 
 // Supprimer le QCM.
 $qcmCRUD->deleteQcm($qcmId);
 
-redirect("/rechercher-qcm", "success", "Suppression du QCM avec succès.");
+redirect("/qcm/rechercher", "success", "Suppression du QCM avec succès.");
