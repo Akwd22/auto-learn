@@ -79,9 +79,9 @@ HTML;
                 <?php createrNavbar(); ?>
             </header>
             <main class="coursCreation-page">
-                <form action="<?php echo $cours ? ('/cours/editer?id=' . $cours->getId()) : '/cours/editer'  ?>" class="creation-container-form" method="post" enctype="multipart/form-data">
-                    <div class="creation-container">
-                        <div class="creation-container-form-structure">
+                <div class="creation-container">
+                    <div class="creation-container-form-structure">
+                        <form action="<?php $cours !== null ? ('/cours/editer?id=' . $cours->getId()) : '/cours/editer'  ?>" class="creation-container-form" method="post" enctype="multipart/form-data">
                             <!-- TITRE -->
                             <h2 class="creation-container-titre"><?php echo $modification_creation("titre") ?></h2>
                             <div class="parametre-message-container">
@@ -102,7 +102,6 @@ HTML;
                             <!-- NIVEAU RECOMMANDÉ -->
                             <div class="form-container-input creation-container-niveau-container">
                                 <label for="niveau-select">Niveau recommandé</label>
-                                <?php ?>
                                 <select name="niveauRecommande" id="niveau-select" required>
                                     <?php
                                     $arr = EnumNiveauCours::getFriendlyNames();
@@ -114,6 +113,23 @@ HTML;
                                     ?>
                                 </select>
                             </div>
+
+
+                            <!-- CATEGORIE COURS -->
+                            <div class="form-container-input creation-container-niveau-container">
+                                <label for="niveau-cat">Catégorie</label>
+                                <select name="categorie" id="cat-select" required>
+                                    <?php
+                                    $arr = EnumCategorie::getFriendlyNames();
+
+                                    foreach ($arr as $cat => $nom) {
+                                        $selected = ($cours && $cours->getCategorie() === $cat) ? "selected" : "";
+                                        echo "<option value='$cat' $selected>$nom</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
                             <!-- DESCRIPTION -->
                             <div class="form-container-input creation-container-description-container">
                                 <textarea required name="description" id="description-area" placeholder="Description du cours"><?php echo $handleForm_isEditMode("description"); ?></textarea>
@@ -148,49 +164,49 @@ HTML;
 
                             <div class="delete-container-form">
                                 <label for="btn-delete">Supprimer le cours</label>
-                                <a href='#'><input class="default s" type="button" id="btn-delete" value="Supprimer"></a>
+                                <a href=<?php echo $isEditMode ? '/cours/supprimer?id=' . $cours->getId() : "#"; ?>><input class="default s" type="button" id="btn-delete" value="Supprimer"></a>
                             </div>
-                        </div>
+                    </div>
 
-                        <!-- CONTAINER DES LIENS VERS LES VIDEOS -->
-                        <div class='lien-container'>
-                            <div class="lien-container-form">
-                                <h2 class="creation-container-titre">Liens vidéo de la formation</h2>
+                    <!-- CONTAINER DES LIENS VERS LES VIDEOS -->
+                    <div class='lien-container'>
+                        <div class="lien-container-form">
+                            <h2 class="creation-container-titre">Liens vidéo de la formation</h2>
 
-                                <div class="lien-container-lien-container">
+                            <div class="lien-container-lien-container">
 
-                                    <div class="lien-container-list-lien">
-                                        <?php
-                                        if ($cours && $cours::FORMAT === EnumFormatCours::VIDEO) {
-                                            $nbLiensValue = count($cours->getVideosUrl());
-                                            foreach ($cours->getVideosUrl() as $n => $url) {
-                                                $n++;
-                                                echo "<div class='lien-container-input-container'>";
-                                                echo "<label for='input-lien-{$n}'>$n</label>";
-                                                echo "<input class='input m' type='text' name='lien{$n}' id='input-lien-{$n}' placeholder='Lien de la vidéo YouTube' value='{$url}'>";
-                                                echo "</div>";
-                                            }
-                                        } else { // Mode creation on importe une div par défaut
-                                            $nbLiensValue = 1;
-
+                                <div class="lien-container-list-lien">
+                                    <?php
+                                    if ($cours && $cours::FORMAT === EnumFormatCours::VIDEO) {
+                                        $nbLiensValue = count($cours->getVideosUrl());
+                                        foreach ($cours->getVideosUrl() as $n => $url) {
+                                            $n++;
                                             echo "<div class='lien-container-input-container'>";
-                                            echo "<label for='input-lien-{$nbLiensValue}'>$nbLiensValue</label>";
-                                            echo "<input class='input m' type='text' name='lien{$nbLiensValue}' id='input-lien-{$nbLiensValue}' placeholder='Lien de la vidéo YouTube'>";
+                                            echo "<label for='input-lien-{$n}'>$n</label>";
+                                            echo "<input class='input m' type='text' name='lien{$n}' id='input-lien-{$n}' placeholder='Lien de la vidéo YouTube' value='{$url}'>";
                                             echo "</div>";
                                         }
+                                    } else { // Mode creation on importe une div par défaut
+                                        $nbLiensValue = 1;
 
-                                        echo "<input class='lien-container-hidden' type='hidden' name='nbLiens' value='{$nbLiensValue}'>";
-                                        ?>
-                                    </div>
+                                        echo "<div class='lien-container-input-container'>";
+                                        echo "<label for='input-lien'>$nbLiensValue</label>";
+                                        echo "<input class='input m' type='text' name='lien{$nbLiensValue}' id='input-lien' placeholder='Lien de la vidéo YouTube'>";
+                                        echo "</div>";
+                                    }
 
-
-                                    <!-- BOUTON D'AJOUT -->
-                                    <input class="default s" type="button" id="submit-btn-lien" value='Ajouter un lien de vidéo'>
+                                    echo "<input class='lien-container-hidden' type='hidden' name='nbLiens' value={$nbLiensValue}>";
+                                    ?>
                                 </div>
+
+
+                                <!-- BOUTON D'AJOUT -->
+                                <input class="default s" type="button" id="submit-btn-lien" value='Ajouter un lien de vidéo'>
                             </div>
                         </div>
                     </div>
-                </form>
+                    </form>
+                </div>
             </main>
         </div>
         <?php createFooter(); ?>
