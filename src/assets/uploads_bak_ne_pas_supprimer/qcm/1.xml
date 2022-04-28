@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCM>
+  <QuestionChoix isMultiple="false" question="blabla... (bonne réponse : oui)">
+    <Choix isValide="true" points="1">oui</Choix>
+    <Choix isValide="false" points="0">non</Choix>
+  </QuestionChoix>
+
+  <QuestionChoix isMultiple="true" question="blabla... (bonne réponse : 1 et 3)">
+    <Choix isValide="true" points="0.5">1</Choix>
+    <Choix isValide="false" points="-1">2</Choix>
+    <Choix isValide="true" points="0.5">3</Choix>
+  </QuestionChoix>
+</QCM>
