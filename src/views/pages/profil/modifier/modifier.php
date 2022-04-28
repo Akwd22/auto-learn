@@ -56,8 +56,7 @@ function afficherModifierProfil(Utilisateur $user)
               <!-- IMAGE -->
               <div class="form-image-container">
                 <label for="image" id='new-image'>Nouvelle image</label>
-                <input type="file" name="image" id="image">
-                <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                <input type="file" name="image" id="image" accept="image/png, image/jpeg">
               </div>
 
               <!-- THEME -->

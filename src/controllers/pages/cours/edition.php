@@ -100,8 +100,7 @@ function handleFormEdit()
 
   //categorie
   if (!$categorie) {
-    $categorie = 1;
-    // redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $coursId));
   }
 
   // Image .
@@ -229,8 +228,7 @@ function handleFormCreate(){
 
   //categorie
   if (!$categorie) {
-    $categorie = 1;
-    // redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $coursId));
   }
 
 
@@ -304,8 +302,6 @@ function handleFormCreate(){
   else if($format==EnumFormatCours::VIDEO)
     $cours=new CoursVideo($fichUrl);
   
-  var_dump($format);
-  var_dump($titre);
   $cours->setTitre($titre);
   $cours->setDescription($description);
   $cours->setTempsMoyen($tempsMoyen);
