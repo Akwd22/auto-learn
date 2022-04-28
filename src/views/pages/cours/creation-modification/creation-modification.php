@@ -1,9 +1,16 @@
-<?php require 'views/components/header/header.php';
+<?php
+require 'views/components/header/header.php';
 require 'views/components/footer/footer.php';
 require 'views/components/radio/radio.php';
 require 'views/components/message/message.php';
 
-function afficherVue(bool $isEditMode, $cours = null)
+/**
+ * Afficher le formulaire d'édition d'un cours.
+ * @param boolean $isEditMode Formulaire est-il en mode d'édition d'un cours existant ?
+ * @param CoursTexte|CoursVideo|null $cours Cours à éditer, sinon `null` si en mode création.
+ * @return void
+ */
+function afficherVue(bool $isEditMode, Cours $cours = null)
 {
 
 
@@ -61,7 +68,7 @@ HTML;
 ?>
 
     <head>
-        <?php infoHead('Modifier son profil', 'Modifier son profil', '/views/pages/cours/creation-modification/creation-modification.css'); ?>
+        <?php infoHead('Éditer un cours', 'Éditer un cours', '/views/pages/cours/creation-modification/creation-modification.css'); ?>
         <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
         <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
     </head>
@@ -151,25 +158,24 @@ HTML;
 
                                 <div class="lien-container-list-lien">
                                     <?php
-                                    $nbLiensValue = 1;
+                                        $nbLiensValue = $cours ? count($cours->getVideosUrl()) : 1;
 
-                                    if ($cours !== null) {
-                                        foreach ($cours->getVideosUrl() as $n => $url) {
-                                            $n++;
+                                        echo "<input class='lien-container-hidden' type='hidden' name='nbLiens' value={$nbLiensValue}>";
+
+                                        if ($cours) {
+                                            foreach ($cours->getVideosUrl() as $n => $url) {
+                                                $n++;
+                                                echo "<div class='lien-container-input-container'>";
+                                                echo "<label for='input-lien'>$n</label>";
+                                                echo "<input class='input m' type='text' name='lien{$n}' id='input-lien' placeholder='Lien de la vidéo YouTube' value='{$url}'>";
+                                                echo "</div>";
+                                            }
+                                        } else {
                                             echo "<div class='lien-container-input-container'>";
-                                            echo "<label for='input-lien'>$n</label>";
-                                            echo "<input class='input m' type='text' name='lien{$n}' id='input-lien' placeholder='Lien de la vidéo youtube' value='{$url}'>";
+                                            echo "<label for='input-lien'>$nbLiensValue</label>";
+                                            echo "<input class='input m' type='text' name='lien{$nbLiensValue}' id='input-lien' placeholder='Lien de la vidéo YouTube'>";
                                             echo "</div>";
-                                            $nbLiensValue++;
                                         }
-                                    } else {
-                                        echo "<div class='lien-container-input-container'>";
-                                        echo "<label for='input-lien'>$nbLiensValue</label>";
-                                        echo "<input class='input m' type='text' name='lien{$nbLiensValue}' id='input-lien' placeholder='Lien de la vidéo youtube' value='{$nbLiensValue}'>";
-                                        echo "</div>";
-                                        $nbLiensValue++;
-                                    }
-                                    echo "<input class='lien-container-hidden' type='hidden' name='nbLiens' value={$nbLiensValue}>";
                                     ?>
                                 </div>
 
