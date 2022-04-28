@@ -158,8 +158,6 @@ HTML;
 
                                 <div class="lien-container-list-lien">
                                     <?php
-                                        $nbLiensValue = 1;
-
                                         if ($cours && $cours::FORMAT === EnumFormatCours::VIDEO)
                                         {
                                             $nbLiensValue = count($cours->getVideosUrl());
@@ -175,6 +173,8 @@ HTML;
                                         }
                                         else
                                         {
+                                            $nbLiensValue = 1;
+
                                             echo "<div class='lien-container-input-container'>";
                                             echo "<label for='input-lien'>$nbLiensValue</label>";
                                             echo "<input class='input m' type='text' name='lien{$nbLiensValue}' id='input-lien' placeholder='Lien de la vidéo YouTube'>";
