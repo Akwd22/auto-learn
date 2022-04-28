@@ -48,7 +48,7 @@ else{
 
 
 // Affichage de la vue.
-afficherCours($cours, $search, $selectedRadio, $selectedCat);
+afficherCours(array(), $cours, $search, $selectedRadio, +$selectedCat);
 
 
 
