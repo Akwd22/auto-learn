@@ -11,6 +11,7 @@ require_once("models/EnumFormatCours.php");
 require_once("models/EnumNiveauCours.php");
 require_once("views/pages/cours/creation-modification/creation-modification.php");
 
+
 SessionManagement::session_start();
 
 $coursId = $_GET["id"] ?? null;
@@ -56,6 +57,7 @@ function showView()
 
 function handleFormEdit()
 {
+  var_dump($_POST);
   global $coursId;
   global $coursCRUD;
   global $cours;
@@ -100,7 +102,8 @@ function handleFormEdit()
 
   //categorie
   if (!$categorie) {
-    redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $coursId));
+    $categorie = 1;
+    // redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $coursId));
   }
 
   // Image .
@@ -154,6 +157,7 @@ function handleFormEdit()
     }
   }
   else if($format==EnumFormatCours::VIDEO){
+      die();
       for($i = 1; $i <= $nbLiens; $i++)
       {
         $lien = trim($_POST["lien" . $i]);
@@ -176,7 +180,7 @@ function handleFormEdit()
 
   if($format==EnumFormatCours::TEXTE)
     $cours->setFichierUrl($fichPdf);
-  else if (EnumFormatCours::VIDEO)
+  else if ($format==EnumFormatCours::VIDEO)
     $cours->setVideosUrl($fichUrl);
 
   $coursCRUD->updateCours($cours, $coursId);
@@ -228,7 +232,8 @@ function handleFormCreate(){
 
   //categorie
   if (!$categorie) {
-    redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $coursId));
+    $categorie = 1;
+    // redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $coursId));
   }
 
 
@@ -302,6 +307,8 @@ function handleFormCreate(){
   else if($format==EnumFormatCours::VIDEO)
     $cours=new CoursVideo($fichUrl);
   
+  var_dump($format);
+  var_dump($titre);
   $cours->setTitre($titre);
   $cours->setDescription($description);
   $cours->setTempsMoyen($tempsMoyen);

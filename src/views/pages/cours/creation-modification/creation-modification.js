@@ -29,17 +29,15 @@ videoRadioButton.addEventListener("click", () => {
 
 const addLienVideo = function () {
   let nbLiens = document.querySelector(".lien-container-hidden");
-  // console.log(nbLiens.value);
 
   btnLienVideo.addEventListener("click", () => {
-    // console.log(nbLiens.value);
     nbLiens.value++;
 
     const div = document.createElement("div");
     div.className = "lien-container-input-container";
 
-    div.innerHTML = `<label for='input-lien'>${nbLiens.value}</label>`;
-    div.innerHTML += `<input class="input m" type="text" id="input-lien" name="lien${nbLiens.value}" placeholder="Lien de la vidéo YouTube"></input>`;
+    div.innerHTML = `<label for='input-lien-${nbLiens.value}'>${nbLiens.value}</label>`;
+    div.innerHTML += `<input class="input m" type="text" id="input-lien-${nbLiens.value}" name="lien${nbLiens.value}" placeholder="Lien de la vidéo YouTube"></input>`;
 
     listLiensContainer.appendChild(div);
   });

@@ -15,10 +15,10 @@ function afficherVue(bool $isEditMode, Cours $cours = null)
 
 
     // PDF CONTAINER
-    // Cette div doit s'afficher uniquement quand nous sommes en mode d'édition, sinon nous sommes en mode création
+    // Cette div doit s'afficher uniquement quand nous sommes en mode creation, sinon nous sommes en mode edition
     $pdf_container = function () {
         global $isEditMode; //On importe la variable $isEditMode donnée en parametre dans le scope de la fonction
-        if ($isEditMode === true) { //mode edition
+        if ($isEditMode === false) { //mode create
             return <<<HTML
                 <div class="creation-container-pdf-container">
                     <label for="pdfFile" id='pdf-file'>Fichier PDF</label>
@@ -81,27 +81,29 @@ HTML;
             <main class="coursCreation-page">
                 <div class="creation-container">
                     <div class="creation-container-form-structure">
-                        <form action="" class="creation-container-form">
+                        <form action="<?php $cours !== null ? ('/cours/editer?id=' . $cours->getId()) : '/cours/editer'  ?>" class="creation-container-form" method="post" enctype="multipart/form-data">
                             <!-- TITRE -->
                             <h2 class="creation-container-titre"><?php echo $modification_creation("titre") ?></h2>
-
+                            <div class="parametre-message-container">
+                                <?php createMessage(); ?>
+                            </div>
                             <!-- TITRE CONTAINER -->
                             <div class="form-container-input creation-container-titre-container">
                                 <label for="input-titre">Titre du cours</label>
-                                <input class="input l" type="text" name="titre" id="input-titre" placeholder='Titre du cours' value="<?php echo $handleForm_isEditMode("titre"); ?>">
+                                <input required class="input l" type="text" name="titre" id="input-titre" placeholder='Titre du cours' value="<?php echo $handleForm_isEditMode("titre"); ?>">
                             </div>
 
                             <!-- TEMPS MOYENS -->
                             <div class="form-container-input creation-container-temps-container">
                                 <label for="temps-input">Temps moyen de complétion</label>
-                                <input class="input l" type="text" name='tempsMoyen' id="temps-input" placeholder='Durée du cours' value="<?php echo $handleForm_isEditMode("tempsMoyen"); ?>">
+                                <input required class="input l" type="text" name='tempsMoyen' id="temps-input" placeholder='Durée du cours' value="<?php echo $handleForm_isEditMode("tempsMoyen"); ?>">
                             </div>
 
                             <!-- NIVEAU RECOMMANDÉ -->
                             <div class="form-container-input creation-container-niveau-container">
                                 <label for="niveau-select">Niveau recommandé</label>
                                 <?php ?>
-                                <select name="niveauRecommande" id="niveau-select">
+                                <select name="niveauRecommande" id="niveau-select" required>
                                     <?php
                                     $arr = EnumNiveauCours::getFriendlyNames();
 
@@ -114,33 +116,35 @@ HTML;
                             </div>
                             <!-- DESCRIPTION -->
                             <div class="form-container-input creation-container-description-container">
-                                <textarea name="description" id="description-area" placeholder="Description du cours"><?php echo $handleForm_isEditMode("description"); ?></textarea>
+                                <textarea required name="description" id="description-area" placeholder="Description du cours"><?php echo $handleForm_isEditMode("description"); ?></textarea>
                             </div>
                             <!-- NEW IMAGE -->
 
                             <div class="form-container-input creation-container-image-container">
                                 <label for="image" id='new-image'>Nouvelle image</label>
                                 <input type="file" name="image" id="image">
-                                <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                                <input type="hidden" name="MAX_FILE_SIZE" value="1000000"  />
                             </div>
 
                             <!-- FORMAT -->
                             <div class="creation-container-format-container">
                                 <label for="radio-format">Format du cours</label>
-                                <?php createRadio('radio-format-texte', 'format', 'Texte', 'texte', 'm', 'enabled', ($cours !== null ? ($cours::FORMAT === EnumFormatCours::TEXTE ? "checked" : "") : "checked")); ?>
-                                <?php createRadio('radio-format-video', 'format', 'Vidéo', 'video', 'm', 'enabled', ($cours !== null ? ($cours::FORMAT === EnumFormatCours::VIDEO ? "checked" : "") : "uncheked")); ?>
+                                <?php createRadio('radio-format-texte', 'format', 'Texte', '1', 'm', ($isEditMode) ? 'disabled' : 'enabled', ($cours !== null ? ($cours::FORMAT === EnumFormatCours::TEXTE ? "checked" : "") : "checked")); ?>
+                                <?php createRadio('radio-format-video', 'format', 'Vidéo', '2', 'm', ($isEditMode) ? 'disabled' : 'enabled', ($cours !== null ? ($cours::FORMAT === EnumFormatCours::VIDEO ? "checked" : "") : "uncheked")); ?>
                             </div>
 
                             <!-- FICHIER PDF -->
-                            <?php echo $pdf_container() ?>
+                            <!-- <?php echo $pdf_container() ?> -->
+                            <div class="creation-container-pdf-container">
+                                <label for="pdfFile" id='pdf-file'>Fichier PDF</label>
+                                <input type="file" name="fichPdf" id="pdfFile">
+                                <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
+                            </div>
 
                             <!-- BOUTON SUBMIT -->
                             <input class="default m" type="submit" id="submit-btn" value=<?php echo $modification_creation('btn') ?>>
 
                             <hr>
-
-
-
 
                             <div class="delete-container-form">
                                 <label for="btn-delete">Supprimer le cours</label>
@@ -157,30 +161,25 @@ HTML;
 
                                 <div class="lien-container-list-lien">
                                     <?php
-                                        if ($cours && $cours::FORMAT === EnumFormatCours::VIDEO)
-                                        {
-                                            $nbLiensValue = count($cours->getVideosUrl());
-
-                                            foreach ($cours->getVideosUrl() as $n => $url)
-                                            {
-                                                $n++;
-                                                echo "<div class='lien-container-input-container'>";
-                                                echo "<label for='input-lien'>$n</label>";
-                                                echo "<input class='input m' type='text' name='lien{$n}' id='input-lien' placeholder='Lien de la vidéo YouTube' value='{$url}'>";
-                                                echo "</div>";
-                                            }
-                                        }
-                                        else
-                                        {
-                                            $nbLiensValue = 1;
-
+                                    if ($cours && $cours::FORMAT === EnumFormatCours::VIDEO) {
+                                        $nbLiensValue = count($cours->getVideosUrl());
+                                        foreach ($cours->getVideosUrl() as $n => $url) {
+                                            $n++;
                                             echo "<div class='lien-container-input-container'>";
-                                            echo "<label for='input-lien'>$nbLiensValue</label>";
-                                            echo "<input class='input m' type='text' name='lien{$nbLiensValue}' id='input-lien' placeholder='Lien de la vidéo YouTube'>";
+                                            echo "<label for='input-lien-{$n}'>$n</label>";
+                                            echo "<input class='input m' type='text' name='lien{$n}' id='input-lien-{$n}' placeholder='Lien de la vidéo YouTube' value='{$url}'>";
                                             echo "</div>";
                                         }
+                                    } else { // Mode creation on importe une div par défaut
+                                        $nbLiensValue = 1;
 
-                                        echo "<input class='lien-container-hidden' type='hidden' name='nbLiens' value={$nbLiensValue}>";
+                                        echo "<div class='lien-container-input-container'>";
+                                        echo "<label for='input-lien'>$nbLiensValue</label>";
+                                        echo "<input class='input m' type='text' name='lien{$nbLiensValue}' id='input-lien' placeholder='Lien de la vidéo YouTube'>";
+                                        echo "</div>";
+                                    }
+
+                                    echo "<input class='lien-container-hidden' type='hidden' name='nbLiens' value={$nbLiensValue}>";
                                     ?>
                                 </div>
 
