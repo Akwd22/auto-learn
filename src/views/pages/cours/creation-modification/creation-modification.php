@@ -22,7 +22,7 @@ function afficherVue(bool $isEditMode, Cours $cours = null)
             return <<<HTML
                 <div class="creation-container-pdf-container">
                     <label for="pdfFile" id='pdf-file'>Fichier PDF</label>
-                    <input type="file" name="pdfFile" id="pdfFile">
+                    <input type="file" name="fichPdf" id="pdfFile">
                     <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
                 </div>
 HTML;
@@ -101,21 +101,20 @@ HTML;
                             <div class="form-container-input creation-container-niveau-container">
                                 <label for="niveau-select">Niveau recommandé</label>
                                 <?php ?>
-                                <select name="niveau-recommande" id="niveau-select">
+                                <select name="niveauRecommande" id="niveau-select">
                                     <?php
                                     $arr = EnumNiveauCours::getFriendlyNames();
-                                    $cours !== null ? $nomAffichage = $arr[$cours->getNiveauRecommande()] : $nomAffichage = "Sélectionner une valeur";
 
-                                    echo "<option>{$nomAffichage}</option>";
                                     foreach ($arr as $niv => $nom) {
-                                        echo "<option value=" . $niv . ">" . $nom . "</option>";
+                                        $selected = ($cours && $cours->getNiveauRecommande() === $niv) ? "selected" : "";
+                                        echo "<option value='$niv' $selected>$nom</option>";
                                     }
                                     ?>
                                 </select>
                             </div>
                             <!-- DESCRIPTION -->
                             <div class="form-container-input creation-container-description-container">
-                                <textarea name="description-texte" id="description-area" placeholder="Description du cours"><?php echo $handleForm_isEditMode("description"); ?></textarea>
+                                <textarea name="description" id="description-area" placeholder="Description du cours"><?php echo $handleForm_isEditMode("description"); ?></textarea>
                             </div>
                             <!-- NEW IMAGE -->
 
@@ -128,8 +127,8 @@ HTML;
                             <!-- FORMAT -->
                             <div class="creation-container-format-container">
                                 <label for="radio-format">Format du cours</label>
-                                <?php createRadio('radio-format-texte', 'radio-format', 'Texte', 'texte', 'm', 'enabled', ($cours !== null ? ($cours::FORMAT === EnumFormatCours::TEXTE ? "checked" : "") : "checked")); ?>
-                                <?php createRadio('radio-format-video', 'radio-format', 'Vidéo', 'video', 'm', 'enabled', ($cours !== null ? ($cours::FORMAT === EnumFormatCours::VIDEO ? "checked" : "") : "uncheked")); ?>
+                                <?php createRadio('radio-format-texte', 'format', 'Texte', 'texte', 'm', 'enabled', ($cours !== null ? ($cours::FORMAT === EnumFormatCours::TEXTE ? "checked" : "") : "checked")); ?>
+                                <?php createRadio('radio-format-video', 'format', 'Vidéo', 'video', 'm', 'enabled', ($cours !== null ? ($cours::FORMAT === EnumFormatCours::VIDEO ? "checked" : "") : "uncheked")); ?>
                             </div>
 
                             <!-- FICHIER PDF -->
