@@ -11,7 +11,6 @@ require_once("models/EnumFormatCours.php");
 require_once("models/EnumNiveauCours.php");
 require_once("views/pages/cours/creation-modification/creation-modification.php");
 
-
 SessionManagement::session_start();
 
 $coursId = $_GET["id"] ?? null;
@@ -57,7 +56,6 @@ function showView()
 
 function handleFormEdit()
 {
-  var_dump($_POST);
   global $coursId;
   global $coursCRUD;
   global $cours;
@@ -157,7 +155,6 @@ function handleFormEdit()
     }
   }
   else if($format==EnumFormatCours::VIDEO){
-      die();
       for($i = 1; $i <= $nbLiens; $i++)
       {
         $lien = trim($_POST["lien" . $i]);

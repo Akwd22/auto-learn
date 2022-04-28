@@ -79,9 +79,9 @@ HTML;
                 <?php createrNavbar(); ?>
             </header>
             <main class="coursCreation-page">
-                <div class="creation-container">
-                    <div class="creation-container-form-structure">
-                        <form action="<?php $cours !== null ? ('/cours/editer?id=' . $cours->getId()) : '/cours/editer'  ?>" class="creation-container-form" method="post" enctype="multipart/form-data">
+                <form action="<?php echo $cours ? ('/cours/editer?id=' . $cours->getId()) : '/cours/editer'  ?>" class="creation-container-form" method="post" enctype="multipart/form-data">
+                    <div class="creation-container">
+                        <div class="creation-container-form-structure">
                             <!-- TITRE -->
                             <h2 class="creation-container-titre"><?php echo $modification_creation("titre") ?></h2>
                             <div class="parametre-message-container">
@@ -123,7 +123,7 @@ HTML;
                             <div class="form-container-input creation-container-image-container">
                                 <label for="image" id='new-image'>Nouvelle image</label>
                                 <input type="file" name="image" id="image">
-                                <input type="hidden" name="MAX_FILE_SIZE" value="1000000"  />
+                                <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
                             </div>
 
                             <!-- FORMAT -->
@@ -150,47 +150,47 @@ HTML;
                                 <label for="btn-delete">Supprimer le cours</label>
                                 <a href='#'><input class="default s" type="button" id="btn-delete" value="Supprimer"></a>
                             </div>
-                    </div>
+                        </div>
 
-                    <!-- CONTAINER DES LIENS VERS LES VIDEOS -->
-                    <div class='lien-container'>
-                        <div class="lien-container-form">
-                            <h2 class="creation-container-titre">Liens vidéo de la formation</h2>
+                        <!-- CONTAINER DES LIENS VERS LES VIDEOS -->
+                        <div class='lien-container'>
+                            <div class="lien-container-form">
+                                <h2 class="creation-container-titre">Liens vidéo de la formation</h2>
 
-                            <div class="lien-container-lien-container">
+                                <div class="lien-container-lien-container">
 
-                                <div class="lien-container-list-lien">
-                                    <?php
-                                    if ($cours && $cours::FORMAT === EnumFormatCours::VIDEO) {
-                                        $nbLiensValue = count($cours->getVideosUrl());
-                                        foreach ($cours->getVideosUrl() as $n => $url) {
-                                            $n++;
+                                    <div class="lien-container-list-lien">
+                                        <?php
+                                        if ($cours && $cours::FORMAT === EnumFormatCours::VIDEO) {
+                                            $nbLiensValue = count($cours->getVideosUrl());
+                                            foreach ($cours->getVideosUrl() as $n => $url) {
+                                                $n++;
+                                                echo "<div class='lien-container-input-container'>";
+                                                echo "<label for='input-lien-{$n}'>$n</label>";
+                                                echo "<input class='input m' type='text' name='lien{$n}' id='input-lien-{$n}' placeholder='Lien de la vidéo YouTube' value='{$url}'>";
+                                                echo "</div>";
+                                            }
+                                        } else { // Mode creation on importe une div par défaut
+                                            $nbLiensValue = 1;
+
                                             echo "<div class='lien-container-input-container'>";
-                                            echo "<label for='input-lien-{$n}'>$n</label>";
-                                            echo "<input class='input m' type='text' name='lien{$n}' id='input-lien-{$n}' placeholder='Lien de la vidéo YouTube' value='{$url}'>";
+                                            echo "<label for='input-lien-{$nbLiensValue}'>$nbLiensValue</label>";
+                                            echo "<input class='input m' type='text' name='lien{$nbLiensValue}' id='input-lien-{$nbLiensValue}' placeholder='Lien de la vidéo YouTube'>";
                                             echo "</div>";
                                         }
-                                    } else { // Mode creation on importe une div par défaut
-                                        $nbLiensValue = 1;
 
-                                        echo "<div class='lien-container-input-container'>";
-                                        echo "<label for='input-lien'>$nbLiensValue</label>";
-                                        echo "<input class='input m' type='text' name='lien{$nbLiensValue}' id='input-lien' placeholder='Lien de la vidéo YouTube'>";
-                                        echo "</div>";
-                                    }
+                                        echo "<input class='lien-container-hidden' type='hidden' name='nbLiens' value='{$nbLiensValue}'>";
+                                        ?>
+                                    </div>
 
-                                    echo "<input class='lien-container-hidden' type='hidden' name='nbLiens' value={$nbLiensValue}>";
-                                    ?>
+
+                                    <!-- BOUTON D'AJOUT -->
+                                    <input class="default s" type="button" id="submit-btn-lien" value='Ajouter un lien de vidéo'>
                                 </div>
-
-
-                                <!-- BOUTON D'AJOUT -->
-                                <input class="default s" type="button" id="submit-btn-lien" value='Ajouter un lien de vidéo'>
                             </div>
                         </div>
                     </div>
-                    </form>
-                </div>
+                </form>
             </main>
         </div>
         <?php createFooter(); ?>
