@@ -158,24 +158,30 @@ HTML;
 
                                 <div class="lien-container-list-lien">
                                     <?php
-                                        $nbLiensValue = $cours ? count($cours->getVideosUrl()) : 1;
+                                        $nbLiensValue = 1;
 
-                                        echo "<input class='lien-container-hidden' type='hidden' name='nbLiens' value={$nbLiensValue}>";
+                                        if ($cours && $cours::FORMAT === EnumFormatCours::VIDEO)
+                                        {
+                                            $nbLiensValue = count($cours->getVideosUrl());
 
-                                        if ($cours) {
-                                            foreach ($cours->getVideosUrl() as $n => $url) {
+                                            foreach ($cours->getVideosUrl() as $n => $url)
+                                            {
                                                 $n++;
                                                 echo "<div class='lien-container-input-container'>";
                                                 echo "<label for='input-lien'>$n</label>";
                                                 echo "<input class='input m' type='text' name='lien{$n}' id='input-lien' placeholder='Lien de la vidéo YouTube' value='{$url}'>";
                                                 echo "</div>";
                                             }
-                                        } else {
+                                        }
+                                        else
+                                        {
                                             echo "<div class='lien-container-input-container'>";
                                             echo "<label for='input-lien'>$nbLiensValue</label>";
                                             echo "<input class='input m' type='text' name='lien{$nbLiensValue}' id='input-lien' placeholder='Lien de la vidéo YouTube'>";
                                             echo "</div>";
                                         }
+
+                                        echo "<input class='lien-container-hidden' type='hidden' name='nbLiens' value={$nbLiensValue}>";
                                     ?>
                                 </div>
 
