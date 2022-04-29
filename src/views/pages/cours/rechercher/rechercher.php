@@ -7,7 +7,7 @@
 <html>
 
             <?php
-            function afficherCours(array $recommandations, array $cours, string $lastSearch = null, string $selectedRadio = null, int $selectedCat = EnumCategorie::AUCUNE)
+            function afficherCours(array $cours, string $lastSearch = null, string $selectedRadio = null, int $selectedCat = EnumCategorie::AUCUNE)
             {
             ?>
 
