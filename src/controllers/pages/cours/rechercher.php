@@ -46,7 +46,6 @@ else{
     $cours = $coursCRUD->readAllCours();
 }
 
-
 // Affichage de la vue.
 afficherCours($cours, $search, $selectedRadio, +$selectedCat);
 

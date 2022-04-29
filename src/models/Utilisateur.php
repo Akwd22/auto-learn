@@ -160,6 +160,18 @@ class Utilisateur
         return false;
     }
 
+    public function hasCoursRecommande($idCours)
+    {
+        foreach($this->qcmTentes as $tenta)
+        {
+            $reco = $tenta->getCoursRecommande();
+            if($reco && $reco->getCours()->getId() == $idCours)
+                return true;
+        }
+
+        return false;
+    }
+
     public function setCoursTentes($coursTentes)
     {
         $this->coursTentes=$coursTentes;
