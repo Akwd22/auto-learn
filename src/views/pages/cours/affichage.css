@@ -1,0 +1,199 @@
+/*--------------------------------------*/
+/*div du haut contenant les informations*/
+#topDiv{
+    width: 1520px;
+    height: 168px;
+    margin: auto;
+    margin-top: 48px;
+   
+
+    background-color: var(--clear_background_container);
+
+    border-radius: 4px; 
+
+    overflow: hidden;    
+}
+
+/*div pour l'image du cours*/
+#imgDiv{
+    float: left;
+
+    width: 240px;
+    height: 136px;
+    margin: 16px;
+}
+/*image du cours*/
+#imgDiv img{ 
+    display: block;
+
+    width: auto;
+    height: 136px;
+    margin: auto;
+}
+
+
+/*div pour toutes les infos*/
+#infoDiv{
+    float: right; 
+    
+    width: calc(100% - 272px);
+    height: 100%; 
+
+    text-align: left; 
+    
+    padding:16px;
+}
+/*div pour toutes les infos placées à gauche*/
+#leftInfoDiv{
+    float: left;
+}
+/*div pour toutes les infos placées à droite*/
+#rightInfoDiv{
+    float: right; 
+    
+    margin-right: 5px;
+    
+    padding-top: 5px;
+}
+
+
+/*titre du cours*/
+#titleCours{
+    float: left;
+    
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+    color:var(--dark_text);
+}
+
+/*niveau du cours avec 3 couleurs différentes en fonction du niveau*/
+.niveauCours{
+    margin-top: 3px;
+
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 32px;
+
+    padding-left: 10px;
+}
+.debutant{color: var(--customize_green);}
+.intermediaire{color:var(--customize_orange);}
+.avance{color: var(--customize_red);}
+
+/*description du cours*/
+#descriptionCours{
+    width: 100%;
+    margin-top: 8px;
+    
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+    color:var(--dark_text);
+}
+
+/*temps estimé du cours*/
+#timeCours{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color:var(--dark_text);
+}
+
+/*date de creation du cours*/
+#dateCours{
+    margin-top: 9px;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color:var(--dark_text);
+}
+
+/*bouton uniquement visible par l'admin*/
+#divEdit{
+    margin-top: 50px;
+}
+#divEdit .invisible{visibility: hidden;}
+#divEdit .visible{visibility: visible;}
+/*--------------------------------------*/
+
+
+
+/*--------------------------------------*/
+/*div du bas contenant le cours (si cours texte, pdf directement dedans)*/
+#bottomDiv{
+    width: 1520px;
+    margin: auto;
+    margin-top: 32px;
+    margin-bottom: 32px;  
+
+    
+    border-radius: 4px;
+}
+
+/*div contenant la video si cours video*/
+#divVideo{
+    float: left;
+
+    width:1152px;
+    height:656px;
+    
+    border-radius: 4px;
+}
+
+/*div contenant les boutons menant aux videos si cours video*/
+#divLinksVideo{
+    float: right;
+
+    width: 336px;
+    min-height: 656px;
+
+    background-color: var(--clear_background_container);
+
+    border-radius: 4px;
+
+    padding: 16px; 
+    padding-top:8px;
+}
+
+/*boutons menant aux différentes vidéos*/
+.urlButton{
+    width: 100%;
+    height: 48px;
+    margin-top: 8px;
+
+    background-color: var(--clear1_text);
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--dark_text);
+
+    border-radius: 4px;    
+    border: 0;
+
+    cursor: pointer;
+}
+.urlButton:hover{
+    background-color: var(--first_clear_background);
+    color:var(--medium2_text);
+}
+/*--------------------------------------*/
+
+
+/*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
+@media (prefers-color-scheme: dark) {
+    #topDiv{background-color: var(--dark_background_container);}
+    #titleCours{color: #fff;}
+    #descriptionCours{color: #fff;}
+    #timeCours{color: #fff;}
+    #dateCours{color: #fff;}
+
+    #divLinksVideo{background-color: var(--dark_background_container);}
+    .urlButton{background-color: var(--medium1_text);color:#fff;}
+    .urlButton:hover{
+        background-color: var(--first_dark_background);
+        color:var(--clear2_text);
+    }
+}

@@ -11,7 +11,7 @@ require_once("views/pages/cours/affichage.php");
 
 SessionManagement::session_start();
 
-$coursId = $_GET["id"];
+$coursId = $_GET["id"] ;
 
 $isLogged = SessionManagement::isLogged();
 
@@ -42,7 +42,6 @@ if($user->hasCoursTente($coursId)==false){
    $userCRUD->updateUser($user, $userId); 
 }
 
-
-// Affichage de la vue.
 // TODO : afficher la vue
-// afficherCours($cours);
+afficherCours($cours);
+

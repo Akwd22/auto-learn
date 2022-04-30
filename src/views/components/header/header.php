@@ -52,7 +52,7 @@ HTML;
                             <a href="/utilisateurs">Utilisateurs</a>
                         </li>
                         <li>
-                            <a href="/rechercher-cours">Cours</a>
+                            <a href="/cours/rechercher">Cours</a>
                         </li>
                         <li>
                             <a href="/qcm/rechercher">Qcm</a>
@@ -77,7 +77,7 @@ HTML;
         <div class="navbar-links-container">
             <div class="links-container-onglets">
                 <ul class="links-container-onglets-list">
-                    <li><a href="/rechercher-cours" class="container-onglets-links">Cours</a></li>
+                    <li><a href="/cours/rechercher" class="container-onglets-links">Cours</a></li>
                     <li><a href="/qcm/rechercher" class="container-onglets-links">Tests</a></li>
                 </ul>
             </div>

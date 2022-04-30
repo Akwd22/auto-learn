@@ -5,8 +5,8 @@ function createFooter()
     <footer>
         <div id="contentFooter">
             <div id="linksFooter">
-                <p><a class="linkFooter" href="#">Cours</a></p>
-                <p><a href="#">Tests</a></p>
+                <p><a href="/cours/rechercher">Cours</a></p>
+                <p><a href="/qcm/rechercher">Tests</a></p>
                 <p><a href="#">Contact</a></p>
                 <p><a href="#">Conditions d'utilisation</a></p>
                 <p><a href="#">Politiques de confidentialité</a></p>

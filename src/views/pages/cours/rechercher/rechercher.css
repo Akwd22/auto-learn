@@ -6,22 +6,30 @@
 }
 
 #rightDiv{
-    width: 75%;
+    width: 944px;
     height:100%;
 
-    float: right;
+    
 
-    padding-right: 25%;
+    
     padding-left: 48px;
 }
 
-/*division du formulaire de gauche*/
+/*div du bouton "créer" vu uniquement par un admin*/
+#divCreate{
+    width: 232px;
+    margin-left: calc(100% - 264px);
+    margin-top: 48px;
+}
+#divCreate .invisible{visibility: hidden;}
+#divCreate .visible{visibility: visible;}
+
+/*div du formulaire de gauche*/
 #divForm{
     width: 264px;
     height: 312px;
-    margin-top: 112px;
-    
-    float: right;
+    margin-top: 32px;  
+    margin-left: calc(100% - 264px);
 
     background-color: var(--clear_background_container);
 
@@ -78,17 +86,12 @@ select{
 
 
 /*div où sont affichés les cours*/
-#divDisplay{
-    display: flex;
-    flex-wrap: wrap;
-}
-/*div invisible où est affiché 1 cours (pour 1 bon placement)*/
-.containerFlexCours{
-    padding: 0 12px;
-    flex:1 1 auto;
+#divGrid{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
 }
 
-/*div visible où est affiché 1 cours*/
+/*div où est affiché 1 cours*/
 .containerCours{
     width: 160px;
     height: 160px;
@@ -130,16 +133,23 @@ select{
 }
 
 /*gère le rétrécissement horizontal de la page*/
-@media screen and (max-width: 1440px){
-    #rightDiv{padding-right: 15%;}
+@media screen and (max-width: 1260px){
+    #rightDiv{width: 784px;}
+    #divGrid{grid-template-columns: repeat(4,1fr);}
 }
-@media screen and (max-width: 1056px){
-    #leftDiv{width: 264px;}
-    #rightDiv{width: calc(100% - 264px);padding-right: 5%;}
+@media screen and (max-width: 1045px){
+    #rightDiv{width: 624px;}
+    #divGrid{grid-template-columns: repeat(3,1fr);}
 }
-@media screen and (max-width: 580px){
-    #rightDiv{padding-right: 1%;}
+@media screen and (max-width: 850px){
+    #rightDiv{width: 464px;}
+    #divGrid{grid-template-columns: repeat(2,1fr);}
 }
+@media screen and (max-width: 650px){
+    #rightDiv{width: 75%; }
+    #divGrid{grid-template-columns: repeat(1,1fr);}
+}
+
 
 
 /*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/

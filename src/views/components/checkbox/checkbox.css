@@ -1,7 +1,7 @@
 
 /*div contenant la checkbox et son label*/
 .divCustomCheckbox{
-    position: relative;
+    position: relative; 
 }
 /*checkbox rendu invisible pour créer la checkbox personnalisé*/
 .customCheckbox{
@@ -19,6 +19,8 @@
     display: grid;
     grid-template-areas: "checkbox label";
     gap: 15px;
+
+    overflow:hidden;
 }
 
 /*checkbox personnalisé*/

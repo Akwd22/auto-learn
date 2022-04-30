@@ -29,8 +29,18 @@
 
                 <form method="POST">
                     <div id="leftDiv">
+
+                        <div id="divCreate">
+                            <?php
+                                $visible='invisible';
+                                if (SessionManagement::isAdmin()){$visible='visible';}
+                            ?>
+                            <input class="default s <?php echo $visible?>" id="create" type="button" name="create" value="Créer un cours" onclick="window.location.href = '/cours/editer'">
+                        </div>    
+
                         <div id="divForm">
                             <!--formulaire de gauche-->
+
                             <p class="titlesForm">Format cours</p>
                             <div class="divRadios" id="radio1">
                                 <?php
@@ -78,14 +88,13 @@
                         <input class="input l" type="search" id="site-search" name="site-search" value="<?php echo $lastSearch; ?>" placeholder="Rechercher un cours">
                         <!--fin formulaire de droite-->
 
-                        <div id="divDisplay">
+                        <div id="divGrid">
 
-                            <?php
+                            <?php 
                             for ($i = 0; $i < count($cours); $i++) {
 
-                                echo "<div class=\"containerFlexCours\">";
                                 echo "<div class=\"containerCours\">";
-                                echo "<a href=\"/cours?id=" . $cours[$i]->getId() . "\">";
+                                echo "<a href=\"/cours/affichage?id=" . $cours[$i]->getId() . "\">";
 
                                 $urlImg = '';
 
@@ -97,14 +106,14 @@
 
                                 echo "<img class=\"imgCours\" src=\"" . $urlImg . "\">";
 
+                                
+
                                 echo "<p class=\"titleCours\">" . $cours[$i]->getTitre() . "</p>";
                                 echo "<p class=\"descriptionCours\">" . $cours[$i]->getDescription() . "</p>";
 
                                 echo "</a>";
                                 echo "</div>";
-                                echo "</div>";
                             }
-
 
                             ?>
 
