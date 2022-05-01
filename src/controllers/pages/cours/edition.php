@@ -154,14 +154,24 @@ function handleFormEdit()
     }
   }
   else if($format==EnumFormatCours::VIDEO){
-      for($i = 1; $i <= $nbLiens; $i++)
+      for ($i = 1; $i <= $nbLiens; $i++)
       {
-        $lien = trim($_POST["lien" . $i]);
+        $lien = trim($_POST["lien$i"]);
+
+        $urlStart = "https://youtu.be/";
+
+        // Vérifier que le lien est un lien YouTube et le transformer dans le bon format.
+        // Sinon, ne pas considérer le lien.
+        if (substr($lien, 0, strlen($urlStart)) !== $urlStart)
+        {
+          parse_str(parse_url($lien, PHP_URL_QUERY), $urlParams);
+          $lien = isset($urlParams["v"]) ? ($urlStart . $urlParams["v"]) : null;
+        }
+
         if ($lien) array_push($fichUrl, $lien);
       }
 
-      if (empty($fichUrl))
-        redirect($redirectUrl, "error", "Liens obligatoires", array("id" => $coursId));
+      if (empty($fichUrl)) redirect($redirectUrl, "error", "Liens obligatoires", array("id" => $coursId));
     }
      
 
@@ -286,14 +296,24 @@ function handleFormCreate(){
   }
   else if ($format==EnumFormatCours::VIDEO)
   {
-    for($i = 1; $i <= $nbLiens; $i++)
+    for ($i = 1; $i <= $nbLiens; $i++)
     {
-      $lien = trim($_POST["lien" . $i]);
+      $lien = trim($_POST["lien$i"]);
+
+      $urlStart = "https://youtu.be/";
+
+      // Vérifier que le lien est un lien YouTube et le transformer dans le bon format.
+      // Sinon, ne pas considérer le lien.
+      if (substr($lien, 0, strlen($urlStart)) !== $urlStart)
+      {
+        parse_str(parse_url($lien, PHP_URL_QUERY), $urlParams);
+        $lien = isset($urlParams["v"]) ? ($urlStart . $urlParams["v"]) : null;
+      }
+
       if ($lien) array_push($fichUrl, $lien);
     }
 
-    if (empty($fichUrl))
-      redirect($redirectUrl, "error", "Liens obligatoires", array("id" => $coursId));
+    if (empty($fichUrl)) redirect($redirectUrl, "error", "Liens obligatoires", array("id" => $coursId));
   }
   
   
