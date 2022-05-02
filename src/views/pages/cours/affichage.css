@@ -77,9 +77,9 @@
 
     padding-left: 10px;
 }
-.debutant{color: var(--customize_green);}
-.intermediaire{color:var(--customize_orange);}
-.avance{color: var(--customize_red);}
+.niveau-1{color: var(--customize_green);}
+.niveau-2{color:var(--customize_orange);}
+.niveau-3{color: var(--customize_red);}
 
 /*description du cours*/
 #descriptionCours{

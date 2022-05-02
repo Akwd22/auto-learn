@@ -50,4 +50,4 @@ if ($cours::FORMAT === EnumFormatCours::TEXTE) {
 // Supprimer le cours.
 $coursCRUD->deleteCours($coursId);
 
-redirect("/rechercher-cours", "success", "Suppression du cours avec succès.");
+redirect("/cours/rechercher", "success", "Suppression du cours avec succès.");

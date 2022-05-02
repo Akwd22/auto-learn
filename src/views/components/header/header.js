@@ -25,4 +25,6 @@ window.onresize = () => {
     nav.style.right = `${rightSpacing}px`;
 }
 
+
+
 navSlide();

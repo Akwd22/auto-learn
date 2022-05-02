@@ -41,10 +41,12 @@
                     <div id="leftInfoDiv">
                         <h1 id="titleCours"><?php echo $cours->getTitre().' - ';?></h1>
                         <?php
-                            $niveau=' Intermédiaire';$niveauClass='intermediaire';
-                            if($cours->getNiveauRecommande()=='DEBUTANT'){$niveau=' Débutant';$niveauClass='debutant';}
-                            if($cours->getNiveauRecommande()=='AVANCE'){$niveau=' Avancé';$niveauClass='avance';}
-                            echo "<p class=\"niveauCours ".$niveauClass."\">".$niveau."</p>";
+                            $idNiveau = $cours->getNiveauRecommande();
+
+                            $niveau = EnumNiveauCours::getFriendlyNames()[$idNiveau];
+                            $niveauClass = "niveau-$idNiveau";
+
+                            echo "<p class='niveauCours $niveauClass'>$niveau</p>";
                         ?>
                         <p id="descriptionCours"><?php echo $cours->getDescription(); ?><p>
                     </div>
