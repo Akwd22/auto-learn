@@ -35,7 +35,9 @@ if(isset($_POST['reset'])){
     $selectedCat=null;
 }
 
-
+//récupére les tentatives de QCM de l'utilisateur connecté
+$userCRUD = new UtilisateurCRUD($conn);
+$qcmTentative=$userCRUD->readUserById(SessionManagement::getUserId())->getAllQcmTentes();
 
 
 
@@ -47,10 +49,6 @@ if (isset($_POST['apply'])) {
       
     if($selectedCheckbox)
         {
-            $userCRUD = new UtilisateurCRUD($conn);
-            //récupére les tentatives de QCM de l'utilisateur connecté
-            $qcmTentative=$userCRUD->readUserById(SessionManagement::getUserId())->getAllQcmTentes();
-            
             $count=0;
             for($i=0;$i<count($qcmTentative);$i++)
             {
@@ -64,10 +62,35 @@ if (isset($_POST['apply'])) {
                 }
             }
         }
-        else{$qcm=$qcmFiltre;}
+    else
+        {   
+            $count=0;
+            for($i=0;$i<count($qcmTentative);$i++)
+            {
+                for ($j=0;$j<count($qcmFiltre);$j++)
+                {       //enlève de la liste les qcm terminé par l'utilisateur courant
+                        if($qcmTentative[$i]->getIsTermine() &&  $qcmTentative[$i]->getQcm()->getId()==$qcmFiltre[$j]->getId())
+                        {
+                            array_splice($qcmFiltre,$j,1);                            
+                        }
+                }
+            }
+            $qcm=$qcmFiltre;
+        }
 } 
 else{
-    $qcm = $crud->readAllQcm();
+    $allQcm = $crud->readAllQcm();
+    for($i=0;$i<count($qcmTentative);$i++)
+    {
+        for ($j=0;$j<count($allQcm);$j++)
+        {       //enlève de la liste les qcm terminé par l'utilisateur courant
+                if($qcmTentative[$i]->getIsTermine() &&  $qcmTentative[$i]->getQcm()->getId()==$allQcm[$j]->getId())
+                {
+                    array_splice($allQcm,$j,1);                            
+                }
+        }
+    }
+    $qcm=$allQcm;
 }
 
 
