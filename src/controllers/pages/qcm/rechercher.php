@@ -26,7 +26,7 @@ $crud = new QcmCRUD($conn);
 $search = isset($_POST["titre"]) ? $_POST["titre"] : "";
 $selectedCheckbox = isset($_POST['showCompleted']) ? $_POST["showCompleted"] : "";
 $selectedCat = isset($_POST['categorie']) ? $_POST["categorie"] : "";
-$qcm = null;
+$qcm = [];
           
 //on réinitialise les valeurs (bouton reset)
 if(isset($_POST['reset'])){
@@ -42,27 +42,29 @@ if(isset($_POST['reset'])){
 if (isset($_POST['apply'])) {
     if($selectedCat==1)
         {$selectedCat=null;}
-    if(!$selectedCheckbox)
-        {
-        $qcm = $crud->readQcmFiltres($search, (int)$selectedCat);
-        }
-    
+
+        $qcmFiltre = $crud->readQcmFiltres($search, (int)$selectedCat);
+      
     if($selectedCheckbox)
         {
             $userCRUD = new UtilisateurCRUD($conn);
-            $userId=SessionManagement::getUserId();
-            $user = $userCRUD->readUserById($userId);
-            $qcmTentative=$user->getAllQcmTentes();
-            $qcmTemp;$count=0;
+            //récupére les tentatives de QCM de l'utilisateur connecté
+            $qcmTentative=$userCRUD->readUserById(SessionManagement::getUserId())->getAllQcmTentes();
+            
+            $count=0;
             for($i=0;$i<count($qcmTentative);$i++)
             {
-                if($qcmTentative[$i]->getIsTermine())
-                {
-                    $qcm[$count]=$qcmTentative[$i]->getQcm();
-                    $count++;
+                for ($j=0;$j<count($qcmFiltre);$j++)
+                {       //crée une liste des QCM en commun entre les tentatives terminés de l'utilisateurs, et les QCM obtenu grâce aux filtres
+                        if($qcmTentative[$i]->getIsTermine() &&  $qcmTentative[$i]->getQcm()->getId()==$qcmFiltre[$j]->getId())
+                        {
+                            $qcm[$count]=$qcmFiltre[$j];
+                            $count++;
+                        }
                 }
             }
         }
+        else{$qcm=$qcmFiltre;}
 } 
 else{
     $qcm = $crud->readAllQcm();

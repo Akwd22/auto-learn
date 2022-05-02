@@ -1,8 +1,12 @@
+/*div central*/
 #centerDiv{
     width: 784px;
     margin: auto;
 }
 
+
+
+/*div contenant les infos sur le qcm et les résultats*/
 #topDiv{
     height: 120px;
     margin-top: 48px;
@@ -14,6 +18,7 @@
     padding: 16px;
 }
 
+/*titre du QCM*/
 #titleQcm{
     float: left;
 
@@ -22,7 +27,7 @@
     line-height: 150%;
     color: var(--dark_text);
 }
-
+/*date de completion du QCM*/
 #date{
     float: right;
 
@@ -31,11 +36,11 @@
     line-height: 24px;
     color: var(--medium1_text);
 }
-
+/*div contenant la note et le bouton "Recommencer*/
 #topDivButton{
     margin-top: 20px;
 }
-
+/*note*/
 .result{
     float: left;
 
@@ -48,14 +53,16 @@
 .result.red{color: var(--customize_red);}
 .result.orange{color: var(--customize_orange);}
 .result.green{color: var(--customize_green);}
-
-
+/*form pour bouton "Recommencer*/
 form{
     float: right;
 
     width: 162px;
 }
 
+
+
+/*div contenant les infos sur le cours conseillé*/
 #bottomDiv{
     height: 64px;
     margin-top: 32px;
@@ -66,7 +73,7 @@ form{
 
     padding: 16px;
 }
-
+/*titre du cours conseillé*/
 #recommendedCours{
     float: left;
 
@@ -75,12 +82,14 @@ form{
     line-height: 32px;
     color: var(--dark_text);
 }
-
+/*div pour placer bouton "Voir le cours*/
 #divButtonRecommendedCours{
     float: right;
 
     width: 149px;
 }
+
+
 
 
 /*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/

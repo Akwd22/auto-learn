@@ -1,11 +1,11 @@
-
+/*div de gauche*/
 #leftDiv{ 
     width: calc((100% - 784px) / 2);
     min-width: 228px;
 
     float: left; 
 }
-
+/*div pour bouton "Recommencer le QCM"*/
 #restartDiv{
     margin: auto;
     margin-top: 45px;
@@ -14,17 +14,22 @@
 
 
 
+
+/*div central*/
 #centerDiv{
     width: 784px;
-    margin-left: 6px;
-    
+    margin-left: 6px; 
 }
 
+
+/*div pour placer la progressBar*/
 #divProgressBar{
     width: 100%;
     margin-top: 50px;
 }
 
+
+/*div contenant les infos et boutons*/
 #containerQuestion{
     width: 100%;
     margin-top: 50px;
@@ -36,6 +41,7 @@
     padding: 16px;
 }
 
+/*titre du QCM*/
 #titleQcm{
     float: left;
 
@@ -44,6 +50,7 @@
     line-height: 150%;
     color: var(--dark_text);
 }
+/*nombre de point(s) de la question*/
 #nbPoint{
     float: right;
 
@@ -52,6 +59,7 @@
     line-height: 24px;
     color: var(--medium1_text);
 }
+/*question*/
 #question{
     margin-top: 16px;
 
@@ -61,27 +69,30 @@
     color: var(--dark_text);
 }
 
+/*div pour placer le ou les input(s) de réponse (input texte, checkboxs, ou boutons radio*/
 #answerDiv{
     margin-top: 20px;
 }
-
+/*mets une marge entre chaque chexkbox*/
 .labelCustomCheckbox{margin-top: 12px;}
-
+/*mets une marge entre chaque bouton radio*/
 .labelCustomRadio{margin-top: 12px;}
 
-
+/*div contenant les 2 boutons et le score*/
 #buttonDiv{
     margin-top: 24px;
 }
-
+/*div contenant le bouton "Question suivante" et le score*/
 #leftButtonDiv{
     float: left;
 }
+/*div contenant le bouton "Question suivante"*/
 #submitDiv{
     float: left;
 
     width: 184px;
 }
+/*score*/
 #score{
     margin-left: 200px;
     margin-top: 4px;
@@ -91,14 +102,15 @@
     line-height: 24px;
     color: var(--medium1_text);
 }
-
-
+/*div contenant le bouton "Ignorer la question"*/
 #rightButtonDiv{
     float: right;
 }
+/*div plue précise contenant le bouton "Ignorer la question"*/
 #skipDiv{
     width: 184px;
 }
+/*bouton "Ignorer la question"*/
 #skip{
     height: 32px;
     width: 100%;
@@ -119,6 +131,7 @@
     background-color: var(--first_clear_background);
     color:var(--medium2_text);
 }
+
 
 
 

@@ -1,9 +1,11 @@
+/*div central*/
 #centerDiv{
     width: 784px;
     margin: auto;
     margin-top: 48px;
 }
 
+/*div contenant infos et boutons*/
 #containerInfo{position: relative;
     height: 200px;
     margin-top: 52px;
@@ -15,6 +17,7 @@
     padding: 16px;
 }
 
+/*titre du qcm*/
 #titleQcm{
     font-weight: 700;
     font-size: 24px;
@@ -23,6 +26,7 @@
 
     float: left;
 }
+/*nombre de question(s) du qcm*/
 #nbQuestion{
     font-weight: 500;
     font-size: 16px;
@@ -31,6 +35,7 @@
 
     float: right;
 }
+/*description du qcm*/
 #descriptionQcm{
     margin-top: 16px;
 
@@ -40,16 +45,18 @@
     color: var(--medium1_text);
 }
 
+/*div contenant les 2 boutons*/
 #divButtons{position:absolute;
     bottom: 16px;
     width: calc(100% - 32px);
 }
-
+/*div pour bouton "Commencer"*/
 #divStart{
     width:147px;
     
     float: left;
 }
+/*div pour bouton "Modifier le QCM"*/
 #divEdit{
     width:174px;
 
@@ -57,6 +64,8 @@
 }
 .visible{visibility: visible;}
 .invisible{visibility: hidden;}
+
+
 
 /*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
 @media (prefers-color-scheme: dark) {

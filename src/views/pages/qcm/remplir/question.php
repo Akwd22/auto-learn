@@ -38,7 +38,7 @@
         ?>
 
 <head>
-    <?php infoHead('QCM', 'début du QCM', '/views/pages/qcm/remplir/question.css'); ?>
+    <?php infoHead('QCM', 'question du QCM', '/views/pages/qcm/remplir/question.css'); ?>
     <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
     <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
 </head>
@@ -109,9 +109,10 @@
     </div>
     <?php createFooter(); ?>
 
-    <script src="../views/pages/qcm/remplir/progressBar.js"></script>
+    <script src="../views/components/progressBar/progressBar.js"></script>
     <script><?php $p=(int)($tentative->getNumQuestionCourante()-1)*100/$qcm->nbQuestions();echo "fillProgressBar('".$p."');"; ?></script>
 </body>
 
 
+</html>
 <?php } ?>
