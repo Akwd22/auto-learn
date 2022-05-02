@@ -28,7 +28,7 @@
                     <input id="password" class="input l" type="password" placeholder="Entrer le mot de passe" name="password" required>
 
                     <div id="divConditions">
-                        <?php createCheckbox('acceptConditions', 'acceptConditions', 'J\'ai lu et j\'accepte les termes d\'utilisation ainsi que la politique de confidentialité.', 'l', 'enabled', false); ?>
+                        <?php createCheckbox('acceptConditions', 'acceptConditions', 'J\'ai lu et j\'accepte les termes d\'utilisation ainsi que la politique de confidentialité.', 'l','required', 'enabled', false); ?>
                     </div>
 
                     <input class="default m" type="submit" id="submit" value="S'INSCRIRE">

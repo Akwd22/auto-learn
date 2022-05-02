@@ -1,0 +1,67 @@
+#centerDiv{
+    width: 784px;
+    margin: auto;
+    margin-top: 48px;
+}
+
+#containerInfo{position: relative;
+    height: 200px;
+    margin-top: 52px;
+
+    background-color: var(--clear_background_container);
+
+    border-radius: 4px;
+
+    padding: 16px;
+}
+
+#titleQcm{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+    color: var(--dark_text);
+
+    float: left;
+}
+#nbQuestion{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--medium1_text);
+
+    float: right;
+}
+#descriptionQcm{
+    margin-top: 16px;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+    color: var(--medium1_text);
+}
+
+#divButtons{position:absolute;
+    bottom: 16px;
+    width: calc(100% - 32px);
+}
+
+#divStart{
+    width:147px;
+    
+    float: left;
+}
+#divEdit{
+    width:174px;
+
+    float: right;
+}
+.visible{visibility: visible;}
+.invisible{visibility: hidden;}
+
+/*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
+@media (prefers-color-scheme: dark) {
+    #containerInfo{background-color: var(--dark_background_container);}
+    #titleQcm{color: #fff;}
+    #nbQuestion{color: #fff;}
+    #descriptionQcm{color: #fff;}
+}

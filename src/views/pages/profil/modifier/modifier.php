@@ -75,7 +75,7 @@ function afficherModifierProfil(Utilisateur $user)
                 if ($user->getIsAdmin()) {
                   $checked = 'checked';
                 }
-                createCheckbox('form-admin-container-checkbox', 'admin', 'Admin ?', 'm', 'enabled', $checked);
+                createCheckbox('form-admin-container-checkbox', 'admin', 'Admin ?', 'm','', 'enabled', $checked);
               }
               ?>
             </div>

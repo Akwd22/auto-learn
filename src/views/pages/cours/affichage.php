@@ -62,7 +62,7 @@
                                 $visible='invisible';
                                 if (SessionManagement::isAdmin()){$visible='visible';}
                             ?>
-                            <input class="default s <?php echo $visible?>" id="edit" type="button" name="edit" value="Modifier le cours" onclick="window.location.href = '/cours/editer?id='<?php $cours->getId(); ?>">
+                            <input class="default s <?php echo $visible?>" id="edit" type="button" name="edit" value="Modifier le cours" onclick="window.location.href = '/cours/editer?id=<?php echo $cours->getId(); ?>'">
                         </div>    
                     </div>
                 </div>
@@ -97,7 +97,7 @@
     </div>
     <?php createFooter(); ?>
 
-    <script src="../views/pages/cours/affichage.js"><?php if($cours instanceof CoursVideo){echo "addSrc('".$cours->getVideosUrl()[0]."');";} ?></script>
+    <script src="../views/pages/cours/affichage.js"></script>
     <script><?php if($cours instanceof CoursVideo){echo "addSrc('".$cours->getVideosUrl()[0]."');";} ?></script>
 </body>
 

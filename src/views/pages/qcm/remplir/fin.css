@@ -1,0 +1,93 @@
+#centerDiv{
+    width: 784px;
+    margin: auto;
+}
+
+#topDiv{
+    height: 120px;
+    margin-top: 48px;
+
+    background-color: var(--clear_background_container);
+
+    border-radius: 4px;
+
+    padding: 16px;
+}
+
+#titleQcm{
+    float: left;
+
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+    color: var(--dark_text);
+}
+
+#date{
+    float: right;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--medium1_text);
+}
+
+#topDivButton{
+    margin-top: 20px;
+}
+
+.result{
+    float: left;
+
+    margin-top: 1px;
+
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 32px;
+}
+.result.red{color: var(--customize_red);}
+.result.orange{color: var(--customize_orange);}
+.result.green{color: var(--customize_green);}
+
+
+form{
+    float: right;
+
+    width: 162px;
+}
+
+#bottomDiv{
+    height: 64px;
+    margin-top: 32px;
+
+    background-color: var(--clear_background_container);
+
+    border-radius: 4px;
+
+    padding: 16px;
+}
+
+#recommendedCours{
+    float: left;
+
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 32px;
+    color: var(--dark_text);
+}
+
+#divButtonRecommendedCours{
+    float: right;
+
+    width: 149px;
+}
+
+
+/*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
+@media (prefers-color-scheme: dark) {
+    #topDiv{background-color: var(--dark_background_container);}
+    #bottomDiv{background-color: var(--dark_background_container);}
+    #titleQcm{color: #fff;}
+    #date{color: #fff;}
+    #recommendedCours{color: #fff;}
+}

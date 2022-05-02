@@ -1,0 +1,137 @@
+
+#leftDiv{ 
+    width: calc((100% - 784px) / 2);
+    min-width: 228px;
+
+    float: left; 
+}
+
+#restartDiv{
+    margin: auto;
+    margin-top: 45px;
+    width: 216px;
+}
+
+
+
+#centerDiv{
+    width: 784px;
+    margin-left: 6px;
+    
+}
+
+#divProgressBar{
+    width: 100%;
+    margin-top: 50px;
+}
+
+#containerQuestion{
+    width: 100%;
+    margin-top: 50px;
+
+    background-color: var(--clear_background_container);
+
+    border-radius: 4px;
+
+    padding: 16px;
+}
+
+#titleQcm{
+    float: left;
+
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+    color: var(--dark_text);
+}
+#nbPoint{
+    float: right;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--medium1_text);
+}
+#question{
+    margin-top: 16px;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+    color: var(--dark_text);
+}
+
+#answerDiv{
+    margin-top: 20px;
+}
+
+.labelCustomCheckbox{margin-top: 12px;}
+
+.labelCustomRadio{margin-top: 12px;}
+
+
+#buttonDiv{
+    margin-top: 24px;
+}
+
+#leftButtonDiv{
+    float: left;
+}
+#submitDiv{
+    float: left;
+
+    width: 184px;
+}
+#score{
+    margin-left: 200px;
+    margin-top: 4px;
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--medium1_text);
+}
+
+
+#rightButtonDiv{
+    float: right;
+}
+#skipDiv{
+    width: 184px;
+}
+#skip{
+    height: 32px;
+    width: 100%;
+
+    background-color: var(--clear1_text);
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--dark_text);
+
+    border-radius: 4px;    
+    border: 0;
+
+    cursor: pointer;
+}
+#skip:hover{
+    background-color: var(--first_clear_background);
+    color:var(--medium2_text);
+}
+
+
+
+/*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
+@media (prefers-color-scheme: dark) {
+    #containerQuestion{background-color: var(--dark_background_container);}
+    #titleQcm{color:#fff;}
+    #nbPoint{color: var(--clear1_text);}
+    #question{color: #fff;}
+    #score{color: var(--clear1_text);}
+    #skip{background-color: var(--medium1_text);color:#fff;}
+    #skip:hover{
+        background-color: var(--first_dark_background);
+        color:var(--clear2_text);
+    }
+}

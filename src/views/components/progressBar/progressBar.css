@@ -1,0 +1,37 @@
+#progressBar{
+    width: 100%;
+
+    background-color: var(--clear_progressBar);
+   
+    position: relative;
+    overflow: hidden;
+}
+
+#progressBar.s{
+    height:8px;
+    border-radius: 11px;
+}
+#progressBar.m{
+    height:12px;
+    border-radius: 15px;
+}
+
+#progressBar::after{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 0%;
+    height: 12px;
+    
+    background-color: var(--customize_green);
+    
+    content: "";    
+}
+
+
+/*gère si la préférence du système ou du navigateur est réglé sur thème sombre*/
+@media (prefers-color-scheme: dark) {
+    #progressBar{background-color: var(--dark_progressBar);}
+}
+

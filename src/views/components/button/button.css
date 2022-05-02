@@ -93,5 +93,6 @@
   background-color: var(--button_hover);
 }
 .outline:hover {
+  color: var(--button_hover);
   border: 2px solid var(--button_hover);
 }

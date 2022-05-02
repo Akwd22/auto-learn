@@ -6,6 +6,7 @@
 @import url("../../views/components/input/input.css");
 @import url("../../views/components/radio/radio.css");
 @import url("../../views/components/select/select.css");
+@import url("../../views/components/progressBar/progressBar.css");
 
 * {
   margin: 0;

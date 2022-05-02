@@ -60,4 +60,8 @@
   /*table*/
   --clear_secondColor_table: #cbd5e0;
   --dark_secondColor_table: #1a202c;
+
+  /*progressBar*/
+  --clear_progressBar: #A0AEC0;
+  --dark_progressBar: #4A5568;
 }

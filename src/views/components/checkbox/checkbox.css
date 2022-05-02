@@ -18,7 +18,6 @@
 
     display: grid;
     grid-template-areas: "checkbox label";
-    gap: 15px;
 
     overflow:hidden;
 }
@@ -40,10 +39,10 @@
 
 /*modification de la taille de la checkbox en fonction de la taille choisi*/
 .divCustomCheckbox.m > .labelCustomCheckbox::before {height:16px;}
-.divCustomCheckbox.m > .labelCustomCheckbox {grid-template-columns: 16px 1fr;}
+.divCustomCheckbox.m > .labelCustomCheckbox {grid-template-columns: 16px 1fr;gap: 10px;}
 
 .divCustomCheckbox.l > .labelCustomCheckbox::before{height:20px;}
-.divCustomCheckbox.l > .labelCustomCheckbox {grid-template-columns: 20px 1fr;}
+.divCustomCheckbox.l > .labelCustomCheckbox {grid-template-columns: 20px 1fr;gap: 15px;}
 
 
 /*modification de la checkbox personnalisé quand survolé par la souris*/
