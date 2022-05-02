@@ -3,7 +3,7 @@ const navSlide = () => {
     const nav = document.querySelector('.burger-links');
     const navLinks = document.querySelectorAll('.burger-links li');
 
-    burger.addEventListener('mouseover', () => {
+    burger.addEventListener('click', () => {
         // Calc right position
         const rect = burger.getBoundingClientRect();
         const domsize = document.documentElement.clientWidth;
@@ -24,7 +24,5 @@ window.onresize = () => {
     const rightSpacing = domsize - (rect.x) - rect.width;
     nav.style.right = `${rightSpacing}px`;
 }
-
-
 
 navSlide();

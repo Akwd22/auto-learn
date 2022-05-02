@@ -31,13 +31,13 @@ HTML;
             } else {
                 if (!$user_isAdmin) {
                     return <<<HTML
-                    <a href="/profil?id={$user_id}"><img class="img-profil" src={$url_profilImage} /></a>
+                    <img class="img-profil" src={$url_profilImage} />
                     <ul class="burger-links">
                         <li>
                             <a href="/profil?id={$user_id}">Profil</a>
                         </li>
                         <li>
-                            <a href="profil/modifier?id={$user_id}">Paramètres</a>
+                            <a href="/profil/modifier?id={$user_id}">Paramètres</a>
                         </li>
                         <li>
                             <a href="/deconnexion">Se déconnecter</a>
@@ -46,8 +46,11 @@ HTML;
 HTML;
                 } else {
                     return <<<HTML
-                    <a href="/profil?id={$user_id}"><img class="img-profil" src={$url_profilImage} /></a>
+                    <img class="img-profil" src={$url_profilImage} />
                     <ul class="burger-links">
+                        <li>
+                            <a href="/profil?id={$user_id}">Profil Admin</a>
+                        </li>
                         <li>
                             <a href="/utilisateurs">Utilisateurs</a>
                         </li>
@@ -77,7 +80,7 @@ HTML;
         <div class="navbar-links-container">
             <div class="links-container-onglets">
                 <ul class="links-container-onglets-list">
-                    <li><a href="/cours/rechercher" class="container-onglets-links">Cours</a></li>
+                    <li><a href="/rechercher-cours" class="container-onglets-links">Cours</a></li>
                     <li><a href="/qcm/rechercher" class="container-onglets-links">Tests</a></li>
                 </ul>
             </div>
