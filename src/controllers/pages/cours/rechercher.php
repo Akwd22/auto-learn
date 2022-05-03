@@ -1,4 +1,5 @@
 <?php
+require_once("controllers/utils.php");
 require_once "databases/CoursCRUD.php";
 require_once "databases/SessionManagement.php";
 require_once "views/pages/cours/rechercher/rechercher.php";
@@ -12,7 +13,8 @@ SessionManagement::session_start();
 $isLogged = SessionManagement::isLogged();
 
 /* ---------------------- Vérification des permissions ---------------------- */
-if (!$isLogged) die("Vous devez être connecté.");
+if (!$isLogged) redirect("/connexion", "error", "Vous devez être connecté.");
+
 
 /* -------------------------------------------------------------------------- */
 /*                            Rechercher les cours                            */
