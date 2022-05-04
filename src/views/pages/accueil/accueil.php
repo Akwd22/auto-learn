@@ -26,7 +26,7 @@ require 'views/components/footer/footer.php';
                 <p class="slogan-text">Les cours sont conseillés suivants votre niveau déterminé par des tests de <br /> connaissance. C'est gratuit !</p>
             </div>
             <div class="accueil-container-bouton">
-                <a href="/rechercher-cours"><button button id="btn-accueil" class="default m" type="button" value="Commencez à apprendre">Commencez à apprendre</button></a>
+                <a href="/cours/rechercher"><button button id="btn-accueil" class="default m" type="button" value="Commencez à apprendre">Commencez à apprendre</button></a>
             </div>
 
         </main>

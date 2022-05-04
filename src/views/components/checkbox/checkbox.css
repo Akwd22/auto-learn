@@ -74,13 +74,6 @@
 } 
 
 
-/*modification de la checkbox personnalisé quand invalide-->à revoir car pb pour le moment*/
-/*
-.divCustomCheckbox .customCheckbox:invalid + .labelCustomCheckbox::before{
-    border: 2px solid var(--checkboxRadio_border_error);
-    background-color: var(--checkboxRadio);
-} 
-*/
 
 
 

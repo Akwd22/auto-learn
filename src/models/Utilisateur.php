@@ -149,6 +149,15 @@ class Utilisateur
         }
     }
 
+    public function getCoursTentesByCoursId($idcours)
+    {
+        foreach($this->coursTentes as $value)
+        {
+            if($value->getCours()->getId()==$idcours)
+                return $value;
+        }
+    }
+
     public function hasCoursTente($idCours)
     {
         foreach($this->coursTentes as $value)
