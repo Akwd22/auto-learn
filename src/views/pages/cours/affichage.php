@@ -65,7 +65,19 @@
                                 if (SessionManagement::isAdmin()){$visible='visible';}
                             ?>
                             <input class="default s <?php echo $visible?>" id="edit" type="button" name="edit" value="Modifier le cours" onclick="window.location.href = '/cours/editer?id=<?php echo $cours->getId(); ?>'">
-                        </div>    
+                        </div>
+                        <div id="divMark">
+                            <?php 
+                            $isMark=null;
+                            if(SessionManagement::getUser()->getCoursTentesByCoursId($cours->getId())!=null && SessionManagement::getUser()->getCoursTentesByCoursId($cours->getId())->getIsTermine())
+                                {
+                                $isMark="non-";   
+                                }
+                            ?>
+
+                            <input class="default s" id="mark" type="button" name="mark" value="Marquer comme <?php echo $isMark; ?>terminé" onclick="window.location.href = '/cours/marquer?id=<?php echo $cours->getId(); ?>'">
+                            </div>       
+
                     </div>
                 </div>
 
@@ -102,6 +114,4 @@
     <script src="../views/pages/cours/affichage.js"></script>
     <script><?php if($cours instanceof CoursVideo){echo "addSrc('".$cours->getVideosUrl()[0]."');";} ?></script>
 </body>
-
-
 <?php } ?>

@@ -42,6 +42,7 @@
     text-align: left; 
     
     padding:16px;
+    overflow: hidden;
 }
 /*div pour toutes les infos placées à gauche*/
 #leftInfoDiv{
@@ -112,10 +113,19 @@
 
 /*bouton uniquement visible par l'admin*/
 #divEdit{
-    margin-top: 50px;
+    margin-top: 8px;
 }
 #divEdit .invisible{visibility: hidden;}
 #divEdit .visible{visibility: visible;}
+
+/*bouton de marquage*/
+#divMark{
+    margin-top: 8px;
+}
+#Mark{
+    padding-left: 30px;
+    padding-right: 30px;
+}
 /*--------------------------------------*/
 
 
