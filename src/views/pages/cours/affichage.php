@@ -23,7 +23,9 @@
         <?php createrNavbar(); ?>
     </header>
     <main class="content">
-       
+        
+        <?php createMessage(); ?>
+
         <div id="topDiv">
 
                 <div id="imgDiv">

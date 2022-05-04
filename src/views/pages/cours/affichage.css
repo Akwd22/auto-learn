@@ -1,4 +1,10 @@
 /*--------------------------------------*/
+.messageField{
+    width: 1520px;
+    margin: auto;
+    margin-top: 48px;
+}
+
 /*div du haut contenant les informations*/
 #topDiv{
     width: 1520px;
