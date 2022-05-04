@@ -60,11 +60,20 @@ select{
     margin-top: 6px;
 }
 
+/*div pour placer les boutons*/
+#gridButton{
+    display: grid;
+    grid-template-areas: "reset" "sub";
+}
 /*boutons*/
 #reset{
+    grid-area: reset;
+    
     margin-top: 18px;
 }
 #sub{
+    grid-area: sub;
+    
     margin-top: 14px;
 }
 

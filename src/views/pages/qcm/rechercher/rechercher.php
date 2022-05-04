@@ -73,8 +73,10 @@
 
                                 ?>
                             </select>
-                            <input class="outline s" id="reset" type="submit" name="reset" value="Réinitialiser les filtres">
-                            <input class="default s" id="apply" type="submit" name="apply" value="Appliquer les filtres">
+                            <div id="gridButton">
+                                <input class="default s" id="apply" type="submit" name="apply" value="Appliquer les filtres">
+                                <input class="outline s" id="reset" type="submit" name="reset" value="Réinitialiser les filtres">
+                            </div>
                             <!--fin formulaire de gauche-->
                         </div>
                     </div>
