@@ -26,7 +26,7 @@ class TentativeCoursCRUD
         return $this->db;
     }
 
-    public function createTentativeCours($coursTente)
+    public function createTentativeCours($coursTente, $idUtilisateur)
     {
         try{
             $isTermine = $coursTente->getIsTermine();
@@ -58,6 +58,16 @@ class TentativeCoursCRUD
                 $sth->bindValue(':dateTermine', $dateTermine->format("Y-m-d G:i:s"));
             else
                 $sth->bindValue(':dateTermine', NULL);
+
+            $sth->execute();
+
+
+
+
+            $sth = $this->db->getPDO()->prepare("
+            INSERT INTO utilisateurtentativescours (idTentativeCours, idUtilisateur) VALUES (:idTentativeCours, :idUtilisateur)");
+            $sth->bindValue(':idTentativeCours', $this->db->lastInsertId());
+            $sth->bindValue(':idUtilisateur', $idUtilisateur);
 
             $sth->execute();
         } catch (PDOException $e) {

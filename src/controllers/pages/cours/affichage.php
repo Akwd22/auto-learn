@@ -7,41 +7,41 @@ require_once("models/Cours.php");
 require_once("models/TentativeCours.php");
 require_once("views/pages/cours/affichage.php");
 
-
-
 SessionManagement::session_start();
 
-$coursId = $_GET["id"] ;
+$coursId = $_GET["id"];
 
 $isLogged = SessionManagement::isLogged();
 
-//verif URL
+// Vérif URL.
 if (!$coursId) die("ID du cours non spécifié.");
 
 // Vérification connexion.
 if (!$isLogged) die("Vous devez être connecté");
 
-$userId=SessionManagement::getUserId();
+$userId = SessionManagement::getUserId();
 
-// Effectuer la récupération du cours
+// Effectuer la récupération du cours.
 $conn = new DatabaseManagement();
 $coursCRUD = new CoursCRUD($conn);
+$tentaCRUD = new TentativeCoursCRUD($conn);
 $userCRUD = new UtilisateurCRUD($conn);
-$user=$userCRUD->readUserById($userId);
+
+$user = $userCRUD->readUserById($userId);
 
 $cours = $coursCRUD->readCoursById($coursId);
 if (!$cours) die("Cours n'existe pas.");
 
-if($user->hasCoursTente($coursId)==false){
-   $tenta=new TentativeCours();
+if (!$user->hasCoursTente($coursId)) {
+   $tenta = new TentativeCours();
    $tenta->setDateCommence(new DateTime());
    $tenta->setIsTermine(false);
    $tenta->setCours($cours);
 
    $user->addCoursTentes($tenta);
-   $userCRUD->updateUser($user, $userId); 
+
+   $tentaCRUD->createTentativeCours($tenta, $userId);
+   $userCRUD->updateUser($user, $userId);
 }
 
-// TODO : afficher la vue
 afficherCours($cours);
-
