@@ -64,3 +64,27 @@ if (SessionManagement::isLogged()) {
   <br>
   <input type="submit" name="submit" value="Modifier le cours">
 </form> -->
+
+<!--<form action="/qcm/edition" method="post" enctype="multipart/form-data">
+  <h1>Modifier le qcm</h1>
+  <label for="titre">Nouveau titre</label>
+  <input type="text" name="titre" id="titre" value="">
+  <br>
+  <label for="description">Nouvelle description</label>
+  <input type="text" name="description" id="description">
+  <br>
+  <label for="categorie">Nouvelle categorie</label>
+  <input type="text" name="categorie" id="categorie">
+  <br>
+  <label for="xml">Nouveau fichier xml</label>
+  <input type="file" name="xml" id="xml">
+  <br>
+  <h1>Cours recommandes</h1>
+  <input type="hidden" name="nbCoursRecommandes" value="1">
+  <div>
+  Entre <input type="number" name="min-1">
+  Et <input type="number" name="max-1">
+  :<input type="number" name="id-1">
+  </div>
+  <input type="submit" name="submit" value="Creer/Modifier le qcm">
+</form>-->

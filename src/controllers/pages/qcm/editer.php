@@ -1,19 +1,235 @@
 <?php
+require_once("config.php");
 require_once("databases/DatabaseManagement.php");
+require_once "databases/SessionManagement.php";
 require_once("databases/QcmCRUD.php");
+require_once("models/CoursRecommandeQCM.php");
+require_once("databases/CoursCRUD.php");
 require_once("views/pages/qcm/editer/editer.php");
+require_once("controllers/utils.php");
+require_once("controllers/classes/files/UploadXmlManager.php");
+require_once("controllers/classes/XmlParserQcm.php");
 
-$qcmId = $_GET["id"] ?? null;
+SessionManagement::session_start();
 
-// TODO
+$qcmId =$_GET["id"] ?? null;
 
+$isLogged = SessionManagement::isLogged();
+$isAdmin = SessionManagement::isAdmin();
+
+// Vérification des permissions.
+if (!$isLogged) die("Vous n'êtes pas connecté.");
+if (!$isAdmin) die("Vous ne pouvez pas modifier ce cours.");
+
+//recup QCM
 $conn = new DatabaseManagement();
-$crud = new QcmCRUD($conn);
+$qcmCRUD = new QcmCRUD($conn);
+$coursCRUD  = new CoursCRUD($conn);
 
+$cours = null;
 $qcm = null;
 $isEditMode = $qcmId ? true : false;
 
-if ($isEditMode)
-  $qcm = $crud->readQcmById($qcmId);
+if ($isEditMode){
+  $qcm = $qcmCRUD->readQcmById($qcmId);
+  if(!$qcm)
+    die("QCM n'exsite pas");
+  }
 
-afficherFormulaire($isEditMode, $qcm);
+//Affichage de la vue ou traitement du formulaire.
+if (empty($_POST)) {
+  showView();
+} else {
+    if($isEditMode===true)
+      handleFormEdit();
+    else 
+      handleFormCreate();
+}
+
+function showView()
+{
+  global $qcm;
+  global $isEditMode;
+  afficherFormulaire($isEditMode, $qcm);
+  exit;
+}
+
+function handleFormEdit()
+{
+  global $qcmId;
+  global $qcmCRUD;
+  global $qcm;
+  global $coursCRUD;
+  global $cours;
+ 
+  $redirectUrl = "/qcm/edition";
+
+  $titre = $_POST["titre"] ?? null;
+  $categorie= $_POST["categorie"] ?? null;
+  $description = $_POST["description"] ?? null;
+  $xml= UploadXmlManager::exists("xml");
+  $nbCoursRecommandes = $_POST["nbCoursRecommandes"];
+
+  //cours recommandé
+  for($i = 1; $i<=$nbCoursRecommandes; $i++){
+    $moyMin = $_POST["min-$i"];
+    $moyMax = $_POST["max-$i"];
+    $idCours = $_POST["id-$i"];
+
+    $cours = $coursCRUD->readCoursById($idCours);
+    if(!$cours)
+      redirect($redirectUrl, "error", "Cours n'exsite pas.", array("id" => $qcmId));
+    if($moyMin<0 || $moyMin>20)
+      redirect($redirectUrl, "error", "nombre entre 0 et 20.", array("id" => $qcmId));
+    if($moyMax<0 || $moyMax>20)
+      redirect($redirectUrl, "error", "nombre entre 0 et 20.", array("id" => $qcmId));
+    $coursRecommande = new CoursRecommandeQCM();
+    $coursRecommande->setMoyMin($moyMin);
+    $coursRecommande->setMoyMax($moyMax);
+    $coursRecommande->setCours($cours);
+    $qcm->addCoursRecommandes($coursRecommande);
+    
+    }
+
+
+  // titre.
+  if (!$titre) 
+    redirect($redirectUrl, "error", "titre obligatoire.", array("id" => $qcmId));
+
+  //categorie
+  if (!$categorie) {
+    redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $qcmId));
+  }
+
+  //description.
+  if (!$description) {
+    redirect($redirectUrl, "error", "description obligatoire.", array("id" => $qcmId));
+  }
+
+  if ($xml) {
+    $upload = new UploadXmlManager("xml");
+    $savePath = UPLOADS_QCM_DIR . $upload->getFileHash() . "." . $upload->getExtension();
+
+    FileManager::delete(UPLOADS_QCM_DIR . $qcm->getXmlUrl());
+
+    if (!$upload->validateType())
+      redirect($redirectUrl, "error", "Fichier XML importé doit être un fichier xml.", array("id" => $qcmId));
+
+    if (!$upload->validateSize())
+      redirect($redirectUrl, "error", "FIchier XML importé ne doit pas dépasser 500Ko.", array("id" => $qcmId));
+
+    if (!$upload->validateExtension())
+      redirect($redirectUrl, "error", "Fichier XML importé doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $qcmId));
+
+    if (!$upload->save($savePath))
+      redirect($redirectUrl, "error", "Erreur lors de l'importation du fichier XML.", array("id" => $qcmId));
+
+    
+    $xmlParse= new XmlParserQcm($upload->getRealFileName());
+    $questions=$xmlParse->parse();
+    $qcm->setQuestions($questions);
+
+    $xml = $upload->getRealFileName();
+  } else {
+    $xml = $qcm->getXmlUrl();
+  }
+
+  // Mettre à jour les données.
+  $qcm->setTitre($titre);
+  $qcm->setDescription($description);
+  $qcm->setCategorie(+$categorie);
+  $qcm->setXmlUrl($xml);
+  
+  $qcmCRUD->updateQcm($qcm);
+
+  redirect($redirectUrl, "success", "QCM modifié avec succès.", array("id" => $qcmId));
+}
+
+function handleFormCreate(){
+
+  global $qcmId;
+  global $qcmCRUD;
+  global $qcm;
+  global $coursCRUD;
+  global $cours;
+  
+  $redirectUrl = "/qcm/edition";
+
+  $titre = $_POST["titre"] ?? null;
+  $description = $_POST["description"] ?? null;
+  $categorie= $_POST["categorie"] ?? null;
+  $xml= UploadXmlManager::exists("xml");
+  $nbCoursRecommandes = $_POST["nbCoursRecommandes"];
+  $qcm = new QCM();
+  
+  //cours recommandé
+  for($i = 1; $i<=$nbCoursRecommandes; $i++){
+    $moyMin = $_POST["min-$i"];
+    $moyMax = $_POST["max-$i"];
+    $idCours = $_POST["id-$i"];
+
+    $cours = $coursCRUD->readCoursById($idCours);
+    if(!$cours)
+      redirect($redirectUrl, "error", "Cours n'exsite pas.", array("id" => $qcmId));
+    if($moyMin<0 || $moyMin>20)
+      redirect($redirectUrl, "error", "nombre entre 0 et 20.", array("id" => $qcmId));
+    if($moyMax<0 || $moyMax>20)
+      redirect($redirectUrl, "error", "nombre entre 0 et 20.", array("id" => $qcmId));
+    
+      $coursRecommande = new CoursRecommandeQCM();
+      $coursRecommande->setMoyMin($moyMin);
+      $coursRecommande->setMoyMax($moyMax);
+      $coursRecommande->setCours($cours);
+      $qcm->addCoursRecommandes($coursRecommande);
+    }
+
+  // titre.
+  if (!$titre) 
+    redirect($redirectUrl, "error", "titre obligatoire.", array("id" => $qcmId));
+
+  //description.
+  if (!$description) {
+    redirect($redirectUrl, "error", "description obligatoire.", array("id" => $qcmId));
+  }
+
+  //categorie
+  if (!$categorie) {
+    redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $qcmId));
+  }
+
+  if ($xml) {
+    $upload = new UploadXmlManager("xml");
+    $savePath = UPLOADS_QCM_DIR . $upload->getFileHash() . "." . $upload->getExtension();
+
+    //FileManager::delete(UPLOADS_QCM_DIR . $qcm->getXmlUrl());
+
+    if (!$upload->validateType())
+      redirect($redirectUrl, "error", "Fichier XML importé doit être un fichier xml.", array("id" => $qcmId));
+
+    if (!$upload->validateSize())
+      redirect($redirectUrl, "error", "FIchier XML importé ne doit pas dépasser 500Ko.", array("id" => $qcmId));
+
+    if (!$upload->validateExtension())
+      redirect($redirectUrl, "error", "Fichier XML importé doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $qcmId));
+
+    if (!$upload->save($savePath))
+      redirect($redirectUrl, "error", "Erreur lors de l'importation du fichier XML.", array("id" => $qcmId));
+
+    $xmlParse= new XmlParserQcm($upload->getRealFileName());
+    $questions=$xmlParse->parse();
+    $qcm->setQuestions($questions);
+
+    $xml = $upload->getRealFileName();
+  } else {
+    redirect($redirectUrl, "error", "Fichier XMl obligatoire", array("id" => $qcmId));
+  }
+
+  $qcm->setTitre($titre);
+  $qcm->setDescription($description);
+  $qcm->setCategorie(+$categorie);
+  $qcm->setXmlUrl($xml);
+
+  $qcmCRUD->createQcm($qcm);
+  
+  redirect($redirectUrl, "success", "QCM crée avec succès.", array("id" => $qcmId));
+}
