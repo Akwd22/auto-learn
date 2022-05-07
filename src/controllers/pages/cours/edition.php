@@ -261,7 +261,7 @@ function handleFormCreate(){
 
     $image = $upload->getRealFileName();
   } else {
-    redirect($redirectUrl, "error", "Image obligatoire.", array("id" => $coursId));
+    $image = null;
   }
 
   //format
@@ -331,5 +331,9 @@ function handleFormCreate(){
   
   $coursCRUD->createCours($cours);
   
-  redirect($redirectUrl, "success", "Cours créé avec succès.", array("id" => $coursId));
+  redirect("/cours/rechercher", "success", "Cours créé avec succès.", [
+    "id"          => $coursId,
+    "site-search" => $titre,
+    "sub"         => true
+  ]);
 }

@@ -153,6 +153,11 @@ select{
     text-overflow: ellipsis;
 }
 
+#rightDiv .messageField {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
 /*gère le rétrécissement horizontal de la page*/
 @media screen and (max-width: 1260px){
     #rightDiv{width: 784px;}

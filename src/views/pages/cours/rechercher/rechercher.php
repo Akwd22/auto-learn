@@ -83,10 +83,14 @@
                     </div>
 
                     <div id="rightDiv">
+
                         <!--formulaire de droite-->
                         <div id="labelSearchDiv">
                             <label id="labelSearch" for="site-search" name="site-search">Les cours</label>
                         </div>
+
+                        <?php createMessage(); ?>
+                        
                         <input class="input l" type="search" id="site-search" name="site-search" value="<?php echo $lastSearch; ?>" placeholder="Rechercher un cours">
                         <!--fin formulaire de droite-->
 
