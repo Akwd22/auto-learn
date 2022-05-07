@@ -55,7 +55,6 @@ function handleForm()
 
   $email = $_POST["email"] ?? null;
   $pass = $_POST["pass"] ?? null;
-  $theme = $_POST["theme"] ?? null;
   $admin = $_POST["admin"] ?? null;
   $image = UploadFileManager::exists("image");
 
@@ -77,13 +76,6 @@ function handleForm()
     $pass = password_hash($pass, PASSWORD_DEFAULT);
   } else {
     $pass = $user->getPassHash();
-  }
-
-  // Thème utilisé.
-  if ($theme) {
-    $theme = $theme === "light" ? EnumTheme::CLAIR : EnumTheme::SOMBRE;
-  } else {
-    redirect($redirectUrl, "error", "Thème obligatoire.", array("id" => $userId));
   }
 
   // Admin.
@@ -118,7 +110,6 @@ function handleForm()
   // Mettre à jour les données.
   $user->setEmail($email);
   $user->setPassHash($pass);
-  $user->setTheme($theme);
   $user->setImageUrl($image);
   if ($isAdmin) $user->setIsAdmin($admin);
 

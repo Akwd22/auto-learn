@@ -12,7 +12,7 @@
             ?>
 
 <head>
-    <?php infoHead('Cours', 'cours', '/views/pages/cours/affichage.css'); ?>
+    <?php infoHead('Cours', 'Cours', '/views/pages/cours/affichage.css'); ?>
     <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
     <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
 </head>
@@ -41,7 +41,7 @@
 
                 <div id="infoDiv">
                     <div id="leftInfoDiv">
-                        <h1 id="titleCours"><?php echo $cours->getTitre().' - ';?></h1>
+                        <h1 id="titleCours"><?php echo $cours->getTitre().' – ';?></h1>
                         <?php
                             $idNiveau = $cours->getNiveauRecommande();
 

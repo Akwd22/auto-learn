@@ -59,7 +59,7 @@ function afficherProfil(Utilisateur $user)
                   printf(
                     "<p class='list-cours-container-component-avancé %s'>%s</p>",
                     ($cours_tente[$i]->getIsTermine() ? "avance-Compléter" : "avance-enCours"),
-                    ($cours_tente[$i]->getIsTermine() ? "Compléter" : "En cours")
+                    ($cours_tente[$i]->getIsTermine() ? "Terminé" : "En cours")
                   );
                   echo "</div>";
                 }

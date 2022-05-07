@@ -20,7 +20,7 @@
             ?>
 
 <head>
-    <?php infoHead('QCM', 'Liste des QCMs', '/views/pages/qcm/rechercher/rechercher.css'); ?>
+    <?php infoHead('Rechercher des tests', 'Rechercher des tests', '/views/pages/qcm/rechercher/rechercher.css'); ?>
     <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
     <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
 </head>
@@ -84,7 +84,7 @@
                     <div id="rightDiv">
                         <!--formulaire de droite-->
                         <div id="labelSearchDiv">
-                            <label id="labelSearch" for="titre" name="titre">Les QCM</label>
+                            <label id="labelSearch" for="titre" name="titre">Les tests de connaissances</label>
                         </div>
                         <input class="input l" type="search" id="titre" name="titre" value="<?php echo $lastSearch; ?>" placeholder="Rechercher un QCM">
                         <!--fin formulaire de droite-->
@@ -94,6 +94,8 @@
                             <?php 
                             $arr = EnumCategorie::getFriendlyNames();
                             for ($i = 0; $i < count($qcm); $i++) {
+                              $tenta = SessionManagement::getUser()->getQcmTentesByQcmId($qcm[$i]->getId());
+
                               echo "<a href=\"/qcm?id=" . $qcm[$i]->getId() . "\">";
                                 echo "<div class=\"containerQcm\">";
                                 
@@ -105,6 +107,7 @@
 
                                   echo "<div class=\"rightDivQcm\">";
                                     echo "<p class=\"catQcm\">".$arr[$qcm[$i]->getCategorie()]."</p>";
+                                    if ($tenta && $tenta->getIsTermine()) echo "<p class='noteQcm'>" . $moy=number_format($tenta->getMoy(), 2) . "/20</p>";
                                   echo "</div>";
 
                                  

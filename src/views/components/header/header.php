@@ -34,7 +34,7 @@ HTML;
                     <img class="img-profil" src={$url_profilImage} />
                     <ul class="burger-links">
                         <li>
-                            <a href="/profil?id={$user_id}">Profil</a>
+                            <a href="/profil?id={$user_id}">Mon profil</a>
                         </li>
                         <li>
                             <a href="/profil/modifier?id={$user_id}">Paramètres</a>
@@ -49,7 +49,7 @@ HTML;
                     <img class="img-profil" src={$url_profilImage} />
                     <ul class="burger-links">
                         <li>
-                            <a href="/profil?id={$user_id}">Profil Admin</a>
+                            <a href="/profil?id={$user_id}">Mon profil</a>
                         </li>
                         <li>
                             <a href="/utilisateurs">Utilisateurs</a>
@@ -58,7 +58,7 @@ HTML;
                             <a href="/cours/rechercher">Cours</a>
                         </li>
                         <li>
-                            <a href="/qcm/rechercher">Qcm</a>
+                            <a href="/qcm/rechercher">Tests</a>
                         </li>
                         <li>
                             <a href="/deconnexion">Se déconnecter</a>

@@ -20,7 +20,7 @@ function afficherModifierProfil(Utilisateur $user)
 ?>
 
   <head>
-    <?php infoHead('Modifier son profil', 'Modifier son profil', '/views/pages/profil/modifier/modifier.css'); ?>
+    <?php infoHead('Modifier le profil', 'Modifier le profil', '/views/pages/profil/modifier/modifier.css'); ?>
     <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
     <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
   </head>
@@ -44,26 +44,19 @@ function afficherModifierProfil(Utilisateur $user)
               <!-- EMAIL -->
               <div class="form-email-container form-log-item">
                 <label for="email">Nouveau e-mail</label>
-                <input class="input l" type="email" name="email" id="email" value="<?php echo $user->getEmail() ?>">
+                <input class="input l" type="email" name="email" id="email" value="<?php echo $user->getEmail() ?>" placeholder="Saisir un nouveau e-mail">
               </div>
 
               <!-- MOT DE PASSE -->
               <div class="form-password-container form-log-item">
                 <label for="pass">Nouveau mot de passe</label>
-                <input class="input l" type="password" name="pass" id="pass">
+                <input class="input l" type="password" name="pass" id="pass" placeholder="*********">
               </div>
 
               <!-- IMAGE -->
               <div class="form-image-container">
                 <label for="image" id='new-image'>Nouvelle image</label>
                 <input type="file" name="image" id="image" accept="image/png, image/jpeg">
-              </div>
-
-              <!-- THEME -->
-              <div class="form-theme-container">
-                <label for="theme">Thèmes</label>
-                <?php createRadio("theme-light", "theme", "Clair", "light", "l", "enabled", ($user->getTheme() === EnumTheme::CLAIR ?  "checked" :  "")); ?>
-                <?php createRadio("theme-dark", "theme", "Sombre", "dark", "l", "enabled", ($user->getTheme() === EnumTheme::SOMBRE ? "checked" : "")); ?>
               </div>
             </div>
 
@@ -75,7 +68,7 @@ function afficherModifierProfil(Utilisateur $user)
                 if ($user->getIsAdmin()) {
                   $checked = 'checked';
                 }
-                createCheckbox('form-admin-container-checkbox', 'admin', 'Admin ?', 'm','', 'enabled', $checked);
+                createCheckbox('form-admin-container-checkbox', 'admin', 'Est-il admin ?', 'm','', 'enabled', $checked);
               }
               ?>
             </div>

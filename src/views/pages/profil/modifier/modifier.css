@@ -18,6 +18,7 @@
   height: 532px;
   background-color: var(--clear_background_container);
   padding: 32px;
+  overflow: hidden;
 }
 
 .delete-container-form {
@@ -61,8 +62,8 @@
   font-weight: 400;
 }
 
-#email,
-#pass {
+#email::placeholder,
+#pass::placeholder {
   color: rgba(0, 0, 0, 0.36);
 }
 

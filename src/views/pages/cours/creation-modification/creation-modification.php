@@ -53,9 +53,9 @@ HTML;
         $value = "";
 
         if ($isEditMode === true and $type === "titre") { //Si mode édition et titre 
-            $value = "Modification cours";
+            $value = "Modification du cours";
         } else if ($isEditMode === false and $type === "titre") { //Si mode création et titre 
-            $value = "Création cours";
+            $value = "Création d'un cours";
         } else if ($isEditMode === true and $type === "btn") { //Si mode édition et boutton 
             $value = "'Modifier le cours'";
         } else if ($isEditMode === false and $type === "btn") { //Si mode création et boutton 
@@ -96,7 +96,7 @@ HTML;
                             <!-- TEMPS MOYENS -->
                             <div class="form-container-input creation-container-temps-container">
                                 <label for="temps-input">Temps moyen de complétion</label>
-                                <input required class="input l" type="text" name='tempsMoyen' id="temps-input" placeholder='Durée du cours' value="<?php echo $handleForm_isEditMode("tempsMoyen"); ?>">
+                                <input required class="input l" type="text" name='tempsMoyen' id="temps-input" placeholder='Durée du cours (en heures)' value="<?php echo $handleForm_isEditMode("tempsMoyen"); ?>">
                             </div>
 
                             <!-- NIVEAU RECOMMANDÉ -->

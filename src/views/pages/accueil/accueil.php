@@ -23,7 +23,7 @@ require 'views/components/footer/footer.php';
                 <h1 class="slogan-titre">La meilleure façon d'apprendre à coder</h1>
             </div>
             <div class="slogan-suite">
-                <p class="slogan-text">Les cours sont conseillés suivants votre niveau déterminé par des tests de <br /> connaissance. C'est gratuit !</p>
+                <p class="slogan-text">Les cours sont conseillés suivants votre niveau déterminé par des tests de <br /> connaissances. C'est gratuit !</p>
             </div>
             <div class="accueil-container-bouton">
                 <a href="/cours/rechercher"><button button id="btn-accueil" class="default m" type="button" value="Commencez à apprendre">Commencez à apprendre</button></a>

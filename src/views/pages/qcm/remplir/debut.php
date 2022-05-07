@@ -18,7 +18,7 @@
             ?>
 
 <head>
-    <?php infoHead('QCM', 'début du QCM', '/views/pages/qcm/remplir/debut.css'); ?>
+    <?php infoHead('Début du QCM', 'Début du QCM', '/views/pages/qcm/remplir/debut.css'); ?>
     <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
     <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
 </head>

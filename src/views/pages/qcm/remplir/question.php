@@ -38,7 +38,7 @@
         ?>
 
 <head>
-    <?php infoHead('QCM', 'question du QCM', '/views/pages/qcm/remplir/question.css'); ?>
+    <?php infoHead('Question du QCM', 'Question du QCM', '/views/pages/qcm/remplir/question.css'); ?>
     <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
     <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
 </head>

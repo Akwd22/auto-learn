@@ -12,7 +12,7 @@
             ?>
 
 <head>
-    <?php infoHead('Cours', 'Liste des cours', '/views/pages/cours/rechercher/rechercher.css'); ?>
+    <?php infoHead('Rechercher des cours', 'Rechercher des cours', '/views/pages/cours/rechercher/rechercher.css'); ?>
     <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
     <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
 </head>

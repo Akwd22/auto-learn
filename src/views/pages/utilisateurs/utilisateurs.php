@@ -20,7 +20,7 @@ require 'views/components/message/message.php';
 
 
 <head>
-    <?php infoHead('Gestion utilisateur', 'gestion des utilisateurs', '/views/pages/utilisateurs/utilisateurs.css'); ?>
+    <?php infoHead('Rechercher des utilisateurs', 'Rechercher des utilisateurs', '/views/pages/utilisateurs/utilisateurs.css'); ?>
     <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
     <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
 </head>

@@ -20,7 +20,7 @@
             ?>
 
 <head>
-    <?php infoHead('QCM', 'Résultat du QCM', '/views/pages/qcm/remplir/fin.css'); ?>
+    <?php infoHead('Résultat du QCM', 'Résultat du QCM', '/views/pages/qcm/remplir/fin.css'); ?>
     <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
     <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
 </head>
@@ -38,7 +38,7 @@
 
                       <div id="topDivInfo">
                         <p id="titleQcm"><?php echo $qcm->getTitre(); ?></p>
-                        <p id="date"><?php echo $tentative->getDateTermine()->format('d/m/Y'); ?></p>
+                        <p id="date">Date de complétion : <?php echo $tentative->getDateTermine()->format('d/m/Y'); ?></p>
                       </div>
 
                       <div id="topDivButton">
@@ -47,8 +47,9 @@
                             if($tentative->getMoy()<10){$colorResult='red';}
                             elseif($tentative->getMoy()==10){$colorResult='orange';}
                             elseif($tentative->getMoy()>10){$colorResult='green';}
+                            $moy=number_format($tentative->getMoy(), 2);
                         ?>
-                        <p class="result <?php echo $colorResult; ?>"><?php echo $tentative->getMoy()."/20"; ?></p>
+                        <p class="result <?php echo $colorResult; ?>"><?php echo $moy ."/20"; ?></p>
                         <form method="POST">
                               <input class="default s" type="submit" name="restart" value="Recommencer">
                         </form>

@@ -124,21 +124,33 @@ select{
 }
 .titleCours{
     margin-top: 3px;
+    padding: 0 8px;
 
     font-weight: 700;
     font-size: 20px;
     line-height: 32px;
     color:var(--dark_text);
     text-align: center;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .descriptionCours{
     margin-top: 3px;
+    padding: 0 10px;
 
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
     color:var(--medium2_text);
     text-align: center;
+
+    /* Couper la description si elle dépasse 2 lignes. */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /*gère le rétrécissement horizontal de la page*/

@@ -4,7 +4,7 @@
     box-sizing: border-box;
     width: 100%;
      
-    padding-left:5%;
+    padding:0 5%;
 
     border-radius: 3px;
     border:2px solid var(--input_border_default);
