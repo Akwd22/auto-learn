@@ -137,8 +137,8 @@ HTML;
                             <!-- NEW IMAGE -->
 
                             <div class="form-container-input creation-container-image-container">
-                                <label for="image" id='new-image'>Nouvelle image</label>
-                                <input type="file" name="image" id="image" accept="image/png, image/jpeg">
+                                <label for="input-image" class="label-input-file">Nouvelle image</label>
+                                <input type="file" name="image" id="input-image" accept="image/png, image/jpeg">
                             </div>
 
                             <!-- FORMAT -->
@@ -151,7 +151,7 @@ HTML;
                             <!-- FICHIER PDF -->
                             <!-- <?php echo $pdf_container() ?> -->
                             <div class="creation-container-pdf-container">
-                                <label for="pdfFile" id='pdf-file'>Fichier PDF</label>
+                                <label for="pdfFile" id='pdf-file' class="label-input-file">Fichier PDF</label>
                                 <input type="file" name="fichPdf" id="pdfFile" accept="application/pdf">
                             </div>
 

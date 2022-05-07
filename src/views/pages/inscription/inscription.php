@@ -14,7 +14,7 @@
 
             <div id="centerDiv">
                 <form method="POST">
-                    <h1 id="titleForm">Inscription</h1>
+                    <h1 id="titleForm">S'inscrire</h1>
 
                     <?php createMessage(); ?>
                     
@@ -31,7 +31,7 @@
                         <?php createCheckbox('acceptConditions', 'acceptConditions', 'J\'ai lu et j\'accepte les termes d\'utilisation ainsi que la politique de confidentialité.', 'l','required', 'enabled', false); ?>
                     </div>
 
-                    <input class="default m" type="submit" id="submit" value="S'INSCRIRE">
+                    <input class="default m" type="submit" id="submit" value="S'inscrire">
 
 
                 </form>

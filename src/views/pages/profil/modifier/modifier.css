@@ -72,11 +72,7 @@
 }
 
 .form-image-container {
-  display: flex;
-  column-gap: 10px;
-  justify-content: space-around;
-  align-items: center;
-  padding-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 .form-theme-container {
@@ -90,7 +86,7 @@
 
 .parametre-message-container {
   margin-top: -20px;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
 }
 
 /* LES RADIOS BUTTONS */

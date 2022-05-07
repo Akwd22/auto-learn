@@ -64,7 +64,6 @@ th,td{
     padding-left: 24px;
     
     text-align: left;
-    font-weight: 700;
     font-size: 12px;
     line-height: 16px;
 }
@@ -94,7 +93,7 @@ td{
 
 /*bouttons "paramètres" ajoutés dynamiquement*/
 .settingButtons{
-    width: 100px;
+    width: 124px;
     
     float: right;
 
@@ -104,7 +103,7 @@ td{
 
 /*bouttons "profil" ajoutés dynamiquement*/
 .profilButtons{
-    width: 65px; 
+    width: 75px; 
     
     float: right;
     

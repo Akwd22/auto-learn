@@ -81,26 +81,26 @@ function handleFormEdit()
 
   // titre.
   if (!$titre) 
-    redirect($redirectUrl, "error", "titre obligatoire.", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Titre obligatoire.", array("id" => $coursId));
 
   //description.
   if (!$description) {
-    redirect($redirectUrl, "error", "description obligatoire.", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Description obligatoire.", array("id" => $coursId));
   }
 
   // tempsMoyen.
   if (!$tempsMoyen) {
-    redirect($redirectUrl, "error", "Precisez le temps.", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Temps moyen obligatoire.", array("id" => $coursId));
   }
 
   //niveau
   if (!$niveauRecommande) {
-    redirect($redirectUrl, "error", "Niveau obligatoire", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Niveau obligatoire.", array("id" => $coursId));
   }
 
   //categorie
   if (!$categorie) {
-    redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Catégorie obligatoire.", array("id" => $coursId));
   }
 
   // Image .
@@ -136,13 +136,13 @@ function handleFormEdit()
       if ($cours->getFichierUrl()) FileManager::delete(UPLOADS_COURS_DOCS_DIR . $cours->getFichierUrl());
 
     if (!$upload->validateType())
-      redirect($redirectUrl, "error", "Fichier importée doit être un fichier pdf.", array("id" => $coursId));
+      redirect($redirectUrl, "error", "Fichier importé doit être un fichier PDF.", array("id" => $coursId));
 
     if (!$upload->validateSize())
-      redirect($redirectUrl, "error", "Fichier importée ne doit pas dépasser 10 Mo.", array("id" => $coursId));
+      redirect($redirectUrl, "error", "Fichier importé ne doit pas dépasser 10 Mo.", array("id" => $coursId));
 
     if (!$upload->validateExtension())
-      redirect($redirectUrl, "error", "Fichier importée doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $coursId));
+      redirect($redirectUrl, "error", "Fichier importé doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $coursId));
 
     if (!$upload->save($savePath))
       redirect($redirectUrl, "error", "Erreur lors de l'importation du fichier.", array("id" => $coursId));
@@ -171,7 +171,7 @@ function handleFormEdit()
         if ($lien) array_push($fichUrl, $lien);
       }
 
-      if (empty($fichUrl)) redirect($redirectUrl, "error", "Liens obligatoires", array("id" => $coursId));
+      if (empty($fichUrl)) redirect($redirectUrl, "error", "Au moins un lien YouTube est requis.", array("id" => $coursId));
     }
      
 
@@ -219,26 +219,26 @@ function handleFormCreate(){
   
   // titre.
   if (!$titre) 
-    redirect($redirectUrl, "error", "titre obligatoire.", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Titre obligatoire.", array("id" => $coursId));
 
   //description.
   if (!$description) {
-    redirect($redirectUrl, "error", "description obligatoire.", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Description obligatoire.", array("id" => $coursId));
   }
 
   // tempsMoyen.
   if (!$tempsMoyen) {
-    redirect($redirectUrl, "error", "Precisez le temps.", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Temps moyen obligatoire.", array("id" => $coursId));
   }
 
   //niveau
   if (!$niveauRecommande) {
-    redirect($redirectUrl, "error", "Niveau obligatoire", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Niveau obligatoire.", array("id" => $coursId));
   }
 
   //categorie
   if (!$categorie) {
-    redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Catégorie obligatoire.", array("id" => $coursId));
   }
 
 
@@ -261,12 +261,12 @@ function handleFormCreate(){
 
     $image = $upload->getRealFileName();
   } else {
-    redirect($redirectUrl, "error", "Image obligatoire", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Image obligatoire.", array("id" => $coursId));
   }
 
   //format
   if (!$format) {
-    redirect($redirectUrl, "error", "Format obligatoire", array("id" => $coursId));
+    redirect($redirectUrl, "error", "Format obligatoire.", array("id" => $coursId));
   }
 
   
@@ -277,13 +277,13 @@ function handleFormCreate(){
       $savePath = UPLOADS_COURS_DOCS_DIR . $upload->getFileHash() . "." . $upload->getExtension();
 
     if (!$upload->validateType())
-      redirect($redirectUrl, "error", "Fichier importée doit être un fichier pdf.", array("id" => $coursId));
+      redirect($redirectUrl, "error", "Fichier importé doit être un fichier PDF.", array("id" => $coursId));
 
     if (!$upload->validateSize())
-      redirect($redirectUrl, "error", "Fichier importée ne doit pas dépasser 10 Mo.", array("id" => $coursId));
+      redirect($redirectUrl, "error", "Fichier importé ne doit pas dépasser 10 Mo.", array("id" => $coursId));
 
     if (!$upload->validateExtension())
-      redirect($redirectUrl, "error", "Fichier importée doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $coursId));
+      redirect($redirectUrl, "error", "Fichier importé doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $coursId));
 
     if (!$upload->save($savePath))
       redirect($redirectUrl, "error", "Erreur lors de l'importation du fichier.", array("id" => $coursId));
@@ -291,7 +291,7 @@ function handleFormCreate(){
     $fichPdf = $upload->getRealFileName();
     }
     else {
-      redirect($redirectUrl, "error", "Fichier obligatoire", array("id" => $coursId));
+      redirect($redirectUrl, "error", "Fichier PDF obligatoire.", array("id" => $coursId));
     }
   }
   else if ($format==EnumFormatCours::VIDEO)
@@ -313,7 +313,7 @@ function handleFormCreate(){
       if ($lien) array_push($fichUrl, $lien);
     }
 
-    if (empty($fichUrl)) redirect($redirectUrl, "error", "Liens obligatoires", array("id" => $coursId));
+    if (empty($fichUrl)) redirect($redirectUrl, "error", "Au moins un lien YouTube est requis.", array("id" => $coursId));
   }
   
   
@@ -331,5 +331,5 @@ function handleFormCreate(){
   
   $coursCRUD->createCours($cours);
   
-  redirect($redirectUrl, "success", "Cours crée avec succès.", array("id" => $coursId));
+  redirect($redirectUrl, "success", "Cours créé avec succès.", array("id" => $coursId));
 }

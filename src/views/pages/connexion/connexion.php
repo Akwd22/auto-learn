@@ -5,7 +5,7 @@
 <html>
 
 <head>
-    <?php infoHead('Se connecter', 'Connectes toi pour accèder à tes cours personnalisés', '/views/pages/connexion/connexion.css'); ?>
+    <?php infoHead('S\'identifier', 'Connectes toi pour accèder à tes cours personnalisés', '/views/pages/connexion/connexion.css'); ?>
 </head>
 
 <body>
@@ -24,10 +24,7 @@
                     <div class="labelsDiv"><label class="labelsForm" for="password">Mot de passe</label></div>
                     <input id="password" class="input l" type="password" placeholder="Entrer le mot de passe" name="password" required>
 
-                    <p id="linkForgetPassword"><a href="" class="links">Mot de passe oublié ?</a>
-                    <p>
-
-                        <input class="default m" type="submit" id="submit" value="S'identifier">
+                    <input class="default m" type="submit" id="submit" value="S'identifier">
 
                 </form>
 

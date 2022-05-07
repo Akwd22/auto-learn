@@ -40,7 +40,7 @@ require 'views/components/message/message.php';
           <div id="labelSearchDiv">
               <label id="labelSearch" for="site-search" name="site-search">Gestion des utilisateurs</label>
           </div>
-          <input class="input l" type="search" id="site-search" name="site-search" value="<?php echo $lastSearch; ?>" placeholder="Rechercher nom, email, ...">
+          <input class="input l" type="search" id="site-search" name="site-search" value="<?php echo $lastSearch; ?>" placeholder="Rechercher un pseudo, e-mail, etc.">
           <input id="invisibleButton" type="submit" id='sub' name="sub" value="Rechercher">
         </form>
 
@@ -48,7 +48,7 @@ require 'views/components/message/message.php';
             <thead>
               <tr>
                 <th class="smallColumn">Identifiant</th>
-                <th class="smallColumn">pseudo</th>
+                <th class="smallColumn">Pseudo</th>
                 <th>Email</th>
               </tr>
             </thead>

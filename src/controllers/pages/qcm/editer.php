@@ -19,7 +19,7 @@ $isAdmin = SessionManagement::isAdmin();
 
 // Vérification des permissions.
 if (!$isLogged) die("Vous n'êtes pas connecté.");
-if (!$isAdmin) die("Vous ne pouvez pas modifier ce cours.");
+if (!$isAdmin) die("Vous ne pouvez pas modifier ce QCM.");
 
 //recup QCM
 $conn = new DatabaseManagement();
@@ -33,7 +33,7 @@ $isEditMode = $qcmId ? true : false;
 if ($isEditMode){
   $qcm = $qcmCRUD->readQcmById($qcmId);
   if(!$qcm)
-    die("QCM n'exsite pas");
+    die("QCM n'existe pas");
   }
 
 //Affichage de la vue ou traitement du formulaire.
@@ -78,11 +78,11 @@ function handleFormEdit()
 
     $cours = $coursCRUD->readCoursById($idCours);
     if(!$cours)
-      redirect($redirectUrl, "error", "Cours n'exsite pas.", array("id" => $qcmId));
+      redirect($redirectUrl, "error", "Cours à recommander n'existe pas.", array("id" => $qcmId));
     if($moyMin<0 || $moyMin>20)
-      redirect($redirectUrl, "error", "nombre entre 0 et 20.", array("id" => $qcmId));
+      redirect($redirectUrl, "error", "Moyenne min. doit être entre 0 et 20.", array("id" => $qcmId));
     if($moyMax<0 || $moyMax>20)
-      redirect($redirectUrl, "error", "nombre entre 0 et 20.", array("id" => $qcmId));
+      redirect($redirectUrl, "error", "Moyenne max. doit être entre 0 et 20.", array("id" => $qcmId));
     $coursRecommande = new CoursRecommandeQCM();
     $coursRecommande->setMoyMin($moyMin);
     $coursRecommande->setMoyMax($moyMax);
@@ -94,16 +94,16 @@ function handleFormEdit()
 
   // titre.
   if (!$titre) 
-    redirect($redirectUrl, "error", "titre obligatoire.", array("id" => $qcmId));
+    redirect($redirectUrl, "error", "Titre obligatoire.", array("id" => $qcmId));
 
   //categorie
   if (!$categorie) {
-    redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $qcmId));
+    redirect($redirectUrl, "error", "Catégorie obligatoire", array("id" => $qcmId));
   }
 
   //description.
   if (!$description) {
-    redirect($redirectUrl, "error", "description obligatoire.", array("id" => $qcmId));
+    redirect($redirectUrl, "error", "Description obligatoire.", array("id" => $qcmId));
   }
 
   if ($xml) {
@@ -113,10 +113,10 @@ function handleFormEdit()
     FileManager::delete(UPLOADS_QCM_DIR . $qcm->getXmlUrl());
 
     if (!$upload->validateType())
-      redirect($redirectUrl, "error", "Fichier XML importé doit être un fichier xml.", array("id" => $qcmId));
+      redirect($redirectUrl, "error", "Fichier XML importé doit être un fichier XML.", array("id" => $qcmId));
 
     if (!$upload->validateSize())
-      redirect($redirectUrl, "error", "FIchier XML importé ne doit pas dépasser 500Ko.", array("id" => $qcmId));
+      redirect($redirectUrl, "error", "FIchier XML importé ne doit pas dépasser 500 Ko.", array("id" => $qcmId));
 
     if (!$upload->validateExtension())
       redirect($redirectUrl, "error", "Fichier XML importé doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $qcmId));
@@ -170,11 +170,11 @@ function handleFormCreate(){
 
     $cours = $coursCRUD->readCoursById($idCours);
     if(!$cours)
-      redirect($redirectUrl, "error", "Cours n'exsite pas.", array("id" => $qcmId));
+      redirect($redirectUrl, "error", "Cours à recommander n'existe pas.", array("id" => $qcmId));
     if($moyMin<0 || $moyMin>20)
-      redirect($redirectUrl, "error", "nombre entre 0 et 20.", array("id" => $qcmId));
+      redirect($redirectUrl, "error", "Moyenne min. doit être entre 0 et 20.", array("id" => $qcmId));
     if($moyMax<0 || $moyMax>20)
-      redirect($redirectUrl, "error", "nombre entre 0 et 20.", array("id" => $qcmId));
+      redirect($redirectUrl, "error", "Moyenne max. doit être entre 0 et 20.", array("id" => $qcmId));
     
       $coursRecommande = new CoursRecommandeQCM();
       $coursRecommande->setMoyMin($moyMin);
@@ -185,16 +185,16 @@ function handleFormCreate(){
 
   // titre.
   if (!$titre) 
-    redirect($redirectUrl, "error", "titre obligatoire.", array("id" => $qcmId));
+    redirect($redirectUrl, "error", "Titre obligatoire.", array("id" => $qcmId));
 
   //description.
   if (!$description) {
-    redirect($redirectUrl, "error", "description obligatoire.", array("id" => $qcmId));
+    redirect($redirectUrl, "error", "Description obligatoire.", array("id" => $qcmId));
   }
 
   //categorie
   if (!$categorie) {
-    redirect($redirectUrl, "error", "Categorie obligatoire", array("id" => $qcmId));
+    redirect($redirectUrl, "error", "Catégorie obligatoire.", array("id" => $qcmId));
   }
 
   if ($xml) {
@@ -204,10 +204,10 @@ function handleFormCreate(){
     //FileManager::delete(UPLOADS_QCM_DIR . $qcm->getXmlUrl());
 
     if (!$upload->validateType())
-      redirect($redirectUrl, "error", "Fichier XML importé doit être un fichier xml.", array("id" => $qcmId));
+      redirect($redirectUrl, "error", "Fichier XML importé doit être un fichier XML.", array("id" => $qcmId));
 
     if (!$upload->validateSize())
-      redirect($redirectUrl, "error", "FIchier XML importé ne doit pas dépasser 500Ko.", array("id" => $qcmId));
+      redirect($redirectUrl, "error", "FIchier XML importé ne doit pas dépasser 500 Ko.", array("id" => $qcmId));
 
     if (!$upload->validateExtension())
       redirect($redirectUrl, "error", "Fichier XML importé doit avoir un format : " . implode(", ", $upload->getValidExtensions()) . ".", array("id" => $qcmId));
@@ -221,7 +221,7 @@ function handleFormCreate(){
 
     $xml = $upload->getRealFileName();
   } else {
-    redirect($redirectUrl, "error", "Fichier XMl obligatoire", array("id" => $qcmId));
+    redirect($redirectUrl, "error", "Fichier XML obligatoire", array("id" => $qcmId));
   }
 
   $qcm->setTitre($titre);
@@ -231,5 +231,5 @@ function handleFormCreate(){
 
   $qcmCRUD->createQcm($qcm);
   
-  redirect($redirectUrl, "success", "QCM crée avec succès.", array("id" => $qcmId));
+  redirect($redirectUrl, "success", "QCM créé avec succès.", array("id" => $qcmId));
 }
