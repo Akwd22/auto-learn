@@ -1,32 +1,30 @@
-const navSlide = () => {
-    const burger = document.querySelector('.img-profil');
-    const nav = document.querySelector('.burger-links');
+window.onload = () => {
+  const nav = document.querySelector(".burger-links");
+  const burger = document.querySelector(".img-profil");
 
-    burger.addEventListener('click', () => {
-        // Calc right position
-        const rect = burger.getBoundingClientRect();
-        const domsize = document.documentElement.clientWidth;
-        const rightSpacing = domsize - (rect.x) - rect.width;
-        nav.style.right = `${rightSpacing}px`;
+  const navSlide = () => {
+    burger.addEventListener("click", () => {
+      // Calc right position
+      const rect = burger.getBoundingClientRect();
+      const domsize = document.documentElement.clientWidth;
+      const rightSpacing = domsize - rect.x - rect.width;
+      nav.style.right = `${rightSpacing}px`;
 
-        //Toggle Nav
-        nav.classList.toggle('nav-active');
+      //Toggle Nav
+      nav.classList.toggle("nav-active");
     });
-}
+  };
 
-window.onresize = () => {
-    const burger = document.querySelector('.img-profil');
-    const nav = document.querySelector('.burger-links');
-
+  window.onresize = () => {
     const rect = burger.getBoundingClientRect();
     const domsize = document.documentElement.clientWidth;
-    const rightSpacing = domsize - (rect.x) - rect.width;
+    const rightSpacing = domsize - rect.x - rect.width;
     nav.style.right = `${rightSpacing}px`;
-}
+  };
 
-document.body.addEventListener("scroll", () => {
-    const nav = document.querySelector('.burger-links');
+  document.body.addEventListener("scroll", () => {
     nav.classList.remove("nav-active");
-})
+  });
 
-navSlide();
+  navSlide();
+};
