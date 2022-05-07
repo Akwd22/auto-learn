@@ -61,7 +61,7 @@
                             </div>
 
                             <p class="titlesForm" id="titleFormCat">Catégories</p>
-                            <select class="select m" name="categorie" id="categorie">
+                            <select class="select m full-width" name="categorie" id="categorie">
                                 <?php
                                 
                                 $arr = EnumCategorie::getFriendlyNames();

@@ -2,7 +2,6 @@
     background-color: var(--input);;
 
     box-sizing: border-box;
-    width: 100%;
      
     padding-left:5%;
 
@@ -12,6 +11,7 @@
 
     font-weight: 400;
 }
+
 .select::placeholder{
     color:var(--placeholder);
 }
@@ -27,6 +27,10 @@
     height: 48px;
     font-size: 18px;
     line-height: 32px;
+}
+
+.select.full-width{
+    width: 100%;
 }
 
 /*gère les différents état des select*/

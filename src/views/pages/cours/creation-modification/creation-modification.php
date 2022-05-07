@@ -102,7 +102,7 @@ HTML;
                             <!-- NIVEAU RECOMMANDÉ -->
                             <div class="form-container-input creation-container-niveau-container">
                                 <label for="niveau-select">Niveau recommandé</label>
-                                <select name="niveauRecommande" id="niveau-select" required>
+                                <select name="niveauRecommande" id="niveau-select" class="select m" required>
                                     <?php
                                     $arr = EnumNiveauCours::getFriendlyNames();
 
@@ -118,7 +118,7 @@ HTML;
                             <!-- CATEGORIE COURS -->
                             <div class="form-container-input creation-container-niveau-container">
                                 <label for="niveau-cat">Catégorie</label>
-                                <select name="categorie" id="cat-select" required>
+                                <select name="categorie" id="cat-select" class="select m" required>
                                     <?php
                                     $arr = EnumCategorie::getFriendlyNames();
 
