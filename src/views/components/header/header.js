@@ -1,7 +1,6 @@
 const navSlide = () => {
     const burger = document.querySelector('.img-profil');
     const nav = document.querySelector('.burger-links');
-    const navLinks = document.querySelectorAll('.burger-links li');
 
     burger.addEventListener('click', () => {
         // Calc right position
@@ -24,5 +23,10 @@ window.onresize = () => {
     const rightSpacing = domsize - (rect.x) - rect.width;
     nav.style.right = `${rightSpacing}px`;
 }
+
+document.body.addEventListener("scroll", () => {
+    const nav = document.querySelector('.burger-links');
+    nav.classList.remove("nav-active");
+})
 
 navSlide();
