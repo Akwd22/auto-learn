@@ -24,13 +24,13 @@ $crud = new QcmCRUD($conn);
 
 
 //on recupère les valeurs (bouton submit)
-$search = isset($_POST["titre"]) ? $_POST["titre"] : "";
-$selectedCheckbox = isset($_POST['showCompleted']) ? $_POST["showCompleted"] : "";
-$selectedCat = isset($_POST['categorie']) ? $_POST["categorie"] : "";
+$search = isset($_GET["titre"]) ? $_GET["titre"] : "";
+$selectedCheckbox = isset($_GET['showCompleted']) ? $_GET["showCompleted"] : "";
+$selectedCat = isset($_GET['categorie']) ? $_GET["categorie"] : "";
 $qcm = [];
           
 //on réinitialise les valeurs (bouton reset)
-if(isset($_POST['reset'])){
+if(isset($_GET['reset'])){
     $search='';
     $selectedCheckbox=false;
     $selectedCat=null;
@@ -42,7 +42,7 @@ $qcmTentative=$userCRUD->readUserById(SessionManagement::getUserId())->getAllQcm
 
 
 
-if (isset($_POST['apply'])) {
+if (isset($_GET['apply'])) {
     if($selectedCat==1)
         {$selectedCat=null;}
 

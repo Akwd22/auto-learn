@@ -35,7 +35,7 @@
             
 
 
-                <form method="POST">
+                <form method="GET">
                     <div id="leftDiv">
 
                         <div id="divCreate">

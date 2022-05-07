@@ -25,13 +25,13 @@ $conn = new DatabaseManagement();
 $coursCRUD = new CoursCRUD($conn);
 
 //on recupère les valeurs (bouton submit)
-$search = isset($_POST["site-search"]) ? $_POST["site-search"] : "";
-$selectedRadio = isset($_POST['radioCours']) ? $_POST["radioCours"] : "";
-$selectedCat = isset($_POST['selectCat']) ? $_POST["selectCat"] : "";
+$search = isset($_GET["site-search"]) ? $_GET["site-search"] : "";
+$selectedRadio = isset($_GET['radioCours']) ? $_GET["radioCours"] : "";
+$selectedCat = isset($_GET['selectCat']) ? $_GET["selectCat"] : "";
 $cours = null;
           
 //on réinitialise les valeurs (bouton reset)
-if(isset($_POST['reset'])){
+if(isset($_GET['reset'])){
     $search='';
     $selectedRadio=null;
     $selectedCat=null;
@@ -39,7 +39,7 @@ if(isset($_POST['reset'])){
 
 
 
-if (isset($_POST['sub'])) {
+if (isset($_GET['sub'])) {
     if($selectedCat==1)
         {$selectedCat=null;}
     $cours = $coursCRUD->readCoursFiltres($search, $selectedRadio, (int)$selectedCat);
