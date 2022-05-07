@@ -23,7 +23,7 @@ window.onload = () => {
   };
 
   document.body.addEventListener("scroll", () => {
-    nav.classList.remove("nav-active");
+    if (nav.classList.contains("nav-active")) nav.classList.remove("nav-active");
   });
 
   navSlide();
