@@ -33,10 +33,41 @@ main {
   background-color: var(--first_clear_background);
 }
 
+/* Scrollbar pour Firefox */
+* {
+  scrollbar-color: var(--medium2_text) var(--first_clear_background);
+}
 
+/* Scrollbar pour Chromium */
+*::-webkit-scrollbar {
+  width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--first_clear_background);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--medium2_text);
+  border-radius: 4px;
+}
 
 @media (prefers-color-scheme: dark) {
   main {
     background-color: var(--first_dark_background);
+  }
+
+  /* Scrollbar pour Firefox */
+  * {
+    scrollbar-color: var(--medium2_text) var(--first_dark_background);
+  }
+
+  /* Scrollbar pour Chromium */
+  *::-webkit-scrollbar-track {
+    background: var(--first_dark_background);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--medium2_text);
   }
 }
