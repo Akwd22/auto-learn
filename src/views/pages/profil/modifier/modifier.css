@@ -19,6 +19,8 @@
   background-color: var(--clear_background_container);
   padding: 32px;
   overflow: hidden;
+  border-radius: 4px;
+
 }
 
 .delete-container-form {
@@ -32,6 +34,7 @@
   align-items: center;
   padding-left: 105px;
   padding-right: 105px;
+  border-radius: 4px;
 }
 
 .parametre-container-title {

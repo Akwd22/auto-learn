@@ -70,6 +70,34 @@ function afficherProfil(Utilisateur $user)
             <!-- TEST DE CONNAISSANCES -->
             <div class="profil-container test-connaissance-container">
               <h2 class="test-connaissance-container-title title">Test de connaissances</h2>
+              <div class="test-connaissance-list-qcm-container">
+                <?php
+                $arr = EnumCategorie::getFriendlyNames();
+                $qcm_tente = $user->getAllQcmTentes();
+                for ($i = 0; $i < count($qcm_tente); $i++) {
+                  $qcm = $qcm_tente[$i]->getQcm();
+                  $qcm_titre =  $qcm->getTitre();
+                  $qcm_cat = $arr[$qcm->getCategorie()];
+                  $qcm_etat = $qcm_tente[$i]->getIsTermine() ?  $qcm_tente[$i]->getMoy() . '/20' : $qcm_tente[$i]->getPointsActuels() .'% completé';
+                  $qcm_date = $qcm_tente[$i]->getIsTermine() ?  $qcm_tente[$i]->getDateTermine()->format('d/m/Y') : $qcm_tente[$i]->getDateCommence()->format('d/m/Y');
+                  $classe =  ($qcm_tente[$i]->getMoy() && $qcm_etat < 10) ? "qcm_etat_bad" : (($qcm_tente[$i]->getMoy() >= 10) ? "qcm_etat_great" : "qcm_etat_other");
+
+                  echo "<div class='qcm-list-component'>
+                  <div class='qcm-list-component-row'>
+                  <h2 class='qcm-list-component-title'>$qcm_titre</h2>
+                  <p class='qcm-list-component-cat'>$qcm_cat</p>
+                  </div>
+
+                  <div class='qcm-list-component-row'>
+                  <h2 class='qcm-list-component-date'>$qcm_date</h2>
+                  <p class='$classe'>$qcm_etat</p>
+                  </div>
+
+                  </div>";
+                }
+                ?>
+
+              </div>
             </div>
 
           </div>

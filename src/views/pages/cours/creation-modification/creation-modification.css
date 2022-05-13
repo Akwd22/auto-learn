@@ -52,7 +52,8 @@
   padding-bottom: 16px;
 }
 
-.form-container-input input {
+.form-container-input input,
+.form-container-input textarea {
   margin-top: 6px;
 }
 

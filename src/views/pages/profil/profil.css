@@ -124,6 +124,64 @@
   color: var(--text-cours-encours);
 }
 
+.qcm-list-component {
+  background-color: var(--clear1_text);
+  padding: 8px;
+  margin: 0px 16px 16px 16px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+.qcm-list-component-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.qcm-list-component-row:first-of-type{
+  margin-bottom: 12px;
+}
+
+.qcm-list-component-title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--dark_text);
+}
+
+.qcm-list-component-cat {
+  color: var(--medium1_text);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.qcm-list-component-date {
+  color: var(--medium1_text);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.qcm_etat_bad{
+  color: #E53E3E;
+}
+
+.qcm_etat_great{
+  color: #38A169;
+}
+
+.qcm_etat_other{
+  color: #DD6B20;
+
+}
+
+
+
+
 @media screen and (max-width: 783px) {
   .profil-container-structure {
     align-items: center;
@@ -146,5 +204,21 @@
 
   .list-cours-container-component-title {
     color: #ffff;
+  }
+
+  .qcm-list-component {
+    background-color: var(--medium1_text);
+  }
+
+  .qcm-list-component-title {
+    color: #fff;
+  }
+
+  .qcm-list-component-cat {
+    color: var(--clear2_text);
+  }
+
+  .qcm-list-component-date {
+    color: var(--clear2_text);
   }
 }

@@ -132,6 +132,7 @@ HTML;
 
                             <!-- DESCRIPTION -->
                             <div class="form-container-input creation-container-description-container">
+                                <label for="description-area">Description</label>
                                 <textarea required name="description" id="description-area" placeholder="Description du cours"><?php echo $handleForm_isEditMode("description"); ?></textarea>
                             </div>
                             <!-- NEW IMAGE -->
