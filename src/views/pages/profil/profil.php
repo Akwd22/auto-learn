@@ -36,7 +36,9 @@ function afficherProfil(Utilisateur $user)
               </div>
               <div class="block-top-content">
                 <h2 class="top-content-pseudo title"><?php echo $pseudo ?></h2>
-                <a href="/profil/modifier?id=<?php echo $userId ?>"><button id="btn-parametres" class="btn2" type="button" value="Paramètre">Paramètres</button></a>
+                <?php if (SessionManagement::isAdmin() || SessionManagement::isSame($userId)) { ?>
+                  <a href="/profil/modifier?id=<?php echo $userId ?>"><button id="btn-parametres" class="btn2" type="button" value="Paramètre">Paramètres</button></a>
+                <?php } ?>
               </div>
             </div>
           </div>
@@ -81,7 +83,7 @@ function afficherProfil(Utilisateur $user)
                   $qcm_id = htmlspecialchars($qcm->getId());
                   $qcm_titre =  htmlspecialchars($qcm->getTitre());
                   $qcm_cat = htmlspecialchars($arr[$qcm->getCategorie()]);
-                  $pourcentage_completion = $qcm_tente[$i]->getIsCommence() ? (($qcm_tente[$i]->getNumQuestionCourante()-1) / $qcm->nbQuestions()) * 100 : 0;
+                  $pourcentage_completion = $qcm_tente[$i]->getIsCommence() ? (($qcm_tente[$i]->getNumQuestionCourante() - 1) / $qcm->nbQuestions()) * 100 : 0;
                   $qcm_moy = number_format($qcm_tente[$i]->getMoy(), 2);
                   $qcm_etat = $qcm_tente[$i]->getIsTermine() ?  $qcm_moy . '/20' : $pourcentage_completion . '% complété';
                   $qcm_date = $qcm_tente[$i]->getIsTermine() ?  $qcm_tente[$i]->getDateTermine()->format('d/m/Y') : $qcm_tente[$i]->getDateCommence()->format('d/m/Y');
