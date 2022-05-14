@@ -76,13 +76,13 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
               <!-- NEW FICHIER -->
               <div class="form-container-input qcm-container-fichier-container">
                 <label for="input-fichier" class="label-input-file">Fichier XML</label>
-                <input type="file" name="xml" id="input-fichier" accept="text/xml">
+                <input type="file" name="xml" id="input-fichier" accept="application/xml">
               </div>
 
 
               <!-- BOUTON SUBMIT -->
               <input type="submit" class="default m" id="submit-btn" value=<?php echo $modification_intitule('btn') ?>>
-              
+
               <hr>
 
               <div class="delete-qcm-container">
@@ -95,7 +95,35 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
           <!-- CONTAINER DE DROITE -->
           <div class="cours-recommande-container">
             <div class="cours-recommande-container-structure">
+              <h2 class="cours-recommande-container-titre">Cours recommandés</h2>
 
+              <div class="cours-recomande-container-input-contaienr">
+
+                <div class="cours-recommande-list">
+                  <?php
+
+                  //Si mode édition
+                  if ($qcm && $isEditMode) {
+                    $list_cours_recommande = $qcm->getAllCoursRecommandes();
+                    for ($i = 0; $i < count($list_cours_recommande); $i++) {
+                      $cours_recommande = $list_cours_recommande[$i]->getCours();
+                    
+                    echo "
+                    <div class='cours-recomande-list-item'>
+                      <label for='input-id-1'>Entre</label>
+                    </div>
+                    ";
+                    
+                    }
+                  } else { //Mode création
+
+                  }
+                  echo "<input type='hidden' name='nbCoursRecommandes'>";
+                  ?>
+                </div>
+
+                <input type="button" class="default s" id='submit-btn-recommandation' value='Ajouter une recommandation'>
+              </div>
             </div>
 
           </div>

@@ -76,14 +76,17 @@ function afficherProfil(Utilisateur $user)
                 $qcm_tente = $user->getAllQcmTentes();
                 for ($i = 0; $i < count($qcm_tente); $i++) {
                   $qcm = $qcm_tente[$i]->getQcm();
+                  $qcm_id = $qcm->getId();
                   $qcm_titre =  $qcm->getTitre();
                   $qcm_cat = $arr[$qcm->getCategorie()];
-                  $qcm_etat = $qcm_tente[$i]->getIsTermine() ?  $qcm_tente[$i]->getMoy() . '/20' : $qcm_tente[$i]->getPointsActuels() .'% completé';
+                  $pourcentage_completion = ($qcm_tente[$i]->getNumQuestionCourante() / $qcm->nbQuestions()) * 100;
+                  $qcm_etat = $qcm_tente[$i]->getIsTermine() ?  $qcm_tente[$i]->getMoy() . '/20' : $pourcentage_completion . '% completé';
                   $qcm_date = $qcm_tente[$i]->getIsTermine() ?  $qcm_tente[$i]->getDateTermine()->format('d/m/Y') : $qcm_tente[$i]->getDateCommence()->format('d/m/Y');
                   $classe =  ($qcm_tente[$i]->getMoy() && $qcm_etat < 10) ? "qcm_etat_bad" : (($qcm_tente[$i]->getMoy() >= 10) ? "qcm_etat_great" : "qcm_etat_other");
 
-                  echo "<div class='qcm-list-component'>
+                  echo "<a href='qcm?id=$qcm_id'><div class='qcm-list-component'>
                   <div class='qcm-list-component-row'>
+
                   <h2 class='qcm-list-component-title'>$qcm_titre</h2>
                   <p class='qcm-list-component-cat'>$qcm_cat</p>
                   </div>
@@ -93,7 +96,8 @@ function afficherProfil(Utilisateur $user)
                   <p class='$classe'>$qcm_etat</p>
                   </div>
 
-                  </div>";
+                  </div>
+                  </a>";
                 }
                 ?>
 
@@ -106,7 +110,6 @@ function afficherProfil(Utilisateur $user)
 
 
       <?php createFooter(); ?>
-
   </body>
 
 <?php
