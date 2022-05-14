@@ -12,7 +12,7 @@ function afficherCours($cours)
 ?>
 
     <head>
-        <?php infoHead('Cours', 'Cours', '/views/pages/cours/affichage.css'); ?>
+        <?php infoHead('Cours', 'Cours', '/views/pages/cours/cours.css'); ?>
         <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
         <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
     </head>
@@ -125,7 +125,7 @@ function afficherCours($cours)
         </div>
         <?php createFooter(); ?>
 
-        <script src="../views/pages/cours/affichage.js"></script>
+        <script src="../views/pages/cours/cours.js"></script>
         <script>
             <?php if ($cours instanceof CoursVideo) {
                 echo "addSrc('" . htmlspecialchars($cours->getVideosUrl()[0]) . "');";

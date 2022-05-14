@@ -60,7 +60,7 @@ HTML;
                             <a href="/profil?id={$user_id}">Mon profil</a>
                         </li>
                         <li>
-                            <a href="/utilisateurs">Utilisateurs</a>
+                            <a href="/profil/rechercher">Utilisateurs</a>
                         </li>
                         <li>
                             <a href="/cours/rechercher">Cours</a>

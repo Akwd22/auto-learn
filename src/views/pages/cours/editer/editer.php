@@ -72,7 +72,7 @@ HTML;
 ?>
 
     <head>
-        <?php infoHead('Éditer un cours', 'Éditer un cours', '/views/pages/cours/creation-modification/creation-modification.css'); ?>
+        <?php infoHead('Éditer un cours', 'Éditer un cours', '/views/pages/cours/editer/editer.css'); ?>
         <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
         <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
     </head>
@@ -224,7 +224,7 @@ HTML;
             </main>
         </div>
         <?php createFooter(); ?>
-        <script src="../views/pages/cours/creation-modification/creation-modification.js"></script>
+        <script src="../views/pages/cours/editer/editer.js"></script>
     </body>
 <?php
 }

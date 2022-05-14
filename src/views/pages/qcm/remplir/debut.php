@@ -62,7 +62,7 @@ function afficherQcmDebut(QCM $qcm)
                                     $visible = 'visible';
                                 }
                                 ?>
-                                <input class="default s <?php echo $visible ?>" id="edit" type="button" name="edit" value="Modifier le QCM" onclick="window.location.href = '/qcm/edition?id=<?php echo $qcmId; ?>'">
+                                <input class="default s <?php echo $visible ?>" id="edit" type="button" name="edit" value="Modifier le QCM" onclick="window.location.href = '/qcm/editer?id=<?php echo $qcmId; ?>'">
                             </div>
                         </div>
 

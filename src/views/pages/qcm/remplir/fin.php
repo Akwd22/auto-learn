@@ -66,7 +66,7 @@ function afficherQcmFin(QCM $qcm, TentativeQCM $tentative)
                         <div id="bottomDiv">
                             <p id="recommendedCours"><?php echo htmlspecialchars($coursRecommande->getTitre()); ?></p>
                             <div id="divButtonRecommendedCours">
-                                <input class="default s" id="buttonRecommendedCours" type="button" name="buttonRecommendedCours" value="Voir le cours" onclick="window.location.href = '/cours/affichage?id=<?php echo htmlspecialchars($coursRecommande->getId()); ?>'">
+                                <input class="default s" id="buttonRecommendedCours" type="button" name="buttonRecommendedCours" value="Voir le cours" onclick="window.location.href = '/cours?id=<?php echo htmlspecialchars($coursRecommande->getId()); ?>'">
                             </div>
                         </div>
                     <?php } ?>

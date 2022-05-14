@@ -18,7 +18,7 @@ function afficherUtilisateurs(array $users, string $lastSearch)
 ?>
 
   <head>
-    <?php infoHead('Rechercher des utilisateurs', 'Rechercher des utilisateurs', '/views/pages/utilisateurs/utilisateurs.css'); ?>
+    <?php infoHead('Rechercher des utilisateurs', 'Rechercher des utilisateurs', '/views/pages/profil/rechercher/rechercher.css'); ?>
     <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
     <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
   </head>
@@ -36,7 +36,7 @@ function afficherUtilisateurs(array $users, string $lastSearch)
 
           <form method="GET">
             <div id="labelSearchDiv">
-              <label id="labelSearch" for="site-search" name="site-search">Gestion des utilisateurs</label>
+              <label id="labelSearch" for="site-search" name="site-search">Rechercher des utilisateurs</label>
             </div>
             <input class="input l" type="search" id="site-search" name="site-search" value="<?php echo $lastSearch; ?>" placeholder="Rechercher un pseudo, e-mail, etc.">
             <input id="invisibleButton" type="submit" id='sub' name="sub" value="Rechercher">

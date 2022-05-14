@@ -57,7 +57,7 @@ function afficherProfil(Utilisateur $user)
                   $imgUrl = htmlspecialchars($cours->getImageUrl() ? UPLOADS_COURS_IMGS_URL . $cours->getImageUrl() : DEFAULT_COURS_IMG);
                   $titre = htmlspecialchars($cours_tente[$i]->getCours()->getTitre());
 
-                  echo "<a href='/cours/affichage?id=$cours_id'>";
+                  echo "<a href='/cours?id=$cours_id'>";
                   echo "<div class=\"list-cours-container-component\">";
                   echo "<img class=\"list-cours-container-component-img\" src='" . $imgUrl . "'>";
                   echo "<p class=\"list-cours-container-component-title\">" . $titre . "</p>";

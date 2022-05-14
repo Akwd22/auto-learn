@@ -112,7 +112,7 @@ function afficherCours(array $cours, string $lastSearch = null, string $selected
                                 $description = htmlspecialchars($cours[$i]->getDescription());
 
                                 echo "<div class=\"containerCours\">";
-                                echo "<a href=\"/cours/affichage?id=" . $id . "\">";
+                                echo "<a href=\"/cours?id=" . $id . "\">";
 
                                 $urlImg = '';
 

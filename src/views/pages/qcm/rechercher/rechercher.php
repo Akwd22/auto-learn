@@ -46,7 +46,7 @@ function afficherQcm(array $qcm, string $lastSearch = "", int $selectedCat = Enu
                                 $visible = 'visible';
                             }
                             ?>
-                            <input class="default s <?php echo $visible ?>" id="create" type="button" name="create" value="Créer un QCM" onclick="window.location.href = '/qcm/edition'">
+                            <input class="default s <?php echo $visible ?>" id="create" type="button" name="create" value="Créer un QCM" onclick="window.location.href = '/qcm/editer'">
                         </div>
 
                         <div id="divForm">

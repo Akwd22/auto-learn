@@ -65,7 +65,7 @@ function handleFormEdit()
   global $tentaQcmCRUD;
   global $cours;
  
-  $redirectUrl = "/qcm/edition";
+  $redirectUrl = "/qcm/editer";
 
   $titre = $_POST["titre"] ?? null;
   $categorie= $_POST["categorie"] ?? null;
@@ -165,7 +165,7 @@ function handleFormCreate(){
   global $coursCRUD;
   global $cours;
   
-  $redirectUrl = "/qcm/edition";
+  $redirectUrl = "/qcm/editer";
 
   $titre = $_POST["titre"] ?? null;
   $description = $_POST["description"] ?? null;

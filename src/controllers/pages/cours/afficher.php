@@ -5,7 +5,7 @@ require_once("controllers/utils.php");
 require_once("databases/UtilisateurCRUD.php");
 require_once("models/Cours.php");
 require_once("models/TentativeCours.php");
-require_once("views/pages/cours/affichage.php");
+require_once("views/pages/cours/cours.php");
 
 SessionManagement::session_start();
 

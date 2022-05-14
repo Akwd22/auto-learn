@@ -1,7 +1,7 @@
 <?php
 require_once "databases/UtilisateurCRUD.php";
 require_once "databases/SessionManagement.php";
-require_once "views/pages/utilisateurs/utilisateurs.php";
+require_once "views/pages/profil/rechercher/rechercher.php";
 
 SessionManagement::session_start();
 

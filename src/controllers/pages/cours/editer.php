@@ -9,7 +9,7 @@ require_once("models/Enum.php");
 require_once("models/EnumCategorie.php");
 require_once("models/EnumFormatCours.php");
 require_once("models/EnumNiveauCours.php");
-require_once("views/pages/cours/creation-modification/creation-modification.php");
+require_once("views/pages/cours/editer/editer.php");
 
 SessionManagement::session_start();
 

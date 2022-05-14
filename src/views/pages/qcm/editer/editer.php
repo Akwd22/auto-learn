@@ -52,7 +52,7 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
 ?>
 
   <head>
-    <?php infoHead('Créer ou éditer un QCM', 'Créer ou éditer un cours', '/views/pages/qcm/editer/editer.css'); ?>
+    <?php infoHead('Éditer un QCM', 'Éditer un QCM', '/views/pages/qcm/editer/editer.css'); ?>
     <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
     <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
   </head>
@@ -63,7 +63,7 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
         <?php createrNavbar(); ?>
       </header>
       <main class="qcmCreation-page">
-        <form class="qcmCreation-page-form" action="<?php echo $qcm ? ('/qcm/edition?id=' . htmlspecialchars($qcm->getId())) : '/qcm/edition'  ?>" class="qcm-container-form" method="post" enctype="multipart/form-data">
+        <form class="qcmCreation-page-form" action="<?php echo $qcm ? ('/qcm/editer?id=' . htmlspecialchars($qcm->getId())) : '/qcm/editer'  ?>" class="qcm-container-form" method="post" enctype="multipart/form-data">
           <!-- CONTAINER DE GAUCHE -->
           <div class="qcm-container">
             <div class="qcm-container-structure">

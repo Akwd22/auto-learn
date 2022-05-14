@@ -43,7 +43,7 @@ if ($tentative) {
   $crud = new TentativeCoursCRUD($conn);
   $crud = $crud->updateTentativeCours($tentative, $tentative->getId());
 
-  redirect("/cours/affichage", "success", "Le cours a été marqué comme " . ($tentative->getIsTermine() ? "terminé" : "non terminé") . ".", array("id" => $coursId));
+  redirect("/cours", "success", "Le cours a été marqué comme " . ($tentative->getIsTermine() ? "terminé" : "non terminé") . ".", array("id" => $coursId));
 } else {
-  redirect("/cours/affichage", "error", "Ce cours n'a jamais été commencé.", array("id" => $coursId));
+  redirect("/cours", "error", "Ce cours n'a jamais été commencé.", array("id" => $coursId));
 }

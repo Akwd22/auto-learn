@@ -7,22 +7,20 @@ RewriteRule ^connexion$           /controllers/pages/connexion/connexion.php [L]
 RewriteRule ^deconnexion$         /controllers/pages/connexion/deconnexion.php [L]
 RewriteRule ^inscription$         /controllers/pages/inscription/inscription.php [L]
 
-RewriteRule ^profil$              /controllers/pages/profil/profil.php [L]
+RewriteRule ^profil$              /controllers/pages/profil/afficher.php [L]
 RewriteRule ^profil/supprimer$    /controllers/pages/profil/supprimer.php [L]
 RewriteRule ^profil/modifier$     /controllers/pages/profil/modifier.php [L]
+RewriteRule ^profil/rechercher$   /controllers/pages/profil/rechercher.php [L]
 
-RewriteRule ^utilisateurs$        /controllers/pages/utilisateurs/rechercher.php [L]
-
-RewriteRule ^cours$               /controllers/pages/cours/cours.php [L]
+RewriteRule ^cours$               /controllers/pages/cours/afficher.php [L]
 RewriteRule ^cours/rechercher$    /controllers/pages/cours/rechercher.php [L]
 RewriteRule ^cours/supprimer$     /controllers/pages/cours/supprimer.php [L]
 RewriteRule ^cours/marquer$       /controllers/pages/cours/marquer.php [L]
-RewriteRule ^cours/affichage$     /controllers/pages/cours/affichage.php [L]
-RewriteRule ^cours/editer$        /controllers/pages/cours/edition.php [L]
+RewriteRule ^cours/editer$        /controllers/pages/cours/editer.php [L]
 
 RewriteRule ^qcm$                 /controllers/pages/qcm/remplir/remplir.php [L]
 RewriteRule ^qcm/rechercher$      /controllers/pages/qcm/rechercher.php [L]
 RewriteRule ^qcm/supprimer$       /controllers/pages/qcm/supprimer.php [L]
-RewriteRule ^qcm/edition$         /controllers/pages/qcm/editer.php [L]
+RewriteRule ^qcm/editer$          /controllers/pages/qcm/editer.php [L]
 
 RewriteRule ^api/cours$           /controllers/api/getCours.php [L]
