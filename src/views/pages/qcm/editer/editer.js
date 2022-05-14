@@ -14,7 +14,7 @@ const add_item_to_list = () => {
     div.innerHTML += `<label for='max-${input_hiden.value}'>et</label>`;
     div.innerHTML += `<input min='0' max='20' type="number" class='input m input-moyenne' name='max-${input_hiden.value}' placeholder='20'/>`;
     div.innerHTML += `<label for='id-${input_hiden.value}'>:</label>`;
-    div.innerHTML += `<input type="texte" class='input m input-id' name='id-${input_hiden.value}' list='liste-cours' placeholder='Identifiant du cours'/>`;
+    div.innerHTML += `<input type="texte" class='input m input-id' name='id-${input_hiden.value}' list='liste-cours' autocomplete='off' placeholder='Identifiant du cours'/>`;
 
     list_item_container.appendChild(div);
   });

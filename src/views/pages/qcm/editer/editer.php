@@ -153,7 +153,7 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
                       <label for='max-{$i}'>et</label>
                       <input min='0' max='20' placeholder='20'class='input m input-moyenne' type='number' name='max-{$i}' value='{$moyenne_max}'>
                       <label for='id-{$i}'>:</label>
-                      <input class='input m input-id' type='text' name='id-{$i}' list='liste-cours' placeholder='Identifiant du cours' value='{$id_cours_recommande}'>
+                      <input class='input m input-id' type='text' name='id-{$i}' list='liste-cours' autocomplete='off' placeholder='Identifiant du cours' value='{$id_cours_recommande}'>
                     </div>
                     ";
                     }
@@ -166,7 +166,7 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
                     <label for='max-{$nb_cours}'>et</label>
                     <input min='0' max='20' placeholder='20'class='input m input-moyenne' type='number' name='max-{$nb_cours}' >
                     <label for='id-{$nb_cours}'>:</label>
-                    <input class='input m input-id' type='text' name='id-{$nb_cours}' list='liste-cours' placeholder='Identifiant du cours' >
+                    <input class='input m input-id' type='text' name='id-{$nb_cours}' list='liste-cours' autocomplete='off' placeholder='Identifiant du cours' >
                     </div>
                     ";
                   }
