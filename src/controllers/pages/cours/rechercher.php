@@ -48,15 +48,23 @@ else{
     $cours = $coursCRUD->readAllCours();
 }
 
+//trie le tableau avec les cours recommandés en premier
+$coursNonRecommande=[];
+for($i=0;$i<count($cours);$i++)
+{
+    if(!SessionManagement::getUser()->hasCoursRecommande($cours[$i]->getId()))
+    {
+        $coursNonRecommande[count($coursNonRecommande)]=$cours[$i]; 
+        array_splice($cours, $i, 1);
+        $i--;
+    }
+}
+for($i=0;$i<count($coursNonRecommande);$i++)
+{
+    $cours[count($cours)]=$coursNonRecommande[$i];
+}
+   
+
+
 // Affichage de la vue.
 afficherCours($cours, $search, $selectedRadio, +$selectedCat);
-
-
-
-    
-
-
-
-
-
-                        

@@ -112,7 +112,9 @@
 
                                 echo "<img class=\"imgCours\" src=\"" . $urlImg . "\">";
 
-                                
+                                if (SessionManagement::getUser()->hasCoursRecommande($cours[$i]->getId())) {
+                                     echo "<img class=\"imgStar\" src=\"/assets/img/etoile/etoile.png\">";
+                                } 
 
                                 echo "<p class=\"titleCours\">" . $cours[$i]->getTitre() . "</p>";
                                 echo "<p class=\"descriptionCours\">" . $cours[$i]->getDescription() . "</p>";
