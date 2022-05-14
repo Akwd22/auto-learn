@@ -5,7 +5,7 @@
 <html>
 
 <head>
-    <?php infoHead('S\'identifier', 'Connectes toi pour accèder à tes cours personnalisés', '/views/pages/connexion/connexion.css'); ?>
+    <?php infoHead('S\'identifier', 'Connecte-toi pour accéder à tes cours personnalisés.', '/views/pages/connexion/connexion.css'); ?>
 </head>
 
 <body>

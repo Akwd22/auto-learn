@@ -2,6 +2,10 @@
 
 function infoHead($title, $description, $link_style)
 {
+    $title = htmlspecialchars($title);
+    $description = htmlspecialchars($description);
+    $link_style = htmlspecialchars($link_style);
+
     $html = <<<HTML
         <title>$title</title>
         <link rel="shortcut icon" href="assets/img/logo/logo_dark.svg"/>
@@ -10,6 +14,7 @@ function infoHead($title, $description, $link_style)
         <meta name="description" content="$description"/>
         <meta name="author" content="DRUET Eddy, GILI Clément, AULOY Rémy, BARBIER Tom, SONVICO Guillaume, MANZANO Lilian" />
 HTML;
+
     echo $html;
 }
 
@@ -21,6 +26,9 @@ function createrNavbar()
                 $url_profilImage = $user->getImageUrl() ? UPLOADS_PROFIL_URL . $user->getImageUrl() : DEFAULT_PROFIL_IMG;
                 $user_id = SessionManagement::getUserId();
                 $user_isAdmin = SessionManagement::isAdmin();
+
+                $url_profilImage = htmlspecialchars($url_profilImage);
+                $user_id = htmlspecialchars($user_id);
             }
 
             if (!SessionManagement::isLogged()) {

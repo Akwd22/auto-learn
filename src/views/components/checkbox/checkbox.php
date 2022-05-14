@@ -6,7 +6,6 @@
 //$checked doit etre ''  ou 'required' 
 function createCheckbox($id, $name, $label, $size, $required, $enabled, $checked)
 {
-
     if ($checked != 'unchecked' && $checked != 'checked') {
         $checked = 'unchecked';
     }
@@ -19,6 +18,14 @@ function createCheckbox($id, $name, $label, $size, $required, $enabled, $checked
     if ($required != '' && $required != 'required') {
         $required = '';
     }
+
+    $id = htmlspecialchars($id);
+    $name = htmlspecialchars($name);
+    $required = htmlspecialchars($required);
+    $enabled = htmlspecialchars($enabled);
+    $checked = htmlspecialchars($checked);
+    $size = htmlspecialchars($size);
+    $label = htmlspecialchars($label);
 
     $html = <<<HTML
     <div class="divCustomCheckbox $size">

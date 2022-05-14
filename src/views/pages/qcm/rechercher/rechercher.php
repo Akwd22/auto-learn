@@ -6,33 +6,34 @@
 
 <html>
 
-            <?php 
-            /**
-             * Afficher la liste filtrées des QCM.
-             * @param array $qcm Liste des QCM.
-             * @param string $lastSearch Dernière recherche dans la barre de recherche.
-             * @param int $selectedCat Dernière catégorie choisie.
-             * @param bool $completedOnly Faut-il afficher uniquement les QCM terminés ?
-             * @return void
-             */            
-            function afficherQcm(array $qcm, string $lastSearch = "", int $selectedCat = EnumCategorie::AUCUNE, bool $completedOnly = false)
-            {
-            ?>
+<?php
+/**
+ * Afficher la liste filtrées des QCM.
+ * @param array $qcm Liste des QCM.
+ * @param string $lastSearch Dernière recherche dans la barre de recherche.
+ * @param int $selectedCat Dernière catégorie choisie.
+ * @param bool $completedOnly Faut-il afficher uniquement les QCM terminés ?
+ * @return void
+ */
+function afficherQcm(array $qcm, string $lastSearch = "", int $selectedCat = EnumCategorie::AUCUNE, bool $completedOnly = false)
+{
+    $lastSearch = htmlspecialchars($lastSearch);
+?>
 
-<head>
-    <?php infoHead('Rechercher des tests', 'Rechercher des tests', '/views/pages/qcm/rechercher/rechercher.css'); ?>
-    <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
-    <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
-</head>
+    <head>
+        <?php infoHead('Rechercher des tests', 'Rechercher des tests', '/views/pages/qcm/rechercher/rechercher.css'); ?>
+        <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
+        <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
+    </head>
 
-<body>
-    <div id="mainContainer">
-        <header>
-            <?php createrNavbar(); ?>
-        </header>
+    <body>
+        <div id="mainContainer">
+            <header>
+                <?php createrNavbar(); ?>
+            </header>
 
-        <main class="content">
-            
+            <main class="content">
+
 
 
                 <form method="GET">
@@ -40,11 +41,13 @@
 
                         <div id="divCreate">
                             <?php
-                                $visible='invisible';
-                                if (SessionManagement::isAdmin()){$visible='visible';}
+                            $visible = 'invisible';
+                            if (SessionManagement::isAdmin()) {
+                                $visible = 'visible';
+                            }
                             ?>
-                            <input class="default s <?php echo $visible?>" id="create" type="button" name="create" value="Créer un QCM" onclick="window.location.href = '/qcm/edition'">
-                        </div>    
+                            <input class="default s <?php echo $visible ?>" id="create" type="button" name="create" value="Créer un QCM" onclick="window.location.href = '/qcm/edition'">
+                        </div>
 
                         <div id="divForm">
                             <!--formulaire de gauche-->
@@ -54,21 +57,27 @@
                                 <?php
                                 $completedStatut = 'unchecked';
                                 if ($completedOnly) {
-                                  $completedStatut = 'checked';
+                                    $completedStatut = 'checked';
                                 }
-                                createCheckbox('showCompleted','showCompleted','QCM terminés','m','','enabled',$completedStatut)
+                                createCheckbox('showCompleted', 'showCompleted', 'QCM terminés', 'm', '', 'enabled', $completedStatut)
                                 ?>
                             </div>
 
                             <p class="titlesForm" id="titleFormCat">Catégories</p>
                             <select class="select m full-width" name="categorie" id="categorie">
                                 <?php
-                                
+
                                 $arr = EnumCategorie::getFriendlyNames();
                                 foreach ($arr as $cat => $nom) {
-                                    $status='';
-                                    if($cat==$selectedCat){$status='selected';}
-                                    echo "<option value='$cat' $status>$nom</option>"; 
+                                    $status = '';
+                                    if ($cat == $selectedCat) {
+                                        $status = 'selected';
+                                    }
+
+                                    $cat = htmlspecialchars($cat);
+                                    $nom = htmlspecialchars($nom);
+
+                                    echo "<option value='$cat' $status>$nom</option>";
                                 }
 
                                 ?>
@@ -91,28 +100,32 @@
 
                         <div id="divListQcm">
 
-                            <?php 
+                            <?php
                             $arr = EnumCategorie::getFriendlyNames();
                             for ($i = 0; $i < count($qcm); $i++) {
-                              $tenta = SessionManagement::getUser()->getQcmTentesByQcmId($qcm[$i]->getId());
+                                $tenta = SessionManagement::getUser()->getQcmTentesByQcmId($qcm[$i]->getId());
+                                $qcmId = htmlspecialchars($qcm[$i]->getId());
+                                $titre = htmlspecialchars($qcm[$i]->getTitre());
+                                $descr = htmlspecialchars($qcm[$i]->getDescription());
+                                $cat   = htmlspecialchars($arr[$qcm[$i]->getCategorie()]);
 
-                              echo "<a href=\"/qcm?id=" . $qcm[$i]->getId() . "\">";
+                                echo "<a href=\"/qcm?id=" . $qcmId . "\">";
                                 echo "<div class=\"containerQcm\">";
-                                
 
-                                  echo "<div class=\"leftDivQcm\">";
-                                    echo "<p class=\"titleQcm\">".$qcm[$i]->getTitre()."</p>";
-                                    echo "<p class=\"descriptionQcm\">".$qcm[$i]->getDescription()."</p>";
-                                  echo "</div>";
 
-                                  echo "<div class=\"rightDivQcm\">";
-                                    echo "<p class=\"catQcm\">".$arr[$qcm[$i]->getCategorie()]."</p>";
-                                    if ($tenta && $tenta->getIsTermine()) echo "<p class='noteQcm'>" . $moy=number_format($tenta->getMoy(), 2) . "/20</p>";
-                                  echo "</div>";
-
-                                 
+                                echo "<div class=\"leftDivQcm\">";
+                                echo "<p class=\"titleQcm\">" . $titre . "</p>";
+                                echo "<p class=\"descriptionQcm\">" . $descr . "</p>";
                                 echo "</div>";
-                              echo "</a>"; 
+
+                                echo "<div class=\"rightDivQcm\">";
+                                echo "<p class=\"catQcm\">" . $cat . "</p>";
+                                if ($tenta && $tenta->getIsTermine()) echo "<p class='noteQcm'>" . number_format($tenta->getMoy(), 2) . "/20</p>";
+                                echo "</div>";
+
+
+                                echo "</div>";
+                                echo "</a>";
                             }
 
                             ?>
@@ -123,16 +136,16 @@
                 </form>
 
 
-    </div>
+        </div>
 
 
 
 
-    </main>
-    </div>
-    <?php createFooter(); ?>
+        </main>
+        </div>
+        <?php createFooter(); ?>
 
-</body>
+    </body>
 
 
 <?php } ?>

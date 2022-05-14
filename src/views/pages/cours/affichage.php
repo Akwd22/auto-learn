@@ -35,43 +35,51 @@ function afficherCours($cours)
                         } else {
                             $urlImg = DEFAULT_COURS_IMG;
                         }
+
+                        $urlImg = htmlspecialchars($urlImg);
                         ?>
                         <img id="img" src="<?php echo $urlImg ?>">
                     </div>
 
                     <div id="infoDiv">
                         <div id="leftInfoDiv">
-                            <h1 id="titleCours"><?php echo $cours->getTitre() . ' – '; ?></h1>
+                            <h1 id="titleCours"><?php echo htmlspecialchars($cours->getTitre()) . ' – '; ?></h1>
                             <?php
                             $idNiveau = $cours->getNiveauRecommande();
 
                             $niveau = EnumNiveauCours::getFriendlyNames()[$idNiveau];
                             $niveauClass = "niveau-$idNiveau";
 
+                            $niveau = htmlspecialchars($niveau);
+                            $niveauClass = htmlspecialchars($niveauClass);
+
                             echo "<p class='niveauCours $niveauClass'>$niveau</p>";
                             ?>
-                            <p id="descriptionCours"><?php echo $cours->getDescription(); ?>
+                            <p id="descriptionCours"><?php echo htmlspecialchars($cours->getDescription()); ?>
                             <p>
                         </div>
 
                         <div id="rightInfoDiv">
-                            <p id="timeCours">Environ <?php echo $cours->getTempsMoyen(); ?> heures de
+                            <p id="timeCours">Environ <?php echo htmlspecialchars($cours->getTempsMoyen()); ?> heures de
                                 <?php
                                 $type = 'lecture';
+
                                 if ($cours instanceof CoursVideo) {
                                     $type = 'vidéo';
                                 }
+
                                 echo $type; ?>
                             </p>
-                            <p id="dateCours">Date de création : <?php echo (string)$cours->getDateCreation()->format('d/m/Y'); ?> </p>
+                            <p id="dateCours">Date de création : <?php echo htmlspecialchars($cours->getDateCreation()->format('d/m/Y')); ?> </p>
                             <div id="divEdit">
                                 <?php
                                 $visible = 'invisible';
+
                                 if (SessionManagement::isAdmin()) {
                                     $visible = 'visible';
                                 }
                                 ?>
-                                <input class="default s <?php echo $visible ?>" id="edit" type="button" name="edit" value="Modifier le cours" onclick="window.location.href = '/cours/editer?id=<?php echo $cours->getId(); ?>'">
+                                <input class="default s <?php echo $visible ?>" id="edit" type="button" name="edit" value="Modifier le cours" onclick="window.location.href = '/cours/editer?id=<?php echo htmlspecialchars($cours->getId()); ?>'">
                             </div>
                             <div id="divMark">
                                 <?php
@@ -81,7 +89,7 @@ function afficherCours($cours)
                                 }
                                 ?>
 
-                                <input class="default s" id="mark" type="button" name="mark" value="Marquer comme <?php echo $isMark; ?>terminé" onclick="window.location.href = '/cours/marquer?id=<?php echo $cours->getId(); ?>'">
+                                <input class="default s" id="mark" type="button" name="mark" value="Marquer comme <?php echo $isMark; ?>terminé" onclick="window.location.href = '/cours/marquer?id=<?php echo htmlspecialchars($cours->getId()); ?>'">
                             </div>
 
                         </div>
@@ -92,7 +100,7 @@ function afficherCours($cours)
                 <div id="bottomDiv">
 
                     <?php if ($cours instanceof CoursTexte) { ?>
-                        <embed src="<?php echo UPLOADS_COURS_DOCS_URL . $cours->getFichierUrl(); ?>" width=100% height=1000 type='application/pdf' />
+                        <embed src="<?php echo htmlspecialchars(UPLOADS_COURS_DOCS_URL . $cours->getFichierUrl()); ?>" width=100% height=1000 type='application/pdf' />
                     <?php } ?>
 
                     <?php if ($cours instanceof CoursVideo) { ?>
@@ -105,7 +113,7 @@ function afficherCours($cours)
                             <?php
                             for ($i = 0; $i < count($cours->getVideosUrl()); $i++) {
                                 $num = $i + 1;
-                                echo "<input class=\"urlButton\" id=\"urlButton" . $i . "\" type=\"button\" name=\"urlButton" . $i . "\" value=\"Vidéo " . $num . "\" onClick=\"addSrc('" . $cours->getVideosUrl()[$i] . "');\">";
+                                echo "<input class=\"urlButton\" id=\"urlButton" . $i . "\" type=\"button\" name=\"urlButton" . $i . "\" value=\"Vidéo " . $num . "\" onClick=\"addSrc('" . htmlspecialchars($cours->getVideosUrl()[$i]) . "');\">";
                             }
                             ?>
                         </div>
@@ -120,7 +128,7 @@ function afficherCours($cours)
         <script src="../views/pages/cours/affichage.js"></script>
         <script>
             <?php if ($cours instanceof CoursVideo) {
-                echo "addSrc('" . $cours->getVideosUrl()[0] . "');";
+                echo "addSrc('" . htmlspecialchars($cours->getVideosUrl()[0]) . "');";
             } ?>
         </script>
     </body>

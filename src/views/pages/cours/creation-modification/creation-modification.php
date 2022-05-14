@@ -44,6 +44,8 @@ HTML;
         else if ($isEditMode and $type == "description")
             $value = $cours->getDescription();
 
+        $value = htmlspecialchars($value);
+
         return $value;
     };
 
@@ -62,6 +64,8 @@ HTML;
             $value = "'Créer le cours'";
         }
 
+        $value = htmlspecialchars($value);
+
         return $value;
     };
 
@@ -79,7 +83,7 @@ HTML;
                 <?php createrNavbar(); ?>
             </header>
             <main class="coursCreation-page">
-                <form action="<?php echo $cours ? ('/cours/editer?id=' . $cours->getId()) : '/cours/editer'  ?>" class="creation-container-form" method="post" enctype="multipart/form-data">
+                <form action="<?php echo $cours ? ('/cours/editer?id=' . htmlspecialchars($cours->getId())) : '/cours/editer'  ?>" class="creation-container-form" method="post" enctype="multipart/form-data">
                     <div class="creation-container">
                         <div class="creation-container-form-structure">
                             <!-- TITRE -->
@@ -108,6 +112,10 @@ HTML;
 
                                     foreach ($arr as $niv => $nom) {
                                         $selected = ($cours && $cours->getNiveauRecommande() === $niv) ? "selected" : "";
+
+                                        $niv = htmlspecialchars($niv);
+                                        $nom = htmlspecialchars($nom);
+
                                         echo "<option value='$niv' $selected>$nom</option>";
                                     }
                                     ?>
@@ -124,6 +132,10 @@ HTML;
 
                                     foreach ($arr as $cat => $nom) {
                                         $selected = ($cours && $cours->getCategorie() === $cat) ? "selected" : "";
+
+                                        $cat = htmlspecialchars($cat);
+                                        $nom = htmlspecialchars($nom);
+
                                         echo "<option value='$cat' $selected>$nom</option>";
                                     }
                                     ?>
@@ -163,7 +175,7 @@ HTML;
 
                             <div class="delete-container-form">
                                 <label for="btn-delete">Supprimer le cours</label>
-                                <a href=<?php echo $isEditMode ? '/cours/supprimer?id=' . $cours->getId() : "#"; ?>><input class="default s" type="button" id="btn-delete" value="Supprimer"></a>
+                                <a href=<?php echo $isEditMode ? '/cours/supprimer?id=' . htmlspecialchars($cours->getId()) : "#"; ?>><input class="default s" type="button" id="btn-delete" value="Supprimer"></a>
                             </div>
                         </div>
 
@@ -181,6 +193,8 @@ HTML;
 
                                             foreach ($cours->getVideosUrl() as $n => $url) {
                                                 $n++;
+                                                $url = htmlspecialchars($url);
+
                                                 echo "<div class='lien-container-input-container'>";
                                                 echo "<label for='input-lien-{$n}'>$n</label>";
                                                 echo "<input class='input m' type='text' name='lien{$n}' id='input-lien-{$n}' placeholder='Lien de la vidéo YouTube' value='{$url}'>";

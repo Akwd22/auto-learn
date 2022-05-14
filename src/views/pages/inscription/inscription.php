@@ -5,7 +5,7 @@
 <html>
 
 <head>
-    <?php infoHead('S\'inscrire', 'Inscris toi pour une meilleur expérience', '/views/pages/inscription/inscription.css'); ?>
+    <?php infoHead('S\'inscrire', 'Inscris-toi pour une meilleure expérience.', '/views/pages/inscription/inscription.css'); ?>
 </head>
 
 <body>

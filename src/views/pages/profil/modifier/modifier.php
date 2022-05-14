@@ -13,10 +13,6 @@ require 'views/components/radio/radio.php';
  */
 function afficherModifierProfil(Utilisateur $user)
 {
-
-  if (isset($_GET["error"])) echo "<p style='color:red'>" . $_GET["error"] . "</p>";
-  if (isset($_GET["success"])) echo "<p style='color:green'>" . $_GET["success"] . "</p>";
-
 ?>
 
   <head>
@@ -34,7 +30,7 @@ function afficherModifierProfil(Utilisateur $user)
 
         <div class="parametre-container">
 
-          <form class="parametre-container-form" action="/profil/modifier?id=<?php echo $user->getId() ?>" method="post" enctype="multipart/form-data">
+          <form class="parametre-container-form" action="/profil/modifier?id=<?php echo htmlspecialchars($user->getId()) ?>" method="post" enctype="multipart/form-data">
             <h2 class="parametre-container-title">Paramètres</h2>
             <div class="parametre-message-container">
               <?php createMessage(); ?>
@@ -44,7 +40,7 @@ function afficherModifierProfil(Utilisateur $user)
               <!-- EMAIL -->
               <div class="form-email-container form-log-item">
                 <label for="email">Nouveau e-mail</label>
-                <input class="input l" type="email" name="email" id="email" value="<?php echo $user->getEmail() ?>" placeholder="Saisir un nouveau e-mail">
+                <input class="input l" type="email" name="email" id="email" value="<?php echo htmlspecialchars($user->getEmail()) ?>" placeholder="Saisir un nouveau e-mail">
               </div>
 
               <!-- MOT DE PASSE -->
@@ -81,7 +77,7 @@ function afficherModifierProfil(Utilisateur $user)
 
 
         <div class="delete-container">
-          <form class="delete-container-form" action="/profil/supprimer?id=<?php echo $user->getId() ?>" method="post">
+          <form class="delete-container-form" action="/profil/supprimer?id=<?php echo htmlspecialchars($user->getId()) ?>" method="post">
             <h2 class="delete-container-title">Supprimer le compte</h2>
             <input class="default s" type="submit" id="delete-btn" value="Supprimer">
           </form>
@@ -93,40 +89,5 @@ function afficherModifierProfil(Utilisateur $user)
     <?php createFooter(); ?>
 
   </body>
-
-
-  <!-- <form action="/profil/modifier?id=<?php echo $user->getId() ?>" method="post" enctype="multipart/form-data">
-    <h2>Modifier le profil</h2>
-    <label for="email">Nouveau e-mail</label>
-    <input type="email" name="email" id="email" value="<?php echo $user->getEmail() ?>">
-    <br>
-    <label for="pass">Nouveau mot de passe</label>
-    <input type="password" name="pass" id="pass">
-    <br>
-    <label for="image">Nouvelle image</label>
-    <input type="file" name="image" id="image">
-    <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-    <br>
-    <input type="radio" name="theme" id="theme-light" value="light" <?php if ($user->getTheme() === EnumTheme::CLAIR) echo "checked" ?>>
-    <label for="theme-light">Thème clair</label>
-    <input type="radio" name="theme" id="theme-dark" value="dark" <?php if ($user->getTheme() === EnumTheme::SOMBRE) echo "checked" ?>>
-    <label for="theme-dark">Thème sombre</label>
-    <br>
-    <?php
-    if (SessionManagement::isAdmin()) {
-    ?>
-      <input type="checkbox" name="admin" id="admin" <?php if ($user->getIsAdmin())  echo "checked" ?>>
-      <label for="admin">Admin ?</label>
-      <br>
-    <?php
-    }
-    ?>
-    <input type="submit" name="submit" value="Modifier le profil">
-  </form>
-
-  <form action="/profil/supprimer?id=<?php echo $user->getId() ?>" method="post">
-    <h2>Supprimer le profil</h2>
-    <input type="submit" name="submit" value="Supprimer" />
-  </form> -->
 <?php
 }

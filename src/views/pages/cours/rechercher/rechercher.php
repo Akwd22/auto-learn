@@ -6,25 +6,26 @@
 
 <html>
 
-            <?php
-            function afficherCours(array $cours, string $lastSearch = null, string $selectedRadio = null, int $selectedCat = EnumCategorie::AUCUNE)
-            {
-            ?>
+<?php
+function afficherCours(array $cours, string $lastSearch = null, string $selectedRadio = null, int $selectedCat = EnumCategorie::AUCUNE)
+{
+    $lastSearch = htmlspecialchars($lastSearch);
+?>
 
-<head>
-    <?php infoHead('Rechercher des cours', 'Rechercher des cours', '/views/pages/cours/rechercher/rechercher.css'); ?>
-    <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
-    <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
-</head>
+    <head>
+        <?php infoHead('Rechercher des cours', 'Rechercher des cours', '/views/pages/cours/rechercher/rechercher.css'); ?>
+        <link rel="stylesheet" type="text/css" href="/views/components/header/header.css">
+        <link rel="stylesheet" type="text/css" href="/views/components/footer/footer.css">
+    </head>
 
-<body>
-    <div id="mainContainer">
-        <header>
-            <?php createrNavbar(); ?>
-        </header>
+    <body>
+        <div id="mainContainer">
+            <header>
+                <?php createrNavbar(); ?>
+            </header>
 
-        <main class="content">
-            
+            <main class="content">
+
 
 
                 <form method="GET">
@@ -32,11 +33,13 @@
 
                         <div id="divCreate">
                             <?php
-                                $visible='invisible';
-                                if (SessionManagement::isAdmin()){$visible='visible';}
+                            $visible = 'invisible';
+                            if (SessionManagement::isAdmin()) {
+                                $visible = 'visible';
+                            }
                             ?>
-                            <input class="default s <?php echo $visible?>" id="create" type="button" name="create" value="Créer un cours" onclick="window.location.href = '/cours/editer'">
-                        </div>    
+                            <input class="default s <?php echo $visible ?>" id="create" type="button" name="create" value="Créer un cours" onclick="window.location.href = '/cours/editer'">
+                        </div>
 
                         <div id="divForm">
                             <!--formulaire de gauche-->
@@ -64,12 +67,18 @@
                             <p class="titlesForm" id="titleFormCat">Catégories</p>
                             <select class="select m full-width" name="selectCat" id="selectCat">
                                 <?php
-                                
+
                                 $arr = EnumCategorie::getFriendlyNames();
                                 foreach ($arr as $cat => $nom) {
-                                    $status='';
-                                    if($cat==$selectedCat){$status='selected';}
-                                    echo "<option value='$cat' $status>$nom</option>"; 
+                                    $status = '';
+                                    if ($cat == $selectedCat) {
+                                        $status = 'selected';
+                                    }
+
+                                    $cat = htmlspecialchars($cat);
+                                    $nom = htmlspecialchars($nom);
+
+                                    echo "<option value='$cat' $status>$nom</option>";
                                 }
 
                                 ?>
@@ -90,17 +99,20 @@
                         </div>
 
                         <?php createMessage(); ?>
-                        
+
                         <input class="input l" type="search" id="site-search" name="site-search" value="<?php echo $lastSearch; ?>" placeholder="Rechercher un cours">
                         <!--fin formulaire de droite-->
 
                         <div id="divGrid">
 
-                            <?php 
+                            <?php
                             for ($i = 0; $i < count($cours); $i++) {
+                                $id = htmlspecialchars($cours[$i]->getId());
+                                $titre = htmlspecialchars($cours[$i]->getTitre());
+                                $description = htmlspecialchars($cours[$i]->getDescription());
 
                                 echo "<div class=\"containerCours\">";
-                                echo "<a href=\"/cours/affichage?id=" . $cours[$i]->getId() . "\">";
+                                echo "<a href=\"/cours/affichage?id=" . $id . "\">";
 
                                 $urlImg = '';
 
@@ -110,14 +122,16 @@
                                     $urlImg = DEFAULT_COURS_IMG;
                                 }
 
-                                echo "<img class=\"imgCours\" src=\"" . $urlImg . "\">";
+                                $urlImg = htmlspecialchars($urlImg);
+
+                                echo "<img class=\"imgCours\" src=\"" . htmlspecialchars($urlImg) . "\">";
 
                                 if (SessionManagement::getUser()->hasCoursRecommande($cours[$i]->getId())) {
-                                     echo "<img class=\"imgStar\" src=\"/assets/img/etoile/etoile.png\">";
-                                } 
+                                    echo "<img class=\"imgStar\" src=\"/assets/img/etoile/etoile.png\">";
+                                }
 
-                                echo "<p class=\"titleCours\">" . $cours[$i]->getTitre() . "</p>";
-                                echo "<p class=\"descriptionCours\">" . $cours[$i]->getDescription() . "</p>";
+                                echo "<p class=\"titleCours\">" . $titre . "</p>";
+                                echo "<p class=\"descriptionCours\">" . $description . "</p>";
 
                                 echo "</a>";
                                 echo "</div>";
@@ -131,16 +145,16 @@
                 </form>
 
 
-    </div>
+        </div>
 
 
 
 
-    </main>
-    </div>
-    <?php createFooter(); ?>
+        </main>
+        </div>
+        <?php createFooter(); ?>
 
-</body>
+    </body>
 
 
 </html>

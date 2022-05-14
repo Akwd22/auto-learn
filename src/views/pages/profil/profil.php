@@ -10,10 +10,9 @@ require 'views/components/footer/footer.php';
 function afficherProfil(Utilisateur $user)
 {
   //VARIABLES PHP
-  $url_profilImage = $user->getImageUrl() ? UPLOADS_PROFIL_URL . $user->getImageUrl() : DEFAULT_PROFIL_IMG;
-  function EtatCours($user)
-  {
-  }
+  $url_profilImage = htmlspecialchars($user->getImageUrl() ? UPLOADS_PROFIL_URL . $user->getImageUrl() : DEFAULT_PROFIL_IMG);
+  $pseudo = htmlspecialchars($user->getPseudo());
+  $userId = htmlspecialchars($user->getId());
 ?>
 
   <head>
@@ -36,8 +35,8 @@ function afficherProfil(Utilisateur $user)
                 <img id='img-profil-parametres' class="img-profil" src=<?php echo $url_profilImage ?>>
               </div>
               <div class="block-top-content">
-                <h2 class="top-content-pseudo title"><?php echo $user->getPseudo() ?></h2>
-                <a href="/profil/modifier?id=<?php echo $user->getId() ?>"><button id="btn-parametres" class="btn2" type="button" value="Paramètre">Paramètres</button></a>
+                <h2 class="top-content-pseudo title"><?php echo $pseudo ?></h2>
+                <a href="/profil/modifier?id=<?php echo $userId ?>"><button id="btn-parametres" class="btn2" type="button" value="Paramètre">Paramètres</button></a>
               </div>
             </div>
           </div>
@@ -52,10 +51,12 @@ function afficherProfil(Utilisateur $user)
                 $cours_tente =  $user->getAllCoursTentes();
                 for ($i = 0; $i < count($cours_tente); $i++) {
                   $cours = $cours_tente[$i]->getCours();
+                  $imgUrl = htmlspecialchars($cours->getImageUrl() ? UPLOADS_COURS_IMGS_URL . $cours->getImageUrl() : DEFAULT_COURS_IMG);
+                  $titre = htmlspecialchars($cours_tente[$i]->getCours()->getTitre());
 
                   echo "<div class=\"list-cours-container-component\">";
-                  echo "<img class=\"list-cours-container-component-img\" src='" . ($cours->getImageUrl() ? UPLOADS_COURS_IMGS_URL . $cours->getImageUrl() : DEFAULT_COURS_IMG) . "'>";
-                  echo "<p class=\"list-cours-container-component-title\">" . $cours_tente[$i]->getCours()->getTitre() . "</p>";
+                  echo "<img class=\"list-cours-container-component-img\" src='" . $imgUrl . "'>";
+                  echo "<p class=\"list-cours-container-component-title\">" . $titre . "</p>";
                   printf(
                     "<p class='list-cours-container-component-avancé %s'>%s</p>",
                     ($cours_tente[$i]->getIsTermine() ? "avance-Compléter" : "avance-enCours"),
@@ -74,13 +75,15 @@ function afficherProfil(Utilisateur $user)
                 <?php
                 $arr = EnumCategorie::getFriendlyNames();
                 $qcm_tente = $user->getAllQcmTentes();
+
                 for ($i = 0; $i < count($qcm_tente); $i++) {
                   $qcm = $qcm_tente[$i]->getQcm();
-                  $qcm_id = $qcm->getId();
-                  $qcm_titre =  $qcm->getTitre();
-                  $qcm_cat = $arr[$qcm->getCategorie()];
-                  $pourcentage_completion = ($qcm_tente[$i]->getNumQuestionCourante() / $qcm->nbQuestions()) * 100;
-                  $qcm_etat = $qcm_tente[$i]->getIsTermine() ?  $qcm_tente[$i]->getMoy() . '/20' : $pourcentage_completion . '% completé';
+                  $qcm_id = htmlspecialchars($qcm->getId());
+                  $qcm_titre =  htmlspecialchars($qcm->getTitre());
+                  $qcm_cat = htmlspecialchars($arr[$qcm->getCategorie()]);
+                  $pourcentage_completion = $qcm_tente[$i]->getIsCommence() ? (($qcm_tente[$i]->getNumQuestionCourante()-1) / $qcm->nbQuestions()) * 100 : 0;
+                  $qcm_moy = number_format($qcm_tente[$i]->getMoy(), 2);
+                  $qcm_etat = $qcm_tente[$i]->getIsTermine() ?  $qcm_moy . '/20' : $pourcentage_completion . '% complété';
                   $qcm_date = $qcm_tente[$i]->getIsTermine() ?  $qcm_tente[$i]->getDateTermine()->format('d/m/Y') : $qcm_tente[$i]->getDateCommence()->format('d/m/Y');
                   $classe =  ($qcm_tente[$i]->getMoy() && $qcm_etat < 10) ? "qcm_etat_bad" : (($qcm_tente[$i]->getMoy() >= 10) ? "qcm_etat_great" : "qcm_etat_other");
 

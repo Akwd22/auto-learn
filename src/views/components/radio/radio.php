@@ -15,6 +15,14 @@ function createRadio($id, $name, $label, $value, $size, $enabled, $checked)
         $checked = '';
     } 
 
+    $id = htmlspecialchars($id);
+    $name = htmlspecialchars($name);
+    $enabled = htmlspecialchars($enabled);
+    $checked = htmlspecialchars($checked);
+    $size = htmlspecialchars($size);
+    $label = htmlspecialchars($label);
+    $value = htmlspecialchars($value);
+
     $html = <<<HTML
     <div class="divCustomRadio $size">
         <input id="$id" class="customRadio" type="radio" name="$name" value="$value" $enabled $checked>
