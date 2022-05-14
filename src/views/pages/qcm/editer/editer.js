@@ -20,7 +20,7 @@ const add_item_to_list = () => {
   });
 };
 
-const insert_list_cours = (tab_cours) => {
+const populate_datalist_cours = (tab_cours) => {
   const datalist = document.getElementById("liste-cours");
 
   for (const { titre, id } of tab_cours) {
@@ -32,14 +32,14 @@ const insert_list_cours = (tab_cours) => {
   }
 };
 
-const api_fetch_list_cours = () => {
+const api_fetch_all_cours = () => {
   xhr = new XMLHttpRequest();
   xhr.open("GET", "/api/cours");
   xhr.responseType = "json";
 
   xhr.onload = () => {
     if (xhr.status === 200) {
-      insert_list_cours(xhr.response);
+      populate_datalist_cours(xhr.response);
     } else {
       console.error("Erreur lors du chargement de la liste des cours :", xhr.statusText);
     }
@@ -54,5 +54,5 @@ const api_fetch_list_cours = () => {
 
 window.addEventListener("load", () => {
   add_item_to_list();
-  api_fetch_list_cours();
+  api_fetch_all_cours();
 });
