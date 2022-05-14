@@ -53,9 +53,11 @@ function afficherProfil(Utilisateur $user)
                 $cours_tente =  $user->getAllCoursTentes();
                 for ($i = 0; $i < count($cours_tente); $i++) {
                   $cours = $cours_tente[$i]->getCours();
+                  $cours_id = htmlspecialchars($cours->getId());
                   $imgUrl = htmlspecialchars($cours->getImageUrl() ? UPLOADS_COURS_IMGS_URL . $cours->getImageUrl() : DEFAULT_COURS_IMG);
                   $titre = htmlspecialchars($cours_tente[$i]->getCours()->getTitre());
 
+                  echo "<a href='/cours/affichage?id=$cours_id'>";
                   echo "<div class=\"list-cours-container-component\">";
                   echo "<img class=\"list-cours-container-component-img\" src='" . $imgUrl . "'>";
                   echo "<p class=\"list-cours-container-component-title\">" . $titre . "</p>";
@@ -65,6 +67,7 @@ function afficherProfil(Utilisateur $user)
                     ($cours_tente[$i]->getIsTermine() ? "Terminé" : "En cours")
                   );
                   echo "</div>";
+                  echo "</a>";
                 }
                 ?>
               </div>
