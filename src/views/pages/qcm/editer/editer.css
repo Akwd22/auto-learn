@@ -62,6 +62,13 @@
   padding: 8px 16px;
 }
 
+/* CATEGORIE */
+.qcm-container-categorie-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* FICHIER */
 .qcm-container-fichier-container {
   display: flex;
@@ -86,12 +93,48 @@ hr {
 
 /* CONTAINER DE DROITE */
 
+.cours-recommande-container-titre {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 150%;
+  color: #ffff;
+  padding-bottom: 32px;
+}
+
 .cours-recommande-container-structure {
   width: 456px;
-  height: 655px;
   background-color: var(--clear_background_container);
   margin-top: 48px;
   border-radius: 4px;
+  padding: 32px 32px 0px 32px;
+  min-height: 577px;
+
+}
+
+.cours-recomande-list-item {
+  display: flex;
+  align-items: center;
+  background-color: var(--medium1_text);
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  justify-content: space-around;
+}
+
+/* INPUT */
+.input-moyenne {
+  width: 40px !important;
+  padding: 0px 0px 0px 4px !important;
+}
+
+.input-id {
+  width: 176px !important;
+  padding: 0px 0px 0px 4px !important;
+}
+
+/* BOUTON D'AJOUT */
+#submit-btn-recommandation {
+  width: 216px;
 }
 
 @media (prefers-color-scheme: dark) {
