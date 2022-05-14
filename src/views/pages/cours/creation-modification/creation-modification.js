@@ -43,4 +43,8 @@ const addLienVideo = function () {
   });
 };
 
-addLienVideo();
+
+window.addEventListener("load", () => {
+  addLienVideo();
+
+});
