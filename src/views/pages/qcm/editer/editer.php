@@ -25,6 +25,8 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
     else if ($isEditMode and $type === "description")
       $value = $qcm->getDescription();
 
+    $value = htmlspecialchars($value);
+
     return $value;
   };
 
@@ -41,6 +43,9 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
     } else if (!$isEditMode && $type === "btn") {
       $value = "'Créer le QCM'";
     }
+
+    $value = htmlspecialchars($value);
+
     return $value;
   };
 
@@ -58,7 +63,7 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
         <?php createrNavbar(); ?>
       </header>
       <main class="qcmCreation-page">
-        <form class="qcmCreation-page-form" action="<?php echo $qcm ? ('/qcm/edition?id=' . $qcm->getId()) : '/qcm/edition'  ?>" class="qcm-container-form" method="post" enctype="multipart/form-data">
+        <form class="qcmCreation-page-form" action="<?php echo $qcm ? ('/qcm/edition?id=' . htmlspecialchars($qcm->getId())) : '/qcm/edition'  ?>" class="qcm-container-form" method="post" enctype="multipart/form-data">
           <!-- CONTAINER DE GAUCHE -->
           <div class="qcm-container">
             <div class="qcm-container-structure">
@@ -83,6 +88,9 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
 
                   foreach ($arr as $cat => $nom) {
                     $selected = ($qcm && $qcm->getCategorie() === $cat) ? "selected" : "";
+                    $cat = htmlspecialchars($cat);
+                    $nom = htmlspecialchars($nom);
+
                     echo "<option value='$cat' $selected>$nom</option>";
                   }
                   ?>
@@ -108,7 +116,7 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
 
               <div class="delete-qcm-container">
                 <label for="btn-delete">Supprimer le QCM</label>
-                <a href=<?php echo $isEditMode ? '/qcm/supprimer?id=' . $qcm->getId() : "#" ?>><input class="default s" type="button" id="btn-delete" value="Supprimer"></a>
+                <a href=<?php echo $isEditMode ? '/qcm/supprimer?id=' . htmlspecialchars($qcm->getId()) : "#" ?>><input class="default s" type="button" id="btn-delete" value="Supprimer"></a>
               </div>
             </div>
           </div>
@@ -134,9 +142,9 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
                     foreach ($list_cours_recommande as $i => $reco) {
                       $i++;
                       $cours_recommande = $reco->getCours();
-                      $id_cours_recommande = $cours_recommande->getId();
-                      $moyenne_min = $reco->getMoyMin();
-                      $moyenne_max = $reco->getMoyMax();
+                      $id_cours_recommande = htmlspecialchars($cours_recommande->getId());
+                      $moyenne_min = htmlspecialchars($reco->getMoyMin());
+                      $moyenne_max = htmlspecialchars($reco->getMoyMax());
 
                       echo "
                     <div class='cours-recomande-list-item'>
