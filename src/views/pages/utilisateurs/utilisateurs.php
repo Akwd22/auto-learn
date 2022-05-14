@@ -34,7 +34,7 @@ function afficherUtilisateurs(array $users, string $lastSearch)
         <div id="centerDiv">
 
 
-          <form method="POST">
+          <form method="GET">
             <div id="labelSearchDiv">
               <label id="labelSearch" for="site-search" name="site-search">Gestion des utilisateurs</label>
             </div>

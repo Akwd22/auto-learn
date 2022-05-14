@@ -15,11 +15,11 @@ if (!$isLogged || !$isAdmin) die("Vous devez être connecté et être admin.");
 $conn = new DatabaseManagement();
 $userCRUD = new UtilisateurCRUD($conn);
 
-$search = isset($_POST["site-search"]) ? $_POST["site-search"] : "";
+$search = isset($_GET["site-search"]) ? $_GET["site-search"] : "";
 $users = null;
 
-if (!empty($_POST['site-search']) && isset($_POST['sub'])) {
-    $users = $userCRUD->readUserForAdmin($_POST['site-search']);
+if (!empty($_GET['site-search']) && isset($_GET['sub'])) {
+    $users = $userCRUD->readUserForAdmin($_GET['site-search']);
 } else {
     $users = $userCRUD->readAllUsers();
 }
