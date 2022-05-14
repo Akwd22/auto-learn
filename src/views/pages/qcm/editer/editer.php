@@ -70,8 +70,8 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
 
               <!-- TITRE CONTAINER -->
               <div class="form-container-input qcm-container-titre-container">
-                <label for="input-titre">Titre du qcm</label>
-                <input required class="input l" type="text" name="titre" id="input-titre" placeholder="Titre du qcm" value=<?php echo $handleForm_isEditMode('titre') ?>>
+                <label for="input-titre">Titre du QCM</label>
+                <input required class="input l" type="text" name="titre" id="input-titre" placeholder="Titre du QCM" value=<?php echo $handleForm_isEditMode('titre') ?>>
               </div>
 
               <!-- CATEGORIE CONTAINER-->
@@ -92,7 +92,7 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
               <!-- DESCRIPTION CONTAINER -->
               <div class="form-container-input qcm-container-description-container">
                 <label for="description-area">Description</label>
-                <textarea required name="description" id="description-area" placeholder="Description du qcm"><?php echo $handleForm_isEditMode('description') ?></textarea>
+                <textarea required name="description" id="description-area" placeholder="Description du QCM"><?php echo $handleForm_isEditMode('description') ?></textarea>
               </div>
               <!-- NEW FICHIER -->
               <div class="form-container-input qcm-container-fichier-container">
@@ -121,6 +121,9 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
               <div class="cours-recomande-container-input-contaienr">
 
                 <div class="cours-recommande-list">
+
+                  <datalist id="liste-cours"></datalist>
+
                   <?php
 
                   //Si mode édition
@@ -142,7 +145,7 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
                       <label for='max-{$i}'>et</label>
                       <input min='0' max='20' placeholder='20'class='input m input-moyenne' type='number' name='max-{$i}' value='{$moyenne_max}'>
                       <label for='id-{$i}'>:</label>
-                      <input class='input m input-id' type='number' name='id-{$i}' placeholder='Identifiant du cours' value='{$id_cours_recommande}'>
+                      <input class='input m input-id' type='text' name='id-{$i}' list='liste-cours' placeholder='Identifiant du cours' value='{$id_cours_recommande}'>
                     </div>
                     ";
                     }
@@ -155,7 +158,7 @@ function afficherFormulaire(bool $isEditMode, QCM $qcm = null)
                     <label for='max-{$nb_cours}'>et</label>
                     <input min='0' max='20' placeholder='20'class='input m input-moyenne' type='number' name='max-{$nb_cours}' >
                     <label for='id-{$nb_cours}'>:</label>
-                    <input class='input m input-id' type='number' name='id-{$nb_cours}' placeholder='Identifiant du cours' >
+                    <input class='input m input-id' type='text' name='id-{$nb_cours}' list='liste-cours' placeholder='Identifiant du cours' >
                     </div>
                     ";
                   }
