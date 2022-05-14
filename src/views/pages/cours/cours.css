@@ -8,7 +8,6 @@
 /*div du haut contenant les informations*/
 #topDiv{
     width: 1520px;
-    height: 168px;
     margin: auto;
     margin-top: 48px;
    
@@ -40,10 +39,7 @@
 
 /*div pour toutes les infos*/
 #infoDiv{
-    float: right; 
-    
-    width: calc(100% - 272px);
-    height: 100%; 
+    display: flex;
 
     text-align: left; 
     
@@ -52,12 +48,10 @@
 }
 /*div pour toutes les infos placées à gauche*/
 #leftInfoDiv{
-    float: left;
+    width: 80%;
 }
 /*div pour toutes les infos placées à droite*/
 #rightInfoDiv{
-    float: right; 
-    
     margin-right: 5px;
     
     padding-top: 5px;
@@ -104,13 +98,15 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 24px;
+    text-align: end;
     color:var(--dark_text);
 }
 
 /*date de creation du cours*/
 #dateCours{
     margin-top: 9px;
-
+    margin-bottom: 16px;
+    text-align: end;
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
