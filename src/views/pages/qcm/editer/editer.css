@@ -25,10 +25,6 @@
 
 /* CONTAINER DE GAUCHE */
 
-.qcm-container {
-  display: flex;
-}
-
 .qcm-container-structure {
   width: 456px;
   background-color: var(--clear_background_container);
@@ -106,9 +102,7 @@ hr {
   background-color: var(--clear_background_container);
   margin-top: 48px;
   border-radius: 4px;
-  padding: 32px 32px 0px 32px;
-  min-height: 577px;
-
+  padding: 32px 32px 32px 32px;
 }
 
 .cours-recomande-list-item {

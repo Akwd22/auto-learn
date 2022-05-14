@@ -5,9 +5,8 @@
   row-gap: 32px;
   flex-wrap: wrap;
   width: 100%;
-  display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex: auto;
 }
 
@@ -29,18 +28,18 @@
   background-color: var(--clear_background_container);
   padding: 0px 32px 32px 32px;
   margin-top: 48px;
-  margin-bottom: 173px;
+  border-radius: 4px;
 }
 
 .lien-container-form {
-  min-height: 671px;
+  border-radius: 4px;
   background-color: var(--clear_background_container);
   margin-top: 48px;
-  margin-bottom: 173px;
 }
 
 .lien-container {
   display: none;
+  align-items: flex-start;
 }
 
 .lien-container-form {
@@ -130,7 +129,7 @@ hr {
 .lien-container-lien-container {
   display: flex;
   flex-direction: column;
-  padding: 0px 32px;
+  padding: 16px 32px;
 }
 .lien-container-input-container {
   display: flex;

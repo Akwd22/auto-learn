@@ -127,7 +127,7 @@ function afficherCours(array $cours, string $lastSearch = null, string $selected
                                 echo "<img class=\"imgCours\" src=\"" . htmlspecialchars($urlImg) . "\">";
 
                                 if (SessionManagement::getUser()->hasCoursRecommande($cours[$i]->getId())) {
-                                    echo "<img class=\"imgStar\" src=\"/assets/img/etoile/etoile.png\">";
+                                    echo "<img class='imgStar' src='/assets/img/etoile/etoile.svg'>";
                                 }
 
                                 echo "<p class=\"titleCours\">" . $titre . "</p>";

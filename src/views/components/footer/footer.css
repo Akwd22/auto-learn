@@ -2,6 +2,7 @@
 
 footer{
     width: 100%;
+    margin-top: 48px;
     
     background-color: var(--second_clear_background);
 

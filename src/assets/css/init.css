@@ -20,6 +20,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--first_clear_background);
 }
 
 #mainContainer {
@@ -30,7 +31,6 @@ body {
 
 main {
   flex: 1 0 auto;
-  background-color: var(--first_clear_background);
 }
 
 /* Scrollbar pour Firefox */
@@ -53,7 +53,7 @@ main {
 }
 
 @media (prefers-color-scheme: dark) {
-  main {
+  body {
     background-color: var(--first_dark_background);
   }
 

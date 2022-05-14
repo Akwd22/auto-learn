@@ -169,7 +169,7 @@ class CoursCRUD
 
 
                 $sthVideo = $this->db->getPDO()->prepare("
-                SELECT idCours, videoUrl FROM CoursVideosUrl WHERE idCours = :id");
+                SELECT idCours, videoUrl FROM CoursVideosUrl WHERE idCours = :id ORDER BY ordre ASC;");
                 $sthVideo->bindValue(':id', $coursId);
                 $sthVideo->execute();
                 $rowVideo = $sthVideo->fetchAll();

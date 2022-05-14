@@ -12,11 +12,10 @@ function createFooter()
                 <p><a href="">Politiques de confidentialité</a></p>
             </div>
             <div id="divCopyright">
-                <p id="copyright">Autolearn | © 2022<p>
-            <div>
+                <p id="copyright">Autolearn | © 2022</p>
+            </div>
         </div>
-    <footer>
+    </footer>
 HTML;
-echo $html;
+    echo $html;
 }
-?>
