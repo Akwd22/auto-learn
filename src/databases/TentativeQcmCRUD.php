@@ -107,6 +107,13 @@ class TentativeQcmCRUD
     $q->bindValue(":idTentative", $idTentative);
     $q->execute();
   }
+
+  public function deleteAllTentativesQcmFromQcm($idQcm)
+  {
+    $q = $this->db->getPDO()->prepare("DELETE FROM TentativeQCM WHERE idQCM = :idQcm");
+    $q->bindValue(":idQcm", $idQcm);
+    $q->execute();
+  }
 }
 
 // $conn = new DatabaseManagement();

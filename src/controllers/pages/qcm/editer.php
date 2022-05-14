@@ -5,6 +5,7 @@ require_once "databases/SessionManagement.php";
 require_once("databases/QcmCRUD.php");
 require_once("models/CoursRecommandeQCM.php");
 require_once("databases/CoursCRUD.php");
+require_once("databases/TentativeQcmCRUD.php");
 require_once("views/pages/qcm/editer/editer.php");
 require_once("controllers/utils.php");
 require_once("controllers/classes/files/UploadXmlManager.php");
@@ -24,7 +25,8 @@ if (!$isAdmin) die("Vous ne pouvez pas modifier ce QCM.");
 //recup QCM
 $conn = new DatabaseManagement();
 $qcmCRUD = new QcmCRUD($conn);
-$coursCRUD  = new CoursCRUD($conn);
+$tentaQcmCRUD = new TentativeQcmCRUD($conn);
+$coursCRUD = new CoursCRUD($conn);
 
 $cours = null;
 $qcm = null;
@@ -60,6 +62,7 @@ function handleFormEdit()
   global $qcmCRUD;
   global $qcm;
   global $coursCRUD;
+  global $tentaQcmCRUD;
   global $cours;
  
   $redirectUrl = "/qcm/edition";
@@ -70,35 +73,13 @@ function handleFormEdit()
   $xml= UploadXmlManager::exists("xml");
   $nbCoursRecommandes = $_POST["nbCoursRecommandes"];
 
-  //cours recommandé
-  for($i = 1; $i<=$nbCoursRecommandes; $i++){
-    $moyMin = $_POST["min-$i"];
-    $moyMax = $_POST["max-$i"];
-    $idCours = $_POST["id-$i"];
-
-    $cours = $coursCRUD->readCoursById($idCours);
-    if(!$cours)
-      redirect($redirectUrl, "error", "Cours à recommander n'existe pas.", array("id" => $qcmId));
-    if($moyMin<0 || $moyMin>20)
-      redirect($redirectUrl, "error", "Moyenne min. doit être entre 0 et 20.", array("id" => $qcmId));
-    if($moyMax<0 || $moyMax>20)
-      redirect($redirectUrl, "error", "Moyenne max. doit être entre 0 et 20.", array("id" => $qcmId));
-    $coursRecommande = new CoursRecommandeQCM();
-    $coursRecommande->setMoyMin($moyMin);
-    $coursRecommande->setMoyMax($moyMax);
-    $coursRecommande->setCours($cours);
-    $qcm->addCoursRecommandes($coursRecommande);
-    
-    }
-
-
   // titre.
   if (!$titre) 
     redirect($redirectUrl, "error", "Titre obligatoire.", array("id" => $qcmId));
 
   //categorie
   if (!$categorie) {
-    redirect($redirectUrl, "error", "Catégorie obligatoire", array("id" => $qcmId));
+    redirect($redirectUrl, "error", "Catégorie obligatoire.", array("id" => $qcmId));
   }
 
   //description.
@@ -124,15 +105,46 @@ function handleFormEdit()
     if (!$upload->save($savePath))
       redirect($redirectUrl, "error", "Erreur lors de l'importation du fichier XML.", array("id" => $qcmId));
 
-    
+    // Parser le fichier XML et créer les questions.
     $xmlParse= new XmlParserQcm($upload->getRealFileName());
     $questions=$xmlParse->parse();
     $qcm->setQuestions($questions);
+
+    // Supprimer toutes les tentatives de ce QCM.
+    $tentaQcmCRUD->deleteAllTentativesQcmFromQcm($qcm->getId());
 
     $xml = $upload->getRealFileName();
   } else {
     $xml = $qcm->getXmlUrl();
   }
+
+  //cours recommandé
+  $qcm->setCoursRecommandes([]);
+
+  for($i = 1; $i<=$nbCoursRecommandes; $i++){
+    $moyMin = floatval($_POST["min-$i"]);
+    $moyMax = floatval($_POST["max-$i"]);
+    $idCours = $_POST["id-$i"];
+
+    if (empty($idCours)) continue;
+
+    $cours = $coursCRUD->readCoursById($idCours);
+
+    if(!$cours)
+      redirect($redirectUrl, "error", "Cours à recommander n'existe pas.", array("id" => $qcmId));
+    if($moyMin<0 || $moyMin>20)
+      redirect($redirectUrl, "error", "Moyenne min. doit être entre 0 et 20.", array("id" => $qcmId));
+    if($moyMax<0 || $moyMax>20)
+      redirect($redirectUrl, "error", "Moyenne max. doit être entre 0 et 20.", array("id" => $qcmId));
+    if($moyMax < $moyMin)
+      redirect($redirectUrl, "error", "Moyenne max. ≥ à la min.", array("id" => $qcmId));
+
+    $coursRecommande = new CoursRecommandeQCM();
+    $coursRecommande->setMoyMin($moyMin);
+    $coursRecommande->setMoyMax($moyMax);
+    $coursRecommande->setCours($cours);
+    $qcm->addCoursRecommandes($coursRecommande);
+    }
 
   // Mettre à jour les données.
   $qcm->setTitre($titre);
@@ -161,27 +173,6 @@ function handleFormCreate(){
   $xml= UploadXmlManager::exists("xml");
   $nbCoursRecommandes = $_POST["nbCoursRecommandes"];
   $qcm = new QCM();
-  
-  //cours recommandé
-  for($i = 1; $i<=$nbCoursRecommandes; $i++){
-    $moyMin = $_POST["min-$i"];
-    $moyMax = $_POST["max-$i"];
-    $idCours = $_POST["id-$i"];
-
-    $cours = $coursCRUD->readCoursById($idCours);
-    if(!$cours)
-      redirect($redirectUrl, "error", "Cours à recommander n'existe pas.", array("id" => $qcmId));
-    if($moyMin<0 || $moyMin>20)
-      redirect($redirectUrl, "error", "Moyenne min. doit être entre 0 et 20.", array("id" => $qcmId));
-    if($moyMax<0 || $moyMax>20)
-      redirect($redirectUrl, "error", "Moyenne max. doit être entre 0 et 20.", array("id" => $qcmId));
-    
-      $coursRecommande = new CoursRecommandeQCM();
-      $coursRecommande->setMoyMin($moyMin);
-      $coursRecommande->setMoyMax($moyMax);
-      $coursRecommande->setCours($cours);
-      $qcm->addCoursRecommandes($coursRecommande);
-    }
 
   // titre.
   if (!$titre) 
@@ -200,8 +191,6 @@ function handleFormCreate(){
   if ($xml) {
     $upload = new UploadXmlManager("xml");
     $savePath = UPLOADS_QCM_DIR . $upload->getFileHash() . "." . $upload->getExtension();
-
-    //FileManager::delete(UPLOADS_QCM_DIR . $qcm->getXmlUrl());
 
     if (!$upload->validateType())
       redirect($redirectUrl, "error", "Fichier XML importé doit être un fichier XML.", array("id" => $qcmId));
@@ -223,6 +212,32 @@ function handleFormCreate(){
   } else {
     redirect($redirectUrl, "error", "Fichier XML obligatoire", array("id" => $qcmId));
   }
+
+  //cours recommandé
+  for($i = 1; $i<=$nbCoursRecommandes; $i++){
+    $moyMin = floatval($_POST["min-$i"]);
+    $moyMax = floatval($_POST["max-$i"]);
+    $idCours = $_POST["id-$i"];
+
+    if (empty($idCours)) continue;
+
+    $cours = $coursCRUD->readCoursById($idCours);
+
+    if(!$cours)
+      redirect($redirectUrl, "error", "Cours à recommander n'existe pas.", array("id" => $qcmId));
+    if($moyMin<0 || $moyMin>20)
+      redirect($redirectUrl, "error", "Moyenne min. doit être entre 0 et 20.", array("id" => $qcmId));
+    if($moyMax<0 || $moyMax>20)
+      redirect($redirectUrl, "error", "Moyenne max. doit être entre 0 et 20.", array("id" => $qcmId));
+    if($moyMax < $moyMin)
+      redirect($redirectUrl, "error", "Moyenne max. ≥ à la min.", array("id" => $qcmId));
+
+      $coursRecommande = new CoursRecommandeQCM();
+      $coursRecommande->setMoyMin($moyMin);
+      $coursRecommande->setMoyMax($moyMax);
+      $coursRecommande->setCours($cours);
+      $qcm->addCoursRecommandes($coursRecommande);
+    }
 
   $qcm->setTitre($titre);
   $qcm->setDescription($description);

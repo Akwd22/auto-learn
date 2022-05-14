@@ -22,69 +22,58 @@ if (SessionManagement::isLogged()) {
   </form>
 </div>
 
-<!-- <form action="/cours/editer?id=3" method="post" enctype="multipart/form-data">
-  <h1>Modifier le cours</h1>
-  <label for="titre">Nouveau titre</label>
-  <input type="text" name="titre" id="titre" value="">
-  <br>
-  <label for="description">Nouvelle description</label>
-  <input type="text" name="description" id="description">
-  <br>
-  <label for="tempsMoyen">Temps</label>
-  <input type="text" name="tempsMoyen" id="tempsMoyen">
-  <br>
-  <select name="categorie">
-    <option value="1">Aucune</option>
-    <option value="2">Bureautique</option>
-    <option value="3">Langages</option>
-  </select>
-  <br>
-  <br>
-  <select name="niveauRecommande">
-    <option value="1">Debutant</option>
-    <option value="2">Intermediaire</option>
-    <option value="3">Avance</option>
-  </select>
-  <br>
-  <label for="image">Nouvelle image</label>
-  <input type="file" name="image" id="image">
-  <br>
-  <input type="radio" name="format" id="texte" value="1">
-  <label for="texte">Texte</label>
-  <input type="radio" name="format" id="video" value="2">
-  <label for="video">Vidéo</label>
-  <br>
-  <label for="fichPdf">Nouveau cours pdf</label>
-  <input type="file" name="fichPdf" id="fichPdf">
-  <br>
-  <input type="hidden" name="nbLiens" value="3">
-  <input type="text" name="lien1">
-  <input type="text" name="lien2">
-  <input type="text" name="lien3">
-  <br>
-  <input type="submit" name="submit" value="Modifier le cours">
-</form> -->
+<?php
+require_once("config.php");
+require_once("databases/DatabaseManagement.php");
+require_once "databases/SessionManagement.php";
+require_once("databases/QcmCRUD.php");
+require_once("models/CoursRecommandeQCM.php");
+require_once("databases/CoursCRUD.php");
+require_once("views/pages/qcm/editer/editer.php");
+require_once("controllers/utils.php");
+require_once("controllers/classes/files/UploadXmlManager.php");
+require_once("controllers/classes/XmlParserQcm.php");
 
-<!--<form action="/qcm/edition" method="post" enctype="multipart/form-data">
+$conn = new DatabaseManagement();
+$qcmCRUD = new QcmCRUD($conn);
+$coursCRUD  = new CoursCRUD($conn);
+
+$qcm = $qcmCRUD->readQcmById(1);
+?>
+
+<!-- <form action="/qcm/edition?id=1" method="post" enctype="multipart/form-data">
   <h1>Modifier le qcm</h1>
   <label for="titre">Nouveau titre</label>
-  <input type="text" name="titre" id="titre" value="">
+  <input type="text" name="titre" id="titre" value="<?php echo $qcm->getTitre(); ?>">
   <br>
   <label for="description">Nouvelle description</label>
-  <input type="text" name="description" id="description">
+  <input type="text" name="description" id="description" value="<?php echo $qcm->getDescription(); ?>">
   <br>
   <label for="categorie">Nouvelle categorie</label>
-  <input type="text" name="categorie" id="categorie">
+  <input type="text" name="categorie" id="categorie" value="<?php echo $qcm->getCategorie(); ?>">
   <br>
   <label for="xml">Nouveau fichier xml</label>
   <input type="file" name="xml" id="xml">
   <br>
   <h1>Cours recommandes</h1>
-  <input type="hidden" name="nbCoursRecommandes" value="1">
-  <div>
-  Entre <input type="number" name="min-1">
-  Et <input type="number" name="max-1">
-  :<input type="number" name="id-1">
-  </div>
+
+  <input type="hidden" name="nbCoursRecommandes" value="<?php echo count($qcm->getAllCoursRecommandes()) ?>">
+
+  <?php
+  foreach ($qcm->getAllCoursRecommandes() as $i => $reco) {
+    $idCours = $reco->getCours()->getId();
+    $min = $reco->getMoyMin();
+    $max = $reco->getMoyMax();
+
+  ?>
+    <div>
+      Entre <input type="number" name="min-<?php echo $i+1 ?>" placeholder="Moy min." value="<?php echo $min ?>">
+      Et <input type="number" name="max-<?php echo $i+1 ?>" placeholder="Moy max." value="<?php echo $max ?>">
+      : <input type=" number" name="id-<?php echo $i+1 ?>" placeholder="Identifiant du cours" value="<?php echo $idCours ?>">
+    </div>
+  <?php
+  }
+  ?>
+
   <input type="submit" name="submit" value="Creer/Modifier le qcm">
-</form>-->
+</form> -->
