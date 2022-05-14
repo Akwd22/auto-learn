@@ -93,7 +93,7 @@ hr {
   font-weight: 700;
   font-size: 24px;
   line-height: 150%;
-  color: #ffff;
+  color: var(--dark_text);
   padding-bottom: 32px;
 }
 
@@ -148,7 +148,10 @@ hr {
   .cours-recomande-list-item {
     background-color: var(--medium1_text);
   }
-  
+
+  .cours-recommande-container-titre {
+    color: #ffff;
+  }
 }
 
 @media screen and (max-width: 960px) {
