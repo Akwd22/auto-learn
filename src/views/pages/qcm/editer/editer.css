@@ -114,7 +114,7 @@ hr {
 .cours-recomande-list-item {
   display: flex;
   align-items: center;
-  background-color: var(--medium1_text);
+  background-color: var(--clear1_text);
   padding: 8px;
   border-radius: 4px;
   margin-bottom: 16px;
@@ -150,6 +150,11 @@ hr {
   .qcmCreation-page-form label {
     color: var(--clear2_text);
   }
+
+  .cours-recomande-list-item {
+    background-color: var(--medium1_text);
+  }
+  
 }
 
 @media screen and (max-width: 960px) {
