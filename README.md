@@ -35,8 +35,10 @@ This project is called **Auto Learn**, the basic principle is simple: an online 
 
 There are two categories of users:
 
-- The **learner**: XXX.
-- The **admin**: XXX.
+- The **learner**: he can take quizzes to test his knowledge on a particular subject. Courses are suggested to him based on the results he has obtained in the tests.
+- The **admin**: he can manage users, courses and tests on the platform.
+
+The courses suggested can be either one or more videos, or they can be written.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -62,7 +64,29 @@ You can find documentation such as the requirements analysis, and UML diagrams i
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow the steps: XXX.
+To get a local copy up and running follow the steps:
+
+### Prerequisites
+
+To setup the project, you will need:
+* [PHP 7.0.0+](https://www.php.net/downloads)
+* [MySQL 5.7+](https://www.mysql.com/downloads/)
+* [Apache Server](https://httpd.apache.org/download.cgi)
+
+### Installation
+
+1. Clone the repo:
+   ```sh
+   git clone https://github.com/Akwd22/auto-learn.git
+   ```
+2. Set PHP include path to the project `src` folder in your PHP config file:
+   ```ini
+   include_path = ".;path/to/the/project/src/folder"
+   ```
+3. Init database schema by loading the file `db/init_mysql.sql`.
+4. (Optional) Populate database with mock data by loading the file  `db/data_mysql.sql`.
+
+You are ready to start your Apache server.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
