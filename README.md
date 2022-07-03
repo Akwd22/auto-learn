@@ -69,7 +69,7 @@ To get a local copy up and running follow the steps: XXX.
 <!-- LICENSE -->
 ## License
 
-Distributed under the XXX License. See LICENSE.txt for more information.
+Distributed under The Unlicense. See LICENSE file for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
