@@ -18,7 +18,6 @@
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#documentation">Documentation</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contributors">Contributors</a></li>
   </ol>
 </details>
@@ -31,35 +30,44 @@
 </div>
 <br />
 
-This project is called **Auto Learn**, the basic principle is simple: an online platform for learning with courses and testing with quizzes.
+This project is called **Auto Learn**, the principle is simple: an online platform for learning with courses and testing with quizzes.
 
 There are two categories of users:
 
 - The **learner**: he can take quizzes to test his knowledge on a particular subject. Courses are suggested to him based on the results he has obtained in the tests.
 - The **admin**: he can manage users, courses and tests on the platform.
 
-The courses suggested can be either one or more videos, or they can be written.
+### Features
+
+- [x] Take knowledge tests and get course suggestions based on your score.
+- [x] Find courses and tests through various search filters.
+- [x] View video or text courses.
+- [x] Track your started and completed courses and tests.
+- [x] Light and dark theme.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTEXT -->
 ## Context
 
-This project is an academic project realized during the **third year** of a **Bachelor** of Computer Science.
+This project is an academic project made during the **third year** of a **Bachelor** of Computer Science.  
 The development was done in a team of 6 people.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+<!-- BUILT WITH -->
 ## Built With
 
-Entire project was built with vanilla PHP and basic [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) architectural pattern. Database used is MySQL.
+Entire project was built with vanilla PHP and basic [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) architectural pattern. Database used is [MySQL](https://www.mysql.com/).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- DOCUMENTATION -->
 ## Documentation
 
-You can find documentation such as the requirements analysis, and UML diagrams in the file `docs/rapport.pdf`.
+You can find documentation files such as the requirements analysis, technical details, and UML diagrams in the folder `docs/`.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -87,13 +95,6 @@ To setup the project, you will need:
 4. (Optional) Populate database with mock data by loading the file  `db/data_mysql.sql`.
 
 You are ready to start your Apache server.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- LICENSE -->
-## License
-
-Distributed under The Unlicense. See LICENSE file for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
